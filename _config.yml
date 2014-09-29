@@ -5,14 +5,14 @@ highlighter:         pygments
 # Permalinks
 #
 # Use of `relative_permalinks` ensures post links from the index work properly.
-permalink:           webGIS/
+# permalink:           webGIS/
 relative_permalinks: true
 
 # Setup
 title:               'Web GIS'
 tagline:             'Online mapping'
 description:         'Online home of the Web GIS Course.'
-# url:                  http://massatleeds.github.io/webGIS
+url:                  http://massatleeds.github.io/webGIS
 # baseurl:              /webGIS
 paginate:            5
 
