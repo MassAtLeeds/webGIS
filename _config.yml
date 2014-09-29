@@ -12,7 +12,7 @@ relative_permalinks: true
 title:               'Web GIS'
 tagline:             'Online mapping'
 description:         'Online home of the Web GIS Course.'
-url:                  http://massatleeds.github.io/
+url:                  http://massatleeds.github.io
 baseurl:              /webGIS
 paginate:            5
 
