@@ -1,0 +1,26 @@
+# Dependencies
+markdown:            redcarpet
+highlighter:         pygments
+
+# Permalinks
+#
+# Use of `relative_permalinks` ensures post links from the index work properly.
+permalink:           none
+relative_permalinks: true
+
+# Setup
+title:               'Web GIS'
+tagline:             'Online mapping'
+description:         'Online home of the Web GIS Course.'
+# url:               http://massatleeds.github.io/webGIS/
+# baseurl:           http://massatleeds.github.io/webGIS/
+paginate:            5
+
+# About/contact
+author:
+  name:              MASS
+  url:               http://massatleeds.github.io/
+  email:             r.lovelace@leeds.ac.uk
+
+# Custom vars
+version:             1.0.0
