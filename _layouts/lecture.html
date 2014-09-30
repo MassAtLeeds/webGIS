@@ -1,8 +1,14 @@
----
-layout: default
----
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
 
-<div class="lecture">
+  {% include head.html %}
+
+  <body>
+
+<div class="page">
   <h1 class="page-title">{{ lecture.title }}</h1>
   {{ content }}
 </div>
+
+  </body>
+</html>
