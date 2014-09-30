@@ -4,7 +4,9 @@ title: About
 ---
 
 Web GIS is about building, displaying and interacting with
-online maps...
+online maps.
+
+![example map](http://geonode.org/static/img/hero_img.png)
 
 ## Course Overview
 
