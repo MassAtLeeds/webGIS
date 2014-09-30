@@ -70,7 +70,7 @@ Week 20 Thurs
 
 - **Lecture 5: Introduction to web mapping with Leaflet**
 - A first Leaflet map
-- Custxomising basemaps
+- Customising basemaps
 - Adding additional layers
 
 Lunch
