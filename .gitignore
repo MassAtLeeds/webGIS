@@ -14,6 +14,8 @@ _site
 *.zip
 *.vi
 *~
+*.Rproj
+*.pdf
 
 # OS or Editor folders
 .DS_Store
@@ -28,6 +30,8 @@ nbproject
 *.sublime-project
 *.sublime-workspace
 .idea
+.Rproj.user
+.Rhistory
 
 # Komodo
 *.komodoproject
@@ -40,7 +44,4 @@ validation-report.json
 # Folders to ignore
 node_modules
 bower_components
-*.Rproj
-.Rproj.user
-.Rhistory
-*.pdf
+
