@@ -43,3 +43,4 @@ bower_components
 *.Rproj
 .Rproj.user
 .Rhistory
+*.pdf
