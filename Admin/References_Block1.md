@@ -1,3 +1,8 @@
+---
+layout: page
+title: References
+---
+
 References and Links
 ====================
 
