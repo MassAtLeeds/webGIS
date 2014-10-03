@@ -16,6 +16,8 @@ on Google Maps and its Application Programming Interface (API).
 The second block teaches open source
 GIS tools (OSGEO) for serving maps online.
 
+---
+
 ### Block 1
 
 Wednesday, Week 16
@@ -52,6 +54,8 @@ Lunch
 - Tutorial 13: Adding search box/directions
 
 **Assessment 1: Develop an original site featuring all the elements above**
+
+<hr>
 
 ### Block 2
 
