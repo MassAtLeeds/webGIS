@@ -12,7 +12,7 @@ permalink:           /webGIS/
 title:               'Web GIS'
 tagline:             'Online mapping'
 description:         'Online home of the Web GIS Course.'
-# baseurl:              http://massatleeds.github.io/webGIS/
+baseurl:              http://massatleeds.github.io/webGIS/
 url:                http://massatleeds.github.io/webGIS
 paginate:            5
 
