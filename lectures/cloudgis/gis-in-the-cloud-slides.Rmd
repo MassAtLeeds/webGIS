@@ -1,0 +1,102 @@
+---
+title: "GIS in the Clloud"
+author: "Robin Lovelace"
+date: "09/30/2014"
+output: beamer_presentation
+---
+
+## Part 1: Introduction!
+
+![Hexagon](http://www.hexagongeospatial.com/ImagesContent/serverdemo/Demo-Portal-WPS-large.jpg)
+
+Servers can do more than 'just' moving information around
+
+```{r, echo=FALSE}
+# beyond using the internet
+# as a glorfied giant hard disk and visualisation tool
+```
+
+## Re-cap
+
+- Interesting ways we've moved things around
+- Analysis mostly limited visualisation options
+- Let's *do* GIS online
+
+![wps-geoserver](wps-geoserver.png)
+
+## Lecture structure
+
+- What is the cloud and what can it do?
+- Applications
+- Geoprocessing 'in the cloud'
+- The Web Processing Service
+- Next steps
+
+##II What is the cloud? 
+
+```{r, echo=FALSE}
+# Section 1
+```
+
+## The cloud
+
+![The cloud](http://wellcomeimages.org/indexplus/obf_images/8f/0b/b6ebddc2b5dcd248e18c4eedc96e.jpg)
+
+False idol painting, *circa 1420-30* Creative Commons Attribution from [wellcomeimages.org](http://wellcomeimages.org/) - the cloud has downsides!
+
+## The advantages of 'cloud computing'
+
+![](http://edudemic.com/wp-content/uploads/2012/04/googledocs-tips-379x243.jpg)
+
+## Processing in the cloud
+
+![](http://edudemic.com/wp-content/uploads/2012/04/googledocs.jpg)
+
+##Applications
+
+## Application I: participatory transport planning
+
+![](http://robinlovelace.net/figure/cconnect.png)
+
+## Application II: AURIN
+
+- The Australian Urban Research Institute
+- A 'workbench for 
+- ~$20 million over 5 years
+- Serving data on water, health, economy, crime etc.
+- "data describing one of the above should be gathered and stored in
+a manner allowing cross-analysis with other datasets". Source:
+[Aurin.org.au](http://aurin.org.au/wp-content/uploads/2014/07/AURIN_Investment_Plan.pdf)
+
+## Application III: Housing search on rightmove.co.uk
+
+![](rightmove.png)
+
+Source: [Rightmove.co.uk](http://www.rightmove.co.uk/)
+
+## *Geo*processing in the cloud I
+
+![](http://okgis.i3mainz.hs-mainz.de/1_Container/foreignSites/stollberg/Workflow.jpg)
+
+WPS in practice (source: [Stollberg, 2006](http://okgis.i3mainz.hs-mainz.de/1_Container/foreignSites/stollberg/index.html))
+
+## Geoprocessing in the cloud II
+
+![](https://dl.dropboxusercontent.com/u/15008199/img/aurin-cloud-gis.png)
+
+Source: [AURIN](https://aurin.org.au/)
+
+##The Web Processing Service (WPS)
+
+##What is the WPS?
+
+##Next steps
+
+![cake addictive](http://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Wiki-cake_1.jpg/1024px-Wiki-cake_1.jpg)
+
+- Just a morsel of very large subject
+- Potentially very rewarding pass-time - play around!
+
+## References
+
+
