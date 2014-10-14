@@ -7,14 +7,14 @@ Such is the popularity of Web-based GIS that there is an abundance of
 material that you can read up on. This list is not exhaustive; please
 e-mail any other websites and sources that you come across.
 
-### Links
+#### Links
 
 -   [Official Google Maps
     documentation](http://code.google.com/apis/maps/documentation/javascript/)
 -   [W3Schools HTML and CSS Tutorials](http://www.w3schools.com/)
 -   [Code Academy](http://www.codecademy.com)
 
-### Readings
+#### Readings
 
 -   [Eloquent Javascript](http://eloquentjavascript.net/)
 -   Geoservices Create a Framework for Collaboration, Understanding, and
