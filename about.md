@@ -88,7 +88,7 @@ Lunch
 
 <p class="message">
  Welcome the the Web GIS website, for MSc students in the School of Geography,
- University of Leeds. The site was built using html, css and a little
+ University of Leeds. The site was built using HTML, CSS and a little
  help from static website generator
 <a href="http://jekyllrb.com">Jekyll</a>.
  It is based on the
