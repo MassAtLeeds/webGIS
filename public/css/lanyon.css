@@ -106,10 +106,10 @@ h1, h2, h3, h4, h5, h6 {
 }
 .masthead-title a {
   color: #505050;
-  font-size: 120%; 
+  font-size: 35px; 
 }
 .masthead-title small {
-  font-size: 80%;
+  font-size: 20px;
   font-weight: 400;
   color: #c0c0c0;
   letter-spacing: 0;
