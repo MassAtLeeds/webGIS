@@ -1,9 +1,7 @@
 ---
 layout: page
-title: 
+title: References
 ---
-
-##References and Links
 
 Such is the popularity of Web-based GIS that there is an abundance of
 material that you can read up on. This list is not exhaustive; please
