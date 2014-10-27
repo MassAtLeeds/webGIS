@@ -16,6 +16,11 @@ on Google Maps and its Application Programming Interface (API).
 The second block teaches open source
 GIS tools (OSGEO) for serving maps online.
 
+We provide [example data](/webGIS/data.html) and code snippets to guide you
+through the [practicals](/webGIS/practicals.html). At the end of this process
+you will be able to create a simple web mapping application on a topic of your
+choice.
+
 ---
 
 ### Block 1
