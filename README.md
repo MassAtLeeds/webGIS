@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Lanyon
 
 Lanyon is an unassuming [Jekyll](http://jekyllrb.com) theme that places content first by tucking away navigation in a hidden drawer. It's based on [Poole](http://getpoole.com), the Jekyll butler.
@@ -119,3 +120,15 @@ Lanyon has two branches, but only one is used for active development.
 Open sourced under the [MIT license](LICENSE.md).
 
 <3
+=======
+webGIS
+======
+
+Module intoducing the art of online map serving, display and data entry.
+
+Working draft of the accompanying website can be found here: http://massatleeds.github.io/webGIS/
+
+This course runs in Semester 2.
+
+To edit the website, click on the branches pulldown menu and select [gh-pages](https://github.com/MassAtLeeds/webGIS/tree/gh-pages).
+>>>>>>> 3e9c9c43213fa41f546ce2c1bad1453fc8f716ed

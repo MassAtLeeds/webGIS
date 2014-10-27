@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Ignore docs files
 _gh_pages
 _site
@@ -45,3 +46,8 @@ validation-report.json
 node_modules
 bower_components
 
+=======
+.Rproj.user
+.Rhistory
+.RData
+>>>>>>> 3e9c9c43213fa41f546ce2c1bad1453fc8f716ed
