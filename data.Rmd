@@ -28,7 +28,9 @@ Raw Twitter data contains [lots](https://dev.twitter.com/rest/public) of data.
 To reduce size, the table was shunk both in length (number of rows)
 and in width (number of columns):
 
-```{r, eval=FALSE}
+<script src="https://gist.github.com/Robinlovelace/ab9ca897945111695b20.js"></script>
+
+```{r, eval=FALSE, echo=FALSE}
 # Take a random selection of the data
 set.seed(2014)
 tdft <- tdft[sample(nrow(tdft), size = 1000), ]
