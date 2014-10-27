@@ -1,0 +1,106 @@
+---
+title: "Data description"
+layout: default
+---
+
+<div id="tour-de-france-data" class="section level2">
+<h2>Tour de France data</h2>
+<p>The main dataset we’ll be using in this module is <a href="https://github.com/MassAtLeeds/webGIS/blob/master/input-data/tdf_tweets.csv">tdf_tweets.csv</a>, a table of 1000 ‘tweets’ harvested from the Twitter Streaming API using a <a href="https://github.com/Robinlovelace/tweepy">a modified version</a> of tweepy, a pre-existing Python library.</p>
+<p>In fact, the original dataset was much larger, consisting of roughly 42,000 tweets. These were filtered out from dozens of gigabytes of Twitter data using a long <a href="https://github.com/Robinlovelace/tweepy/blob/master/filters/BigLoad-tdf.R">R script</a>. This script took around 1 day to run on a fast computer! A random selection of 1000 of these tweets was selected for this module. To overcome confidentiality issues, a number of changes were made to the files using <a href="https://github.com/MassAtLeeds/webGIS/blob/master/R/tdf-clean.R">another R script</a> called <code>tdf-clean</code> because it <strong>cleans</strong> Tour de France data. Get it?!</p>
+<p>Key features of this script include:</p>
+<div id="removal-of-superfluous-variables" class="section level3">
+<h3>Removal of superfluous variables</h3>
+<p>Raw Twitter data contains <a href="https://dev.twitter.com/rest/public">lots</a> of data. To reduce size, the table was shunk both in length (number of rows) and in width (number of columns):</p>
+<pre class="r"><code># Take a random selection of the data
+set.seed(2014)
+tdft &lt;- tdft[sample(nrow(tdft), size = 1000), ]
+tdft &lt;- select(tdft, lat, lon, created, text, language, n_followers, n_tweets, user_location)</code></pre>
+</div>
+<div id="removal-of-sensitive-text" class="section level3">
+<h3>Removal of sensitive text</h3>
+<p>It is hard to identify what constitutes ‘sensitive’ text, so any words which were unusual, contained html links or the identifying @ symbol were removed:</p>
+<pre class="r"><code># Remove sensitive text
+summary(factor(Encoding(tdft$text)))
+Encoding(tdft$text) &lt;- &quot;UTF-8&quot;
+tdft$text &lt;- iconv(tdft$text, &quot;UTF-8&quot;, &quot;UTF-8&quot;,sub='')
+tdft$text &lt;- gsub('@\\S+', '@', tdft$text) # remove all to '@' texts
+tdft$text &lt;- gsub('http\\S+', 'http', tdft$text) # remove all to hyperlinks
+head(tdft$text)</code></pre>
+</div>
+<div id="shortening-of-word-length" class="section level3">
+<h3>Shortening of word length</h3>
+<p>To make the text shorter and more manageable, a maximum word length was set. To remove excess words, a new R function was defined and run on the dataset:</p>
+<pre class="r"><code># Function to reduce the max. number of words in a string
+maxwords &lt;- function(x, max = 10){
+lwords &lt;- length(x)
+if(lwords &gt; max) lwords &lt;- max
+paste0(x[1:lwords], collapse = &quot; &quot;)
+}
+# Apply maxwords to the data
+tdft$text &lt;- sapply(words, maxwords)</code></pre>
+</div>
+</div>
+<div id="analysing-the-data" class="section level2">
+<h2>Analysing the data</h2>
+<p>To begin to analyse the data, there are many options. R is a powerful data analysis tool; to load and begin to analyse the data in R, try the following:</p>
+<pre class="r"><code>tweets &lt;- read.csv(&quot;input-data/tdf_tweets.csv&quot;)
+head(tweets, n = 10) # look at the first 10 lines</code></pre>
+<pre><code>##         lat       lon             created
+## 1  51.50886 -0.265492 2014-07-05 07:29:04
+## 2  53.80314 -1.542609 2014-07-03 12:15:50
+## 3   0.00000  0.000000 2014-07-06 18:37:12
+## 4  54.04125 -1.565414 2014-07-05 09:20:11
+## 5  53.99056 -1.799216 2014-07-06 12:31:03
+## 6   0.00000  0.000000 2014-06-27 10:13:51
+## 7  53.44612 -2.133732 2014-07-18 07:29:09
+## 8  55.01130 -7.329353 2014-07-06 16:00:58
+## 9  53.30601 -3.521509 2014-06-28 23:59:51
+## 10 53.34932 -1.425972 2014-07-02 23:20:05
+##                                                           text language
+## 1                   but this As its my first Tour de France Im       en
+## 2  Great view from 2 YB office TDF2014 TDFyorkshire leeds http       en
+## 3                       Hello today was was in York I am a amp       en
+## 4                             here we are at Ripleycastle http       en
+## 5                                   Another great day tdf http       en
+## 6                    C Froome R Porte G Thomas B Eisel M Nieve       ht
+## 7        Tdf13 to Chamrousse Cmon Movistar dont make it a Tour       en
+## 8                    so much for up DCFC are 10 thats what TdF       en
+## 9                      and that will be the end of the we need       en
+## 10                 Epic cycling Did a of TdF stage 2 today amp       en
+##    n_followers n_tweets          user_location
+## 1           60      438                 London
+## 2           25      244
+## 3          640     1886      Yorkshire England
+## 4           18      165              The North
+## 5          328     7132 Harrogate/Loughborough
+## 6         1483     7700             Merseyside
+## 7          446     2512     Denton, Manchester
+## 8          774     9554          Derry,Ireland
+## 9          140     1163
+## 10        2023    11569              Sheffield</code></pre>
+<pre class="r"><code>summary(tweets) # summarise the variables</code></pre>
+<pre><code>##       lat             lon                          created
+##  Min.   : 0.00   Min.   :-7.32935   2014-07-05 12:33:51:  2
+##  1st Qu.:51.51   1st Qu.:-1.83530   2014-07-06 18:15:20:  2
+##  Median :53.37   Median :-1.46818   2014-06-03 18:45:18:  1
+##  Mean   :46.94   Mean   :-1.26364   2014-06-04 19:22:47:  1
+##  3rd Qu.:53.80   3rd Qu.:-0.09348   2014-06-05 11:15:15:  1
+##  Max.   :57.68   Max.   : 1.86397   2014-06-05 13:02:00:  1
+##                                     (Other)            :992
+##                                                           text
+##  and that will be the end of the we need                    :100
+##  Another great day tdf http                                 :100
+##  but this As its my first Tour de France Im                 :100
+##  C Froome R Porte G Thomas B Eisel M Nieve                  :100
+##  Epic cycling Did a of TdF stage 2 today amp                :100
+##  Great view from 2 YB office TDF2014 TDFyorkshire leeds http:100
+##  (Other)                                                    :400
+##     language    n_followers          n_tweets         user_location
+##  en     :882   Min.   :     0.0   Min.   :     1             :175
+##  fr     : 59   1st Qu.:   115.0   1st Qu.:   894   London    : 43
+##  und    : 14   Median :   295.5   Median :  3032   Leeds     : 23
+##  hu     :  9   Mean   :  1812.2   Mean   :  8570   Sheffield : 13
+##  cy     :  5   3rd Qu.:   710.5   3rd Qu.:  9338   London, UK:  9
+##  da     :  4   Max.   :508220.0   Max.   :131852   Manchester:  9
+##  (Other): 27                                       (Other)   :728</code></pre>
+</div>
