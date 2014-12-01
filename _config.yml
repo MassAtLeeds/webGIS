@@ -1,6 +1,3 @@
-# Dependencies
-markdown:            redcarpet
-highlighter:         pygments
 
 # Permalinks
 #
@@ -9,18 +6,23 @@ permalink:           /webGIS/
 # relative_permalinks: true
 
 # Setup
-title:               'Web GIS'
-tagline:             'Online mapping'
-description:         'Online home of the Web GIS Course.'
-baseurl:              http://massatleeds.github.io/webGIS/
-url:                http://massatleeds.github.io/webGIS
-paginate:            5
+title:               'GEOG5870M: Web-based GIS'
+tagline:             'A course on web-based mapping'
+description:         'GEOG5870M: Web-based GIS, University of Leeds'
+# baseurl:          /web-based-gis/            
+ # http://massatleeds.github.io/webGIS/
 
 # About/contact
 author:
-  name:              MASS
-  url:               http://massatleeds.github.io/
-  email:             r.lovelace@leeds.ac.uk
+  name:             MASS Group
+  url:              https://github.com/MassAtLeeds
+  email:            a.j.evans@leeds.ac.uk
 
 # Custom vars
 version:             1.0.0
+
+destination:         _site_wbg
+layouts:     ./_layouts_wbg
+exclude:     [atom.xml]
+
+

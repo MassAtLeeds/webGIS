@@ -1,7 +1,9 @@
 ---
-layout: page
+layout: default
 title: OSGEO Live
 ---
+
+##OSGEO Live
 
 For parts of this course we will be using a customised version of the Ubuntu
 operating system, based on Linux. [OSGEO Live](http://live.osgeo.org/en/index.html)

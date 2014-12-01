@@ -1,46 +1,28 @@
 ---
 layout: page
-title: About
+title: Course materials
 ---
 
-Web GIS is about building, displaying and interacting with
-online maps.
-
-![example map](http://geonode.org/static/img/hero_img.png)
-
-## Course Overview
-
-The course is composed of 4 intensive days of lectures, practicals
-and writing your own code. The first two-day block is based
-on Google Maps and its Application Programming Interface (API).
-The second block teaches open source
-GIS tools (OSGEO) for serving maps online.
-
-We provide [example data](/webGIS/data.html) and code snippets to guide you
-through the [practicals](/webGIS/practicals.html). At the end of this process
-you will be able to create a simple web mapping application on a topic of your
-choice.
-
----
+This course consists of 12 lectures:
 
 ### Block 1
 
 Wednesday, Week 16
 
-- **Lecture 1: Introduction to module. What is WebGIS?**
+- **Lecture 1: <A href="../lectures/general/intro-to-web-based-gis/index.html">Introduction to module. What is WebGIS?</A>**
 - Set up: Basic HTML, CSS, Notepad ++. Website.
 - Tutorial 1: [Google Maps](https://developers.google.com/maps/) (markers, windows)
 
 ![Google Logo](https://developers.google.com/_static/fd384d45a8/images/developers-logo.svg)
 
-- **Lecture 2: Introduction to JavaScript**
+- **Lecture 2: <A href="../lectures/javascript/intro-to-javascript/index.html">Introduction to JavaScript</A>**
 - CodeAcademy Introduction
 - Tutorial 2: JavaScript functions
 - Tutorial 3: Buffers
 
 Lunch
 
-- **Lecture 3: [JavaScript](http://www.codecademy.com/en/tracks/javascript) for web GIS**
+- **Lecture 3: [JavaScript for web GIS](http://www.codecademy.com/en/tracks/javascript)**
 - Tutorial 4: Debugging JavaScript
 - Tutorial 5: Authoring content in Google Earth
 - Tutorial 6: CSS
@@ -71,7 +53,7 @@ Lunch
 
 Lunch
 
-  - Setting up GeoServer
+  - <A href="../practicals/software/geoserver/setting-up-geoserver.html">Setting up GeoServer</A>
   - Adding data to GeoServer
   - Modifying GeoServer outputs
   
@@ -89,13 +71,3 @@ Lunch
 - Inputting and saving user data
 - **Lecture 7: GIS in the cloud**
 
-## About the website
-
-<p class="message">
- Welcome the the Web GIS website, for MSc students in the School of Geography,
- University of Leeds. The site was built using HTML, CSS and a little
- help from static website generator
-<a href="http://jekyllrb.com">Jekyll</a>.
- It is based on the
- <a href="https://github.com/poole/lanyon">Lanyon Template</a>.
-</p>

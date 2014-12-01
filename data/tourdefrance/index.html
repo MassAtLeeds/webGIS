@@ -1,11 +1,11 @@
 ---
+title: Tour de France
 layout: default
-title: Data
 ---
 
 <div id="tour-de-france-data" class="section level2">
 <h2>Tour de France data</h2>
-<p>The main dataset we’ll be using in this module is <a href="https://github.com/MassAtLeeds/webGIS/blob/master/input-data/tdf_tweets.csv">tdf_tweets.csv</a>, a table of 1000 ‘tweets’ harvested from the Twitter Streaming API using a <a href="https://github.com/Robinlovelace/tweepy">a modified version</a> of tweepy, a pre-existing Python library.</p>
+<p>This dataset is <a href="https://github.com/MassAtLeeds/webGIS/blob/master/input-data/tdf_tweets.csv">tdf_tweets.csv</a>, a table of 1000 ‘tweets’ harvested from the Twitter Streaming API using a <a href="https://github.com/Robinlovelace/tweepy">a modified version</a> of tweepy, a pre-existing Python library.</p>
 <p>In fact, the original dataset was much larger, consisting of roughly 42,000 tweets. These were filtered out from dozens of gigabytes of Twitter data using a long <a href="https://github.com/Robinlovelace/tweepy/blob/master/filters/BigLoad-tdf.R">R script</a>. This script took around 1 day to run on a fast computer! A random selection of 1000 of these tweets was selected for this module. To overcome confidentiality issues, a number of changes were made to the files using <a href="https://github.com/MassAtLeeds/webGIS/blob/master/R/tdf-clean.R">another R script</a> called <code>tdf-clean</code> because it <strong>cleans</strong> Tour de France data. Get it?!</p>
 <p>Key features of this script include:</p>
 <div id="removal-of-superfluous-variables" class="section level3">
