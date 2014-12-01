@@ -9,7 +9,7 @@ This course consists of 12 lectures:
 
 Wednesday, Week 16
 
-- **Lecture 1: <A href="../lectures/general/intro-to-web-based-gis/index.html">Introduction to module. What is WebGIS?</A>**
+- **Lecture 1: <A href="../lectures/general/intro-to-web-based-gis/geog5870__1_1.html">Introduction to module. What is WebGIS?</A>**
 - Set up: Basic HTML, CSS, Notepad ++. Website.
 - Tutorial 1: [Google Maps](https://developers.google.com/maps/) (markers, windows)
 
