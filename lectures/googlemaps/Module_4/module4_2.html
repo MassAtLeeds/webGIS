@@ -1,0 +1,70 @@
+---
+layout: default
+title: Adding markers in
+---
+
+<h1> Developing Google Maps</h1>
+<h2>Adding markers in</h2>
+
+<p>So, we have now started to improve the layout a little bit. However, the map is still fundamentally the same. The next
+thing we will do is to add some markers.  This should be relatively
+straightforward as I've already got you to do this in the first
+tutorial.  However, we'll go into a little more detail here.
+<p>
+To create a Marker, we use the <code>google.maps.Marker</code>.  An example of this is given below:
+<p>
+<div class="code_example">
+<pre>...
+  var marker = new google.maps.Marker({
+      position: latlng, 
+      map: map, 
+      title:"Hello World!"
+  });  
+ ...</pre>
+</div>
+
+<p>The process for adding a marker is fairly simple: we create a new instance
+of the <code>Marker()</code> object, and supply various properties: </p>
+<ul>
+  <li><code>position</code> - where the marker is to be located</li>
+  <li><code>map</code> - the name of the map object on which to place the new
+    marker </li>
+  <li><code>title</code> - a title that will be seen when we move the mouse
+    over the marker</li>
+</ul>
+
+<p>These properties are supplied using the JSON '{key: value}' object notation:
+the Marker() method takes one parameter, but that parameter is an object with
+multiple properties.</p>
+
+<p>In this example, we've used the same <code>latlng</code> that was created to
+centre the map, and used as one of the parameters of
+<code>google.maps.Map()</code>. If we wanted to use a different location, we
+could create an additional lat-lng object, and use that instead. The second
+property is the potentially confusing '<code>map: map</code>'. The first term
+here - '<code>map:</code>' - indicates the property (of the
+<code>Marker()</code> object) that we are setting. Its parameter (the second
+'<code>map</code>') refers to the name of the google.maps.Map() object that we
+created in the line '<code>var map = new
+google.maps.Map(document.getElementById("map_canvas"),myOptions);</code>'. Note
+that the text supplied for the <code>title</code> property is a string object,
+and must be placed in quotes.</p>
+
+<h3>Task</H3>
+Without looking at the code for the marker we created in the first
+tutorial, can you put the above code in the correct place in your html
+file?  Now
+assume that you wish to add a second marker. How would you do this?  <p>
+<br><b>Before you begin, save a copy of your work!</b>
+</div>
+
+<p>Creating a single marker (which so far, will not do anything useful, other
+than display itself on the map) is of limited value - what we need to do is to
+be able to attach some information to the marker, and then look towards
+creating multiple markers, each with information attached.<p> However, before we
+do that it would be useful to re-consider the code of the example.  It is
+growing in length, and now would be a good time to restore some order!<br>
+</p>
+<hr class="post_float">[ Next: <a href="module4_3.html">Tidying the code</a> ]<br>
+[<a href="../../../web-based-gis/materials.html">Course Index</a> | <a href="../../googlemaps/module4.html">Unit Overview</a>]<br>
+<hr class="post_float">

@@ -1,0 +1,367 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html><head>
+
+
+  <meta content="text/html; charset=ISO-8859-1" http-equiv="content-type">
+  <title>GEOG5870/1 Week 8 [4]</title>
+  <link rel="stylesheet" href="geog5870_wk8_4_files/general.css" type="text/css">
+  <meta content="o.w.duke-williams@leeds.ac.uk" name="author">
+</head><body>
+<h1>GEOG5870M/GEOG5871M Web-Based GIS: Doing More With Google Maps [4]</h1>
+
+<div class="nav_box">
+<a href="https://vlebb.leeds.ac.uk/bbcswebdav/users/geo6odw/geog58705871_2010-11/wk8/index.html">Week 8 home</a></div>
+
+<h2>Additional overlay types</h2>
+
+<p>So far we have looked at three types of overlay: markers, lines and
+polygons. There are several other sorts of overlay supported by Google Maps,
+which we will consider briefly on this page.</p>
+
+<h3>Circles</h3>
+
+<p>A specialised form of polygon overlay is a circle. Circles can be added to a
+map given a centre and a radius (and line and fill colours); they are made
+available through the object <a href="http://code.google.com/apis/maps/documentation/javascript/reference.html#Circle">google.maps.Circle()</a>.
+Figure 10 shows an HTML document, a map setup file, and part of an associated
+data file. This map draws a set of markers representing (a subset of) secondary
+schools in the London Borough of Waltham Forest. Like most local authorities,
+distance from a school is one of the criteria used when selecting pupils for
+over-subscribed schools; each year data are published showing a 'cut-off'
+distance: the distance beyond which no pupils were accepted in the previous
+year's entry. A circle is thus a good way of illustrating the areas from which
+schools draw pupils (although of course, pupils aren't uniformly distributed in
+this area, and pupils may be accepted from outside this area on other selection
+criteria). The example also illustrates the dynamic modification of a web page
+using JavaScript, given some input data.</p>
+
+<p>The first file shown is the containing HTML document. This is similar to
+those used before; the only element that might be worthy of initial note is the
+empty <code>&lt;OL&gt;</code> list element at the bottom of the page. The
+second file illustrated shows the structure of the data file; the first two
+entries are shown. Only the name of the school and a URL if available are
+included along with the location and cut-off distance, although clearly one
+could include a variety of other performance data. The locations have already
+been converted to LatLng references.</p>
+
+<p>The third file illustrated is the map setup file. A lot of this repeats
+aspects that we have already seen in earlier examples, on which we do not need
+to dwell. In this example, the markers are constructed as part of the main
+loop, rather than through a specific 'addMarker' function. The loop has the
+following significant characteristics:</p>
+<ol>
+  <li>Prior to starting the loop, we declare an empty string variable:
+    <code>var schools='';</code>. We will use this in due course...</li>
+  <li>For each entry that is read from the data file, we first create a marker,
+    as normal.</li>
+  <li>We also generate some info text from the supplied school information, and
+    create an infowindow object.</li>
+  <li>We append a string to the <code>schools</code> string: '<code>schools =
+    schools + '&lt;li&gt;' + markers[id].title;</code>'. This adds
+    '&lt;li&gt;', which denotes an HTML list item, and the name of the
+  school.</li>
+  <li>We create the circle object</li>
+  <li>We bind the circle to a marker.</li>
+</ol>
+
+<p>The circle object declaration is similar to those that we have used for
+polygons. The options can include an explicit centre (as a LatLng object), but
+in this example we have only declared a radius (and colour information). Hence,
+we need the second stage - that of binding the circle to the marker, using the
+<code>bindTo()</code> method (an underlying method for objects in the maps
+API). The binding process is more complex than we necessarily need (we could
+just identify a centre position), but allows the circle visibility to be based
+on that of the marker. Note that we do not explicitly add the circle to the map
+in this example, as the marker to which it is bound has already been added.</p>
+
+<p>Finally, in this example, we use a general JavaScript method to set the
+innerHTML property of the empty list that was added to our HTML page. Thus,
+without knowing in the HTML document how many schools we would use, or what
+they are called, we are able to update the text on the screen with a list of
+names.</p>
+
+<div class="code_example">
+<p><strong>wk8_lbwf_schools.html</strong></p>
+<pre>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;meta http-equiv="content-type" content="text/html; charset=utf-8" /&gt;
+&lt;script type="text/javascript"
+    src="http://maps.google.com/maps/api/js?sensor=false"&gt;
+&lt;/script&gt;
+&lt;script src="wk8_lbwf_schools_data.js" type="text/javascript"&gt;&lt;/script&gt;
+&lt;script src="wk8_lbwf_schools_setup.js" type="text/javascript"&gt;&lt;/script&gt;
+ &lt;link rel="stylesheet" media="all" href="../../../style/general.css" type="text/css"&gt;
+ &lt;link rel="stylesheet" media="all" href="../../../style/google_maps_style.css" type="text/css"&gt;
+ &lt;title&gt;School catchment areas&lt;/title&gt;
+&lt;/head&gt;
+&lt;body onload="init()"&gt;
+&lt;h1&gt;School catchment areas&lt;/h1&gt;
+&lt;p&gt;This map shows catchment areas for a selection of secondary schools in Waltham Forest, using cut off distances as applied for intake in September 2010.&lt;/p&gt;
+&lt;div class="gmap" id="map_canvas" style="width: 600px; height: 400px;"&gt;&lt;/div&gt;
+&lt;h2&gt;Notes&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;The colours of the map pins and the associated circles are randomly assigned.  If any particular pin is too dark, then the page can be re-loaded in order to assign new colours
+&lt;li&gt;Not all schools are currently included on the map
+&lt;li&gt;Some schools (those which are not over-subscribed) do not have a distance cut-off
+&lt;li&gt;The distance data is taken from &lt;a href="http://www.babcockwf.co.uk/idocument/stream_document.aspx?ObjectId=338373"&gt;Moving on - a guide to applying 
+for a secondary school place for September 2011&lt;/a&gt; published by the London Borough of Waltham Forest
+&lt;/ul&gt;
+&lt;h2&gt;Schools&lt;/h2&gt;
+&lt;ol start="0" id=school_list&gt;
+&lt;/ol&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+<hr>
+
+<p><strong>wk8_lbwf_schools_data.js</strong> (excerpt)</p>
+<pre>var markers = [
+    {
+'latitude': 51.5567731, 
+'longitude':  0.0162396,
+'url': 'http://www.buxtonschool.org.uk/',
+'title': 'Buxton School',
+'radius': 0
+    },
+    {
+'latitude': 51.629601, 
+'longitude': -0.007813,
+'url': 'http://www.chingford-school.co.uk/',
+'title': 'Chingford Foundation School',
+'radius': 4087
+    },
+ ...</pre>
+<hr>
+
+<p><strong>wk8_lbwf_schools_setup.js</strong></p>
+<pre>/*
+ * The starting position and initial zoom factor
+ *
+ * These could be determined using the supplied data...
+ */
+
+var centreLat = 51.6;
+var centreLong = -0.02;
+var initialZoom = 11;
+
+// Define the map object
+var map;
+
+/* generate random colours
+ */
+
+function genHex(){
+  colors = new Array(15);
+  colors[0]="0";
+  colors[1]="1";
+  colors[2]="2";
+  colors[3]="3";
+  colors[4]="4";
+  colors[5]="5";
+  colors[6]="6";
+  colors[7]="7";
+  colors[8]="8";
+  colors[9]="9";
+  colors[10]="a";
+  colors[11]="b";
+  colors[12]="c";
+  colors[13]="d";
+  colors[14]="e";
+  colors[15]="f";
+
+  digit = new Array(5);
+  color="";
+  for (i=0;i&lt;6;i++){
+    digit[i]=colors[Math.round(Math.random()*15)];
+    color = color+digit[i];
+  }
+
+  return color;
+}
+
+
+
+
+function init() {
+
+
+  function infoCallback(infowindow, marker) {
+    return function() {
+      infowindow.open(map, marker);
+    }; 
+  }
+
+
+  var latlng = new google.maps.LatLng(centreLat, centreLong);
+  var myOptions = {
+    zoom: initialZoom,
+    center: latlng,
+    mapTypeId: google.maps.MapTypeId.ROADMAP
+  };
+  var map = new google.maps.Map(document.getElementById("map_canvas"),myOptions);
+
+  var schools = '';
+
+  for(id in markers) {
+
+    var contentString = '&lt;div class="iw"&gt;'+
+      '&lt;h1 class="iw_h1"&gt;'+ markers[id].title+'&lt;/h1&gt;'+
+      '&lt;ul&gt;'+
+      '&lt;li&gt;www: '+'&lt;a href="' + markers[id].url+ '"&gt;'+ markers[id].title +'&lt;/a&gt;'+
+      '&lt;/ul&gt;'+
+      '&lt;/div&gt;';
+
+    var infowindow = new google.maps.InfoWindow({content: contentString});
+
+    myColour=genHex();
+
+    myLatlng=new google.maps.LatLng(markers[id].latitude,markers[id].longitude);
+    var marker = new google.maps.Marker({
+      position: myLatlng, 
+      map: map, 
+      icon: 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&amp;chld='+id+'|'+myColour+'|000000',
+title: markers[id].title
+    }); 
+
+    schools = schools + '&lt;li&gt;' + markers[id].title;
+
+    google.maps.event.addListener(marker, 'click', infoCallback(infowindow, marker));
+
+    // Add a Circle overlay to the map.
+    var circle = new google.maps.Circle({
+          map: map,
+          fillColor: '#'+myColour,
+          fillOpacity: 0.2,
+          strokeWeight: 1,
+          radius: markers[id].radius
+        });
+
+   circle.bindTo('center', marker, 'position');
+ }
+
+ document.getElementById('school_list').innerHTML = schools;
+
+}</pre>
+</div>
+
+<p><strong>Figure 10: Files used for google.maps.Circle() example</strong></p>
+
+<div class="fig_right">
+<img alt="Circles example" src="geog5870_wk8_4_files/lbwf_schools.gif" width="611" height="412"> 
+
+<p>Figure 11: Output of circles map</p>
+</div>
+
+<p>Figure 11 shows the map produced by this example. The files used in this
+example are available here:</p>
+<ul>
+  <li>wk8_lbwf_schools.html</li>
+  <li>wk8_lbwf_schools_data.js</li>
+  <li>wk8_lbwf_schools_setup.js</li>
+</ul>
+
+<p>Circle overlays are useful for quickly and easily conveying quantitative
+information, by making the area proportionate to a known value of a variable at
+a given location. The area of a circle is <em>a=&#960;r<sup>2</sup></em>,so if
+the value to be mapped has value <em>a</em>, then the radius should be set to
+<em>r=&#8730;(a/&#960;)</em>.</p>
+
+<h3 class="post_float">Ground Overlay</h3>
+
+<p>Another form of overlay is a ground overlay, which allows us to place an
+image over the map, which may be useful in some cases. Figure 12 shows the
+setup file for a map which uses a ground overlay. This is provided via <a href="http://code.google.com/apis/maps/documentation/javascript/overlays.html#GroundOverlays">google.maps.GroundOverlay()</a>.
+The setup file is loaded by an HTML page similar to those used in our other
+examples.</p>
+
+<p>The map overlays a historic map of bomb damage in the London in the Second
+World War over the regular base map.</p>
+
+<p>The code is relatively simple. Having done the usual map creation, we use
+google.maps.LatLngBounds() to create a bounding box. This is defined by two
+co-ordinates, the south-west and north-east points of a box; the points
+<em>must</em> be given in this order. It is up to the developer to work out the
+correct co-ordinates for the image to bve overlain!</p>
+
+<p>We then create the overlay, supplying two parameters: the name of an image
+file (or a URL) and the bounding box that we have created. Finally, we add the
+image to the map using <code>setMap()</code> as in most of our previous
+examples.</p>
+
+<div class="code_example">
+<p>wk8_groundoverlay_setup.js</p>
+<pre>/*
+ * The starting position and initial zoom factor
+ */
+
+var centreLat = 51.5615;
+var centreLong = -0.088;
+var initialZoom = 15;
+
+// Define the map object
+var map;
+
+/*
+ * init() function - this is where we start
+ */
+function init() {
+
+    var latlng = new google.maps.LatLng(centreLat, centreLong);
+    var myOptions = {
+      zoom: initialZoom,
+      center: latlng,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+    var map = new google.maps.Map(document.getElementById("map_canvas"),myOptions);
+
+    var imageBounds = new google.maps.LatLngBounds(
+      new google.maps.LatLng(51.55546,-0.09130),
+      new google.maps.LatLng(51.56590,-0.07980)
+    );
+
+    var myOverlay = new google.maps.GroundOverlay("bomb_crop.jpg", imageBounds);
+    myOverlay.setMap(map);
+}</pre>
+</div>
+
+<p><strong>Figure 12: Using a ground overlay</strong></p>
+
+<div class="fig_right">
+<p><img alt="Bomb damage" src="geog5870_wk8_4_files/bomb_damage.gif" width="411" height="511"></p>
+
+<p>Figure 13: Bomb damage map</p>
+</div>
+
+<p>The results of this map are shown in Figure 13. The pattern of bomb damage
+can be easily seen, and the image remains present if the user switches to
+satellite view. Near the bottom right iof the ov the overlay image is a circle
+indicating a bomb impact location. A key attached to the original image noted
+colour coding of households, from total destruction (the darkest shades) to
+minor damage.</p>
+
+<p>By default, the opacity of the overlay image cannot be altered, which limits
+it's usefulness although this page:</p>
+<ul>
+  <li><a href="http://www.usnaviguide.com/v3maps/ProjectedOverlayTest.htm">http://www.usnaviguide.com/v3maps/ProjectedOverlayTest.htm</a></li>
+</ul>
+
+<p>illustrates modifications which permit variation in opacity. However, it
+would also be possible to add a button to the HTML page which linked it's
+'onclick' event to a JavaScript function that toggled the visibility of the
+overlay.</p>
+
+<p>The files used in this example are:</p>
+<ul>
+  <li><a href="https://vlebb.leeds.ac.uk/bbcswebdav/users/geo6odw/geog58705871_2010-11/wk8/wk8_examples/overlay/bomb_map.html">bomb_map.html</a></li>
+  <li><a href="https://vlebb.leeds.ac.uk/bbcswebdav/users/geo6odw/geog58705871_2010-11/wk8/wk8_examples/overlay/wk8_groundoverlay_setup.js">wk8_groundoverlay_setup.js</a></li>
+  <li><a href="https://vlebb.leeds.ac.uk/bbcswebdav/users/geo6odw/geog58705871_2010-11/wk8/wk8_examples/overlay/bomb_crop.jpg">bomb_crop.jpg</a></li>
+</ul>
+<hr class="post_float">
+
+<p>[ Next: <a href="https://vlebb.leeds.ac.uk/bbcswebdav/users/geo6odw/geog58705871_2010-11/wk8/geog5870_wk8_5.html">Using a raster overlay</a> ] </p>
+
+<p></p>
+
+<p><br>
+</p>
+</body></html>

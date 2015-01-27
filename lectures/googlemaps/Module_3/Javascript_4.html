@@ -1,0 +1,331 @@
+---
+layout: default
+title: Adding JavaScript to a web page
+---
+
+<h1>Basic JavaScript</h1>
+
+<h2>Adding JavaScript to a web page<br>
+</h2>
+<p>We saw our first example of embedding JavaScript in a web page in Figure 1, which is repeated below:</p>
+
+<div class="code_example">&lt;html&gt;<br><br>
+&lt;head&gt;<br>&lt;title&gt;A simple web page&lt;/title&gt;<br>&lt;script type="text/javascript"&gt;<br>alert("Hello world!");<br>&lt;/script&gt;<br>&lt;/head&gt;<br><br>&lt;body&gt;<br>Page body text<br>&lt;/body&gt;<br><br>&lt;/html&gt;<br><br>
+
+</div><span style="font-weight: bold;">
+
+Figure 1 (repeated): A JavaScript 'hello world' program</span><br style="font-weight: bold;">
+<p>As we saw before, the actual JavaScript code in this example consists of the single statement '<code>alert("Hello world!");</code>'. This is placed in a <code>&lt;script&gt;</code> tag in the header. The tag includes the additional term "<code>type=text/javascript</code>",
+which tells the web browser what sort of script is going to be
+included. Scripts can be placed anywhere in the document, although are
+usually placed in the &lt;head&gt; section. It is possible to have more than one script tag in any HTML page.</p>
+<p>
+Have a go at copying the code from Figure 1 into a file, save it as a html and open it.
+<p>
+<h3>Embedded scripts<br>
+
+</h3>
+
+<p>The code shown in Figure 1 is an example of embedded JavaScript. The
+code is contained within the same file as the host HTML document, and
+is separated from the rest of the document through the use of the <code>&lt;script&gt;</code> tag.<br>
+</p>
+<p>JavaScript recognises various different types of comment characters. An
+additional format recognised by JavaScript is the HTML comment
+opening sequence. An HTML comment is a comment statement that is
+included in the page source, but will not be displayed by the web
+browser. Figure 11 shows a revised version of Figure 1, that uses HTML
+comments in this context.</p>
+
+<div class="code_example">&lt;html&gt;<br>
+<br>
+
+&lt;head&gt;<br>
+&lt;title&gt;A simple web page&lt;/title&gt;<br>
+&lt;script type="text/javascript"&gt;<br>
+<div class="emph">&lt;!--</div>
+alert("Hello world!");<br>
+<div class="emph">// --&gt;</div>
+&lt;/script&gt;<br>
+&lt;/head&gt;<br>
+<br>
+&lt;body&gt;<br>
+Page body text<br>
+&lt;/body&gt;<br>
+<br>
+&lt;/html&gt;<br>
+<br>
+
+
+
+</div>
+<span style="font-weight: bold;">Figure 11: Use of HTML comments with JavaScript code</span><br>
+<p>Two lines have been added to the code. An HTML comment is started with the sequence '<code>&lt;!--</code>', and terminated with '<code>--&gt;</code>'. JavaScript recognises '<code>&lt;!--</code>'
+as a comment in the first highlighted line, and will ignore the rest of
+that line. Since '//' is also a comment, and is used at the beginning
+of the second highlighted line, the rest of that line is also
+ignored. Why do we need to know about this? You may see this approach
+used in examples of JavaScript on the web. It was used to 'hide' the
+JavaScript code browsers that did not include a JavaScript interpreter,
+and thus would not know what to do with this part of the page source.
+By placing the whole of the JavaScript program in between <code>&lt;!--</code> and <code>--&gt;</code>,
+it would all be seen by non-JavaScript capable browsers as a lengthy
+comment, and ignored. In order to achieve this trick however, it is
+necessary for JavScript to recognise and ignore the sequence <code>&lt;!--</code>.</p>
+<p>However, browsers which do not include JavaScript are now obsolete,
+and almost never seen, so this method of hiding code is no longer
+considered necessary, although you may see it used from time to time.</p>
+<p>An alternative - and preferred - technique for handling situations
+in which a user has not got JavaScript enabled, is to use the <code>&lt;noscript&gt;</code> tag. This allows a message to be displayed to the user if JavaScript is not available. Figure 12 shows a typical usage of the <code>&lt;noscript&gt;</code> tag.<br>
+</p>
+<div class="code_example">&lt;html&gt;<br>
+<br>
+
+&lt;head&gt;<br>
+&lt;title&gt;A simple web page&lt;/title&gt;<br>
+&lt;script type="text/javascript"&gt;<br>&nbsp;
+alert("Hello world!");<br>
+&lt;/script&gt;<br>
+<div class="emph">&lt;noscript&gt;Your browser does not support JavaScript!&lt;/noscript&gt;</div>
+
+
+&lt;/head&gt;<br>
+<br>
+&lt;body&gt;<br>
+Page body text<br>
+&lt;/body&gt;<br>
+<br>
+&lt;/html&gt;<br>
+<br>
+
+
+
+</div>
+
+<span style="font-weight: bold;">Figure 12: Use of the noscript tag</span><br>
+<h3>Linking to external scripts</h3>
+
+The above Figures show examples of using in-line JavaScript code - code
+that is contained within the same document as the HTML page that will
+use it. This is useful for initial development, as it keeps all parts
+of the page together. However, as programs become more complex, it can
+make sense to store the JavaScript code in a separate file (or set of
+files) to the HTML source. There is an alternative form of usage of the
+&lt;script&gt; tag, that allows us to do this, by including a src
+clause, and identifying a file containing the JavaScript source code.
+An example of this is shown in Figure 13. The Figure is split into two
+parts.&nbsp; First, there is an HTML file, called <span style="font-style: italic;">fib.html</span>.
+In the head section, there is a script tag, which has the clause
+'src="fib.js"'. This instructs the web browser to attempt to load a
+file called fib.js, and to treat it as JavaScript code. The web browser
+will try to load the file from the same location from which it loaded
+the HTML file, and thus the file should be placed in the same directory.<br><br>
+<div class="code_example"><span style="font-weight: bold;">HTML document <span style="font-style: italic;">fib.html</span></span><br>
+&lt;html&gt;<br>
+<br>
+&nbsp;&lt;head&gt;  <br>
+&nbsp;&lt;title&gt;Fibonacci sequence&lt;/title&gt;<br>
+<div class="emph">&nbsp;&lt;script type="text/javascript" src="fib.js"&gt;&lt;/script&gt;</div>
+&nbsp;&lt;/head&gt;<br>
+<br>
+&lt;body&gt;<br>
+Page body text<br>
+&lt;/body&gt;<br>
+<br>
+&lt;/html&gt;<br>
+<hr style="width: 100%; height: 2px;"><span style="font-weight: bold;">External JavaScript file <span style="font-style: italic;">fib.js</span></span><br style="font-weight: bold;">
+/*<br>
+&nbsp;* Calculating the first few numbers of the Fibonacci sequence<br>
+&nbsp;*<br>
+&nbsp;* f(n) = f(n-1) + f(n-2)<br>
+&nbsp;*/<br>
+<br>
+var count;<br>
+var f_2 = 0;<br>
+var f_1 = 1;<br>
+var f_n;<br>
+<br>
+document.write("&lt;h1&gt;Fibonacci numbers&lt;/h1&gt;");<br>
+
+document.write("&lt;ol&gt;"); // start an html list<br>
+<br>
+// Write the start of the sequence<br>
+document.write("&lt;li&gt;" + f_2);<br>
+document.write("&lt;li&gt;" + f_1);<br>
+<br>
+// Loop to calculate some more values<br>
+for (count=1;count&lt;10;count++) {<br>
+<br>
+&nbsp; f_n = f_1 + f_2; // Calculate f(n)<br>
+&nbsp; document.write("&lt;li&gt;" + f_n); // Write the latest value<br>
+
+<br>
+&nbsp; f_2 = f_1; // At the next iteration, f(n-2) will have the value of the current f(n-1)<br>
+&nbsp; f_1 = f_n; // And f(n-1) will have the value of the current f(n)<br>
+}<br>
+<br>
+document.write("&lt;/ol&gt;");<br>
+</div>
+<span style="font-weight: bold;">Figure 13: An example program using a separate JavaScript source file</span><br style="font-weight: bold;">
+<p>The remaining part of Figure 13 shows the source code that is contained in the file <span style="font-style: italic;">fib.js</span>.
+It is a short program that calculates the first few values of the
+Fibonacci sequence, and it uses several of the language features that
+have been described in this introduction. The Fibonacci sequence is a
+series of numbers, in which the first two values are 0 and 1, and then
+further values are the sum of the two preceding values. The sequence is
+widely used in mathematics and has been applied in many areas, and the
+pattern has also been observed occurring naturally.</p>
+<p>The code starts with a multi-line comment noting what the program
+will do, and a number of variables are then declared, with two of them
+also being initialised. The program uses the document.write() method to
+write new text to the web page. If you run this, you will discover that
+the new elements are written before the remaining text in the body
+section of the HTML page. This is the standard behaviour, but the
+program can be adapted to work in a different manner. The first two
+uses of document.write() add fixed elements to the HTML page - firstly
+an H1 level heading, and then an &lt;ol&gt; element. The &lt;ol&gt; tag
+in HTML indicated the start of an ordered list; it is closed at the end
+of the script with the &lt;/ol&gt; tag.</p>
+<p>The next two statements again use document.write(), but in this case
+they use the '+' operator to join two strings.&nbsp; The &lt;li&gt; tag
+in HTML signifies a list element: the &lt;ol&gt; list consists of a
+number of &lt;li&gt; components. In each case, we use '+' to join the
+value of one of our variables to the '&lt;li&gt;' stub.<br>
+</p>
+<p>The central part of the program is a <code>for</code> loop. As described on the last page, the three operations controlling the loop are placed together - we set the <code>count</code> variable to an initial value of 1, we set an expression to signify when the loop should run (<code>count &lt; 10</code>), and we set an incremental statement (<code>count++</code>).
+Inside the for loop we have a series of statements, so these are
+grouped together using '{ }' to form a compound statement. In the
+compound statement, we first calculate the next value in the sequence,
+as <code>f_n = f_2 + f_1</code> (note that the variable names include
+underscores, not the minus character). We then write out that value.
+Next, we need to update our variables for the next iteration of the
+loop. We set f_2 (two values ago, in the sequence) to the current value
+of f_1 (one value ago in the sequence), using the assignment operator
+'='. Then, we set f_1 to the current value f_n that we have just
+calculated. The order here is important: we must set f_2 from f_1 <span style="font-style: italic;">before</span>
+we set about modifying f_1. Having reached the last sub-statement in
+out compound statement, the for loop is now repeated, having
+incremented the value of <code>count.</code></p>
+<p>A version of this example is linked here: <a href="fib.html">fib.html</a><br>
+<p>
+Copy the js and html code from Figure 13 into two separate files and see if you can get the example working.
+<p>
+
+</p>
+<h3>Other ways of adding JavaScript<br>
+</h3>
+<p>This page has explained two ways of embedding JavaScript code in a
+web page: in-line embedding, and linking to an external source file.
+Using an external file is better for code maintenance, and has the
+distinct advantage that when a single piece of JavaScript code is used
+by more than one HTML file, you only need to fix bugs in the JavaScript
+code once. However, in-line placement of code is useful for development
+and testing of new ideas, by keeping all the required parts in one file.</p>
+<p>There are additional ways in which JavaScript can be linked into pages, notably as in-line methods attached to <span style="font-style: italic;">events</span>
+that might occur on the web page. All (or most) HTML page elements have
+associated events, and their tags can be written so as to attach
+JavaScript to these events. The most commonly used event is <code>onClick</code>.
+The onClick event is triggered when an element is clicked. A typical
+approach is to attach a JavaScript function call as the onClick code.
+This function must have been defined in JavaScript code attached to the
+document through the &lt;script&gt; tag.
+</p>
+<h3>The browser environment<br>
+</h3>
+
+
+<p>We have discussed above different ways of adding JavaScript to web
+pages. We will now briefly consider the environment in which we
+will be running JavaScript programs - a web browser. There are a number
+of important aspects of this. First, it is important to understand the
+global 'Window' object and one of its properties, the Document object,
+and secondly it is important to understand the way in which the browser
+structure leads to event driven programming.<br>
+</p>
+
+<p>As we have discussed in this introduction, JavaScript is an object
+oriented language, and many features are provided through methods
+associated with objects. Variables such as numbers and strings are
+themselves objects with methods; for example, the String object has a
+method toLowerCase(), so any string can be written in lowercase, by
+using this method, e.g:</p>
+
+<pre>document.write("ABCDEF".toLowerCase());</pre>
+
+<p>Similarly, there are various methods associated with the Number object.</p>
+
+<h4>The Window object<br>
+</h4>
+
+<p>In fact, all of these fundamental objects and functions etc are descended from a global <span style="font-style: italic;">Window</span> object. All the variables that we use are members of the Window object, and methods such as <code>alert()</code>
+are methods of the Window object, although we can generally get away
+with not referring to the Window object. The following are essentially
+the same:</p>
+
+<ul>
+<li><code>var x = 1;</code></li><li><code>var window.x = 1;</code></li>
+</ul>
+
+<p>The Window object is associated with a distinct browser window or
+frame. As applications become more complex, it is possible that they
+might use multiple frames. When this is the case, then further
+considerations arise, as each frame will have its own Window object,
+and global variables in one frame are not global in another frame.
+There are techniques for accessing objects in other frames, but that is
+rather beyond the scope of this introductory lecture.</p>
+
+<h4>The Document object</h4>
+
+<p>One of the features of the Window object is that it includes a
+number of built in child objects. One of these is the Document object.
+We have already seen this in out examples, as we have used the write()
+method to display text on screen, e.g:</p>
+
+<p><code>document.write("Hello");<br>
+</code>
+</p>
+
+
+<p>As noted above, the object <code>document</code> is a property of the global object <code>window</code>;
+note that whilst we refer to these objects in a descriptive manner
+using the capitalised words 'Window' and 'Document', we use all
+lower-case terms in our programs. The <code>document</code> object
+represents the HTML document in the browser window. We can add extra
+text to that HTML document through the write() method, and we also have
+access to elements such as forms, which permits actions such as error
+checking.</p>
+
+<h4>Event driven programming</h4>
+
+<p>The example program shown in Figure 13 is a very simple program. It
+runs once - stepping through a sequence of instructions - and is then
+complete; it has no interactive elements in which it gets inputs from
+the user. Historically, this is the way that programs were designed:
+they read in some input data, processed it, calculated some results,
+and then finished. Over time, interactive elements became more common:
+programs would halt and wait for input from the user. A simple game
+might be written as a loop which incorporated a test to see whether the
+user was pressing any keys, as well as steps such as moving items on
+the screen, checking to see whether a laser bolt had hit an enemy
+spaceship and so on.<br>
+</p>
+
+<p>Modern programs are typically written with graphical user interfaces
+in mind, which could receive user input (key strokes or mouse clicks,
+for example) at almost any time, and they have a very different
+structure. We write a collection of pieces of code, and assign them to
+various <span style="font-style: italic;">events</span> such as
+keystrokes and mouse clicks, or the page being loaded. Rather than a
+single program, we end up with a group of interacting sub-programs. We
+do not need to worry about checking for user input: the web browser is
+responsible for running the appropriate <span style="font-style: italic;">event handler</span>
+when an event occurs; it is the programmers responsibility to indicate
+which of the various event handling pieces of code he or she has
+written should be triggered at which event.<br>
+</p>
+
+<hr style="width: 100%; height: 2px;">
+[ Next: <a href="Javascript_5.html">Debugging JavaScript</a>]<br>
+[<a href="../../../web-based-gis/materials.html">Course Index</a> | <a href="../../googlemaps/module3.html">Unit Overview</a>]<br>
+<hr class="post_float">
+</body></html>

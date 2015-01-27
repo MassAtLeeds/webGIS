@@ -1,0 +1,108 @@
+---
+layout: default
+title: Creating your First Google Map Mash-Up
+---
+
+
+
+<h1>Getting Started</h1>
+
+<h2>Creating your First Google Map Mash-Up</h2>
+<p>
+
+Okay, so now you can access your personal webspace and have made a very basic page.  It's time to create a page with Google Maps!
+<p>
+<ol type="1">
+<li>Copy the following text <a href="google_eg1.txt">(also here)</a> into a new file and save as <b>google_eg1.html</b>
+<p>
+<img src="google01.png" alt="Text" style = "width:680px;height:450px">
+<p>
+
+
+<li>Save the pasted text as <b>google_eg1.html</b> in your local directory, and then copy it to your WWW/GEOG5870 directory using WinSCP (if off campus). 
+<li>Now try browsing to this file (i.e. www.personal.leeds.ac.uk/~username/geog5870/google_eg1.html)
+<li>You have most likely got an error message about the sensor.  Go to the notes <a href="module2_googlemapapi.html"> here </a> and find out how to fix this!  Set the sensor parameter and reload.
+<li>It is important to make sure that the '~' character in the URL used remains as such, and is not modified by your browser - you may need to change it back in the url entry box if necessary.
+</ol>
+
+And if the Google Map gods are feeling kind, you should end up with this:
+<p>
+<img src="FirstMap.png" alt="Text" style = "width:800px;height:450px">
+<p>
+You will discover that this map, although presented in a basic manner, can be panned using the mouse like other Google Maps.
+
+<h2>Organising your webspace</h2>
+
+<p>Before we start making some adjustments to this map, make sure that you <b>save</b> each version of your map under a different name so you can refer back to the working code when something breaks! 
+<p>
+<ul>
+<li>Edit the file index.html that you created earlier
+<li>Add a link to the new file google_eg1.html
+</ul>
+One way of presenting links is as a bulleted list, thus you could create a link like this (making sure that the file that you are pointing to is in the same directory as index.html):
+<p>
+
+<img src="bulletlist.png" alt="Text" style = "width:500px;height:75px">
+<p>
+You can now publish web pages on the ISS personal server (or on your own server), and show off your maps.
+<p>
+Give it a go before getting stuck into the tasks below.
+
+<h2>Tasks: Adjusting the map</h2>
+<p>
+Now you have your first map, let's do something with it.  
+<ul>
+<li><b>Default location:</b>Let's change the default location.  To do this, find the following lines of code:
+<p>
+<code>var latlng = new google.maps.LatLng(-34.397, 150.644); </code>
+<p>
+Notice the latitude and longitude values.  This determines the default
+centre location of your map.  These are the numbers that we will change.
+To do this, go to <a href="http://www.latlong.net/">LatLong.net</a> and
+input a location of your choosing.  Enter these values into the code,
+save the code.  Hit refresh - what do you see?  Hopefully your map
+should now be centred on your chosen location.
+<p>
+<li><b>Zoom:</b> Find the line that sets the zoom level.  It should be set at "8". 
+Change this number to a value between 0 and 20.  Save and refresh.  What
+number is the most zoomed in?  What is the most zoomed out?
+<p>
+<li><b>Changing the base map</b>: Find the line that sets the base map:
+<p>
+<code>mapTypeId: google.maps.MapTypeId.ROADMAP</code>
+<p>
+You can change the MapTypeId from ROADMAP to other values.  Here are the valid map types:
+<ul>
+<li>ROADMAP displays the normal, default 2D tiles of Google Maps.
+<li>SATELLITE displays photographic tiles.
+<li>HYBRID displays a mix of photographic tiles and a tile layer for prominent features (roads, city names).
+<li>TERRAIN displays physical relief tiles for displaying elevation and water features (mountains, rivers, etc.).
+</ul>
+<br>
+<li><b>Adding a point marker:</b> The following code <a href ="google_eg2.txt">(also here)</a> produces a marker
+icon on the center of your map.  REPLACE the LatLng values with the
+latitude longitude coordinates you used for the center of your map.
+<p>
+<img src="marker.png" alt="Text" style = "width:580px;height:300px">
+<p>
+It's important that this text is placed within the
+<code>initialize()</code> function.  Move it outside the function to see
+what happens!  Save your file and refresh.  Hopefully, you should see a
+Marker at the centre for your map.
+<p>
+<li><b>Info Window</b>: Now we will attach an info box to the marker we
+have just created.  This will appear when you click on it. Immediately
+after the code for adding a marker in, insert the following <a
+href="google_eg3.txt"> (also here) </a>:
+<p>
+<img src="infobox.png" alt="Text" style = "width:500px;height:140px">
+<p>
+
+</ul>
+<p>
+You have now created your very own first mash-up!  See - there's nothing to this Google Maps malarky...
+<p> 
+<hr class="post_float">[ Next: <a href="module2_3.html">Basic KML</a> ]<br>
+[<a href="../../../web-based-gis/materials.html">Course Index</a> | <a href="../../googlemaps/module2.html">Unit Overview</a>]<br>
+<hr class="post_float">
+</body></html>

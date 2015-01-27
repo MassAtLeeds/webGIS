@@ -1,0 +1,240 @@
+<h1>Google Maps: An Introduction</h1>
+
+<h2>The Google Maps API</h2>
+
+<p>Having direct access to the API allows programmers to exert control over a
+number of aspects include the general configuration and layout of the map, as
+well as create new markers and draw on the map surface. The API covers such
+aspects as:</p>
+<ul>
+  <li>Configuration and starting state of the map</li>
+  <li>Map type</li>
+  <li>Map movement (e.g automatic panning to illustrate movement)</li>
+  <li>Control of overlays and information</li>
+  <li>Drawing markers</li>
+  <li>Drawing lines and polygons</li>
+  <li>Control over events when markers etc. are clicked</li>
+</ul>
+
+<p>In practice, there are several APIs rather than a single one. In this
+module, we concentrate on the JavaScript API, using version 3 of that API. The
+older version 2 API is also documented, and many maps on the web still make use
+of it. There is also an ActionScript API, which allows maps to be displayed
+(and interacted with) using the Adobe Flash plugin, and a static API which
+allows simple maps to be created without using JavaScript. There are also
+separate APIs for Google Earth, and for various spatial services (such as
+geocoding and route finding).<br>
+</p>
+
+<p>The figure below shows a sample piece of code distributed by Google that
+demonstrates how to use the JavaScript API; this document embeds a map focussed
+on Sydney, which fills the whole of the browser window.<br>
+</p>
+
+<div class="code_example"> <pre id="line1"><span class="dec"><span
+style="font-weight: bold;">map-simple.html</span><br style="font-weight:
+bold;">&lt;!DOCTYPE html&gt;</span><span class="pln"><br></span><span
+class="tag">&lt;html&gt;</span><span class="pln"><br></span><span
+class="tag">&lt;head&gt;</span><span class="pln"><br></span><span
+class="tag">&lt;meta</span><span class="pln"> </span><span
+class="atn">name</span><span class="pun">=</span><span
+class="atv">"viewport"</span><span class="pln"> </span><span
+class="atn">content</span><span class="pun">=</span><span
+class="atv">"initial-scale=1.0, user-scalable=no"</span><span
+class="pln"> </span><span class="tag">/&gt;</span><span
+class="pln"><br></span><span class="tag">&lt;style</span><span
+class="pln"> </span><span class="atn">type</span><span
+class="pun">=</span><span class="atv">"text/css"</span><span
+class="tag">&gt;</span><span class="pln"><br>&nbsp; html </span><span
+class="pun">{</span><span class="pln"> height</span><span
+class="pun">:</span><span class="pln"> </span><span
+class="lit">100</span><span class="pun">%</span><span class="pln">
+</span><span class="pun">}</span><span class="pln"><br>&nbsp; body
+</span><span class="pun">{</span><span class="pln"> height</span><span
+class="pun">:</span><span class="pln"> </span><span
+class="lit">100</span><span class="pun">%;</span><span class="pln">
+margin</span><span class="pun">:</span><span class="pln"> </span><span
+class="lit">0px</span><span class="pun">;</span><span class="pln">
+padding</span><span class="pun">:</span><span class="pln"> </span><span
+class="lit">0px</span><span class="pln"> </span><span
+class="pun">}</span><span class="pln"><br>&nbsp; </span><span
+class="com">#map_canvas { height: 100% }</span><span
+class="pln"><br></span><span class="tag">&lt;/style&gt;</span><span
+class="pln"><br></span><span class="tag">&lt;script</span><span
+class="pln"> </span><span class="atn">type</span><span
+class="pun">=</span><span class="atv">"text/javascript"</span><span
+class="pln"><br>&nbsp; &nbsp; </span><span class="atn">src</span><span
+class="pun">=</span><span
+class="atv">"http://maps.google.com/maps/api/js?sensor=</span><i><span
+class="atv">set_to_true_or_false</span></i><span
+class="atv">"</span><span class="tag">&gt;</span><span
+class="pln"><br></span><span class="tag">&lt;/script&gt;</span><span
+class="pln"><br></span><span class="tag">&lt;script</span><span
+class="pln"> </span><span class="atn">type</span><span
+class="pun">=</span><span class="atv">"text/javascript"</span><span
+class="tag">&gt;</span><span class="pln"><br>&nbsp; </span><span
+class="kwd">function</span><span class="pln"> initialize</span><span
+class="pun">()</span><span class="pln"> </span><span
+class="pun">{</span><span class="pln"><br>&nbsp; &nbsp; </span><span
+class="kwd">var</span><span class="pln"> latlng </span><span
+class="pun">=</span><span class="pln"> </span><span
+class="kwd">new</span><span class="pln"> google</span><span
+class="pun">.</span><span class="pln">maps</span><span
+class="pun">.</span><span class="typ">LatLng</span><span
+class="pun">(-</span><span class="lit">34.397</span><span
+class="pun">,</span><span class="pln"> </span><span
+class="lit">150.644</span><span class="pun">);</span><span
+class="pln"><br>&nbsp; &nbsp; </span><span class="kwd">var</span><span
+class="pln"> myOptions </span><span class="pun">=</span><span
+class="pln"> </span><span class="pun">{</span><span
+class="pln"><br>&nbsp; &nbsp; &nbsp; zoom</span><span
+class="pun">:</span><span class="pln"> </span><span
+class="lit">8</span><span class="pun">,</span><span
+class="pln"><br><span class="pln"></span>&nbsp; &nbsp; &nbsp;
+center</span><span class="pun">:</span><span class="pln">
+latlng</span><span class="pun">,</span><span class="pln"><br>&nbsp;
+&nbsp; &nbsp; mapTypeId</span><span class="pun">:</span><span
+class="pln"> google</span><span class="pun">.</span><span
+class="pln">maps</span><span class="pun">.</span><span
+class="typ">MapTypeId</span><span class="pun">.</span><span
+class="pln">ROADMAP<br>&nbsp; &nbsp; </span><span
+class="pun">};</span><span class="pln"><br>&nbsp; &nbsp; </span><span
+class="kwd">var</span><span class="pln"> map </span><span
+class="pun">=</span><span class="pln"> </span><span
+class="kwd">new</span><span class="pln"> google</span><span
+class="pun">.</span><span class="pln">maps</span><span
+class="pun">.</span><span class="typ">Map</span><span
+class="pun">(</span><span class="pln">document</span><span
+class="pun">.</span><span class="pln">getElementById</span><span
+class="pun">(</span><span class="str">"map_canvas"</span><span
+class="pun">),</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp;
+myOptions</span><span class="pun">);</span><span class="pln"><br>&nbsp;
+</span><span class="pun">}</span><span class="pln"><br><br></span><span
+class="tag">&lt;/script&gt;</span><span class="pln"><br></span><span
+class="tag">&lt;/head&gt;</span><span class="pln"><br></span><span
+class="tag">&lt;body</span><span class="pln"> </span><span
+class="atn">onload</span><span class="pun">=</span><span
+class="atv">"</span><span class="pln">initialize</span><span
+class="pun">()</span><span class="atv">"</span><span
+class="tag">&gt;</span><span class="pln"><br>&nbsp; </span><span
+class="tag">&lt;div</span><span class="pln"> </span><span
+class="atn">id</span><span class="pun">=</span><span
+class="atv">"map_canvas"</span><span class="pln"> </span><span
+class="atn">style</span><span class="pun">=</span><span
+class="atv">"</span><span class="pln">width</span><span
+class="pun">:</span><span class="lit">100</span><span
+class="pun">%;</span><span class="pln"> height</span><span
+class="pun">:</span><span class="lit">100</span><span
+class="pun">%</span><span class="atv">"</span><span
+class="tag">&gt;&lt;/div&gt;</span><span class="pln"><br></span><span
+class="tag">&lt;/body&gt;</span><span class="pln"><br></span><span
+class="tag">&lt;/html&gt;</span><span class="doctype"></span></pre>
+</div>
+<span style="font-weight: bold;">Figure 21: &nbsp;Google's example map</span><br style="font-weight: bold;">
+<br>
+
+
+<p>The file is a typical HTML document, which contains some JavaScript. Like
+all HTML documents, it contains two sections - a HEAD section and a BODY
+section. The BODY section is very simple - it contains a single element, a DIV
+that uses an optional <code>style</code> parameter to fill the whole window,
+and has an ID. As we saw last week, giving an element an ID allows use to
+manipulate it using JavaScript. The BODY section also has a JavaScript function
+('<code>initialize()</code>') linked to the <code>onload</code> event - when
+the page has finished loading, this function will be triggered.<br>
+</p>
+
+<p>A full description of this example is given at <a href="http://code.google.com/apis/maps/documentation/javascript/tutorial.html">http://code.google.com/apis/maps/documentation/javascript/tutorial.html</a>,
+but an explanation will also be given here.</p>
+
+<p>Firstly, note that the file commences with <code>&lt;!DOCTYPE
+html&gt;</code>. This defines the document type, in particular a specific
+variant of HTML. As HTML has evolved over the years, various standards have
+been used; defining a specific document type should ensure that the browser
+renders it correctly.<br>
+</p>
+
+<p>The HEAD section of the document contains four elements: a META tag, a STYLE
+block and two SCRIPT blocks. The META tag is used here to define
+characteristics of how the page should be displayed (in this case, full-screen
+and not resizeable) - and is significant for display on mobile devices. In this
+module, we concentrate on traditional desktop and laptop displays, and thus do
+not need to worry about the viewport. The STYLE block contains CSS styling
+hints, and again is used to ensure that the map fills the whole window.</p>
+
+<p>The two SCRIPT blocks are the most significant parts. The first block loads
+the API library into the browser, and thus provides the functionality for our
+maps. The block contains a <code>src</code> parameter, specifying a location
+from which the library is to be loaded. In examples shown in Week 5, we used
+the src parameter to load JavaScript from a local file (for ease of code
+maintenance), but it is quite possible - as here - to use a remote location.
+The content of the src parameter is shown in the Figure as:<br>
+</p>
+<pre id="line1"><span class="pln">&nbsp; &nbsp; </span><span class="atn"></span><span class="pun"></span><span class="atv">"http://maps.google.com/maps/api/js?sensor=</span><i><span class="atv">set_to_true_or_false</span></i><span class="atv">"</span><span class="tag"></span><span class="pln"><br></span><span class="tag"></span></pre>
+
+<p>The location of the library is thus the URL
+'<code>http://maps.google.com/maps/api/js</code>', but we also provide a
+parameter, <code>sensor</code>. This is shown (as on the Google web site) as
+'set_to_true_or_false', and it must be set to one of these two values, or the
+library will not load. The sensor parameter indicates whether or not we are
+going to provide a current position by means of some sort of sensor (for
+example a GPS receiver). In all cases, provision of location information is
+something done by the browser, using an emerging standard, the <a href="http://dev.w3.org/geo/api/spec-source.html">W3C Geolocation standard</a>.
+In some cases, browsers might run on devices such as mobile handsets that have
+specific location finding hardware, however a number of recent releases of
+standard browsers also support the Geolocation standard, and can estimate the
+current location given the host computer's IP address. </p>
+
+<p>The second 'script' block, which starts on the following line, defines a
+function - <span style="font-style: italic;">initialize()</span> - which is run
+after the page is loaded. The function sets some variables, and then creates a
+map object. The first variable declared is called <code>latlng</code>, and as
+the name might suggest, it is a latitude-longitude position. In the
+introductory material on JavaScript, we looked at declaring basic variables
+such as numbers, strings and arrays. In this example, we create a new instance
+of an object that is defined in the JavaScript library loaded in the first
+script block. That library defined (and created) an object called
+<code>google</code>, which had as one of its properties an object called
+<code>maps</code>. That object in turn, had a property called
+<code>LatLng</code>. Using the nested approach to referencing objects in
+JavaScript, we can thus refer to this object type as
+<code>google.maps.LatLng</code>. You will recall that JavaScript is case
+sensitive, and thus the correct capitalisation is required. When creating a new
+instance of this LatLng object, we can supply a latitiude and longitude as
+parameters.</p>
+
+<p>The second entity created (an object literal rather than an array - although
+we do not need to worry about the distinction here) is an array called
+<code>myOptions</code>, which will be used to supply customisation options to
+the maps. This is defined using a compact notation known as JSON - JavaScript
+Object Notation. Three characteristics are given: an initial zoom level,&nbsp; a
+center (using the latlng location that we have just defined) and a mandatory
+map type. In this case, the type is ROADMAP, which is the standard Google Maps
+map view. The map type is defined by refering to one of the properties of
+<code><span class="pln">google</span><span class="pun">.</span><span class="pln">maps</span><span class="pun">.</span><span class="typ">MapTypeId</span><span class="pun"></span></code>; other types
+include SATELLITE, HYBRID and TERRAIN.</p>
+
+<p>Finally, the second script block creates the new map object, using the
+statement:</p> <pre id="line1"><span class="kwd">var</span><span
+class="pln"> map </span><span class="pun">=</span><span class="pln">
+</span><span class="kwd">new</span><span class="pln"> google</span><span
+class="pun">.</span><span class="pln">maps</span><span
+class="pun">.</span><span class="typ">Map</span><span
+class="pun">(</span><span class="pln">document</span><span
+class="pun">.</span><span class="pln">getElementById</span><span
+class="pun">(</span><span class="str">"map_canvas"</span><span
+class="pun">),</span><span class="pln">myOptions</span><span
+class="pun">);<br></span><span class="pun"></span></pre>
+
+<p>A new object, called 'map', is created as an instance of the object
+<code>google.maps.Map</code>. Two parameters are supplied for the construction
+of this map; firstly, a node in the HTML document, and secondly the set of map
+options that has been created in the preceding statement. The node is that part
+of the document which will be modified to display the map; this is the DIV
+section in the BODY part of the HTML document. We refer to this using the
+standard JavaScript method <code>document.getElementById()</code>.</p>
+
+<p>
+<b>LINK TO HOMEPAGE</b>
+
+</body></html>

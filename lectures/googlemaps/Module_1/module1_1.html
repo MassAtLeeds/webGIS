@@ -1,0 +1,188 @@
+---
+layout: default
+title: Google Maps - History and features
+---
+
+<h1>Google Maps: An Introduction</h1>
+
+
+
+<h2>Google Maps:
+History and features<br>
+</h2>
+<p>
+
+We start with a brief
+history of the introduction of <a href = "https://www.google.co.uk/maps/"> Google
+Maps</a>. Google
+introduced their mapping service in February 2005. Prior to this,
+a
+variety of other providers had created map-based services, including
+<a href="www.multimap.com">MultiMap</a> and <a href="www.streetmap.co.uk">StreetMap</a> in the
+UK, and <a href="www.mapquest.com">MapQuest</a> in
+the US. The level of services that were
+available
+from these providers varied - typical features included the ability to
+produce
+driving instructions and to search for locations of businesses, but for
+the most part the provision of these services was fairly
+simple: maps could be created that were centred on a chosen location. Limited panning and zooming capabilities were included.
+The introduction of Google Maps was significant for a number
+of reasons:</p>
+
+
+<ol>
+
+  <li>
+    <p><span style="font-weight: bold;">Brand
+recognition</span> - regardless of the technical merits of the
+system, Google had the advantage of massive brand recognition, both
+within technical communities and with the general public.</p>
+</li>
+  <li>
+    <p><span style="font-weight: bold;">Interface quality</span> - Google Maps offered a slicker
+interface than the majority of competitors did at the time.
+Rather
+than having to repeatedly click on zoom or pan controls, the map could
+be zoomed using a mouse wheel, and panned by dragging the mouse.
+In addition the overall presentation of the interface
+maintained Google's house style of simple layouts with minimal
+additional text.<span style="font-weight: bold;"></span></p>
+  </li>
+  <li>
+    <p><span style="font-weight: bold;">Data
+availability</span> - Google had licensed a range of high quality
+map base data, including both road data and satellite imagery.
+Whilst this had also been true of competitors, Google scored
+an initial victory by offering higher resolution satellite data than
+their competitors. In addition, the road data was high
+quality vector data, allowing easy control over zooming and clear
+presentation. By contrast, competitors such as Streetmap
+featured composite images from printed maps which looked over-busy in
+comparison.<br>
+
+    </p>
+  </li>
+
+  
+  
+</ol>
+<p>
+
+However, over and above these factors, another feature of
+Google Maps
+quickly emerged as being highly significant. An Application
+Programming Interface (API) was made available, which allowed any user
+of the system (subject to registration) to interact with the back end
+servers. &nbsp;A community of interested users quickly developed
+and began keenly experimenting with the system.<br>
+
+
+</p>
+<div class="task_box">
+<p><span style="font-weight: bold;">Task</span><br>
+</p>
+<p><span style="font-weight: bold;"></span>The
+website <a href="www.archive.org">www.archive.org</a>
+allows you to see old versions of a large
+number of websites through an application called the Wayback Machine.
+Look at the current homepage for
+<a href = "www.multimap.com">Multimap</a>, and then look at older versions via
+<a href="http://www.archive.org/web/web.php">http://www.archive.org/web/web.php</a></p>
+<p>When did the site start to look like it's current incarnation?<br>
+</p>
+</div>
+<p>
+
+When the service was first introduced, the data set
+covered
+the US
+only, although this was quickly expanded to include other countries,
+including the UK. The level of provision of data remains
+variable, as it is dependent on Google's ability to license data (and
+indeed, the existence of appropriate data in the first place) for
+inclusion in the mapping service. Remotely sensed data - of
+varying levels of resolution - is available for most of the planet, and is generally no more than three years old. As of 2014, most parts of the globe have some degree of
+coverage, with exceptions tending to be countries of a politically
+sensitive nature: thus there is very limited road network data or place name information for North Korea, although
+there is remotely sensed imagery; there is some place name data for
+Afghanistan, but only very limited road network data.</p>
+
+
+<h3>Datum
+and projection</h3>
+<div class="fig_right"><gmap_world.gif"><img style="border: 2px solid; width: 300px; height: 202px;" alt="Google Map zoomed out to show whole world" src="gmap_world.gif"></a><br>
+Figure 1a: Google Maps zoomed
+out to global scale<br>
+<br>
+<img style="border: 2px solid; width: 300px; height: 190px;" alt="Mercator world map" src="mercator_1569.png"></a><br>
+Figure
+1b: Map of the world, Mercator 1569
+</div>
+<p>
+Like all maps,
+Google Maps are based on a selected <span style="font-style: italic;">datum</span>
+and use a
+certain <span style="font-style: italic;">projection</span>.<br>
+</p>
+<p>As you probably remember from Principles of GIS, a
+map datum is a reference ellipsoid, which is assumed to be
+curved
+in a similar way to the Earth's surface. The Earth is not
+perfectly spherical - it is slightly flattened at the poles. However, neither is it a perfect ellipsoid: for different parts
+of the Earth's surface different ellipsoids will offer the closest
+match to the actual surface; for this reason different national mapping
+agencies will select differing datums as the base for their maps.
+The datum also offers a reference surface from which local
+surface elevations are measured. A datum that is a close
+match in
+one particular region may not be such a good match elsewhere in the
+world. However, a number of datums exist that provide
+relatively
+good coverage across the whole of the globe. Google Maps is
+(now)
+a global data collection, and thus a global level datum is required.
+The datum used is based on WGS84 (World Geodetic System 1984); this
+datum is widely used, including being the datum used
+by the
+Global
+Positioning System (GPS).</p>
+<p>A map projection is a method used to draw the curved surface
+of the
+Earth (or, data collected using a co-ordinate system based on
+a
+selected datum). There are three main groups of projections:
+planar, conic and cylindrical, which each have there own merits and
+their own disadvantages, and offer greater or lesser distortion in
+terms of factors such as area, shape, direction and scale. As
+with a choice of datum, if one is interested only in one particular country
+or region, then there may be projections that offer little distortion
+for the area in question. However, for a global map, a choice
+of
+projection will require some aspects to become highly distorted. The
+projection used by Google Maps is a Mercator projection, as illustrated
+in Figure 1, which shows a map from Google zoomed out to global scale
+(Fig 1a) and Mercator's 1569 map of the world (Fig 1b). The
+Mercator projection - developed in the 16th
+Century offers correct bearings at all points, and thus
+became
+very widely used for nautical purposes, and subsequently widely used
+for many other purposes. The Mercator projection's flaw are
+well
+recognised. It suffers from distortions of size with
+increasing
+latitude; thus for example Greenland appears to be much larger than it
+actually is when compared to other countries closer to the equator.</p>
+<p>Below are a few of the links that we looked at in Principles of GIS if you want a reminder:
+<ul>
+<li><a href = "www.viewsoftheworld.net"> Views of the World  </a>
+<li><a href = "http://www.worldmapper.org/index.html"> World Mapper </a> 
+<li><a href = "http://projections.mgis.psu.edu">Penn State Projections</a> 
+</ul>
+</p>
+<hr class="post_float">[ Next: <a href="module1_2.html">Google
+Maps display
+modes and further features</a> ]<br>
+[<a href="../../../web-based-gis/materials.html">Course Index</a> | <a href="../../googlemaps/module1.html">Unit Overview</a>]<br>
+<hr class="post_float">
+</body></html>

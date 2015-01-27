@@ -1,0 +1,10 @@
+body { background-color: white;
+    color: black;
+    font-size: small;
+       font-family: Arial,Helvetica,sans-serif;
+        }
+
+.gmap {margin: 5px;
+    border: thin solid black;
+    float: right;
+    }

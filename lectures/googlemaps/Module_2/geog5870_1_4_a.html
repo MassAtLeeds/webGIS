@@ -1,0 +1,83 @@
+<h1>Google Maps: An Introduction</h1>
+
+<h2>How mashups work</h2>
+
+<p>As described previously, mashups have a generic structure that they integrate
+data from external (to Google) sources with a Google map base. The external
+sources may well be (and often are) also external to the producers of the
+mashup, although this does not necessarily have to be the case. Simple
+composite maps (that is, maps with new information) can be created by supplying
+the map interface the URL of a KML file (that is, by typing the URL into the
+query box on the maps.google.co.uk homepage).</p>
+
+<p>KML files were originally used to store data for an application called
+Keyhole, which became the virtual global application Google Earth. One or more
+points can be defined in a KML file, and plotted on a Google Map. An example
+of a KML file is shown below<br>
+</p>
+<br>
+
+
+<div class="code_example">
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;<br>
+&lt;kml xmlns="http://earth.google.com/kml/2"&gt;<br>
+&lt;Document&gt;<br>
+&nbsp; &lt;name&gt;KML example&lt;/name&gt;<br>
+&nbsp; &lt;Placemark&gt;<br>
+&nbsp;&nbsp;&nbsp; &lt;name&gt;School of Geography&lt;/name&gt;<br>
+&nbsp;&nbsp;&nbsp; &lt;description&gt;The School of Geography at the University of Leeds,
+Leeds LS2 9JT<br>
+&nbsp;&nbsp;&nbsp; http://www.geog.leeds.ac.uk&lt;/description&gt;<br>
+&nbsp;&nbsp;&nbsp; &lt;Point&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;coordinates&gt;-1.557428,53.807767&lt;/coordinates&gt;<br>
+&nbsp;&nbsp;&nbsp; &lt;/Point&gt;<br>
+&nbsp; &lt;/Placemark&gt;<br>
+&nbsp; &lt;Placemark&gt;<br>
+&nbsp;&nbsp;&nbsp; &lt;name&gt;School of Geography: East building&lt;/name&gt;<br>
+&nbsp;&nbsp;&nbsp; &lt;description&gt;The School of Geography at the University of Leeds,
+Leeds LS2 9JT<br>
+&nbsp;&nbsp;&nbsp; http://www.geog.leeds.ac.uk&lt;/description&gt;<br>
+&nbsp;&nbsp;&nbsp; &lt;Point&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;coordinates&gt;-1.556783,53.807836&lt;/coordinates&gt;<br>
+&nbsp;&nbsp;&nbsp; &lt;/Point&gt;<br>
+&nbsp; &lt;/Placemark&gt;<br>
+&lt;/Document&gt;<br>
+&lt;/kml&gt;<br>
+</div>
+<span style="font-weight: bold;">A simple KML file</span><br>
+
+
+<p>In this example, two locations ('Placemarks') are defined. Each placemark
+has a name, a description and - most importantly - a location. The locations
+are given in longitude and latitude and in decimal degrees rather than degrees
+minutes and seconds (i.e. 53.807836, rather than 53° 48' 28.21"). Two points
+are defined in this example, located on the main building of the School of
+Geography, and the East Building.</p>
+
+<p>If the above file was placed on a web server, then a link to the file could
+be pasted into the Google Maps query box, and the resulting map would contain
+markers at the two points. This is a useful facility, as anyone can create a
+file in this format, publish it, and then use it to map the data. The format is
+regular, and thus it would be easy to write a program that took some source
+data with a large number of points, and created a KML file with entries for all
+the original points.</p>
+
+<p>It is easy to think of many examples where data could be easily plotted
+using this approach. However, it is ultimately limited, in that there is little
+control over the presentation of markers or other map elements. Much more can
+be done by interacting with Google Maps API. The API (Application Programming
+Interface) is a means by which you can interact directly with the Google Maps
+server, and produce a map using the same functions and routines that the
+general Google Maps application uses itself. This can be done using a number of
+programming languages, including client-side Javascript and server-side
+languages such as PHP. By 'client-side', we mean that the language is
+interpreted and processed by the client application - in this case, a web
+browser. By 'server-side' we mean a language that is processed on a web server,
+in order to dynamically produce the contents of a web page, before sending that
+web page to the client.<br>
+<p>
+You'll have a go at doing this yourselves shortly.
+</p>
+<hr class="post_float">[ Next: <a href="geog5870_1_4_b.html">The Google Maps API</a> ]<br>
+</body></html>
+

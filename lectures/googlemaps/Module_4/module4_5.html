@@ -1,0 +1,143 @@
+---
+layout: default
+title: Code Efficiency
+---
+
+
+
+<h2>Code Efficiency</h2>
+
+<p>In theory we can now create maps with numerous markers (although there are
+limits to how many can be usefully applied before they need to be clustered).
+However, you will notice a degree of redundancy in the JavaScript code: we have
+two sets of lines (for each marker) that are almost identical. If we were to
+add a large number of markers, the code would be very repetitive, a clear sign
+that we should generalise the method used. The following figure shows a revised version of
+the above code. We have added an additional function called
+<code>addMarker()</code>. This takes three parameters: a position (which must
+be a <code>LatLng</code> object), a title and some informational text. Having
+got these, the function creates a marker and an infowindow in the same manner
+as in the previous example, substituting in the parameters of the function
+where previously we had hard-coded values.</p>
+<p>
+<b>Please note that the formatting has been compacted in the figure below to allow you to see the addMarker() function.</b>
+<p>
+
+<img src="map_setup_google_eg8.png" alt="Text" style = "width:600px;height:600px">
+<p>
+The code for this example is <a href="map_setup_google_eg8.js">HERE.</a>
+
+<p>The main <code>initialize()</code> function has also been updated. Instead of the full process of creating a marker that we used previously,
+we have replaced this with a line that creates some content to be displayed in
+the infowindow, and then a call to our new <code>addMarker()</code> function.
+We have removed several lines of identical code, although the lines creating
+the two markers are still quite similar, suggesting that the process can be
+further generalised.</p>
+
+<p>The next example shows a further revision of this example. There are two significant
+changes. Firstly, we have added a new array called markerData near the top of
+the code, and secondly we have added a loop structure that uses this data near
+the end of the code. The data array is constructed using the [] syntax to
+declare an array. As shown it consists of two entries. Each entry is an object,
+declared using the JSON {} notation as a series of key:value pairs. Four
+properties are defined in each object - a name, a latitude, a longitude and a
+population count. Note that we (may) want to use the population as a numeric
+value so it is written as a number (without a ',' separator for the
+thousands).</p>
+
+<p>
+
+<img src="map_setup_google_eg9.png" alt="Text" style = "width:600px;height:600px">
+<p>
+The code for this example is <a href="map_setup_google_eg9.js">HERE.</a>
+
+
+<p><input type="hidden">At the end of this revised code we have added a new loop
+structure. This is a <em>for</em> loop, but a different type to that
+illustrated in the introduction to JavaScript material. In this style, the
+generic form is <code>for (<em>variable</em> in <em>object</em>)
+{<em>statement</em>}</code>. The loop cycles through each element of
+<em>object</em> (often an array) and carries out <em>statement</em>. In each
+iteration, <em>variable</em> will allow us to access members of the object. In
+this case, <em>id</em> acts as an index value for entries in the array
+<em>markerData</em>. We do not need to know or worry about how many entries
+there are in <em>object</em> - the for loop looks after this for us.</p>
+
+<p>This approach allows us to refer to values using standard notation, for
+example <code>markerData[id].name</code> is the value of the property
+<code>name</code> for the <code>id</code><sup>th<code></code></sup> element of
+the array <code>markerData</code>. In the body of the loop, we construct a
+version of the variable <code>info</code>, joining together strings with values
+from the data array. We then call the <code>addMarker()</code> function,
+supplying a new <code>LatLng</code> object (declared using <code>lat</code> and
+<code>lng</code> values from our data array), the <code>name</code> value and
+the new <code>info</code> string. </p>
+
+<p>Adding additional markers can now be done solely by extending the markerData
+array with new entries. We can also revise the page structure slightly to move
+the data into a separate file, thus separating the page layout (the HTML
+document), the map construction code (the map_setup file) and the map content
+(the marker data). This has been done in the following files:
+
+<ul>
+<p>The first file shown is <em>google_eg10.html</em>, the HTML page that hosts
+our map. It is largely the same as our previous examples, with the important
+exception that we have added another script tag in the HEAD section, to load
+the file <em>markerdata_google_eg10.js</em>. We have also modified the page
+text to include citation information for the data used, following the wording
+shown in <a href="https://www.census.ac.uk/guides/citing.aspx">https://www.census.ac.uk/guides/citing.aspx</a>.</p>
+
+<li><a href="google_eg10.html">google_eg10.html</a>
+<p><img src="google_eg10.png" alt="Text" style = "width:650px;height:300px">
+
+<p>The second file shown is <em>map_setup_google_eg10.js</em>. Again, this is
+largely the same as in our previous example; the only difference is that we
+have removed the declaration of the markerdata array from this file. Instead,
+this array is declared in a separate file, <em>markerdata_google_eg10.js</em>.
+The format is the same as before; here it has been extended to include 3 other
+markers (and thus shows all districts in West Yorkshire).</p>
+
+<li><a href="map_setup_google_eg10.js">map_setup_google_eg10.js</a>
+<p><img src="map_setup_google_eg10.png" alt="Text" style = "width:600px;height:500px">
+
+<li><a href="markerdata_google_eg10.js">markerdata_google_eg10.js</a>
+<p><img src="markerdata_google_eg10.png" alt="Text" style = "width:300px;height:400px">
+
+<p>The final file shown is a revised version of <em>map_style.css</em>. This
+has been expanded to include some styles for the <code>infowindow</code> class.
+The first new entry draws a border around the window, and the second one
+illustrates the way in which we can supply an alternate style for H1 heading
+elements inside a division of a given class (in this case, infowindow). These
+styles are probably not what you would want in practice, and are simply shown
+to illustrate the way that styles can be applied.</p>
+
+<li><a href="map_style01.css">map_style01.css</a>
+<p><img src="map_style_css.png" alt="Text" style = "width:450px;height:150px">
+</ul>
+
+<h3>Tasks</h3>
+
+<ol>
+  <li>Modify your example to include the changes illustrated in this page:</li>
+</ol>
+<ul>
+  <li>A separate map_data.js file</li>
+  <li>A revised addMarker() function that includes an event listener</li>
+  <li>A loop to call addMarker() for all the markers in an array</li>
+</ul>
+<ul>
+  <li>Experiment with changing the data definitions in map_data.js &nbsp;If you are
+    familiar with Javascript or similar languages, try including a function
+    that generates a number of points with (constrained) random latitude and
+    longitude.</li>
+  <li>Try adding more detailed information to the description term. &nbsp;Try
+    different HTML elements and see how they are rendered in the pop-up info
+    window.</li>
+</ul>
+</div>
+<br>
+
+
+<hr class="post_float">[ Next: <a href="module4_6.html">Changing the marker appearance</a> ]<br>
+[<a href="../../../web-based-gis/materials.html">Course Index</a> | <a href="../../googlemaps/module4.html">Unit Overview</a>]<br>
+<hr class="post_float">

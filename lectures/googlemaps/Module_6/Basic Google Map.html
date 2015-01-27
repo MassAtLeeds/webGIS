@@ -1,0 +1,56 @@
+<!-- Declares the document type as html, so your web browser knows to read as html -->
+<!DOCTYPE html>
+<!-- Starts the html document -->
+<html>
+<!-- Starts the html head container -->
+  <head>
+<!-- Specifies the web page title, that appears on your browser tab -->
+    <title>Basic Google Map</title>
+<!-- Calls javascript necessary for Google Maps API version 3 to function -->
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+<!-- Alerts the browser that non HTML Script follows (like JavaScript) -->
+    <script>
+// JavaScript function that creates the map element
+function initialize() {
+//Creates a mapOptions object to contain map initialization variables
+  var mapOptions = {
+//Map option that sets the initial zoom level to 4.  Levels 0 through 18 are possible
+   zoom: 4,
+//Map option that sets the latitude, longitude location for the initial map to be centered on.
+    center: new google.maps.LatLng(39.109, -96.550),
+// Determines if the scale bar in the lower right of the map is displayed (true) or not (false)
+    scaleControl: true,
+// Determines if the zoom controls in the upper right of the map are displayed or not.
+    zoomControl: true,
+// Allows for changing the zoom control style.  Options are SMALL and LARGE
+    zoomControlOptions: {
+      style: google.maps.ZoomControlStyle.LARGE
+    },
+// Determines if the pan control in the upper left of the map is displayed or not
+    panControl: true,
+// Sets the initial map to be Road map.  Other choices are SATELLITE, HYBRID, TERRAIN
+    mapTypeId: google.maps.MapTypeId.ROADMAP
+// Punctuation that ends the mapOptions function
+  };
+//Creates a map object named map-canvas with that contains the map with the mapOptions defined above
+  var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+// Punctuation that ends the initialize function
+}
+//Communicates to the web browser to run the initialize function when the web page loads
+google.maps.event.addDomListener(window, 'load', initialize);
+// Signals the end of JavaScript
+    </script>
+<!-- Ends the html head container -->
+  </head>
+<!-- Begins the html body container -->
+  <body>
+<!-- Creates an html div element that contains the map title that appears on the web page -->
+    <div style="font-weight: bold; font-size: large">Basic Google Map</div>
+<!-- Creates an html div element that contains the map -->
+    <div id="map-canvas" style="width: 700px; height: 500px;"></div>
+<!-- Creates an html div element that contains a link back to Exercise 1 instructions -->
+    <div style="font-size: medium"> <a href="http://maps.cga.harvard.edu/gmaps_instruction/exercise01.html">Back to Exercise 1: Customizing a Basic Map</a></div>
+<!-- Ends the html body area -->
+  </body>
+<!-- Ends the html document -->
+</html>

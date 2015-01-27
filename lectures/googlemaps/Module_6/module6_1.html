@@ -1,0 +1,108 @@
+---
+layout: default
+title: CSS
+---
+
+
+<h1>CSS</h1>
+
+CSS is the mechanism by which web pages are consistently styled. 
+Essentially, a style-sheet is created that handles the look and feel
+of your webpage.  We will look at a couple of examples here.
+
+<ul>
+<li><b>Fixed Map Size, Centered to the page:</b> Map is a fixed size and centered to the page, allowing for title and description text to go above and below it.
+<li><b>Two column layout:</b>  Add a side panel to the left of the map, and have the map occupy the remainder of the space allowed by the browser window.
+</ul>
+<p>
+We will use <a href="css_example.html">this file</a> (that you played with in Module 2) to play around with CSS.
+<p>
+Currently, the "style" is set to 100% for the width and the height.  
+
+<p>
+<img src="example6_1.png" alt="Text" style = "width:550px;height:75px">
+<p>
+
+You can change this to assume a fixed pixel size (instead of a percentage of the browser's size):
+
+<p>
+<img src="example6_2.png" alt="Text" style = "width:500px;height:75px">
+<p>
+
+Have a look at the map now - you should find that it does not fill the entire screen and is positioned to the top left.  Let's add a title:
+
+<p>
+<img src="example6_3.png" alt="Text" style = "width:550px;height:75px">
+<p>
+<h2> Centering your elements</h2>
+
+You will notice that the 2 elements of the page, the h1 and div,
+are both aligned to the left of the page. In most websites, it has
+become common practice to have the contents inside of a div that is
+centered on the page, rather than having it left-aligned. To do so,
+let’s create a div container for all the elements of the page to go
+in, and make sure that the container is centered to the page:
+
+<p>
+<img src="example6_4.png" alt="Text" style = "width:500px;height:125px">
+<p>
+
+By setting the container div style to "margin:auto;", it ensures that the div is centered to the page with the assigned pixel size (width:800px). Your resulting map should look something like this:
+
+<p>
+<img src="example6_5.png" alt="Text" style = "width:800px;height:600px">
+<p>
+<h2> Column Map Scenario</h2>
+
+	In this scenario, we want to maximise the size of the map and
+create a small panel to the left of the map. To do so, create a
+sidepanel div container before the map div. Let’s assume that we want
+our sidepanel to occupy 250 pixels, and the map to occupy the
+remainder space allowed by the browser window.
+
+	First, create the side panel div, with some content in it (in
+this case, some title text):
+<p>
+<img src="example6_6.png" alt="Text" style = "width:500px;height:125px">
+<p>
+
+
+Let's see what each of the style parameters mean:
+<ul>
+<li>
+<b>position:absolute;</b>
+This ensures that the div's position is set to the parameters you specify
+<li><b>overflow:auto;</b>
+This makes sure that if your content inside this container exceeds the height space allocated, that a scrollbar will show up allowing users to scroll down
+<li><b>float:left;</b>This ensures that the div is aligned to the left
+</ul>
+<p>
+Notice that although we want the width to be 250 pixels, it is
+set at 230 pixels. Why is that? Also notice that there is a
+stylesheet parameter for "padding-left" and "padding-right", each set
+at 10 pixels. The padding allows you to have some white space within
+the div to allow any text that you put in it, to have some breathing
+room, and not be placed flush against the left margin of the div. But
+combined, it takes up 20 pixels, and therefore, you must substract
+those 20 pixels from the total width (ie: 250 pixels - 30 pixels =
+230 pixels).
+<p>
+Now we needs to modify the map div slightly to ensure that it works well with the sidepanel div:
+
+<p>
+<img src="example6_7.png" alt="Text" style = "width:500px;height:150px">
+<p>
+
+<ul>
+<li><b>margin-left:250px;</b>  The margin size here must be set to the pixel count from the left of the browser window that you want the map div to start from. It will then render the div to the right of the given pixel space.
+</ul>
+
+<h2>And finally</h2>
+Putting it all together should produce a side panel on the left, with a map on the right that occupies the remainder space for the browser window.
+<p>
+<img src="example6_8.png" alt="Text" style = "width:800px;height:600px">
+<p>
+
+[<a href="../../../web-based-gis/materials.html">Course Index</a> | <a href="../../googlemaps/module6.html">Unit Overview</a>]<br>
+<hr class="post_float">
+</body></html>

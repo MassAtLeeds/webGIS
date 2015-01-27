@@ -1,0 +1,109 @@
+---
+layout: default
+title: The Google Maps API
+---
+
+
+
+<h1>Getting Started</h1>
+
+<h2>The Google Maps API</h2>
+<p>
+In the example using KML files, there was no need to use a Google Maps
+API key. It's possible to produce useful maps through this method.
+Rather than typing the KML url into the query box each time, it's also
+possible to create a fixed url that can be clicked on.  It is therefore possible to create an application that dynamically draws
+a map based on some criteria. The process would be roughly as follows:
+<ul>
+<li>A data source is selected (possibly under user direction and with
+selected filtering)
+<li>A server-side script retrieves that data,
+processes and filters it as required
+<li>If necessary, a geo-coding
+routine is used to create suitable co-ordinates for each data point
+<li>The script then writes a new kml file, containing correctly
+formatted details and co-ordinates for each data point
+<li>Finally, the
+script writes a web page which is sent to the user, which contains a
+suitably generated link to maps.google.com that contains a reference to
+the bespoke KML file. 
+<p>
+
+This process would allow sets of markers to be
+dynamically created, but would not offer any further control over the
+presentation of the map, and furthermore, the newly generated link would
+cause the user to navigate away from the original web site.
+<p>
+Much more control is possible if we use the Google Maps API.  We will now
+revisit this example, and see how it can be improved.
+
+<h3>Improving the look</h3>
+
+
+Firstly, the general layout of the web page can be improved, as the
+original contains the map and nothing else. Secondly, we'll re-centre
+the map, so that it is focused on Leeds. The following figure shows a revised
+version of the first Google Maps example (google_eg1.html).
+<p>
+
+<img src="prac1.png" alt="Text" style = "width:580px;height:400px">
+<p>
+
+There are a number of changes to the original file. Firstly, the STYLE
+and META tags in the HEAD section have been removed, as we do not want
+the map to occupy the whole of the window, and also to make the file
+simpler. Other changes to the original file are highlighted: 
+<ul>
+<li>The co-ordinates using when creating the latlng variables have been
+changed, to use latitude and longitude for the School of Geography.
+These are the same co-ordinates that were used in the KML file example,
+but there is an important difference: in this case, we quote latitude
+first, whereas in the KML file, we gave the longitude first! 
+<li>Two
+lines of HTML have been added to the body section of the document,
+containing links to your homepage under www.personal.leeds.ac.uk (or at
+least, to a relative location that should be the homepage), and to the
+index document in the current directory - which should be the geog5870
+directory. These links will only work properly if the target files
+exist. </ul>
+<p>
+For your final task, do the following:
+<ul>
+<li>Create a copy of google_eg1.html, called google_eg2.html
+<li>Make the changes described above (or similar changes if you wish
+to add more HTML, or have a different set of starting co-ordinates).  The code for the above example can be found <a href="Prac1.html"> here</a>.
+<li>Make sure that you have a copy in the WWW/geog5870 directory
+<li>Create a link in your index file to the new file google_eg2.html
+<li>Load the new page in your browser and make sure that it works as
+expected. 
+</ul>
+<p>
+You should now have a modified example that is focused on
+Leeds. The map can be panned and zoomed; some controls are included on
+the map, and it should also respond to double-click events, and to mouse
+wheel events. The size and type of controls that are included by default
+depend on the map size. In the above example, the map is relatively
+small. Try increasing the height and width parameters (in the style
+parameter of the map_canvas DIV), and you will see that as the map
+becomes larger so that map controls become more detailed. 
+
+<h2>API Summary</h2> 
+On
+this page you have taken the basic example supplied by Google Maps,
+changed the location and added some controls. This has involved a number
+of function calls to the Google Maps API. Full documentation for the API
+is available on line from Google.<p>
+<ul>
+<li><a href="https://developers.google.com/maps/documentation/javascript/">API overview</a>:
+ <li><a href="https://developers.google.com/maps/documentation/javascript/reference"> API
+reference </a>
+</ul>
+
+<p> Now you have some familiarity, you can move onto <a href="../module3.html">Module 3</a> that will
+introduce Java Script (the code behind Google Maps) in more detail.
+
+<hr class="post_float">[<a href="../module3.html">Unit 3</a>]<br>
+[<a href="../../../web-based-gis/materials.html">Course Index</a> | <a href="../../googlemaps/module3.html">Unit 3</a>]<br>
+<hr class="post_float">
+<hr>
+</body></html>

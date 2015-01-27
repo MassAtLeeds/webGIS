@@ -1,0 +1,196 @@
+---
+layout: default
+title: Debugging JavaScript
+---
+
+
+
+<h1>Basic JavaScript</h1>
+
+<h2>Debugging JavaScript</h2>
+<p>When writing code in JavaScript, you will soon come across problems:
+either your code does nothing, or it does something that wasn't what
+you expected. However, your browser will typically give you little by
+way of
+explanation as to what has gone wrong, although error handling is
+something which is browser-dependent. On this page, we look at two
+approaches to error handling and debugging.<br>
+</p>
+<h3>try...catch</h3>
+
+<p>JavaScript provides a mechanism for recovering from errors, in the form of the <code>try-catch</code>
+statement. Any statement (or a set of sub-statements grouped using '{
+}' ) can be placed inside a try clause; if part of that code generates
+an error, then execution of the try statement will cease, and instead
+the statement in the catch clause will be executed. An example is shown
+in Figure 14. Figure 14a shows the generic form of the statement,
+whilst 14b gives a specific example.<br>
+</p>
+<div class="code_example"><span style="font-weight: bold;">a) Generic form</span><br style="font-weight: bold;">
+try {<br>
+&nbsp; // code that might fail<br>
+&nbsp; }<br>
+catch (error) {<br>
+&nbsp; // error handling code<br>
+&nbsp; }<br>
+<br>
+<br>
+<span style="font-weight: bold;">b) Example usage</span><br style="font-weight: bold;">
+...<br>
+try {<br>
+&nbsp; Document.write("Hello");<br>
+&nbsp; }<br>
+catch (error) {<br>
+&nbsp; alert("There was an error:" + error.message);<br>
+&nbsp; }<br>
+
+</div>
+
+
+<p style="font-weight: bold;">Figure 14: Error handling with try-catch</p>
+<p>In the example shown in Figure 14b, we are attempting to use the method <code>document.write()</code>,
+but have made a typo - we have started with an upper case letter. On
+its own, this would probably lead to the execution halting without
+anything being displayed. However, by placing it in the <code>try-catch</code>
+statement, we can 'catch' the error, and do something more useful. In
+this case, we use the alert() method to display a notice to the user,
+and execution will commence from the next statement. The <code>catch</code>
+clause contains a parameter - a term placed in parentheses after the
+keyword - in this example 'error'. This is the name used an an
+identifier for an <code>error</code> object. The <code>error</code> object has a limited number of properties, including the <code>message</code> property, as used here.</p>
+<p>The try-catch statement can be used where there is a reasonable
+expectation that code might fail; for example, if a JavaScript program
+is trying to make a connection to a remote source in order to retrieve
+some data, and we cannot rely on that host to be up and running as
+expected.<br>
+</p>
+<h3>Firebug and Firebug Lite<br>
+</h3>
+
+<p>Firebug is a useful tool for developers, as it allows you to see
+what is happening 'under the bonnet' of your programs, and provides
+proper error messages.Firebug was originally introduced as an extension for the Firefox browser.
+A sister product, Firebug Lite, has been developed more recently that
+can be used in any browser. The two are quite similar in form and
+function, and are likely to become even closer in future. The only key
+difference is the way in which they are set up and used. </p>
+
+<p>Firebug can be downloaded from: <a href="http://getfirebug.com/">http://getfirebug.com/</a>
+It is an extension for the Firefox browser, and thus cannot be used
+with other browsers. The website gives instructions on how to install
+the extension. When Firebug is installed, there should be a small 'bug'
+icon in the bottom right hand margin of the browser window; clicking
+this should open the Firebug interface. It can also be started by going
+to Tools / Firebug / Open Firebug on the browser menubar.<br>
+</p>
+<p>Firebug Lite can be used in a number of ways, which are described at <a href="http://getfirebug.com/firebuglite">http://getfirebug.com/firebuglite</a>. One method is to add the following in the head section of your HTML page:</p>
+<pre>&lt;script type="text/javascript" src="https://getfirebug.com/firebug-lite.js"&gt;&lt;/script&gt;</pre>
+<p>This should be placed before any other &lt;script&gt; tags. When it
+is included, you should see a small 'bug' icon at the bottom right of
+the page. This can be clicked to open the Firebug interface.
+However&nbsp; there is an important difference between this and the
+Firefox extension: the icon will be seen by all users; this approach
+should therefore not be used on pages intended for public use. There
+are also instructions on the Firebug Lite website for installing it as
+a bookmark; in this mode you would have access to it, but other users
+would not see any difference.</p>
+<div class="warnbox">Note: I have not been able to get the Lite version
+to work entirely as expected. It remains useful for examing the
+structure etc of HTML pages, but I cannot get it to display JavaScript
+errors!<br>
+</div>
+<p>Figure 15 shows a slightly modified version of the code shown in
+Figure 13. There are two differences. Firstly, the HTML page loads a
+differently named JavaScript file, and secondly, there is an error in
+that JavaScript file: when we try to write out our new value of f_n,
+there is a typo, and we have used 'fn' instead (highlighted in the
+file).<br>
+
+</p>
+<div class="code_example"><span style="font-weight: bold;">HTML document <span style="font-style: italic;">fib2.html</span></span><br>
+&lt;html&gt;<br>
+<br>
+&nbsp;&lt;head&gt;  <br>
+&nbsp;&lt;title&gt;Fibonacci sequence&lt;/title&gt;<br>
+<div class="emph">&nbsp;&lt;script type="text/javascript" src="fib2.js"&gt;&lt;/script&gt;</div>
+&nbsp;&lt;/head&gt;<br>
+<br>
+&lt;body&gt;<br>
+Page body text<br>
+&lt;/body&gt;<br>
+<br>
+&lt;/html&gt;<br>
+<hr style="width: 100%; height: 2px;"><span style="font-weight: bold;">External JavaScript file <span style="font-style: italic;">fib2.js</span></span><br style="font-weight: bold;">
+/*<br>
+&nbsp;* Calculating the first few numbers of the Fibonacci sequence<br>
+&nbsp;*<br>
+&nbsp;* f(n) = f(n-1) + f(n-2)<br>
+&nbsp;*/<br>
+<br>
+var count;<br>
+var f_2 = 0;<br>
+var f_1 = 1;<br>
+var f_n;<br>
+<br>
+document.write("&lt;h1&gt;Fibonacci numbers&lt;/h1&gt;");<br>
+
+document.write("&lt;ol&gt;"); // start an html list<br>
+<br>
+// Write the start of the sequence<br>
+document.write("&lt;li&gt;" + f_2);<br>
+document.write("&lt;li&gt;" + f_1);<br>
+<br>
+// Loop to calculate some more values<br>
+for (count=1;count&lt;10;count++) {<br>
+<br>
+&nbsp; f_n = f_1 + f_2; // Calculate f(n)<br>
+&nbsp; document.write("&lt;li&gt;" +&nbsp;<span class="warnbox">fn</span>); // Write the latest value<br>
+
+<br>
+&nbsp; f_2 = f_1; // At the next iteration, f(n-2) will have the value of the current f(n-1)<br>
+&nbsp; f_1 = f_n; // And f(n-1) will have the value of the current f(n)<br>
+}<br>
+<br>
+document.write("&lt;/ol&gt;");<br>
+</div>
+
+<span style="font-weight: bold;">Figure 15: A program with a bug</span><br style="font-weight: bold;">
+
+<p>A copy of the buggy program is linked here: <a href="fib2.html">fib2.html</a><br>
+</p>
+<p>If you load that page, you will find that the program has failed.
+The first two values of the sequence have been printed, but no others.
+What has happened? We can use Firebug to help find this out. Figure 16 shows Firebug being used. Here, Firebug has
+been started. The Firebug interface opens in the lower part of the
+window. We then click on the <span style="font-weight: bold;">Console</span>
+tab (you may also need to reload the page). This displays the general
+console, on which messages including errors are displayed.<br>
+</p>
+<div class="fig_middle"><a href="firebug.gif"><img style="border: 2px solid; width: 700px; height: 494px;" alt="Firebug being used" src="firebug.gif"></a><br>
+Figure 16: Using Firebug<br>
+</div>
+<p>The error message identifies a problem with our code: we are trying to use an undefined variable <span style="font-style: italic;">fn</span>.
+The console also shows the line where this is used, and gives the line
+number as well. Messages will also be displayed for other errors, for
+example if a function is used with the wrong number of arguments.</p>
+<p>Firebug is also very useful for examining the content and structure
+of web pages. If you use CSS stylesheets to change the appearance of
+page elements, it can also show the exact styles being applied to
+different elements.<br>
+<p>
+<h3>Task</h3>
+<ul>
+<li>Download and install Firebug.
+<li>Make a copy of the fib2.js and fib2.html files - load the files.
+<li>Can you see the error in the Firebug console?
+</ul>
+<p>
+How do you comfort a JavaScript bug? a. You console it (ElijahManor)
+
+</p>
+<hr style="width: 100%; height: 2px;">
+[ Next: <a href="Javascript_6.html">Example programs</a>]<br>
+[<a href="../../../web-based-gis/materials.html">Course Index</a> | <a href="../../googlemaps/module3.html">Unit Overview</a>]<br>
+<hr class="post_float">
+
+</body></html>

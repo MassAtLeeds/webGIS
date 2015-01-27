@@ -1,0 +1,203 @@
+---
+layout: default
+title: Correctness of data
+---
+
+
+
+<h1>Google Maps: An Introduction</h1>
+<h2>Correctness of data</h2>
+<p>
+For
+any map-based resource, timeliness and correctness of data are
+important considerations. One of the major advantages that
+web-based maps have over paper-based ones is that they can be updated
+quickly and cheaply. Whilst paper
+maps may well be drawn from the same digital boundary information as a
+web-based resource, there are costly overheads in printing and
+distributing new versions. In contrast, web-based maps that
+are
+dynamically generated will reflect new information as soon as the new
+data are added to the master database. There are obvious
+commercial advantages to making new data quickly available, yet there
+are also significant practical considerations. For example,
+consider the map databases of satellite navigation
+systems. These map databases must be kept up to date with new
+roads, with
+removal of old roads, and with any changes in restrictions on roads
+(for example, restrictions on turning right at some junctions).
+In some cases, the routes of new roads (especially major
+roads) will be known long in advance, and in these cases it is
+important to ensure that the road enters the database when it is
+actually finished, rather than when it is scheduled to be completed -
+these may not be the same! There is also the potential for
+finer-grained updating of information: temporary restrictions and road
+closures can be accommodated on a web-based map in a manner which is
+impossible for paper-based maps.</p>
+
+<h3>Up to date images</h3>
+
+A more significant illustration arises from the
+bombing of
+the Chinese
+Embassy in Belgrade. The embassy was bombed
+in May 1999, during the NATO action against Yugoslavia during the
+Kosovo war. The reasons for the bombing are the subject of
+dispute and the source of conspiracy theories.</p>
+<p>NATO's
+explanation at the time was that the bombing targets had been
+selected from outdated maps supplied to them by the US Central
+Intelligence Agency; the intended target had been the Yugoslav Federal
+Directorate for Supply and Procurement, which was located nearby.
+According to NATO, maps supplied by the CIA pre-dated the
+war,
+and did not include the Chinese Embassy in it's then location.
+This story has since been disputed; a report in the Guardian
+in October 1999 claimed that the embassy had been deliberately targeted
+because it has been identified as acting as a communications point to
+re-broadcast instructions to Yugoslav army units
+[<a href="http://www.guardian.co.uk/Kosovo/Story/0,2763,203214,00.html">http://www.guardian.co.uk/Kosovo/Story/0,2763,203214,00.html</a>].
+However, it is clear that map databases are used not just for
+simple domestic purposes, but also for military and other purposes, and
+that their correctness is of great value. This is perhaps
+especially true in an era of 'smart' weapons aimed at specific targets
+in urban environments.<br>
+
+
+
+<img src = "belgrade_embassy.jpg" height="400" width="400">
+<p>
+Images
+taken from: <br>http://www.cnn.com/WORLD/europe/9905/20/kosovo.03/<br>
+<p>
+Different sources of aerial imagery will of course have differing
+levels of timeliness. The figures below show three different views of the 2012
+Olympic site in Stratford, East London captured in January 2009. All are based on vector road
+data; Figure a shows the area as represented in Google Maps, and
+Figure b shows the area as represented in Microsoft's Live Search.
+Both of these are similar, and show a large open area, with a number of
+roads and rail lines. The view in both services remained
+similar a year later, with Microsoft's Live Search re-branded as
+part of their Bing search engine.<br>
+</p>
+<p>Figure c, by contrast, is
+generated from user supplied content by <a href="www.openstreetmap.org">OpenStreetMap</a>.
+A number of rail lines have been removed, the site is
+correctly labelled, and the site of the Olympic stadium is marked.<br>
+</p>
+</p>
+<p>
+<img src = "gmap_olympic1thumb.gif" height="400" width="600">
+<br>Figure a: 2012 Olympic Site, as shown in <br>Google Maps, Map view
+[19/2/09]<br>
+<p>
+<img src = "msve_olympic2thumb.gif" height="400" width="600">
+Figure b: 2012
+Olympic Site, as shown in <br>MS Live Search Maps, Map view
+[19/2/09]
+<p>
+<img src = "osm_olympic1crop.gif" height="400" width="600">
+Figure c: 2012
+Olympic Site, as shown in <br>OpenStreetMap[19/2/09]
+<p>
+<img src = "olympic_webcam.gif" height="400" width="600">
+Figure d: 2012 Olympic Stadium -
+webcam[19/2/09]
+
+<p>The
+representations of the site in the first two images are quite
+out-of-date. Do the available aerial images from either
+provider fare any better? The figures above show a marked contrast
+in the age of images of used, although both are out of date.
+Figure a is the aerial image available via Google Maps, and
+shows the site having been cleared, and with construction of some sort
+taking place. Figure b is an aerial image from Microsoft
+Live Search, and clearly pre-dates site clearance, with railway lines
+and sheds still standing in the area.</p>
+<p>Neither image
+is particularly up-to-date; Figure c is taken from a <a href="http://www.london2012.com/plans/olympic-park/webcams/index.php">webcam</a>
+on the Olympic site, showing progress on construction of the Olympic
+stadium at the south of the site. Whilst no major building
+work is shown in either of the preceding images, it is clear from the
+webcam that the building work has proceeded to a state where the
+stadium is recognisably 'stadium-like'.</p>
+<p>
+For completion, here is an image of the Olympic Park taken in 2014:
+<p>
+<img src = "olympicpark2014.png" height="400" width="600">
+<p>
+
+<p>Which of
+these various sources would you expect to be most timely?
+Clearly, the webcam will be most current, as it shows
+real-time images of progress. Would you expect aerial imagery
+or vector databases to be more advanced? Aerial photography
+can capture data for large areas in a short time, but such images
+require post-capture processing, and are costly to carry out.
+Modifications to vector databases are manually intensive -
+each vector element must be changed separately - but can be done at
+short notice. The potential for vector databases to have a
+high degree of timeliness is demonstrated by the OpenStreetMap
+database.
+</p>
+<h3 class="post_float">Consistency
+in aerial
+imagery</h3><br>
+<p>A source of inconsistency in the data provided by
+Google and
+other
+providers arises in the aerial photography and remotely sensed data
+that is made available. There are a variety of ways in which
+this might be manifested. The high resolution images used for
+major cities are collected by aerial photography. Clearly,
+the entire city cannot be covered at the same time, and thus
+photographs from multiple passes must be stitched together. Look at the figure below, a closeup of skyscrapers in New York City
+(centred on West 42nd Street and Avenue of the Americas).</p>
+
+<div class="fig_right"><img style="border: 2px solid; width: 600px; height: 400px;" alt="Google Maps image: New York City" src="nyc1.jpg"></a><br>
+ <br><br>
+
+[image copied 25/1/08]</div>
+<p>Different parts of this composite image have been
+drawn from different
+aerial photography passes and the buildings appear to lean drunkenly
+into each other. A slight variation in the tilt of the
+aeroplane
+taking images changes the perspective view of the buildings, and with
+very tall buildings such optical illusions can be created.
+Larger
+format images are gathered via remote sensing satellites.
+These
+satellites typically collect images from a range of angles as the pass
+overhead. These images must be ortho-rectified to remove
+distortion.<br>
+</p>
+<p>At other times, the inconsistencies can be more subtle.
+Images of a given location collected at different times but
+from an identical angle may still have shifts in shadows apparent.</p>
+<p>A final comment on the
+correctness of data in all major map
+databases
+is that some of these contain <span style="font-style: italic;">deliberate</span>
+errors. These are supposedly introduced in order to spot
+attempts
+to copy the map database are re-sell it or distrbute it as original
+material. A common term given to deliberate errors are <a href="http://en.wikipedia.org/wiki/Trap_street">'trap
+streets'</a>. The extent to which such errors actually exist is
+not
+known. For more information about trap streets, and some
+examples, see <a href="http://wiki.openstreetmap.org/index.php/Copyright_Easter_Eggs">http://wiki.openstreetmap.org/index.php/Copyright_Easter_Eggs</a>
+<br>
+<p>
+Here is a nice <a href = "http://maps.google.com/maps?hl=en&ll=51.492159,-0.19092&spn=0.005291,0.013937&sll=51.492140,-0.193028&layer=c&cid=12502927659667388442&panoid=c9UMhWP_MWm9U0L48xEjYw&cbp=13,291.8,,0,18.86&gl=US&t=m&cbll=51.492132,-0.192862&z=17"> Geeky Easter Egg</a> that Google Maps put together for the 50th Anniversary of <a href ="http://www.bbc.co.uk/programmes/b006q2x0">Doctor Who</a>
+</p>
+<br><div class="task_box post_float"><span style="font-weight: bold;">Task</span><br style="font-weight: bold;">
+<br>Read
+the above link about trap streets.  Can you find one in Google Maps?  If so, e-mail me or wait until we have created a webpage and you can post a short blog on there about it!
+<p>
+Let's get started with creating a Google Map of your own in  <a href="../module2.html">Unit 2</a>.
+<br>
+[<a href="../../../web-based-gis/materials.html">Course Index</a> | <a href="../../googlemaps/module2.html">Unit 2</a>]<br>
+<hr class="post_float">
+<hr>
+</body></html>

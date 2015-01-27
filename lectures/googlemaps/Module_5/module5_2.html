@@ -1,0 +1,306 @@
+---
+layout: default
+title: Adding overlays
+---
+
+<h1>Adding overlays</h1>
+
+
+<p>Markers are an example of one sort of overlay that can be placed on top of
+the background map in Google Maps. As we have seen in last week's material, it
+is possible to alter the marker image ; one implication of this is that
+different marker styles can be used to convey additonal information about the
+location (e.g. markers of different colours could be used to chow different
+types of location). There are a variety of alternative overlay s that can also
+be used in Google Maps, and we will look at some of these this week.</p>
+
+<h3>Creating and adding lines and polygons</h3>
+
+<p>The Blue Plaques practical task, and most of the examples that we studied
+earlier focused on using markers to represent information. These are ideal for
+point level information, but not so good for area level information. An
+obvious thing to want to do is to draw lines and polygons on the map. Figure 2
+shows sample code for a map which will be drawn with a set of overlay lines.
+Three files are illustrated.</p>
+
+<p>The first of these is the HTML file which will contain our map. The HEAD
+section contains links to a number of other files:</p>
+<ul>
+  <li>The Google Maps JavaScript API</li>
+  <li>The JSCoord library used last week </li>
+  <li>A JavaScript data file</li>
+  <li>A JavaScript map setup file</li>
+  <li>Two style sheets - a general one (intended for general page appearance)
+    and a more map specific one</li>
+</ul>
+
+<p>The body of the HTML is much the same as in previous examples, although as
+we will be drawing a map of the UK in this example, I have made the map_canvas
+division long and thin.</p>
+
+<p>The second file shown is an excerpt of a data file, showing the general
+structure. This was converted from CSV exported from an Excel spreadsheet; all
+values have been placed in quotes. The data are taken from the 2001 Census
+Special Migration Statistics, and detail migration flows from different
+districts of the UK to Leeds. The 'origin' value is simply a district number,
+and the 'flow' value is the number of persons recorded in the Census who had
+changed their usual residential address in the year prior to the census. For
+each data value, the flow shows the number of people who lived in Leeds at the
+time of the Census, and in the origin district one year before the Census.</p>
+
+<p>The third file shown in the map set up file. This sets up a map in the same
+way as done in the previous examples. It then iterates through a data set,
+again as in previolus examples with markers. However, in this case we are doing
+something different with the data: we are drawing lines on the map.</p>
+<p>
+There are links to each of these files near the bottom of the page.
+<p>
+<b>wk8_leeds_sms_eg1.html</b>
+<p>
+<img src = "eg1.png" height="450" width="800">
+
+<hr>
+<p><b>wk8_leeds_sms_eg1_data.js</b><p>
+<img src = "eg2.png" height="100" width="200">
+
+<hr>
+<p><b>wk8_leeds_sms_eg1_mapsetup.js</b><p>
+<img src = "eg3.png" height="600" width="600">
+
+<p></p>
+
+<div class="fig_right">
+<img alt="Using polyines" src="leeds_sms_eg1.gif" width="508" height="709"> 
+
+<p>a) Ouput with initial line styles</p>
+
+<p><img alt="Alternate line styles" src="leeds_sms_eg2.gif" width="508" height="709"></p>
+
+<p>b) Output with revised line styles</p>
+
+
+<p>The lines that have been added are called <em>polylines</em> in the Google
+Maps API. Polyline is defined by a series of points; this map uses the simplest
+of such lines, which are defined by only a start and an end point. Let us
+return to the code shown in the map setup script above. The loop
+'<code>for (id in os_flows) {}</code>' iterates through the data array, carry
+out its body section once for each data point. The first task - as with the
+Blue Plaques example from last week - is to convert the location data from OS
+grid references to lat-lng data points. In this example, we construct a LatLng
+object called <code>myOrig</code> from each point we read. Note that despite
+the fact that the eastings and northings are quoted in the data file, and might
+thus be thought of as strings, the latlng constructor is happy to treat them as
+numeric values.</p>
+
+<p>Next we draw the line. There are two stages to this. Firstly, we contstruct
+a polyline object, using '<code>new google.maps.Polyline()</code>'. This
+requires one paramter - an object which lists line co-ordinates and the various
+options. The most important of these are the line co-ordinates. These are given
+in the <code>path</code> property of the polyline options object. The path is
+an array, containing a set of points, each of which is a
+<code>google.maps.LatLng()</code> object. We use two points: the
+<code>myOrig</code> point that has just been created (as converted from the OS
+grid references), and a second point <code>myDest</code>. As this map shows
+flows to one location only we define the destination once, and use the same
+point each time in our path.</p>
+
+<p>The other characteristics for a polyline are the colour, opacity and width
+of the line. In this initial example, we have drawn all lines with the same
+characteristics: opaque red lines of weight 2.</p>
+
+<p>The second thing that we need to do is add the line that has now been
+defined to the map. The is done in the statement:
+'<code>flowLine.setMap(map);</code>'. We use the <code>setmap()</code> method
+of the generic <code>google.maps.Polyline()</code> object to attach the line to
+the map, giving the name of the map object to which we wish to attach the line.
+</p>
+
+<p>As you can see from the figure, the resulting map contains a mass of lines,
+which does not tell us much apart from the fact that - like most large cities,
+especially those with large universities, Leeds draws migrants from almost
+everywhere in the country.</p>
+
+<p>We can alter the setup program to change the line style for flows of
+different size. The following figure shows excerpts from the code of a revised example.
+Some changes have been made within the <code>initialize()</code> function.
+Firstly, we have added three new variables, <code>myColor</code>,
+<code>myOpacity</code> and <code>myWeight</code>; as we intend to alter these
+characteristics for each line.</p>
+
+<p>We have also added a set of statements into the for loop that cycles through
+each data point. We have a series of <code>if {}</code> statements, which ste
+up the line characteristics. These are structured so that large flows which
+meet all the 'if' criteria (i.e. they're greater than 0, they're also greater
+than 10 etc...) will over-write the previous values for <code>myColor</code>
+etc.</p>
+
+<p>The lines are set to be drawn in black (but thin, and fairly transparent) is
+the flow is small, and in red (and thicker, and more opaque) is the flow is
+larger. This stage is clearly in the arena of basic map design - one needs to
+know something about the nature of the data being mapped and about the range of
+possible values, and then try out various different line styles.</p>
+
+<p>The output using this revised version is shown in the second figure above (with red and black lines). The map is
+clearer, and it is possible to distinguish those origins from which the major
+flows are drawn, although it is still quite crowded - a common result in maps
+of this type. Further improvements might be made with changes to the line
+styles, and we might also decide to only draw those lines that represent flows
+above a certain threshold (say, 50 persons).</p>
+
+<p>The files used in these two examples are available here:</p>
+<ul>
+  <li><a href="wk8_leeds_sms_eg1.html">wk8_leeds_sms_eg1.html</a></li>
+  <li><a href="wk8_leeds_sms_eg1_mapsetup.js">wk8_leeds_sms_eg1.mapsetup.js</a><a></a></li>
+  <li><a href="wk8_leeds_sms_eg1_data.js">wk8_leeds_sms_eg1_data.js</a></li>
+  <li><a href="wk8_leeds_sms_eg1_data_test.js">wk8_leeds_sms_eg1_data_test.js</a>
+    [a truncated data file for initial testing]</li>
+  <li><a href="wk8_leeds_sms_eg2.html">wk8_leeds_sms_eg2.html</a></li>
+  <li><a href="wk8_leeds_sms_eg2_mapsetup.js">wk8_leeds_sms_eg2_mapsetup.js</a>
+    [uses same data file as eg1]</li>
+</ul>
+
+<p>If you use copies of these, you may need to alter the relative paths in the
+HEAD section to the JSCoord library and the CSS files.</p>
+
+<p>As with any map, the framing page should give some sort of explanatory key
+when lines are shown in different colours to convey some quantitative
+meaning.</p>
+
+<div class="code_example">
+<p>excerpts from <strong>wk8_leeds_sms_eg2_mapsetup.js</strong></p>
+<pre>  ...
+  var myColor;
+  var myOpacity;
+  var myColor;
+
+  for (id in os_flows) {
+
+     ...
+     if (os_flows[id].flow &gt; 0) {
+       myColor = "#000000"; 
+       myOpacity = 0.2;
+       myWeight = 1;
+     }
+     if (os_flows[id].flow &gt; 10) {
+       myColor = "#000000"; 
+       myOpacity = 0.3;
+      myWeight = 1;
+     }
+     if (os_flows[id].flow &gt; 100) {
+       myColor = "#EE0000"; 
+       myOpacity = 0.7;
+       myWeight = 2;
+     }
+     if (os_flows[id].flow &gt; 1000) {
+       myColor = "#EE0000"; 
+       myOpacity = 0.9;
+       myWeight = 3;
+     }
+
+     var flowLine = new google.maps.Polyline({
+       path: [myOrig,myDest],
+       strokeColor: myColor,
+       strokeOpacity: myOpacity,
+       strokeWeight: myWeight
+      });
+      flowLine.setMap(map);
+   }</pre>
+</div>
+
+<p>As described above, a polyline is a line made up of a number of segments (in
+the above example, only one segment per line) defined as a set of co-ordinates.
+The step from this to a <em>polygon</em> is straightforward: a polygon is a
+line which returns to its initial starting point. Polygons have the additional
+characteristic beyond a line in that the y can have a fill colour (and variable
+fill opacity) as well as line characteristics.</p>
+
+<p>The following figure shows the code of a set of files which illustrate the construction
+of basic polygons. The structure of these files is similar to those that we
+used before, but we will run through their contents.<br>
+</p>
+
+<p>The HTML file <span style="font-style: italic;">wk8_poly_eg1.html</span> is
+illustrated first. It is very similar to the file use in the line drawing
+above, differing only in the names of the files loaded, and the on-page
+text.</p>
+
+<p>The second file is a data file. It defines two polygons with some basic
+details, and a <code>boundary</code> property which contains an array of grid
+reference points.</p>
+
+<div class="code_example">
+<p><strong>wk8_poly_eg1.html</strong></p>
+<img src = "eg4.png" height="250" width="600">
+
+<hr>
+
+<p><strong>wk8_poly_eg1_data.js</strong></p>
+<img src = "eg5.png" height="300" width="400">
+
+<hr>
+
+<p><strong>wk8_poly_eg1_setup.js</strong></p>
+<img src = "eg6.png" height="600" width="700">
+
+
+<p>The final file illustrated above is <span style="font-style: italic;">wk8_poly_eg1.js</span>. Again, it is broadly
+similar to the previous examples. Instead of drawing lines or creating markers,
+the main loop in the initialize() function will create some polygons. For each
+iteration of the loop, the following happens:</p>
+<ul>
+  <li>We create the variable <code>polyPath</code> as an empty array. This will
+    contain the <code>path</code> that defines the polygon.</li>
+  <li>We copy the <code>boundary</code> property of the current object being
+    read from the data array. (We could work directly on
+    <code>os_polydata[id].boundary</code> below; this stage is done to make the
+    code easier to read).</li>
+  <li>We start a new loop (nested inside the main loop that is processing the
+    data file) to read through the boundary object.</li>
+  <li>For each point, we follow the previously illustrated process of
+    conversion from OS grid reference to WGS84 Latlng.</li>
+  <li>We add the new point to our path. This is done using
+    <code>polyPath.push(<em>point</em>)</code>. <code>push()</code> is a method
+    attached to the generic Array object, and it adds the argument (in our
+    case, a point) to the end of the array</li>
+  <li>Having finished processing all of the boundary points, we construct a new
+    <code>google.maps.Polygon()</code> object. This takes a number of
+    parameters. The stroke parameters refer to the boundary line, whilst the
+    fill parameters refer to the middle of the polygon.</li>
+  <li>We add the polygon to the map using the setmap() method of the Polygon
+    object (in the same way as we did with the lines).</li>
+</ul>
+
+<p></p>
+
+<div class="fig_right">
+<img alt="Polygon examples" src="leeds_poly_eg1.gif" width="411" height="310"> 
+
+</div>
+
+<p>The map generated in this example is shown above. It can be seen that
+the polygons are simple squares, with a solid red outline and semi-opaque
+fill.</p>
+
+<h3>Summary</h3>
+
+<p>On this page, we have seen examples of how we can add lines and polygons to
+a map. The lines example showed how a reasonably large number of lines can be
+added, whilst the polygon example used a simpler case. In the case of polygons,
+we can generate complex polygons as well as these very simple examples - you
+may note that the boundary data was added to the polygon property
+<code>paths</code> rather than <code>path</code> as was the case with the
+polyline. With polygons, we can add multiple paths, and thus have polygon
+objects with more than one component; we can also define polygons with 'holes'
+in them.</p>
+
+<p>On the next page , we shall look at how we can add information to
+polygons.</p>
+
+<p></p>
+
+<p><br>
+</p>
+<hr class="post_float" style="width: 100%; height: 2px;">[ Next: <a href="module5_3.html">Adding information to polygons
+]<br>
+[<a href="../../../web-based-gis/materials.html">Course Index</a> | <a href="../../googlemaps/module5.html">Unit Overview</a>]<br>
+<hr class="post_float">

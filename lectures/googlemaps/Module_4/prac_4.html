@@ -1,0 +1,160 @@
+---
+layout: default
+title: Geo-coding
+---
+
+
+
+<h2>Geo-coding</h2>
+
+
+	There are a number of services available to handle geocoding
+(and, conversion between spatial reference systems). Some useful
+starting points include:
+<ul>
+<li> The wikipedia entry on geocoding, (http://en.wikipedia.org/wiki/Geocoding) which describes some of the issues.
+	<li> An important library for co-ordinate conversion (between
+different projections and datums) is the <a href="http://trac.osgeo.org/proj/">proj.4 library</a>.  As well as
+providing re-projection functions for other programs such as
+	MapServer, proj.4 includes a number of command-line tools for
+conversion between co-ordinate systems. If you are feeling brave
+enough, you can download proj.4 (including pre-compiled Windows
+versions) - from the above website.  Documentation for the proj
+utility program can be found <a href="http://trac.osgeo.org/proj/wiki/man_proj"> HERE</a>.
+</ul>
+<p>
+
+A rather friendlier system is available online, at <a href="www.nearby.org.uk">Nearby.org.uk</a>, which we will now look at in this practical.
+
+<h3>Task</h3>
+<ul>
+<li>Open the www.nearby.org.uk homepage
+<li>Try entering a postcode of your choice in the query box at the top of the page.
+<ul><li>	The results include many links; scroll down and you will find a conversion to WGS84 latitude / longitude for that postcode centroid
+	<li>The results page also includes a pull-down menu which allows you to limit the amount of output generated. This may be useful, but you should also spend some time browsing the links included in the main results page, as many of these are of interest
+	<li>Now try entering the grid reference: 430055,433766 (making sure that you include the comma)
+	<li>This is the first easting & northing pair in the Blue Plaques data set; the results should give you the WGS84 latitude / longitude for that grid reference.
+</ul>
+</ul>
+<p>This is very useful, as it gives us the lat/long references that
+we need to use for the Blue Plaques data. You could convert the whole
+data set this way, recording the lat/long output in your copy of the
+data set. With a little co-operation with other students, the whole
+data set could be geocoded fairly quickly. However, this approach
+(while workable for this practical) would not be sufficient if your
+data set was considerably larger. Fortunately, there are services
+which allow automated processing of geocoding and co-ordinate
+conversion. The nearby.org.uk site includes such as service: it is
+described here:
+<p>
+<a href="http://www.nearby.org.uk/api/convert-help.php">http://www.nearby.org.uk/api/convert-help.php</a>
+<p>
+There is also a geocoding service available from Google Maps. The full description of Google's Geocoder is available here:
+<p>
+<a href="http://code.google.com/apis/maps/documentation/geocoding/">http://code.google.com/apis/maps/documentation/geocoding/</a>
+<p>
+	However, this geocoder does not do what we want for this task,
+which is to convert from traditional Ordnance Survey grid references
+to latitude-longitude co-ordinates. Note that geocoding is a resource
+intensive and relatively slow process. Whilst the Google Maps
+geocoder could be used directly to determine marker locations given
+addresses, you would not want to do this each time the map is loaded.
+In practice, you would have a two-way link with your database, and
+retain the geocoded location, or use some other way of caching the
+results.
+<p>
+
+<h3>Task (optional)</h3>
+	If you are confident with using APIs in this way, try using the
+nearby.org.uk conversion api to convert some points. 
+
+<h3>JSCoord</h3>
+
+A final approach
+that is of interest to us is to use a Javascript library for
+co-ordinate conversion.  JScoord is an open source library that
+includes routines for converting between a number of reference
+systems.
+<ul>
+<li><a href ="http://www.jstott.me.uk/jscoord/">JScoord home page</a>
+<li><a href ="jscoord-1.1.1.zip">Local copy</a>
+</ul>
+<p>
+This can be use to convert from OS National Grid references to the appropriate latitude / longitude reference. 
+<p>
+
+<h3>Task</h3>
+Copy the JScoord library, extracting the files into the same directory as your other Javascript files.
+
+The figures below shows a skeleton version of a number of files
+that can be used to draw the blue plaques data. Firstly,
+plaques_map.html is the HTML document that will present our map.
+There is one important change to note - there is a new SCRIPT tag in
+the header part of the file, which loads the JScoord library. It is
+important to load this before the script that will use the library.
+<p>
+<img src="plaques_map.png" alt="Text" style = "width:800px;height:300px">
+<li>The code for this file can be downloaded <a href="plaques_map.html">HERE</a>
+<p>
+The plaques_map.html file also makes reference to a test data file <b>test_plaques_data.js</b>,
+which includes the first two points we want to add. This has been put
+into an array called os_markers, to remind us that the co-ordinates
+are currently OS grid references. 
+<p>
+<img src="test_plaques_data.png" alt="Text" style = "width:900px;height:400px">
+<li>The code for this file can be downloaded <a href="test_plaques_data.js">HERE</a>
+<p>
+
+Finally, we have a new map_setup_plaques.js
+version of our map_setup code, adapted for this task.
+<p>
+<img src="map_setup_plaques.png" alt="Text" style = "width:600px;height:700px">
+<p>
+<li>The code for this file can be downloaded <a href="map_setup_plaques.js">HERE</a>
+<p>
+ The main change
+is the addition of these lines to the loop which iterates through the
+array of marker data:
+<p>
+
+<img src="test.png" alt="Text" style = "width:600px;height:100px">
+
+
+<p>	These lines make use of features of the JScoord library that we
+have loaded. Firstly, we create a new object of the type OSRef (this
+object is made available through the JScoord library), and initialise
+it using the easting and northing values stored in our marker data.
+We then make use of a method provided by the library for OS points:
+toLatLng(). 
+<p>This converts the point to a latlng point (the conversion
+maths is contained within the library). However, not all latitude and
+longitude references are the same! These coordinates assume that we
+are still using the OSGB36 datum that is used for normal OS maps. As
+the OS National Grid uses a different datum to Google Maps, it is
+necessary to convert between datums.  
+
+<p>This is done by the
+OSGB36ToWGS84() method of the lat-long object.  Since we have not
+specified a new variable, the statement 'llPt.OSGB36ToWGS84();'
+causes the llPt object to act on itself. Finally, we use the
+addMarker() to add a marker to our map in the same way as before,
+except that instead of using the co-ordinates from the original data,
+we use the lat and lng properties of the object llPt. 
+<p>
+
+<img src="test_plaques_data.png" alt="Text" style = "width:900px;height:400px">
+<li>The code for this file can be downloaded <a href="test_plaques_data.js">HERE</a>
+<p>
+<h3>Task</h3>
+<p>
+	Add markers to the map from the blue plaques data.  Use whichever
+method of co-ordinate conversion you prefer (i.e. JSCoord, manual
+conversion using nearby.org.uk, or direct use of a geocoding or
+conversion API).
+<p>
+Now you have worked through all the practical documents, you should have no problem in completing the <a href="prac_1.html">practical requirements</a>.
+
+<hr class="post_float">[<a href="../module5.html">Unit 5</a>]<br>
+[<a href="../../../web-based-gis/materials.html">Course Index</a> | <a href="../../googlemaps/module4.html">Unit 5</a>]<br>
+<hr class="post_float">
+</body></html>

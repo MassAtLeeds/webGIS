@@ -1,0 +1,106 @@
+---
+layout: default
+title: Tidying up the code
+---
+
+
+<h1> Developing Google Maps</h1>
+
+<h2>Tidying up the code</h2>
+
+So far we have generated a set of example maps, with small incremental changes
+each time. &nbsp;The code of our page has started to grow, and now looks something
+like the following figure.<br>
+<br>
+<p>
+<img src="google_eg4.png" alt="Text" style = "width:650px;height:600px">
+
+<p>A copy of this example can be found here: <a href="google_eg4.html">google_eg4.html</a></p>
+
+<p>If the page is further developed in this way, it will soon start to become
+unmanageable. The page mixes together a number of distinct elements:<br>
+</p>
+<ul>
+  <li>The basic contents of the page</li>
+  <li>The style information that modifies the page appearance</li>
+  <li>The Javascript that controls the map's appearance and capabilities</li>
+</ul>
+
+<p>The page will become much more readable if we start to separate these
+aspects. The following figure shows a re-written version of the page. The behaviour as far
+as the viewer of the page is the same as the previous version, however there
+are some important changes to the way that the code is structured. The Figure below
+shows the listing of three files: 
+<ul>
+<li><a href="google_eg5.html">google_eg5.html</a>
+<p><img src="google_eg5.png" alt="Text" style = "width:650px;height:300px">
+<li><a href="map_style.css">map_style.css</a>
+<p><img src="map_style_css.png" alt="Text" style = "width:450px;height:150px">
+<li><a href="map_setup.js">map_setup.js</a>
+<p><img src="map_setup.png" alt="Text" style = "width:600px;height:500px">
+</ul>
+The first of these is a simplified version of our previous code example. A number of elements have
+changed:<br>
+</p>
+<ul>
+  <li>The embedded style sheet has been replaced with a link to a separate
+    style sheet - <span style="font-style: italic;">map_style.css</span>.&nbsp;As
+    written, the file assumes that the style sheet can be found in the same
+    directory as the HTML file.</li>
+  <li>The map code has been moved to a new file - <span style="font-style: italic;">map_setup.js</span> - and the line '<span style="font-family: monospace;">&lt;script src="map_setup.js"
+    type="text/javascript"&gt;&lt;/script&gt;'</span> is used to load that
+    file. Again, it is assumed that the file will be found in the same
+    directory as the JavaScript file.</li>
+</ul>
+
+<p>The second file (the map_style.css file) is the linked style sheet. It repeats the .gmap
+class definition used before, and adds, for the sake of example, a style
+definition for the body tag which sets the font style and size. Given the
+inheritance rules for cascading style sheets (CSS), changes to the body tag are
+inherited by all tags which are found inside the body element.</p>
+
+<p>Finally, the third file illustrated is the new <em>map_setup.js</em>
+script. It is broadly the same as the previous example, but has a few notable
+differences:</p>
+<ul>
+  <li>The declaration of the map object (<code>var map;</code>) has been moved
+    to the top of the file, outside the <code>initialize()</code> function. Why
+    should we do this? You may recall the discussion in the introduction to
+    JavaScript about variable scope. If the map object is declared inside a
+    function, it will be visible in that function only. By declaring it outside
+    any function definition, we make the map object have global scope. If we
+    add further functions to our code, the global map object will be useable in
+    those functions as well.</li>
+  <li>At the same time, we have slightly modified the line in which we create
+    the new map. Previously, we used <code>var map =
+    google.maps.Map(...)</code>, but this has been changed in the revised
+    example to <code>map = google.maps.Map(...)</code>. We have already
+    declared the variable (using <code>var</code>), so do not need to do so
+    again.</li>
+  <li>We have created a couple of new variables, <code>myCentreLat</code> and
+    <code>myCentreLng</code> to hold the centre co-ordinates. This allows us to
+    leave the map creation part of the script as generalised as possible, and
+    keep all the per-map configuration together; thus is intended to promote
+    easy re-use of the script.</li>
+  <li>Finally, we have also definied a new variable <code>initialZoom</code>,
+    which is used in the creation of the <code>Map</code> object. Again, this
+    is to keep the map configuration data in a single location.</li>
+</ul>
+
+<p>
+The revised version is an improvement, and should make code re-use and
+maintenance easier. However, a word of warning: we have used a fairly generic
+name for our map setup file (<em>map_setup.js</em>). It would be better
+practice to give this a specific name (e.g. <em>google_eg5_setup.js</em>), so
+that we can have several maps stored in the same directory without them all
+trying to read the same file!
+
+<div class="task_box">
+<h3>Task </h3>
+Taking your example, split the code up in a similar fashion to the way it has
+been done above.</div>
+<br>
+
+<hr class="post_float">[ Next: <a href="module4_4.html">Adding information to markers</a> ]<br>
+[<a href="../../../web-based-gis/materials.html">Course Index</a> | <a href="../../googlemaps/module4.html">Unit Overview</a>]<br>
+<hr class="post_float">

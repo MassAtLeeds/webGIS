@@ -1,0 +1,251 @@
+---
+layout: default
+title: Example JavaScript programs
+---
+
+
+<h1>Basic JavaScript</h1>
+
+<h2>Example JavaScript programs<br>
+</h2>
+<p>So far, we have looked at the syntax of JavaScript, at the way in
+which programs are built from a series of statements, at branching and
+looping structures, and at some debugging tools. We have used an
+example program which calculates Fibonacci numbers to look at some of
+these ideas together. This pages uses some more example programs to
+illustrate features of JavaScript.</p>
+<h3>Times-table grid</h3>
+<p>Our first example uses JavaScript to write a times-table square. It
+illustrates various principles that we have already discussed, and also
+illustrates some new language features. Figure 17 shows the code for
+two files: an HTML document tables.html, and a linked JavaScript file,
+tables.js.</p>
+<div class="code_example"><span style="font-weight: bold;">tables.html</span><br style="font-weight: bold;">
+<pre>&lt;!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd"&gt;<br>&lt;html&gt;<br> &lt;head&gt;<br>  &lt;meta content="text/html; charset=ISO-8859-1" http-equiv="content-type"&gt;<br>  &lt;title&gt;JavaScript example - Times tables&lt;/title&gt;<br>  &lt;link rel="stylesheet" href="../../style/general.css" type="text/css"&gt;<br>  &lt;meta content="Oliver Duke-Williams" name="author"&gt;<br>  &lt;script type="text/javascript" src="tables.js"&gt;<br>  &lt;/script<br> &lt;/head&gt;<br><br>&lt;body onload="load()"&gt;<br> &lt;h1&gt;JavaScript example - Times tables&lt;/h1&gt;<br> &lt;p&gt;This is an example of using JavaScript to add text to a web page in a controlled manner, and of using nested loops.&lt;/p&gt;<br> &lt;div id="ttable"&gt;&lt;/div&gt;<br> &lt;p&gt;This is part of GEOG5870/GEOG5871&lt;/p&gt;<br>&lt;/body&gt;<br><br>&lt;/html&gt;<br></pre>
+<hr style="width: 100%; height: 2px;"><span style="font-weight: bold;">tables.js</span><br>
+<br>
+<pre>/*<br> * Javascript examples - times tables<br> */<br><br>function load() {<br> <br> <br>   /*<br>    * Create a text object containing an HTML table<br>    *<br>    * We will repeatedly concatenate strings to build up the table...<br>    */<br>    <br>    var myTable = "&lt;table&gt;";<br>    myTable = myTable + "&lt;tr&gt;&lt;th&gt;X&lt;/th&gt;";<br>    <br>    // The header row<br>    for (x=1;x&lt;=12;x++) {<br>        myTable = myTable + "&lt;th&gt;" + x + "&lt;/th&gt;";<br>    }<br>    myTable = myTable + "&lt;/tr&gt;";<br>    <br>    // The main part of the table<br>    for (y=1;y&lt;=12;y++) {<br>        myTable = myTable + "&lt;tr&gt;"; // Start each new row<br>        myTable = myTable + "&lt;th&gt;" + y + "&lt;/th&gt;"; // Write the row index<br><br>        // Write the table cells<br>        for (x=1;x&lt;=12;x++) {<br>            myTable = myTable + "&lt;td&gt;" + (x*y) + "&lt;/td&gt;";<br>        }<br><br>        myTable = myTable + "&lt;/tr&gt;"; // Write the row ending tag<br>    }<br>    <br>    myTable = myTable + "&lt;/table&gt;"; // The table closing tag<br><br>    // Get a reference to the location where we want to add out new node<br>    document.getElementById('ttable').innerHTML = myTable;<br>    <br>}<br><br></pre>
+</div>
+
+<p style="font-weight: bold;">Figure 17: Example program - tables.js</p>
+<p>The HTML document shown in the first part of Figure 17, is fairly
+simple, but contains a number of elements that we have not previously
+discussed. The <code>&lt;head&gt;</code> section of the document
+contains a number of pieces of metadata, such as the author and the
+character set to be used. It is useful to add metadata of this type,
+but not vital. There is also a link to an external style sheet. In
+terms of this example, the key line in the <code>&lt;head&gt;</code> section is the <code>&lt;script&gt;</code> tag, which links to an external JavaScript file.<br>
+</p>
+
+
+<p>The <code>&lt;body&gt;</code> section features two important features. Firstly, we have extended the definition of the <code>&lt;body&gt;</code> tag, by including the term '<code> onload = "load()" '</code>. This is an example of defining a JavaScript <span style="font-style: italic;">event handler</span>. We are instructing the browser to run a JavaScript function called '<code>load()</code>' when the page has loaded into the browser (the <span style="font-style: italic;">onload </span>event).
+We are doing in this in order to exert finer control over when our
+JavaScript program is run. In our previous examples, such as the
+Fibonacci numbers, we placed all our JavaScript code in the header,
+which caused it to be evaluated - and for text to be written to the
+document - before the rest of the HTML document had finished loading.</p>
+<p>The second important feature to note is that we have added some more text into the <code>&lt;body&gt;</code> section, including a <code>&lt;div&gt;</code> element. The <code>&lt;div&gt;</code>
+tag defines a section or division of the web document. There are two
+important features to note in this case. Firstly, that the element is
+empty - the opening tag is immediately followed by the closing tag.
+Secondly, you will notice that the starting tag is expanded to include
+the parameter '<code> id="ttable" </code>'.
+We can attach an ID parameter to any element, although each such ID
+should be unique within the document. We will make use of this in the
+JavaScript program to modify that particular element.</p>
+<p>The second part of Figure 17 shows the source of our JavaScript program <code>tables.js</code>.
+The first aspect to note is that all of the program is contained with a
+function definition. We have called that function 'load', and we want
+it to be run after the table has loaded. As noted above, this gives us
+more control over when the web page will be updated.</p>
+<p>The first thing the program does is to initialise a new string
+variable called myTable. In a series of steps, we increment this
+variable by adding new pieces to the end, using the '+' operator, in
+order to build up an HTML TABLE element. The TABLE element is
+hierarchical, and consists of a number of rows (TR) each containing
+cells which are either header cells (TH) or standard data cells (TD).
+Header cells and data cells can be used any where within the table -
+they are distinguished by the way in which they are rendered by the
+browser.<br>
+</p>
+<p>We start the first row, add an initial cell which contains 'X', and then enter a loop to add a set of header
+cells. The loop is a for loop, with the constraints that the counter
+variable starts at 1, and that the loop will run whilst the counter is
+less than or equal to 12. Having done this, the table row is closed.</p>
+<p>We then use a pair of <span style="font-style: italic;">nested</span> for loops to construct the&nbsp; rest of the table. The outer loop (with the counter variable <span style="font-style: italic;">y</span>)
+will run 12 times. On each occasion it will start a new row, and add a
+header cell to the start of that row. Them, an inner loop is run, which
+will run 12 times and thus add 12 cells to the row that has just been
+started. The table cell contents is the result of the calculation <span style="font-style: italic;">x*y</span>. This process illustrates the weakly typed nature of JavaScript: <span style="font-style: italic;">x</span> and <span style="font-style: italic;">y</span> are used as numerical counters, and we assume <span style="font-style: italic;">x*y</span>
+to have a&nbsp; numerical result. However, we can append that number to
+a string variable, without having to be concerned that they are
+different data types. <br>
+</p>
+<p>There is another aspect of this line that may be worth noting: we have placed the calculation <span style="font-style: italic;">x*y</span>
+inside parentheses. Using parentheses can help to make calculations
+easier to read. Like all languages, JavaScript has a concept of <span style="font-style: italic;">operator precedence</span>. This means that mathematical
+(and other) operations will always be carried out in a predictable
+order. Consider the calculation 2 + 3 * 4. If we carry out the
+multiplication operation (3 * 4) first, this becomes equal to 2 + 12,
+or 14.&nbsp; However, if we carried out the addition operation first
+(2+3), the calculation becomes 5 * 4, or 20. Clearly, we always want
+our calculations to produce predictable results, and thus there must be
+defined rules for the order in which operations take place. In
+JavaScript, as with regular maths, it is the standard behaviour to
+carry out multiplication and division before addition and subtraction.
+Of course, this process can be over-ridden by placing parts of a
+calculation inside parentheses, which will cause them to be evaluated
+first. In the case of our example above, the parentheses simply endorse
+the expected order, and don't affect the result.</p>
+<p>Having added the data cells for each row, the program appends the
+table closing tag to the string. We then reach the end of the statement
+attached to the outer loop, and start the next iteration of this outer
+loop. When the outer loop has been run the required number of times the
+loop structure is exited, and we add a table closing tag to our string,
+to complete our syntactically correct HTML table element.</p>
+<p>So, we now have an HTML page (the original document) and a piece of
+additional HTML code that we have created in our JavaScript program. We
+need to insert our additional code into the original code; when this
+happens the web browser will be responsible for updating the document
+that is displayed on screen. We do this by using a function that we
+have not previously met, and by modifying a property of the document
+object that we have not previously used.<br>
+</p>
+<p>As we have discussed, the document object is a representation of the
+HTML document that forms the page currently being displayed; it
+contains all elements of that page. By changing one of these elements
+(or appending a new one), we change the web page. Each element has a
+property <code>innerHTML</code>, than can be replaced or modified. In order to add our additional table to the web page, we want to update the <code>innerHTML</code> of one of the page elements, and this is what we shall use the empty <code>&lt;div&gt;</code>
+for - we have planned ahead to add the table to this part of the page.
+In order to do this, we need to tell the program that we want to use
+that particular element. We do this my using the <code>getElementById()</code> method of the document object. In our HTML document, we gave an ID parameter to the empty <code>&lt;div&gt;</code> element that we added. By giving an ID as a parameter to the <code>getElementById()</code> method, we get a reference to that element. Thus, the term '<code>document.getElementById("ttable")</code>' returns a reference to our section ' <code>&lt;div id="ttable"&gt;</code> '; in effect that phrase <span style="font-style: italic;">becomes</span>, in our program, the <code>div</code> element. We can then alter it, in the same statement, by modifying the <code>innerHTML</code> property of the element:<br>
+</p>
+<pre>    document.getElementById('ttable').innerHTML = myTable;<br></pre>
+<p>The way in which the results of a method can themselves be used an
+object with modifiable properties can take some getting used to! The
+results of this program can be seen in Figure 18, and the copies of the
+file can be seen here: <a href="tables.html">tables.html</a>, <a href="tables.js">tables.js</a>.</p>
+<div class="fig_middle"><img style="width: 544px; height: 576px;" alt="Output of times tables program" src="ttables.gif"><br>
+Figure 18: Results of the times tables example<br>
+</div>
+<h3>Day of the week calculation<br>
+</h3>
+<p>Our second example illustrates the way in which JavaScript can interact with a form on a web page.
+This example uses an algorithm called Zeller's Congruence to calculate
+the day of the week given a any date. This example calculates a
+Gregorian date, an alternative form of the algorithm can also be used
+to calculate Julian dates. The Gregorian calendar was introduced by
+Pope Gregory XIII in 1582, and was implemented in different countries
+at different times; some countries did not change calender until well
+in to the 20th century. Note that this example makes no attempt to
+check that the dates entered are valid (either that the year is at
+least 1582, or that the user has not entered an impossible date, such
+as February 30th).</p>
+<p>Figure 19 again shows two files, an HTML file, and a linked
+JavaScript file. The JavaScript and HTML code are adapted from an
+example found here: <a href="http://www.codingforums.com/showthread.php?t=215306">http://www.codingforums.com/showthread.php?t=215306</a></p>
+<p>The HTML document shown in the first part of Figure 19 includes a
+FORM element, which has three input components, and a submit button.
+The input elements consist of two SELECT elements, and a free text
+entry box. The SELECT elements offer a fixed number of options to the
+user, through the use of a number of OPTION elements. You should note
+that each of the input elements has an ID parameter, which will allow
+our JavaScript program to monitor their value. Their are to many
+possibilities for the value of year to provide a fixed set of options,
+so the free text INPUT element is used, but as stated above, no checks
+for validity are made in this example. <br>
+</p>
+<p>Our form also has a BUTTON element, and we have attach an event
+handler to the button. When the button is clicked, it triggers the <span style="font-style: italic;">onclick</span> event, and we have instructed the web browser to run a function called '<code>doDemo()</code>' when this event occurs.</p>
+<p>Finally, our page has a P (paragraph) element that is given the ID
+"result". As&nbsp; you may suspect from our previous example, this will
+be dynamically modified to display the result of our program. Unlike
+the times tables example, the JavaScript program does nothing when
+initially loaded; rather it waits to be triggered by an event handler.<br>
+</p>
+
+<div class="code_example"><span style="font-weight: bold;">day_date.html</span><br style="font-weight: bold;">
+<pre>&lt;!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd"&gt;<br>&lt;html&gt;&lt;head&gt;<br>  <br>  &lt;meta content="text/html; charset=ISO-8859-1" http-equiv="content-type"&gt;<br>  &lt;title&gt;JavaScript example - Day of the week&lt;/title&gt;<br>  &lt;link rel="stylesheet" href="../../style/general.css" type="text/css"&gt;<br>  &lt;meta content="Oliver Duke-Williams" name="author"&gt;<br>  &lt;script type="text/javascript" src="zeller.js"&gt;&lt;/script&gt;<br>  &lt;/head&gt;<br><br>  &lt;body&gt;<br>&lt;h1&gt;JavaScript example - Day of the week&lt;/h1&gt;<br>&lt;p&gt;This is an example of using JavaScript to interact with a form on a web page&lt;/p&gt;<br><br>&lt;h2&gt;Zeller's Congruence Demo&lt;/h2&gt;<br><br>&lt;form action="./day_date.html&gt;"<br>&lt;p&gt;Day&amp;nbsp;<br>&lt;select id="day"&gt;<br>&lt;option value="1"&gt;1&lt;/option&gt;<br>&lt;option value="2"&gt;2&lt;/option&gt;<br>&lt;option value="3"&gt;3&lt;/option&gt;<br>&lt;option value="4"&gt;4&lt;/option&gt;<br>&lt;option value="5"&gt;5&lt;/option&gt;<br>&lt;option value="6"&gt;6&lt;/option&gt;<br>&lt;option value="7"&gt;7&lt;/option&gt;<br>&lt;option value="8"&gt;8&lt;/option&gt;<br>&lt;option value="9"&gt;9&lt;/option&gt;<br>&lt;option value="10"&gt;10&lt;/option&gt;<br>&lt;option value="11"&gt;11&lt;/option&gt;<br>&lt;option value="12"&gt;12&lt;/option&gt;<br>&lt;option value="13"&gt;13&lt;/option&gt;<br>&lt;option value="14"&gt;14&lt;/option&gt;<br>&lt;option value="15"&gt;15&lt;/option&gt;<br>&lt;option value="16"&gt;16&lt;/option&gt;<br>&lt;option value="17"&gt;17&lt;/option&gt;<br>&lt;option value="18"&gt;18&lt;/option&gt;<br>&lt;option value="19"&gt;19&lt;/option&gt;<br>&lt;option value="20"&gt;20&lt;/option&gt;<br>&lt;option value="21"&gt;21&lt;/option&gt;<br>&lt;option value="22"&gt;22&lt;/option&gt;<br>&lt;option value="23"&gt;23&lt;/option&gt;<br>&lt;option value="24"&gt;24&lt;/option&gt;<br>&lt;option value="25"&gt;25&lt;/option&gt;<br>&lt;option value="26"&gt;26&lt;/option&gt;<br>&lt;option value="27"&gt;27&lt;/option&gt;<br>&lt;option value="28"&gt;28&lt;/option&gt;<br>&lt;option value="29"&gt;29&lt;/option&gt;<br>&lt;option value="30"&gt;30&lt;/option&gt;<br>&lt;option value="31"&gt;31&lt;/option&gt;<br>&lt;/select&gt;&lt;/p&gt;<br>&lt;p&gt;Month&amp;nbsp;<br>&lt;select id="month"&gt;<br>&lt;option value="1"&gt;January&lt;/option&gt;<br>&lt;option value="2"&gt;February&lt;/option&gt;<br>&lt;option value="3"&gt;March&lt;/option&gt;<br>&lt;option value="4"&gt;April&lt;/option&gt;<br>&lt;option value="5"&gt;May&lt;/option&gt;<br>&lt;option value="5"&gt;May&lt;/option&gt;<br>&lt;option value="6"&gt;June&lt;/option&gt;<br>&lt;option value="7"&gt;July&lt;/option&gt;<br>&lt;option value="8"&gt;August&lt;/option&gt;<br>&lt;option value="9"&gt;September&lt;/option&gt;<br>&lt;option value="10"&gt;October&lt;/option&gt;<br>&lt;option value="11"&gt;November&lt;/option&gt;<br>&lt;option value="12"&gt;December&lt;/option&gt;<br>&lt;/select&gt;&lt;/p&gt;<br><br>&lt;p&gt;Year&amp;nbsp;&lt;input id="year" size=4&gt;&lt;/p&gt;<br><br>&lt;p&gt;&lt;input type="button" value="Submit" onclick="doDemo();" /&gt;&lt;/p&gt;<br><br>&lt;/form&gt;<br><br>&lt;p id="result"&gt;----------&lt;/p&gt;<br><br>&lt;p&gt;This is part of GEOG5870/GEOG5871&lt;/p&gt;<br>&lt;/body&gt;<br>&lt;/html&gt;<br><br></pre>
+<hr style="width: 100%; height: 2px;"><span style="font-weight: bold;">zeller.js</span><br style="font-weight: bold;">
+<pre>/*<br> * Code taken from example here: http://www.codingforums.com/showthread.php?t=215306<br> */<br><br><br>function zeller(month, day, year) /* returns 0-6 where 0=sunday, 1=monday, etc....*/ {<br>  if (month &lt; 3) <br>    { month += 12; year -= 1; }<br>  var h = (day + parseInt(((month + 1) * 26) / 10) + year + parseInt(year / 4) + 6 * parseInt(year / 100) + parseInt(year / 400) - 1) % 7;<br>  return h;<br>}<br><br>function demo(month, day, year) {<br>  var mons = ['January','February','March','April','May','June','July','August','September','October','November','December'];<br>  var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];<br>  return mons[month-1] + ' ' + day + ', ' + year + ' = ' + days[zeller(month, day, year)];<br>}<br><br>function doDemo() {<br>  var m = parseInt(document.getElementById('month').value);<br>  var d = parseInt(document.getElementById('day').value);<br>  var y = parseInt(document.getElementById('year').value);<br>  document.getElementById('result').innerHTML = demo(m,d,y);<br>}<br><br></pre>
+</div>
+
+<p style="font-weight: bold;">Figure 19: HTML and JavaScript code for Zeller's Congruence example</p>
+<p>The second part of Figure 19 contains the JavaScript code that is
+triggered by the onclick event handler. There are three functions
+defined. The last of these is the <code>doDemo() </code>function that is linked to the onclick event.
+The doDemo function uses a JavaScript built-in function called
+parseInt. The parseInt function takes a string as input, and returns a
+number; we use this to ensure that the value we use is interpreted as a
+number. More information about parseInt and all other JavaScript
+functions can be found on the web, for example at <a href="http://w3schools.com/">http://w3schools.com</a>.</p>
+<p>In order to read values from the HTML form element, we can refer
+directly to the form elements using the ID values that we gave them in
+the HTML page. As before, we use the<br>
+<code>document.getElementById()</code> method to select each element,
+and then read the value property of that element. Having read the
+month, day and year values, the program updates the <code>innerHTML</code> element of the 'results' <code>&lt;div&gt;</code>, by setting its value to be the result of the function '<code>demo()</code>'.</p>
+<p>The function <code>demo()</code> is also defined in Figure 19. It
+contains three lines of code. The first two of these simply define two
+arrays, using the [] syntax. These contain lists of the names of months
+and days. The final line assembles a string which will be sent back to
+the calling statement (and thus used to set the innerHTML of our
+results element). This string consists of the month, the day of the
+month and the year as supplied by the user. Note that the user will
+supply a month number from 1 to 12, whilst the <code>mons</code>
+array, as with any JavaScript array, has an index starting at 0 rather
+than 1, hence the reference in the result string to mons[month-1] -
+this supplies the right label by associating January with month 0,
+February with month 1 and so on. The final part of the results string
+assembled in the <code>demo</code> function selects an entry from the <code>days</code>
+array, which holds the names of days of the week, indexed from 0 to 6.
+It does this by calling the third function defined in the file - <code>zeller()</code>.</p>
+<div class="fig_right"><img style="width: 574px; height: 48px;" alt="Zeller's Congruence" src="zeller.png"><br>
+Figure 20: Zeller's Congruence<br>
+<br>
+Source: <a href="http://en.wikipedia.org/wiki/Zeller%27s_congruence">http://en.wikipedia.org/wiki/Zeller's_congruence</a><br>
+</div>
+<p>The <code>zeller()</code> function is the one which applies the
+Zeller's Congruence algorithm. The original algorithm is shown in
+Figure 20. It gives an answer of 0 to 6, given the inputs of day, month
+and year. In the algorithm, the day of the week <span style="font-style: italic;">h</span> is calculated using q, the day of the month, <span style="font-style: italic;">m</span> the month of the year, and <span style="font-style: italic;">Y</span>
+the year. Note that - for input to the algorithm - month and year are
+modified such January and February are considered to be months 13 and
+14 of the preceding year (e.g. February 2011 is referred to as month 14
+of 2010).<br>
+</p><p>In the JavaScript implementation, the first couple of lines are an <code>if</code>
+statement, which applies the renumbering to month and year if
+necessary. The next line implements the Congruence algorithm, again
+using <code>parseInt()</code> to make sure variables are handled as numbers.
+The final part of the algorithm uses the '%' operator, which applies
+the modulus operation - which gives the remainder of an input number
+when dividing by a chosen divisor.</p>
+<div class="fig_right"><img style="width: 425px; height: 511px;" alt="Output of day of week example" src="zeller.gif"><br>
+Figure 21: Output of the day-of-the-week example<br>
+</div>
+<p>The results of the day-of-the-week example are shown in Figure 21. There are copies of the HTML and JavaScript files here:</p>
+<ul>
+  <li><a href="day_date.html">day_date.html</a></li>
+  <li><a href="zeller.js">zeller.js</a><br>
+  </li>
+</ul>
+
+<h3 class="post_float">Summary</h3>
+<p>These two examples have shown a few features of JavaScript. There
+are many more, and we have only looked at a few methods and properties
+of the Document and Window objects. However, these should provide a
+good basis on which to proceed with the next set of material in this
+module.<br>
+</p>
+<h3>Tasks</h3>
+Get the example programs working (and keep Firebug open).
+<p>
+Now you are versed in JavaScript, have a go at <a href="http://games.usvsth3m.com/javascript-under-pressure/">this</a> if you are brave enough!!
+<p>
+And if you are hungry for more JavaScript jokes, click <a href="http://www.elijahmanor.com/front-end-web-dev-jokes/">here</a>!
+</p>
+</body></html>
+
+[<a href="../../../web-based-gis/materials.html">Course Index</a> | <a href="../../googlemaps/module4.html">Unit 4</a>]<br>
+<hr class="post_float">
+</body></html>

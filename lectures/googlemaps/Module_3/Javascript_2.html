@@ -1,0 +1,332 @@
+---
+layout: default
+title: Language elements
+---
+
+
+
+<h1>Basic JavaScript</h1>
+
+<h2>Language elements<br>
+</h2>
+
+<p>By tradition, the first example program shown for computer languages
+is one called 'Hello World', the purpose of which is simply to write
+the message 'hello world' to some type of output. Figure 1 shows the
+source of a simple web page which contains a JavaScript 'hello world'
+program.<br></p>
+
+<div class="code_example">&lt;html&gt;<br>&lt;head&gt;<br>&lt;title&gt;A simple web page&lt;/title&gt;<br>&lt;script type="text/javascript"&gt;<br>alert("Hello world!");<br>&lt;/script&gt;<br>&lt;/head&gt;<br><br>&lt;body&gt;<br>Page body text<br>&lt;/body&gt;<br><br>&lt;/html&gt;<br><br>
+
+</div><span style="font-weight: bold;">
+
+
+Figure 1: A JavaScript 'hello world' program</span><br style="font-weight: bold;">
+</p>
+
+A copy of the resulting program can be seen <a href="javascript_helloworld.html">here</a>.
+
+<p>We'll consider later on the way in which this code is
+embedded in the web page, and look first at the fundamentals of the
+language. The 'hello world' program consists of the single line: <code>alert("Hello world!");</code>, all the rest of the Figure is the HTML page that contains that short program.</p>
+<h3>Code layout and format<br>
+</h3>
+<h4>Case sensitivity</h4>
+<p>JavaScript is a case sensitive language.&nbsp; Our 'hello world'
+program used the function alert(); if we'd written it as 'ALERT()', or
+'Alert()', the program would not have worked, as the function would not
+have been recognised.&nbsp; Similarly, when we come to use variables,
+it is important to note that 'x' and 'X' are different variables.</p>
+<h4>Whitespace</h4>
+<p>JavaScript largely ignores extra whitespace (spaces, tabs, line
+breaks), which means that you can format you code with whatever pattern
+of spacing and indentation that you like.&nbsp; Clear spacing and
+indentation can help to make the code more readable and make the
+purpose clear, but it is a matter of personal preference.</p>
+<h4>Line terminators</h4>
+<p>All statements (roughly speaking, the same thing as 'a line of code') should be ended with the semicolon character '<code>;</code>', as in
+our example above. As noted in the introduction, JavaScript was
+designed to be forgiving, and one example of this is that line
+terminators can be omitted; however it is considered sloppy practice to
+do this, and it is possible to write ambiguous code if you rely on
+JavaScript to 'do the right thing' when you leave line endings out.<br>
+</p>
+<h4>Comments</h4>
+
+<p>All programs - whatever language they are written in - should
+contains comments. Comments are messages to a human reader (although
+sometimes you might include comments that are intended to be processed
+by external program) that explain what is going on in the program.
+JavaScript recognises a number of different comment styles. Single line
+comments start with '<code>//</code>' - anything after that will be ignored. Longer multi-line comments can be placed between the opening characters '<code>/*</code>' and the closing characters '<code>*/</code>'. Examples of different comment styles are shown in Figure 2.<br>
+</p>
+<div class="code_example">// This is a single line comment<br>
+<br>
+i = 1; // Comments can also be placed after some code<br>
+<br>
+/* This is a <br>
+multi-line<br>
+comment */<br>
+<br>
+/*<br>
+&nbsp;* People often<br>
+&nbsp;* format<br>
+&nbsp;* multi-line comments like this<br>
+&nbsp;*/<br>
+<br>
+/* This comment uses multi-line format */<br>
+</div>
+
+<p style="font-weight: bold;">Figure 2: JavaScript comments</p>
+<h4>Identifiers, literals and reserved words</h4>
+<p>An <span style="font-style: italic;">identifier</span> is a name of a data item, such as a variable, array of function, whilst a <span style="font-style: italic;">literal</span> is a fixed value that is not going to change. In the second comment example in Figure 2, the sample code '<code>i = 1;</code>' contains an example of a variable (which has the identifier <span style="font-style: italic;">i</span>)
+and a literal value, 1. There are some simple rules that govern the
+names that can be used for identifiers. The first character must be an
+uppercase or lowercase letter, or a dollar sign ( $ ) or the underscore
+character ( _ ). The remainder can be any mixture of letters, numbers,
+dollar signs or underscore characters. A final restriction is that
+identifiers cannot be one of the <span style="font-style: italic;">reserved words</span> in JavaScript. Reserved words are keywords that are used as commands and in-built functions,
+clearly a program that used such terms as variable names would be very
+confusing. Figure 3 lists current reserved words, including some that
+have been specified in the Ecma standard as reserved for possible
+future use in JavaScript. You do not need to memorise these lists, just
+to be aware that reserved words exist, and that you should choose
+variable names appropriately. If your code is behaving unexpectedly,
+(or generally, failing to run), it may be worth checking that you have
+not tried to use a reserved word as an identifier.</p>
+<div class="code_example"><span style="font-weight: bold;">JavaScript reserved words</span><br style="font-weight: bold;">
+break, case, catch, continue, default, delete, do, else, false,
+finally, for, function, if, in, instanceof, new, null, return, switch,
+this, throw, true, try, typeof, var, void, while, with<br>
+<br>
+<span style="font-weight: bold;">Ecma reserved words (for possible future use)</span><br style="font-weight: bold;">
+abstract, boolean, byte, char, class, const, debugger, double, enum,
+export, extends, final, float, goto, implements, import, int,
+interface, long, native, package, private, protected, public, short,
+static, super, synchronized, throws, transient, volatile<br>
+</div>
+<p style="font-weight: bold;">Figure 3: JavaScript reserved words<br>
+</p>
+<h3>Data types and values</h3>
+<p>Having discussed the code format and layout, we can now look more
+closely at what goes in to the program. The first area to look at is
+data types - what sorts of variables and other data items we can use.
+JavaScript supports a number of primitive types, plus more
+sophisticated composite types. Primitive data types are numbers (with
+no distinction between integers or floating point numbers), text
+strings, and boolean values (that can have the value either 'true' or
+'false'. Composite types include arrays - collections of primitive
+types - and objects, which incorporate both data items and functions
+that act on those data items. JavaScript includes a number of built in
+specialised objects, including for example, objects representing the
+browser window and the current document.</p>
+<h4>Variable declaration</h4>
+<p>New variables must be declared using the keyword 'var', for example: <code>var i;</code> or <code>var i = 1;</code>.&nbsp;
+In the former case the variable has been created but is not yet
+defined, in the latter case we have both declared it and <span style="font-style: italic;">initialised</span> it (given it a value). <br>
+</p>
+<h4>Numbers</h4>
+<p><span style="font-style: italic;">Numbers</span> can be represented
+in various forms in JavaScript - integers, floating point values and
+octal (base 8) or hexadecimal (base 16) values. Basic operations occur
+as you might expect, using +, -, * and /, for example '<code>i = i + 1;</code>' or '<code>x = y * z;</code>'.&nbsp; More advanced functions are available through the <span style="font-style: italic;">Math</span> object; for example '<code>x = Math.sqrt(y);</code>'. Here, we are calculating <span style="font-style: italic;">x</span> as the square root of <span style="font-style: italic;">y</span>, using the <code>sqrt()</code> method of the <code>Math</code> object. We will learn more about objects and methods below.</p>
+<h4>Strings</h4>
+<p>A <span style="font-style: italic;">string</span> is a sequence of
+characters - letters, digits, punctuation marks and so on. Strings must
+be placed within quotes, using either single or double quote characters.</p>
+<ul>
+  <li>'This is a string'</li>
+  <li>"So is this"</li>
+  <li>"Don't forget that single quotes can be used inside double quotes"</li>
+</ul>
+<p>Strings can be joined using the '+' operator, for example: <code>mesg = 'Hello ' + 'world!';</code></p>
+<h4>Boolean values</h4>
+<p>The <span style="font-style: italic;">Boolean</span> data type has
+only two possible values - true or false. You will most commonly come
+across these implicitly (i.e. they won't be named variables) as the
+result of logical comparisons. Consider the code fragment:</p>
+<pre>if (x &gt; y)<br>  a = a + 1;<br>else<br>  b = b + 1;<br></pre>
+<p>In the first line, we make a comparison between two values, <span style="font-style: italic;">x</span> and <span style="font-style: italic;">y</span>,
+and then specify two alternative things for the program to do depending
+on their relative values. The comparison gives a result that is either
+true or false; this is a Boolean value.<br>
+</p>
+<h4>Objects</h4>
+<p>An <span style="font-style: italic;">object</span> is a composite data type that includes several named data items, that are usually referred to as <span style="font-style: italic;">properties</span> of the object.&nbsp; We can refer to the properties of an object using the syntax <span style="font-style: italic;">object_name.property_name</span>. Thus, if we had an object called point, we might refer to the properties <span style="font-style: italic;">point.x</span> and <span style="font-style: italic;">point.y</span>. Objects also have <span style="font-style: italic;">methods</span>;
+these are functions that act on properties of the object (or on data
+passed in as a method parameter). We saw an example of this in the
+description of numbers above; <code>sqrt()</code> is a method that is part of the <code>Math</code> object. Methods are access in the same manner as properties, using the syntax <span style="font-style: italic;">object_name.method_name</span>.</p>
+<p>The properties of an object can be data items, functions (methods)
+or other object types. The fact that an object property can itself be
+an object means that you will see pieces of JavaScript code with
+multiple full stops, like this: <br>
+</p>
+<pre>document.myform.button</pre>
+<p>Here, we are referring to <code>button</code>, which is a property of the object <code>myform</code>, which in turn is a property of the object <code>document</code>.<br>
+</p>
+<p>Objects are declared using a different manner to that used for primitive types. The <code>new</code> operator is used, like this:</p>
+<ul>
+  <li><code>var i = new Object();</code></li>
+  <li><code>var myDate = new Date();</code></li>
+</ul>
+<p>Here, <span style="font-style: italic;">i</span> is being declared as a new generic object, to which we can attach properties and methods, whilst <span style="font-style: italic;">x</span> is being declared as an instance of a the specialised built in object <code>Date</code>. Defined objects have special <span style="font-style: italic;">constructor functions</span>, which set up properties and methods, and typically set the initial values of various properties.<br>
+</p>
+<h4>Arrays</h4>
+<p>A regular <span style="font-style: italic;">array</span> is a specialised object which contains a set of data values which can be referred to by <span style="font-style: italic;">index</span> values, starting at 0. This if we have an array <span style="font-style: italic;">x</span>, then <span style="font-style: italic;">x[0]</span> refers to the first value in the array, <span style="font-style: italic;">x[1]</span> to the second value, and so on. As they are objects, arrays are also declared using the new operator:</p>
+<ul>
+  <li><code>var myArray = new Array(); // declares an empty array</code></li>
+  <li><code>var myOtherArray = new Array(3,5,7); // an array declared and initialised with three values</code></li>
+  <li><code>var countries = new Array('England,'Scotland,'Wales'); // an array with text items</code></li>
+</ul>
+<p>We can also declare arrays using a special array notation:</p>
+<ul>
+  <li><code>var myArray = []; // creates a new array</code></li>
+  <li><code>var myOtherArray = [0,'x',true] // creates and initialises an array containing different data types.</code></li>
+</ul>
+<p>Arrays can contain any data types, including other arrays, thus we can create matrices like this:</p>
+<ul>
+  <li><code>var myMatrix = [ [1,2,3], [4,5,6], [7,8,9] ];</code><br>
+  </li>
+</ul>
+<p>Here, we have created an array called <code>myMatrix</code>, using
+the [] notation. It contains three elements, each of which is an array,
+again declared using the array notation. We can refer to elements of
+this matrix, for example <code>myMatrix[1][2]</code> refers to the third element (since we start counting at zero!) of the second value (the array [4,5,6]) in <code>myMatrix</code>.</p>
+<p>Since arrays are specialised objects, they can have methods as well
+as the value properties. The Array() object is a specially defined
+object, that has a number of built in methods and properties, including
+'<code>sort()</code>' and '<code>length</code>'. The property <code>length</code>
+indicates how many elements the array has, and will change as more
+elements are added to the array. The method sort, as you might expect,
+sorts the array. (Something that is less obvious is that by default
+'sort()' uses dictionary order sorting, even if the values are all
+numbers. However, alternate sorting functions can be provided). Whereas
+the length property returns a value when inspected, the sort() method
+acts on the data in the array. Thus, we can use them like this:</p>
+<ul>
+  <li><code>x = y.length; // sets x to the current value of the length property of an array y</code></li>
+  <li><code>y.sort(); // modifies array y by sorting it's elements</code><br>
+  </li>
+</ul>
+<h4>Functions</h4>
+<p>A function is a sub-set of code that carries out a specialised
+function.&nbsp; An unusual aspect of JavaScript is that functions can
+be considered akin to variables in most contexts; thus an array element
+might contain a function as well as a more standard data type.
+Functions are defined using the <span style="font-style: italic;">function</span> keyword and set back results to the calling code using <span style="font-style: italic;">return</span>. Figure 4 shows a simple function.<br>
+</p>
+<div class="code_example">function square(x) {<br>
+&nbsp;&nbsp; return x*x;<br>
+}<br>
+</div>
+<p style="font-weight: bold;">Figure 4: A JavaScript function</p>
+<p>This creates a function called <span style="font-style: italic;">square</span>, which will return the square of it's input parameter. We would use it like this:</p>
+<ul>
+  <li><code>i = square(4); // sets i to the square of 4, i.e. 16</code></li>
+  <li><code>x = square(y); // sets x to the square of the current value of y.<br>
+    </code></li>
+  <li><code>a = square(b+c); // b+c will be calculated first, and then the function will be called...<br>
+    </code></li>
+</ul>
+<p>This Figure also illustrates an important part of the syntax of
+JavaScript (and all C-like languages), that the curly brackets '{}' are
+used to group together a series of statements. In this example the
+function consists of only one line; most functions are more complex and
+require several (possibly many) lines, and the brackets indicate where
+the function code starts and ends.<br>
+</p>
+<h4>Operators</h4>
+<p>The examples above have a contained a few examples of <span style="font-style: italic;">operators</span>,
+tokens in the code which make the program do some sort of operation on
+data items. Thus, we have seen that number data types can be
+manipulated with the basic arithmetic operators +, -, * and /.&nbsp;
+There are many other operators in JavaScript; we have already seen the
+'new' operator that is used with objects, and the '[]' operator that is
+used with arrays. It is beyond the scope of this introduction to go
+through all operators in turn, but it is important to introduce a few
+commonly used ones.</p>
+<p>Two of the most commonly used - and most commonly <span style="font-style: italic;">confused</span>
+- operators, are the assignment operator '=', the test for equality
+'=='. The assignment operator is used when we assign a value to
+variables.</p>
+<ul>
+  <li><code>a = 1;</code></li>
+  <li><code>mesg = 'Hello';</code></li>
+  <li><code>x = y;</code></li>
+</ul>
+<p>The test for equality is used in comparisons - usually in 'if'
+statements - to check whether two values are the same, for example:</p>
+<pre>if (x==y)<br>  a = a + 1;<br>else<br>  b = b + 1;<br></pre>
+<p>A very easy mistake is to write the first line in this fragment as
+'if (x=y)'.&nbsp; After all, this makes sense in English and
+mathematical senses. This is not necessarily a bug - it is valid code -
+although it is almost never what you intended. As '=' is the assignment
+operator, this expression would first set x to be equal to the current
+value of y. The operator would then return a value of 'true',
+indicating that it had successfully carried out the assignment
+operation. The true state would then cause the 'if' statement to be
+validly interpreted, and the first alternative action would be taken.</p>
+<p>A final pair of operators that should be mentioned in any brief
+introduction are '++' and '--'. These are special unary operators
+(meaning, they act on a single item) which increment or decrement a
+variable by one.&nbsp; You will see them commonly used, especially in
+loop counters:</p>
+<ul>
+  <li><code>i++; // increases the value of i by 1;</code></li>
+  <li><code>j--; // decreases the value of j by 1</code></li>
+</ul>
+<h3>Variable scope</h3>
+<p>So far, this introduction has covered lexical issues (rules for the
+format of the program and what characters and terms can be used), and
+data types. The final part of this section discusses variable <span style="font-style: italic;">scope</span>.
+The scope of a variable indicates the different parts of a program in
+which it's value is defined.&nbsp; Variables defined within a function
+are <span style="font-style: italic;">local</span> to that function,
+and thus have no meaning when we leave the function to return to the
+rest of the code. by contrast, a variable defined in the main body of
+the program is termed a <span style="font-style: italic;">global</span>
+variable. As the name suggests global variables are defined throughout
+the program, and thus functions can 'see' the values of global
+variables. The code in Figure 5 illustrates this.</p>
+<div class="code_example">// A function<br>
+function circleArea(j) {<br>
+&nbsp; var i; // local scope<br>
+&nbsp; i = pi * (j * 2);<br>
+&nbsp; return i;<br>
+}<br>
+<br>
+// Main program<br>
+var pi = 3.14; // global scope<br>
+var radius; <br>
+var area;<br>
+<br>
+radius = 5;<br>
+area = circleArea(radius);<br>
+document.write("Radius:" + radius + " Area:" + area);<br>
+</div>
+<p style="font-weight: bold;">Figure 5: A program containing a function</p>
+<p>The program in Figure 5 uses a function to calculate the area of a
+circle. It illustrates a number of features. We have used the variables
+<span style="font-style: italic;">i</span> and j in the function. <span style="font-style: italic;">j</span> takes the value of 'radius' that is passed in by the main program. The function calculates the answer as <span style="font-style: italic;">i</span>. The variable <span style="font-style: italic;">pi</span> was defined in the main program and thus has global scope; it can therefore be used in the function. The variable <span style="font-style: italic;">i</span>
+is defined within the function, and has local scope; we cannot see the
+value of this once we return to the main program; instead we set the
+variable <span style="font-style: italic;">area</span> to the value returned by the function. In fact, we could have used variables called <span style="font-style: italic;">radius</span> and <span style="font-style: italic;">area</span> in our function as well as in the main program. <br>
+</p>
+<p>If a function has local variables (declared using the <code>var</code> statement) that have the same name as global variables, they will take
+precedence in the function.&nbsp; When we return to the main program,
+we return to our original versions of the variables, which will have
+retained their values, regardless of what might have happened in the
+function. In contrast, if we refer to a variable without declaring it
+in the function, we'll use (and possibly modify) the global variable of
+that name. Clearly, it is fairly easy to make mistakes with scope, and
+to unintentionally over-write the original value of global variables.<br>
+</p>
+<p>Finally, it may be noted that the program uses the <code>write()</code> method of the special object <code>document</code> (which is always defined and available) to print a message to the screen.<br>
+</p>
+<p>
+Javascript joke:  Why do C# and Java developers keep breaking their keyboards a. Because they use a strongly typed language (ahahhahahahahahaha!): Source ElijahManor
+<p>
+<hr style="width: 100%; height: 2px;">[ Next: <a href="Javascript_3.html">Statements</a> ]<br>
+[<a href="../../../web-based-gis/materials.html">Course Index</a> | <a href="../../googlemaps/module3.html">Unit Overview</a>]<br>
+<hr class="post_float">
+</body></html>

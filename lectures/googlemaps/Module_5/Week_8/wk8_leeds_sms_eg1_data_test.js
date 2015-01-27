@@ -1,0 +1,32 @@
+var os_flows = [
+	{
+		"origin":"62",
+		"easting":"418659.9155",
+		"northing":"279492.2417",
+		"flow":"75"
+	},
+	{
+		"origin":"63",
+		"easting":"402375.6441",
+		"northing":"300164.046",
+		"flow":"42"
+	},
+	{
+		"origin":"64",
+		"easting":"391900.0765",
+		"northing":"299050.5655",
+		"flow":"42"
+	},
+	{
+		"origin":"65",
+		"easting":"409659.2843",
+		"northing":"438724.2988",
+		"flow":"2016"
+	},
+	{
+		"origin":"66",
+		"easting":"401851.2607",
+		"northing":"424975.6351",
+		"flow":"354"
+	}
+]

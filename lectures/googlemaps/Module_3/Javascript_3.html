@@ -1,0 +1,291 @@
+---
+layout: default
+title: Basic JavaScript
+---
+
+
+
+<h1>Basic JavaScript</h1>
+
+<img src="javascriptjoke1.png" alt="Text" style = "width:580px;height:300px">
+<p>Image source:  http://www.quickmeme.com/meme/3s5cdy
+
+<h2>Program statements</h2>
+<p>The <a href="Javascript_2.html"> previous page </a>introduced various language elements and
+described the way in which code should be written. It mostly focussed
+on <span style="font-style: italic;">expressions</span> - small fragments of code (such as 'x &lt; y', or 'a == 1')<span style="font-style: italic;"></span>
+that can be evaluated to produce a result; the result typically being
+'true' or 'false'. Some of the examples showed expressions in the
+context of a larger program, but in general we have not considered how
+we actually make the program <span style="font-style: italic;">do</span> something. In order to get the program to carry out some action, we need to use <span style="font-style: italic;">statements</span>, and this page introduces some basic statements. All programs consist of a series of statements that are carried out in order.</p>
+<h3>Simple and compound statements<br>
+</h3>
+<p>We have already seen some statements in the examples shown so far.
+Figure 1 showed a very simple program that consisted of one line of
+JavaScript, embedded within an HTML page; that JavaScript program
+consisted of the single statement 'alert()', with a text string
+containing a message included as a parameter to the statement. In this
+case, 'alert()' is a function statement: we are causing the program to
+carry out a (pre-defined) function. Other single-line statements
+include variable declaration statements using 'var' as we saw on the
+previous page.</p>
+<p>On other occasions we need to carry more complicated actions that
+can be expressed in a single statement, and for these we need to use <span style="font-style: italic;">compound statements</span>.
+Compound statements are treated within the wider structure of the
+program as a single statement, but they consist internally of a number
+of sub-statements.&nbsp; The sub-statements are grouped together within
+curly brackets '{ }'. We've already seen this in some of the examples
+shown so far, but it is illustrated below in Figure 6. Figure 6a shows
+the generic structure of an 'if' statement. If a certain condition is
+met (the supplied expression is evaluated and the result is 'true')
+then the following statement is carried out; if the result of the
+expression is 'false', then the statement is ignored, and we continue
+on to the next statement in the program.<br>
+</p>
+<div class="code_example"><span style="font-weight: bold;">a) Generic structure</span><br style="font-weight: bold;">
+<br>
+if (expression)<br>
+&nbsp; statement<br>
+<br>
+<br>
+<span style="font-weight: bold;">b) An example using a simple statement</span><br style="font-weight: bold;">
+<br>
+if (x &gt; 0)<br>
+&nbsp; alert("x is positive");<br>
+<br>
+<br>
+<span style="font-weight: bold;">c) An example using a compound statement</span><br style="font-weight: bold;">
+<br>
+if (x &gt; 0) {<br>
+&nbsp;&nbsp; alert("x is positive");<br>
+&nbsp;&nbsp; positive_values++; // update a counter<br>
+&nbsp; }<br>
+<br>
+ </div>
+<span style="font-weight: bold;">Figure 6: Use of simple and compound statements</span><br style="font-weight: bold;">
+<p>Figure 6b shows an example using a single statement. Note that as
+described on the previous page, the layout is flexible.&nbsp; Here, the
+sub-statement which depends on the if statement is shown indented on
+the next line, but it could be continued on the same line if preferred.
+The sub-statement ends in a semi-colon, as all statements usually
+should. In this example, if the condition is met, then the alert()
+function is called. But what happens if we want a series of actions to
+occur? How can we distinguish between a series of actions to be carried
+out if the if statement is true, and the next statements that will be
+used if the if statement is not true? The answer, is that we use a
+compound statement. Figure 6c shows a compound statement with two
+sub-statements. These are grouped together using '{ }', and this block
+is treated as a single statement in the overall structure. The example
+in Figure 6c thus still fits the generic template of Figure 6a. The
+compound statement consists of two sub-statements, and both of these
+are terminated with a semi-colon as usual. If the if statement is
+false, then the entire compound statement is ignored.<br>
+</p>
+<p>The example in Figure 6 illustrated a single case of a uncomplicated
+compound statement. In practice compound statements may consist of many
+sub-statements. It is also important to note that compound statements
+can be nested: one of the sub-statements in a compound statement may
+itself be a compound statement, and so on...</p>
+<h3>Control statements</h3>
+<p>The first set of statements we shall consider are control statements.
+ Control statements regulate the flow and branching of the program, and 
+thus allow complex behaviours to be programmed. We have already met the 
+most fundamental of control statements - the 'if' statement.</p>
+<h4>if, else, else if</h4>
+<p>Figure 6 illustrated the basic form of the <code>if</code> statement. This can be expanded using the optional <code>else</code> clause, as shown in Figure 7.
+Using the basic form shown in Figure 6, an expression is evaluated and
+then a statement is carried out if the expression is true. If it is not
+true, we move on to the next statement. We also move on to that next
+statement after carrying out our sub-statement if the expression was
+found to be true: thus, the next statement will always be used. But,
+what happens if we want to specify one behaviour if the expression is
+true, and an alternative behaviour if the expression is not true? For
+that, we can use the <code>if .. else</code> form of the statement.
+Figure 7a shows the generic form of the if statement using the else
+clause, and Figure 7b shows a simple example. In this example, we
+display one message if x is greater than 0, and another message if not.
+But wait a moment, you say, that second statement isn't quite right!
+What if x is zero? A common use of the else clause is to follow it with
+another if statement. An example is shown in Figure 7c. Note that 'else
+if' isn't a special form of the if statement in it's own right, we are
+simply following a standard 'else' clause with a new 'if' statement.<br>
+ </p>
+<div class="code_example"><span style="font-weight: bold;">a) Generic structure</span><br style="font-weight: bold;">
+<br>
+if (expression)<br>
+
+&nbsp; statement<br>
+
+else<br>
+&nbsp; statement<br>
+
+<br>
+
+<span style="font-weight: bold;"><br>
+b) An example using simple statements</span><br style="font-weight: bold;">
+
+<br>
+
+if (x &gt; 0)<br>
+
+&nbsp; alert("x is positive");<br>
+
+else <br>
+&nbsp; alert("x is negative");<br>
+<br>
+<br>
+<span style="font-weight: bold;">c) Using an if ... else if pattern</span><br style="font-weight: bold;">
+<br>
+
+if (x &gt; 0)<br>
+
+
+&nbsp; alert("x is positive");<br>
+
+
+else if (x &lt; 0)<br>
+
+&nbsp; alert("x is negative");<br>
+else<br>
+
+&nbsp; alert("x is zero");<br>
+
+<br>
+
+<br>
+</div>
+<span style="font-weight: bold;">Figure 7: Using if...else</span><br>
+<p>The final part of the example in Figure 7c uses an 'else' clause
+followed by a statement other than 'if'. It is always good practice to
+finish an if...else sequence in this way: the final option will always
+by used if no other conditions have been met.<br>
+ </p>
+<h4>switch</h4>
+<p>The if...else form of the if statement allows you to build up
+programs which can branch in multiple ways depending on the results of
+various expressions. In the example in Figure 7, we used a sequence of
+tests against the variable 'x', and it is easy to imagine situations in
+which many more than two options (plus a catch-all) might be
+considered. Whilst 'if...else' can be used for these situations,
+JavaScript offers a more efficient structure for testing multiple
+values of a single variable: the <code>switch</code> statement. The switch statement is divided up into a set of alternative actions, using the <code>case</code> keyword. This is illustrated in Figure 8.</p>
+<div class="code_example">switch(x) {<br>
+<br>
+case 0:<br>
+&nbsp; // Do something if x=0<br>
+<span style="font-style: italic;">&nbsp; ...statements...</span><br style="font-style: italic;">
+&nbsp; break;<br>
+<br>
+case 1:<br>
+
+&nbsp; // Do something if x=1<br>
+
+<span style="font-style: italic;">&nbsp; ...statements...</span><br style="font-style: italic;">
+
+&nbsp; break;<br>
+
+<br>
+case 2:<br>
+
+&nbsp; // Do something if x=2<br>
+
+<span style="font-style: italic;">&nbsp; ...statements...</span><br style="font-style: italic;">
+
+&nbsp; break;<br>
+
+<br>
+default:<br>
+
+&nbsp; // Do something if the previous cases were not matched<br>
+
+<span style="font-style: italic;">&nbsp; ...statements...</span><br style="font-style: italic;">
+
+&nbsp; break;<br>
+
+<br>
+}<br>
+</div>
+<span style="font-weight: bold;">Figure 8: A switch statement</span><br>
+<p>Note that all of the <span style="font-style: italic;">case</span> options are followed be a series of statements which are terminated with the <span style="font-style: italic;">break</span>
+keyword, which causes program execution to move beyond the outer switch
+statement. A switch statement should include a series of case options,
+plus a final catch-all state, identified using the special keyword
+'default'. The whole body of the switch statement is written as a
+compound statement, and thus placed within '{ }'.</p>
+<h4>while and for loops<br>
+</h4>
+<p>The control statements if and switch allow alternative branches of a 
+program to be executed in different circumstances. An alternative set of
+ control statements allow various parts of the code to be repeated a 
+number of times. These are known as <span style="font-style: italic;">loops</span>, and they make writing programs far easier and more efficient. The first of these statements is <code>while</code>
+statement, which is illustrated in Figure 9. Figure 9a shows the
+generic form of the statement, whilst Figure 9b shows an example.<br>
+</p>
+
+
+ 
+<div class="code_example"><span style="font-weight: bold;">a) Generic structure</span><br style="font-weight: bold;">
+<br>while (expression)<br>
+
+&nbsp; statement<br><br>
+
+<span style="font-weight: bold;"><br>
+b) A worked example</span><br style="font-weight: bold;">
+
+<br>
+x = 1;<br>while (x &lt; 10) {<br>
+&nbsp; document.write(x);<br>
+&nbsp; x++;<br>
+&nbsp; }<br>
+</div>
+
+<span style="font-weight: bold;">Figure 9: Using a while loop</span><br>
+
+<p>The generic form is straightforward: whilst the given expression is true, then repeatedly carry out the statement.</p>
+<p>Figure 9b shows how we might use this. First all we set up a counter variable <span style="font-style: italic;">x</span>,
+(which we assume has been properly declared earlier in the program),
+and then start a while loop. We will carry out the statement forever
+whilst x is less than ten. in this example, we are using a compound
+statement with two sub-statements. In the first of these sub-statements,
+we use the function document.write() to write the current value of x on
+screen. (In this case, without any spacing or line breaks, so it would
+look like this: 12345... etc). The function document.write() uses the
+write() method of the pre-defined <span style="font-style: italic;">document</span> object. Back to our example: our next sub-statement is '<code>x++;</code>'. As described on the previous page, '++' is a special operator that increments a variable by one. It is referred to as a <span style="font-style: italic;">unary</span> operator, because it only requires one argument (variable).
+This causes our counter variable to advance, and without it we would be
+stuck inside the loop forever, as x would always be less than ten.
+Loops which run forever are known as <span style="font-style: italic;">infinite loops</span>, and are a common form of bug.</p>
+<p>The example shown if Figure 9b contains three important operations
+on the counter or loop variable: it is initialised (x=1), it is tested
+(x&lt;10) and it is incremented (x++). All of these stages are vital to
+the loop running as expected. JavaScript offers an alternative
+structure for loops that places these three operations in the same
+place, with the intended result that it is harder to make a mistake and
+forget one of the operations. The alternative structure is a <code>for</code> loop, and it is illustrated in Figure 10, using the same sequence of instructions as in Figure 9.<br>
+</p>
+<div class="code_example"><span style="font-weight: bold;">a) Generic structure</span><br style="font-weight: bold;">
+<br>for (initialisation; test; increment)<br>
+
+&nbsp; statement<br><br>
+
+<span style="font-weight: bold;"><br>
+b) A worked example</span><br style="font-weight: bold;">
+
+<br>for (x = 1; x &lt; 10; x++) {<br>
+&nbsp; document.write(x);<br>&nbsp; }<br>
+</div>
+
+
+<span style="font-weight: bold;">Figure 10: Using a for loop</span><br>
+<h3>Summary</h3>
+<p>This page has introduced the idea of statements - parts of the
+program that do something. We have concentrated on control structures,
+which affect the branching and looping of a program, and used only a
+couple of simple 'actions' to actually generate some form of output. In
+the next pages, we shall explore more fully how JavaScript is embedded
+in a web page, andshow some example of simple programs that actually do something worth doing <br>
+</p>
+<hr style="width: 100%; height: 2px;">
+[ Next: <a href="Javascript_4.html">Adding JavaScript to a web page</a>]<br>
+[<a href="../../../web-based-gis/materials.html">Course Index</a> | <a href="../../googlemaps/module3.html">Unit Overview</a>]<br>
+<hr class="post_float">
+</body></html>

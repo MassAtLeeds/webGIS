@@ -1,0 +1,131 @@
+---
+layout: default
+title: Changing the marker appearance
+---
+
+
+
+
+<h2>Changing the marker appearance</h2>
+
+<p>By default, markers are always drawn with the same icon. However, it is easy
+to provide a new icon for use with drawing markers.The same icon object can be
+used for multiple points, on the other hand it would also be possible to
+include additional fields in the map_data file to reference different icons for
+each point. Figure 10 shows an example usage of the Marker() declaration which
+includes an addtional parameter specifying an alternative image to be used for
+the icon - in this case a icon showing an exclamation mark. As written, the
+script will search for the image file in the same directory from which the
+script was loaded. There are many collections of free icons on the web, see for
+example:</p>
+<ul>
+  <li><a href="http://www.famfamfam.com/lab/icons/silk/">Silk icons</a>:
+    largely intended for program user interfaces, but the set that I took the
+    exclamation icon from</li>
+  <li><a href="http://mapicons.nicolasmollet.com/">Maps icons</a>: a
+    set of many icons for different purposes</li>
+</ul>
+
+<p></p>
+
+<div class="code_example">
+<pre>...
+  var marker = new google.maps.Marker({
+    position: myPos, 
+    map: map, 
+    title: myTitle,
+    icon: 'exclamation.png'
+  });
+ ...</pre>
+</div>
+
+<p><img alt="Use of alternate icons" src="exclaim_icon.gif" width="608" height="411"></p>
+
+
+<p>The approach used here is a simple way of changing the icon used for
+markers. There is also a more flexible
+approach, using the <code><a href="http://code.google.com/apis/maps/documentation/javascript/overlays.html#ComplexIcons">google.maps.MarkerImage()</a></code>
+object. Using this, we create a new image object as an instance of
+<code>MarkerImage()</code> (supplying various properties), and then use that
+image as the value for the <code>icon</code> property when we create the marker
+(as was done using a filename in the example above). The MarkerImage object offers
+precise control over placing of the icon relative to the defined location. As
+well as setting the <code>icon</code> property for a marker, we can also set a
+similar <code>shadow</code> property to supply the name of an image to be drawn
+behind the marker as a shadow.</p>
+
+<p>A different approach to creating and using custom markers is to use
+dynamically generated icons. Just as the icon property of the marker can be
+given the name of an image file, it can also be given a URL which will return
+an icon. It is entirely possible to use a URL which will dynamically generate
+an image, given some input parameters. The following figure shows the source code for two
+functions: a revised version of <code>addMarker()</code>, and a supporting
+function called <code>genHex()</code>. The genHex() function generates a random
+string of 6 hexadecimal (base 16) values; this is an alternative way of
+specifting colours in HTML: red, green and blue values are represented by three
+pairs of hexadecimal values (two hexadecimal digits representing decimal values
+between 0 and 255). The function also illustrates two methods available in the
+JavaScript <code><a href="http://www.w3schools.com/js/js_obj_math.asp">Math</a></code> object -
+<code>round()</code> and <code>random()</code>. </p>
+
+<p>The second part is the revised addMarker() function. This has
+three changes compared to previous versions. Firstly, there is a call at the
+top of the function to our new <code>genHex()</code> function, which will
+return a random colour designation. This is followed by our next new line:</p>
+
+<p><code>myLetter = myTitle.substring(0,1);</code></p>
+
+<p><code>myTitle</code> is a string passed into the <code>addMarker()</code>
+function to provide a caption for the marker (and a title for the infowindow
+box). It is a string object, and here we use <code>substring()</code>, one of
+the methods attached to the JavaScript <a href="http://www.w3schools.com/jsref/jsref_obj_string.asp">String</a> object to
+extract the first letter from the title (we have specified in this example the
+substring from position 0 to position 1 in myTitle).</p>
+
+<p>The final change is in the modification of the <code>icon</code> property in
+the <code>Marker()</code> declaration. We have set the icon property as:</p>
+
+<p>http://chart.apis.google.com/chart?chst=d_map_pin_letter&amp;chld='+myLetter+'|'+myColour+'|000000</p>
+
+<p>Here, we are using another API provided by Google, the <a href="http://code.google.com/apis/chart/">Chart API</a>. This API can
+dynamically generate a variety of different sorts of graphs and charts, and can
+also generate map pins. For icons, the specification is fairly simple: we must
+provide:</p>
+<ul>
+  <li>An icon type</li>
+  <li>Icon details (for map pins, a letter or number, and background and border
+    colours</li>
+</ul>
+
+<p>The icon type we have used is 'd_map_pin_letter'. The details are separated
+by '|' characters, and are the value of myLetter (the first letter of myTitle),
+the colour string generated by our genHex() function, and '000000', the colour
+specification string for black, which we want to use as the outline and text
+colour. There are many sorts of icons that the API can generate; for details
+see the Chart API site linked above.</p>
+
+<p>
+<img src="genhex.png" alt="Text" style = "width:600px;height:600px">
+<p>
+This code can be downloaded <a href="dynamicmarker.js"> HERE.</a>
+
+
+<div class="task_box">
+<span style="font-weight: bold;">Task</span><br style="font-weight: bold;">
+Revise your addMarker class to set new options for the marker.<br>
+
+<ol>
+  <li>Try using a new icon. Create a small image in a graphics package if you
+    wish, or find an icon elsewhere on the web. </li>
+  <li>Try setting a title. You will need to modify the line that calls
+    addMarker() in your main map file; you will also need to add a 'title'
+    category to your array of data in map_data.js</li>
+</ol>
+</div>
+<br>
+
+<hr style="width: 100%; height: 2px;">
+[ Next: <a href="prac.html">Introducing the practical</a> ]<br>
+[<a href="../../../web-based-gis/materials.html">Course Index</a> | <a href="../../googlemaps/module4.html">Unit Overview</a>]<br>
+<hr class="post_float">
+</body></html>

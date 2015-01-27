@@ -1,0 +1,71 @@
+
+<h1>Web-Based GIS: Doing More With Google Maps [1]</h1>
+
+<h2>A recap of earlier work</h2>
+
+<p>In the first lecture on GoogleMaps, we started by looking at the history and
+general features of Google Maps.The service was introduced in 2005, and has
+grown rapidly in popularity since then. The basic map data, and the framework
+for placing markers on the maps, use a Mercator projection, based on the WGS84
+datum, the same datum used by many applications with a worldwide scope,
+including the Global Positioning System. GoogleMaps supports a number of map
+views, including Map (the default view) view, Satellite view, Terrain view,
+Street view and Traffic view. Traffic view is a derivative of the default Map
+view, in which a number of major roads have their shading and line-style varied
+according to real-time traffic flow data. Street view is also derived from Map
+view: in selected cities some streets are highlighted - indicating that street
+view data are available - and clicking on such a street leads to a pop-up
+window being created that shows an eye-level view at that point, which is
+pan-able through 360°.</p>
+
+<h3 class="post_float">Generating bespoke maps </h3>
+
+<p>There are a number of ways of generating bespoke maps using Google Maps. A
+simple approach is to create a URL that calls a GoogleMaps server and includes
+a parameter that sets the map centre.&nbsp;&nbsp;It is also possible to give a map a URL
+as a parameter. If that URL references a file containing KML format marker
+data, then those markers will be drawn on the map created by Google Maps. Both
+these approaches are fairly quick and easy, but are of limited use, although
+they may be an acceptable solution for illustrating the location of something
+in an ad hoc fashion, especially if one does not have access to a web server on
+which one can create and make available files. <br>
+</p>
+
+<p>A far more powerful and flexible way of creating bespoke maps is to use the
+GoogleMaps API. Google Maps is based around a Javascript interface that draws
+map data from a server, and presents it on screen with various control
+functions. By using the API, you can extend the Javascript map interface in
+many ways, adding your own data as overlays and modifying the appearance of the
+map.<br>
+</p>
+
+<div class="fig_right">
+<a href="https://vlebb.leeds.ac.uk/bbcswebdav/users/geo6odw/geog58705871_2010-11/wk8/wk8_files/fig_1.gif"><img style="border: 2px solid; width: 400px; height: 289px;" alt="Blue Plaques GoogleMaps example" src="geog5870_wk8_1_files/fig_1.gif"></a><br>
+Figure 1: Presenting information about <br>
+Blue Plaques in Leeds using Google Maps</div>
+
+<p>In the second lecture, we looked at ways of extending the basic map in order
+to be able to present more useful information. This was demonstrated by adding
+some simple markers to the map, with pop-up information windows. At the same
+time, the growing size of the html page associated with this led to a need to
+clean up the code, and to separate out elements on a functional basis:
+individual files were created and used to contain the basic html code, the map
+loading logic, and a data file.<br>
+</p>
+
+<p>The practical session associated with the second lecture focussed on a more
+substantive task: creating a map with a set of markers, and with pop-up
+information linked to each marker. The markers related to the locations of Blue
+Plaques in and around central Leeds. The task presented two major problems that
+are characteristic of similar real-world tasks: first, extracting the data from
+a spreadsheet in a usable format, and second, converting the co-ordinate data
+into the required format. <br>
+</p>
+
+<p>The resulting page should have looked something like the shown in Figure 1,
+although it is possible to have included much richer background information,
+and to have presented the map in a more appealing manner.</p>
+<hr style="width: 100%; height: 2px;" class="post_float">
+[ Next: <a href="https://vlebb.leeds.ac.uk/bbcswebdav/users/geo6odw/geog58705871_2010-11/wk8/geog5870_wk8_2.html"><span style="text-decoration: underline;">Creating and adding lines and
+polygons</span></a> <a href="https://vlebb.leeds.ac.uk/bbcswebdav/users/geo6odw/geog58705871_2010-11/wk8/geog5870_wk6_2.html"><span style="text-decoration: underline;"></span></a>] <br>
+</body></html>

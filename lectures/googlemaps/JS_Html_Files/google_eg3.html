@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style type="text/css" media="all">
+ <!--
+ .gmap {
+    margin: 5px;
+    border: thin solid black;
+    float: right;
+ }
+ -->
+ </style>
+
+<script type="text/javascript"
+    src="http://maps.google.com/maps/api/js?sensor=false">
+</script>
+<script type="text/javascript">
+  function initialize() {
+    var latlng = new google.maps.LatLng(53.807767,-1.557428);
+    var myOptions = {
+      zoom: 8,
+      center: latlng,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+    var map = new google.maps.Map(document.getElementById("map_canvas"),
+        myOptions);
+  }
+
+</script>
+</head>
+<body onload="initialize()">
+  <h1>Google Maps examples</h1>
+<p>[ <a href="../index.html">Personal home page</a> | <a href="index.html">Geog5870 work</a> ]</p>
+  <div class="gmap" id="map_canvas" style="height: 500px; width: 700px"></div>
+This is just some example text...Recent years have seen a rise in the number of methods and applications which require realistic individual-level data/synthetic populations.  This trend can be attributed to a number of factors including increases in computational power and storage, a wealth of individual level data (for example, the British Household Panel Survey) and the development of new computational paradigms, such as cellular automata and agent-based modelling (ABM).  
+Static spatial microsimulation samples a synthetic population (a population built from anonymous survey data at the individual level) which realistically matches the observed population in a geographical zone for a given set of criteria.   There is a diverse set of research and policy applications that use synthetic populations in a spatial setting, including: health (Smith et al, 2009, Tomintz and Clarke, 2008, Brown and Harding, 2002), transportation (see, for example, McFadden et al, 1977; Beckman et al, 1996) and water demand estimation (Williamson and Clarke, 1996).
+ABM can also use synthesised data as a base population.  There has been a rapid uptake in the use of ABM in Geography with applications ranging from simulating the movement of burglars (Malleson et al, 2009) to replicating dynamics in spatial retail markets (Heppenstall et al, 2006).   Although the construction of an ABM does not require a complete individual data set, creating an agent population from a realistic synthesised individual dataset can only improve the realism of these models.
+The accuracy and realism with which differences in populations within geographical areas are captured may have great significance for modelling, especially where the results are used to inform policy.  The UK Census collects a vast array of data at individual level, but for issues of confidentiality data are aggregated to larger geographic scales. The coarser the geographic scale at which census data is published, the more attribute detail can be accessed. However, at fine geographical scales (for example, output areas with average populations of about 300) detailed population attributes are not available.  This has led to research focused on creating synthetic populations that represent a population realistically within a predefined geographical area, simulating combinations of attributes not disclosed within Census data, effectively filling in the blanks.
+
+  </body>
+</html>

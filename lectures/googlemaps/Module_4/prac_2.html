@@ -1,0 +1,52 @@
+---
+layout: default
+title: Processing the data
+---
+
+
+
+
+<h2>Processing the data</h2>
+<p>
+There are a number of immediate issues to consider with the data.
+<p>
+<ul>
+<li><b>Format</b> - it is currently in an Excel spread sheet - you will need to convert it to a Javascript array, defined in the same way as you did in the map_data.js file
+<li><b>Incompleteness</b> - some records do not have an easting and northing - what are you going to do with these?
+<li><b>Contents</b> - do you need all of the fields in your application?
+<li><b>Georeference</b> - the records have a detailed grid reference - however, what we want is a WGS84 latitude / longitude pair of co-ordinates
+</ul>
+
+<p>
+
+	The most significant of these problems are the first and last
+ones. Changing the format of data can encompass both the on-disk
+format (e.g. the file type) and the structure - the way that the data
+are laid out. In general, the process of converting from an address
+to a precise georeference is known as geocoding. We already have a
+georeference for our data - the OS National Grid easting and northing
+- but this is not yet in the correct format that we want to use. 
+<p>
+The
+'formatting' box linked below describes the (quite painful) process
+of editing data such into a usable form (or at least, into the JSON
+Javascript array format that we wish to use, which is quite easy to
+read by eye). A version of the data is available that has already had
+most of the processing applied to it can be downloaded <a href="blueplaques_data_processed.js"> HERE.</a>
+<p>
+
+	You are free to use this version. Note however, that this data
+file will still need some work - it contains some incomplete entries
+(for example, with missing co-ordinates), that you will need to find
+and decide what to do with those. That said, it may be useful to read the
+format section in order to understand the lengthy process that was
+followed to get the data into the required form. As stated
+previously, it is a common occurrence to have some data that you wish
+to map, but that have a structure that it not very close to the
+structure that you require. 
+
+<hr style="width: 100%; height: 2px;">
+[ Next: <a href="prac_3.html">Practical details</a> ]<br>
+[<a href="../../../web-based-gis/materials.html">Course Index</a> | <a href="../../googlemaps/module4.html">Unit Overview</a>]<br>
+<hr class="post_float">
+</body></html>

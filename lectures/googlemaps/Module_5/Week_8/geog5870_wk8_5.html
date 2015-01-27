@@ -1,0 +1,146 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html><head>
+
+
+  <meta content="text/html; charset=ISO-8859-1" http-equiv="content-type">
+  <title>GEOG5870/1 Week 8 [5]</title>
+  <link rel="stylesheet" href="geog5870_wk8_5_files/general.css" type="text/css">
+  <meta content="o.w.duke-williams@leeds.ac.uk" name="author">
+</head><body>
+<h1>GEOG5870M/GEOG5871M Web-Based GIS: Doing More With Google Maps [5]</h1>
+
+<div class="nav_box">
+<a href="https://vlebb.leeds.ac.uk/bbcswebdav/users/geo6odw/geog58705871_2010-11/wk8/index.html">Week 8 home</a><a href="http://www.geog.leeds.ac.uk/"></a></div>
+
+<h2>Using a raster overlay</h2>
+
+<p>One of the earlier examples showed how ward boundaries could be added to map
+as polygon overlays.&nbsp;&nbsp;However, only 5 generalised wards were used, and it was
+noted that this was close to the practical limit as to the number of polygons
+that could be added to a map.This is not ideal - clearly we may want to add
+many polygons to a map.<br>
+</p>
+
+<p>One approach is to create a raster image that can be used as an overlay
+layer, in which the raster image contains depictions of the polygons involved.
+&nbsp;Using this approach, a large number of&nbsp;polygons can be rendered, although it
+may be necessary to break up the raster image into a number of tiles.<br>
+</p>
+
+<h3>Google Maps Creator</h3>
+
+<div class="warnbox">
+<p>Note: The version of Google Maps Creator used here produced code suitable
+for Google Maps API V2 (rather than V3, as in the rest of this module). Version
+2 of the API has some major differences - I am investigating how easy it is to
+make the utility compatible with V3.</p>
+</div>
+
+<p>A useful tool is available from the <a href="http://www.casa.ucl.ac.uk/">Centre for Advanced Spatial Analysis</a>
+(CASA) at UCL, which we will use for this example. &nbsp;Google Maps Creator can be
+downloaded and installed on a PC (or Mac or Linux box), although administrator
+rights are required to install (in Windows at least) [ It appears that it can
+be installed as a regular user, but I experienced difficulties in running the
+software when doing so ]. &nbsp;The package can be downloaded from:<br>
+</p>
+<ul>
+  <li><a href="http://www.casa.ucl.ac.uk/software/gmapcreator.asp">http://www.casa.ucl.ac.uk/software/gmapcreator.asp</a><br>
+  </li>
+</ul>
+
+<p>The package comes with help instructions, and so the process will be
+outlined here only in brief.<br>
+</p>
+
+<p>The tool takes as input a ESRI Shapefile, so it is necessary to prepare a
+coverage that you wish to use with ArcMap or equivalent. &nbsp;Google Maps Creator
+allows you to select an attribute data item from the shapefile, and then use
+this to shade the map. &nbsp;It is not possible to carry out any data
+transformations within Google Maps Creator, so it is necessary to ensure that
+any derived fields that are required have already been created in ArcMap.<br>
+</p>
+
+<p>On first loading Google Maps Creator, the <span style="font-weight: bold;">File / Open</span> command can be used to locate and
+load a shapefile. &nbsp;This will be loaded and previewed on screen. &nbsp;It is then
+necessary to choose a data item to use to shade the map. &nbsp;By default, shading
+categories will be created between 0 and 1, regardless of the range of values
+that are actually observed in the selected variable. &nbsp;The data ranges cannot be
+explored in Google Maps Creator, so it is important to know the ranges of
+observed values before starting.<br>
+</p>
+
+<p>The&nbsp;<span style="font-weight: bold;">Cols</span> button on the map interface
+can be used to change the shading categories, and also to assign category
+labels, and to change the colours used for shading.<br>
+</p>
+
+<p>On the right hand side of the map, a slider is used to select the maximum
+zoom level for which tiles will be generated. &nbsp;The higher the zoom level, the
+more detail will be apparent as a user zooms into the map created. &nbsp;However,
+the number of tiles that are created increases rapidly with an increase in zoom
+level, and so it is important to strike a balance between maximum zoom level
+and the number of tiles to be generated.<br>
+</p>
+
+<div class="fig_right">
+<a href="https://vlebb.leeds.ac.uk/bbcswebdav/users/geo6odw/geog58705871_2010-11/wk8/wk8_files/casa1.gif"><img alt="CASA map creator" src="geog5870_wk8_5_files/casa1.gif" width="400" height="300"></a><br>
+Figure 14:&nbsp;&nbsp;Using CASA Google Maps Creator</div>
+
+<p>As an example, the shapefile containing Leeds Output Areas, with population
+density added as a field was used with Google Maps Creator. &nbsp;This file was also
+used in the examples using MapServer in <a href="https://vlebb.leeds.ac.uk/bbcswebdav/users/geo6odw/geog58705871_2010-11/wk3/index.html">week 3</a>
+of this module.&nbsp;&nbsp;Figure 14 shows the state of the application when the
+shapefile has first been loaded, and population density selected as the shading
+variable.<br>
+</p>
+
+<p>A shading scheme was developed that used the same category boundaries and
+same colours as were used in the MapServer example with the same data set.<br>
+</p>
+
+<p>The maximum zoom level was set to 13: this is not the maximum level that can
+be zoomed to, but is a relatively small scale. &nbsp;Experimentation is required in
+practice to help decide what the best setting for maximum zoom level will be
+for any chosen application. &nbsp;You should not leave the setting at 0, as
+otherwise you will not be able to zoom into the map that is created at all.<br>
+</p>
+
+<p>The Google Maps Creator application will create an html page and all the
+associated files that are required to tile the shapefil on to a Google Map. The
+<span style="font-weight: bold;">Edit</span> menu should be used to set the
+correct API key for the use with the map (i.e. the API key you have registered
+for a given directory). When the <span style="font-weight: bold;">Create</span>
+button is pressed, the application will generate the html page and associated
+tile images in the same directory from which the original shapefile was read.&nbsp;
+<br>
+</p>
+
+<p>The html file will be called <span style="font-style: italic;">shapefile_name.html</span>, and there will be a
+directory <span style="font-style: italic;">shapefile_name-tiles</span> which
+contains the image files used for presenting on the map. &nbsp;There will also be an
+image created featuring the UCL logo. These files should then be moved to an
+appropriate directory from which they can be served on the web.<br>
+</p>
+
+<div class="fig_right">
+<a href="https://vlebb.leeds.ac.uk/bbcswebdav/users/geo6odw/geog58705871_2010-11/wk8/wk8_files/fig_14a.GIF"><img style="border: 2px solid; width: 400px; height: 289px;" alt="Google Maps Creator example" src="geog5870_wk8_5_files/fig_14a.gif"></a><br>
+a) Initial appearance<br>
+<a href="https://vlebb.leeds.ac.uk/bbcswebdav/users/geo6odw/geog58705871_2010-11/wk8/wk8_files/fig_14b.GIF"><img style="border: 2px solid; width: 400px; height: 289px;" alt="Google Maps Creator example - zoomed in" src="geog5870_wk8_5_files/fig_14b.gif"></a><br>
+b) Zoomed in<br>
+<br>
+Figure 15:&nbsp;&nbsp;Results of Google Maps Creator example</div>
+
+<p>Figure 15 shows the results of using the Leeds OAs shapefile with the CASA
+Google Maps Creator.&nbsp;&nbsp;The map initially appears zoomed out to cover most of
+Britain, and the Leeds raster layer is barely visible.&nbsp;&nbsp;If the user zooms into
+Leeds, the raster overlay layer becomes more apparent.&nbsp;&nbsp;Figure 15b shows the
+state of the map when it has been zoomed into the maximum extent.&nbsp;&nbsp;This zoom
+level depends on the value selected for maximum zoom level in the Google Maps
+Creator application.</p>
+<br>
+<br>
+
+<hr class="post_float" style="width: 100%; height: 2px;">
+[ Next: <a href="https://vlebb.leeds.ac.uk/bbcswebdav/users/geo6odw/geog58705871_2010-11/wk8/geog5870_wk8_6.html"><span style="text-decoration: underline;">Summary</span></a> <a href="https://vlebb.leeds.ac.uk/bbcswebdav/users/geo6odw/geog58705871_2010-11/wk8/geog5870_wk6_2.html"><span style="text-decoration: underline;"></span></a>] <br>
+<br>
+</body></html>

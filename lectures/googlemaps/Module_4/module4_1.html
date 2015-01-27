@@ -1,0 +1,81 @@
+---
+layout: default
+title: Developing Google Maps
+---
+
+<h1> Developing Google Maps</h1>
+
+<h2>Continuing with the Leeds example</h2>
+
+<p>First of all, we shall look at various ways of adding to and improving the
+example that we developed in <a href="../module2.html"> Module 2</a> - it should resemble this:
+<p>
+<img src="endmod2.png" alt="Text" style = "width:580px;height:500px">
+ <p>
+
+There are a number
+of ways the presentation can be improved. Firstly, it would be useful to make
+the map bigger. The following code builds on Google_eg2.html and includes a few
+modifications.<br>
+<br>
+</p>
+<img src="google_eg3.png" alt="Text" style = "width:800px;height:500px">
+<p>
+The above code can be downloaded <a href="google_eg3.html"> here</a>.
+
+<p>Two of these changes are solely to do with the presentation of the map on
+the page. At the top, in the document header section, is a simple embedded
+style sheet, which contains a single style instruction. The style instruction
+dictates how an entity of the class 'gmap' should be rendered. In the body of
+the document, the second change is that the &lt;div&gt; section containing our
+map has been given the class 'gmap'; thus it will pick up the new rendering
+instructions. This is an example of attaching both a CLASS and an ID to an
+element. You should recall from the JavaScript tutorial that an ID is a unique
+identifier for an elment (allowing it to be unamibguously referenced using
+<code>document.getElementById()</code> ); the same CLASS on the other hand can
+be attached to multiple elements (thus allowing you to change the presentation
+of all those elements by editing only the CSS information for that class).</p>
+
+<p>The use of style sheets offers many advantages and is recommended; they are
+used in the examples in this module, although as with HTML coding, this module
+cannot include a lengthy tutorial on their use. &nbsp;There are many guides to using
+HTML and CSS on the web; a few starting points are given below: </p>
+<ul>
+  <li><a href="http://www.w3schools.com/html/default.asp">HTML tutorial</a></li>
+  <li><a href="http://www.w3schools.com/Css/default.asp">CSS tutorial</a></li>
+  <li><a href="http://www.codecademy.com/">Code Academy</a>
+  <li><a href="http://www.htmlhelp.com/">HTML / CSS reference</a></li>
+</ul>
+
+<p>The gmap class is fairly simple: a margin is defined, and a border is to be
+placed around the object. The final part of the gmap class style is 'float:
+right'; this causes the object to be drawn at the right of the screen, and for
+text to flow around it.</p>
+
+<p>The final modification is that the width and height
+values for the <code>map_canvas</code> DIV have been made larger. Note that
+there is no direct instruction (i.e. as part of the Javascript) to the Google
+Maps API about how large the map should be. How does it know to return a
+larger map? The answer is in the object initialisation function <code>new
+google.maps.Map()</code>. This function has the parameter <p>
+'<code>document.getElementById("map_canvas")</code>'
+<p>
+
+In other words it looks
+through the code of the whole HTML document to find an element that has the id
+'<code>map_canvas</code>' - the element it finds is of course our map
+DIV. Having identified this element, the Map() object is able to check the
+required size itself.<br>
+</p>
+
+<h3>Task</h3>
+<p>
+Update your example to change the size of the map. Try different sizes, and if
+you are familiar with CSS, try different style settings. Add some further text
+to your example page.<br>
+
+
+<hr class="post_float">[ Next: <a href="module4_2.html">Adding markers (again)</a> ]<br>
+[<a href="../../../web-based-gis/materials.html">Course Index</a> | <a href="../../googlemaps/module4.html">Unit Overview</a>]<br>
+<hr class="post_float">
+</div>

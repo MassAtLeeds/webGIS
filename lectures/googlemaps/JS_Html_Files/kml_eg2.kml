@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://earth.google.com/kml/2">
+<Document>
+  <name>KML example</name>
+  <Placemark>
+    <name>School of Geography</name>
+    <description>The School of Geography at the University of Leeds, Leeds LS2 9JT
+    http://www.geog.leeds.ac.uk</description>
+    <Point>
+      <coordinates>-1.557430,53.807767</coordinates>
+    </Point>
+  </Placemark>
+  <Placemark>
+    <name>School of Geography: East building</name>
+    <description>The School of Geography at the University of Leeds, Leeds LS2 9JT
+    http://www.geog.leeds.ac.uk</description>
+    <Point>
+      <coordinates>-1.556783,53.807836</coordinates>
+    </Point>
+  </Placemark>
+</Document>
+</kml>

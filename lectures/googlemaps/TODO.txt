@@ -1,0 +1,19 @@
+To do:
+
+Overall -
+
+-- Papers that talk about web-GIS
+-- Course overview
+-- Assessment details
+
+
+Module 2:  
+ --> Google Mash up - create a page of info about this
+ --> Bit more information about the API in.
+ 
+ Module 3:
+ ---> List of resources
+ --> Have a couple of tasks for them to do.
+ 
+ Module 4:
+ 

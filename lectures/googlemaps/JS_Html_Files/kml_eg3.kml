@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://earth.google.com/kml/2">
+<Document>
+  <name>KML example</name>
+  <Placemark>
+    <name>Walkergate Otley</name>
+    <description>A random location in Otley.</description>
+    <Point>
+      <coordinates>-1.690800,53.905343</coordinates>
+    </Point>
+  </Placemark>
+  <Placemark>
+    <name>School of Geography: East building</name>
+    <description>The School of Geography at the University of Leeds, Leeds LS2 9JT
+    http://www.geog.leeds.ac.uk</description>
+    <Point>
+      <coordinates>-1.556783,53.807836</coordinates>
+    </Point>
+  </Placemark>
+</Document>
+</kml>
