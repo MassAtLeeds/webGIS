@@ -1,0 +1,251 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml">
+  <head>
+    <meta http-equiv="content-type" content="text/html/xml; charset=utf-8"/>
+    <meta name="author" content="Centre for Advanced Spatial Analysis (CASA), University College London (UCL)">
+    <meta name="description" content="Page automatically created by GMapCreator created by CASA">
+    <meta name="keywords" content="GMapCreator, CASA, Google, Maps">
+
+    <title><%MAPTITLE></title>
+
+    <style type="text/css">
+    /* formatting for the title panel at the top containing the map title, CASA text and ucl logo */
+    table.heading {
+        color: #FFFFFF;
+        background: #75547A;
+        width: 100%;
+        border-style: none;
+        border-collapse: collapse;
+    }
+    table.heading td {
+        border-style: none;
+        padding: 0;
+    }
+    table.heading h1 {
+        font-size: 20px;
+	font-weight:bold;
+	color:#FFFFFF;
+        padding-left: 10px;
+	font-family: Arial, Helvetica, sans-serif;
+	padding-top: 8px;
+    }
+    /* the text in the title panel containing the map title and casa text */
+    .section_header_white {
+	font-size: 14px;
+	font-weight:bold;
+	color:#FFFFFF;
+	padding-left: 25px;
+	font-family: Arial, Helvetica, sans-serif;
+	padding-top: 25px;
+    }
+    /* the bar that sits under the UCL logo and above the map and scale panels */
+    .underucl {
+        color: #000000;
+        background: #000000;
+    }
+    /* the Google map itself */
+    .map { width: 75%; height: 100%; table.border: 0; }
+    /* text style on the scale panel */
+    .scale {
+        color: #FFFFFF;
+        background: #75547A;
+        width: 100%;
+        height: 100%;
+    }
+    /* formatting of the coloured boxes on the scale panel */
+    .scale_colour {
+        border-color: #000000;
+        border-style: none;
+        border-width: 1px;
+        width: 16px;
+        height: 16px;
+    }
+    /* formating on panel containing fader buttons */
+    .fader {
+        color: #ffffff;
+        background: #75547A;
+        border-color: #808080;
+        border-style: groove;
+        border-width: 2px;
+        text-align: center;
+        padding-top: 3px;
+        padding-bottom: 4px;
+        margin-top: 8px;
+    }
+
+    </style>
+
+
+    <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+    <script type="text/javascript">
+    //<![CDATA[
+
+    var centreLat=<%CENTRELAT>;
+    var centreLon=<%CENTRELON>;
+    var initialZoomLevel=<%INITIALZOOM>;
+    var mapBounds=new google.maps.LatLngBounds(new google.maps.LatLng(<%MINLAT>,<%MINLON>),new google.maps.LatLng(<%MAXLAT>,<%MAXLON>));
+    var map; //the GMap2 itself
+    var customLayer; //GMCMapType containing the GMapCreator tile layer
+    var opacity=1.0;
+
+
+    function GMCMapType() {
+        this.Cache = Array();
+        this.opacity = 0.5;
+    }
+    GMCMapType.prototype.tileSize = new google.maps.Size(256, 256);
+    GMCMapType.prototype.maxZoom = <%MAXZOOM>;
+    GMCMapType.prototype.getTile = function(coord, zoom, ownerDocument) {
+
+        var img = ownerDocument.createElement('IMG');
+        img.style.width = this.tileSize.width + 'px';
+        img.style.height = this.tileSize.height + 'px';
+
+        if (zoom>this.maxZoom) {
+            img.id = "t_blank_"+coord.x+"_"+coord.y;
+            img.src = "<%TILEDIR>/blank-tile.png";
+        }
+        else {
+            //converts tile x,y into keyhole string
+            var c = Math.pow(2, zoom);
+
+            //check tile x wrapping - to prevent wrapping, return blank tile if coord.x<0 or coord.x>=c
+            var tilex = coord.x;
+            if (tilex<0) tilex=c+tilex%c;
+            if (tilex>=c) tilex=tilex%c;
+
+            var x=360/c*tilex-180;
+            var y=180-360/c*coord.y;
+            var x2=x+360/c;
+            var y2=y-360/c;
+            var lon=x; //Math.toRadians(x); //would be lon=x+lon0, but lon0=0 degrees
+            var lat=(2.0*Math.atan(Math.exp(y/180*Math.PI))-Math.PI/2.0)*180/Math.PI; //in degrees
+            var lon2=x2;
+            var lat2=(2.0*Math.atan(Math.exp(y2/180*Math.PI))-Math.PI/2.0)*180/Math.PI; //in degrees
+            var tileBounds=new google.maps.LatLngBounds(new google.maps.LatLng(lat2,lon),new google.maps.LatLng(lat,lon2));
+
+            if (!tileBounds.intersects(mapBounds)) {
+                img.id = "t_blank_"+coord.x+"_"+coord.y;
+                img.src = "<%TILEDIR>/blank-tile.png";
+            }
+            else {
+                var d = tilex; //i.e. coord.x taking into account x wrapping
+                var e = coord.y;
+                var f = "t";
+                for (var g = 0; g < zoom; g++) {
+                    c /= 2;
+                    if (e < c) {
+                        if (d < c) { f += "q" }
+                        else { f += "r"; d -= c }
+                    }
+                    else {
+                        if (d < c) { f += "t"; e -= c }
+                        else { f += "s"; d -= c; e -= c }
+                    }
+                }
+                img.id = "t_" + f;
+                img.src = "<%TILEDIR>/"+f+".png";
+            }
+        }
+        this.Cache.push(img);
+        return img;
+    }
+    GMCMapType.prototype.realeaseTile = function(tile) {
+        var idx = this.Cache.indexOf(tile);
+        if(idx!=-1) this.Cache.splice(idx, 1);
+        tile=null;
+    }
+    GMCMapType.prototype.name = "<%MAPTITLE>";
+    GMCMapType.prototype.alt = "<%MAPTITLE>";
+    GMCMapType.prototype.setOpacity = function(newOpacity) {
+        this.opacity = newOpacity;
+        for (var i = 0; i < this.Cache.length; i++) {
+            this.Cache[i].style.opacity = newOpacity; //mozilla
+            this.Cache[i].style.filter = "alpha(opacity=" + newOpacity * 100 + ")"; //ie
+        }
+    }
+
+
+    function changeOpacity(op) {
+        customLayer.setOpacity(op);
+    }
+
+
+    function getWindowHeight() {
+        if (window.self&&self.innerHeight) {
+            return self.innerHeight;
+        }
+        if (document.documentElement&&document.documentElement.clientHeight) {
+            return document.documentElement.clientHeight;
+        }
+        return 0;
+    }
+
+    function resizeMapDiv() {
+        //Resize the height of the div containing the map.
+        //Do not call any map methods here as the resize is called before the map is created.
+    	var d=document.getElementById("map");
+        var offsetTop=0;
+        for (var elem=d; elem!=null; elem=elem.offsetParent) {
+            offsetTop+=elem.offsetTop;
+        }
+        var height=getWindowHeight()-offsetTop-16;
+        if (height>=0) {
+            d.style.height=height+"px";
+        }
+    }
+
+
+    function load() {
+        resizeMapDiv();
+
+        var latlng = new google.maps.LatLng(centreLat, centreLon);
+	var myOptions = {
+            zoom: initialZoomLevel,
+            minZoom: 0,
+            maxZoom: <%MAXZOOM>,
+            center: latlng,
+	    mapTypeId: google.maps.MapTypeId.ROADMAP
+	};
+	map = new google.maps.Map(document.getElementById("map"), myOptions);
+	customLayer = new GMCMapType();
+	map.overlayMapTypes.insertAt(0, customLayer);
+    }
+
+    //]]>
+    </script>
+  </head>
+  <body onresize="resizeMapDiv()" onload="load()">
+    <table width="100%" class="heading">
+      <tr>
+        <td valign="top"><h1><%MAPTITLE></h1>
+          <span class="section_header_white">UCL CENTRE FOR ADVANCED SPATIAL ANALYSIS (CASA)</span>
+        </td>
+        <td valign="baseline"><img align="right" src="ucl75547A.gif" />
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2"><div class="underucl">&nbsp;</div>
+        </td>
+      </tr>
+    </table>
+
+    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+      <tr>
+        <td class="map"><div id="map"></div>
+        </td>
+        <td class="scale" valign="top">
+<%COLOURSCALE>
+          <div class="fader">
+            <input type="button" value="Map" onClick="changeOpacity(0)" />
+            <input type="button" value="1/4" onClick="changeOpacity(0.25)" />
+            <input type="button" value="1/2" onClick="changeOpacity(0.5)" />
+            <input type="button" value="3/4" onClick="changeOpacity(0.75)" />
+            <input type="button" value="Data" onClick="changeOpacity(1.0)" />
+          </div>
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>

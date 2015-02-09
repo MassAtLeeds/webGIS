@@ -77,12 +77,12 @@ hints, and again is used to ensure that the map fills the whole window.</p>
 <p>The two SCRIPT blocks are the most significant parts. The first block loads
 the API library into the browser, and thus provides the functionality for our
 maps. The block contains a <code>src</code> parameter, specifying a location
-from which the library is to be loaded. In examples shown in Week 5, we used
+from which the library is to be loaded. In examples shown in Unit 3, we used
 the src parameter to load JavaScript from a local file (for ease of code
 maintenance), but it is quite possible - as here - to use a remote location.
 The content of the src parameter is shown in the Figure as:<br>
 </p>
-<pre id="line1"><span class="pln">&nbsp; &nbsp; </span><span class="atn"></span><span class="pun"></span><span class="atv">"http://maps.google.com/maps/api/js?sensor=</span><i><span class="atv">set_to_true_or_false</span></i><span class="atv">"</span><span class="tag"></span><span class="pln"><br></span><span class="tag"></span></pre>
+<pre id="line1"><span class="pln"> </span><span class="atn"></span><span class="pun"></span><span class="atv">"http://maps.google.com/maps/api/js?sensor=</span><i><span class="atv">set_to_true_or_false</span></i><span class="atv">"</span><span class="tag"></span><span class="pln"><br></span><span class="tag"></span></pre>
 
 <p>The location of the library is thus the URL
 '<code>http://maps.google.com/maps/api/js</code>', but we also provide a
@@ -96,6 +96,8 @@ In some cases, browsers might run on devices such as mobile handsets that have
 specific location finding hardware, however a number of recent releases of
 standard browsers also support the Geolocation standard, and can estimate the
 current location given the host computer's IP address. </p>
+
+<p><b>Update Feb 2015:</b> In the latest revision of the API (which occurs each Feb!), the sensor parameter is now obsolete.  However, I've kept these sections in as it is likely that you may come across this in examples on the web.
 
 <p>The second 'script' block, which starts on the following line, defines a
 function - <span style="font-style: italic;">initialize()</span> - which is run

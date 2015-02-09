@@ -12,7 +12,7 @@ title: Changing the marker appearance
 to provide a new icon for use with drawing markers.The same icon object can be
 used for multiple points, on the other hand it would also be possible to
 include additional fields in the map_data file to reference different icons for
-each point. Figure 10 shows an example usage of the Marker() declaration which
+each point. The example below shows usage of the Marker() declaration which
 includes an addtional parameter specifying an alternative image to be used for
 the icon - in this case a icon showing an exclamation mark. As written, the
 script will search for the image file in the same directory from which the
@@ -117,9 +117,8 @@ Revise your addMarker class to set new options for the marker.<br>
 <ol>
   <li>Try using a new icon. Create a small image in a graphics package if you
     wish, or find an icon elsewhere on the web. </li>
-  <li>Try setting a title. You will need to modify the line that calls
-    addMarker() in your main map file; you will also need to add a 'title'
-    category to your array of data in map_data.js</li>
+  <li><b>Optional:</b> Modify your map set up code to create a dynamic marker.</li>
+    <li> If you have time at the end of the course, come back here and have a look at the <a href="https://developers.google.com/chart/image/docs/gallery/dynamic_icons#pins"> Chart API</a> in detail and experiment with different icons etc. 
 </ol>
 </div>
 <br>

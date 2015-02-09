@@ -73,15 +73,15 @@ they are called, we are able to update the text on the screen with a list of
 names.</p>
 
 <div class="code_example">
-<p><strong>wk8_lbwf_schools.html</strong></p>
+<p><strong>lbwf_schools.html</strong></p>
 <pre>&lt;!DOCTYPE html&gt;
 &lt;html&gt;
 &lt;meta http-equiv="content-type" content="text/html; charset=utf-8" /&gt;
 &lt;script type="text/javascript"
     src="http://maps.google.com/maps/api/js?sensor=false"&gt;
 &lt;/script&gt;
-&lt;script src="wk8_lbwf_schools_data.js" type="text/javascript"&gt;&lt;/script&gt;
-&lt;script src="wk8_lbwf_schools_setup.js" type="text/javascript"&gt;&lt;/script&gt;
+&lt;script src="lbwf_schools_data.js" type="text/javascript"&gt;&lt;/script&gt;
+&lt;script src="lbwf_schools_setup.js" type="text/javascript"&gt;&lt;/script&gt;
  &lt;link rel="stylesheet" media="all" href="../../../style/general.css" type="text/css"&gt;
  &lt;link rel="stylesheet" media="all" href="../../../style/google_maps_style.css" type="text/css"&gt;
  &lt;title&gt;School catchment areas&lt;/title&gt;
@@ -106,7 +106,7 @@ for a secondary school place for September 2011&lt;/a&gt; published by the Londo
 &lt;/html&gt;</pre>
 <hr>
 
-<p><strong>wk8_lbwf_schools_data.js</strong> (excerpt)</p>
+<p><strong>lbwf_schools_data.js</strong> (excerpt)</p>
 <pre>var markers = [
     {
 'latitude': 51.5567731, 
@@ -125,7 +125,7 @@ for a secondary school place for September 2011&lt;/a&gt; published by the Londo
  ...</pre>
 <hr>
 
-<p><strong>wk8_lbwf_schools_setup.js</strong></p>
+<p><strong>lbwf_schools_setup.js</strong></p>
 <pre>/*
  * The starting position and initial zoom factor
  *
@@ -236,20 +236,20 @@ title: markers[id].title
 }</pre>
 </div>
 
-<p><strong>Figure 10: Files used for google.maps.Circle() example</strong></p>
+<p><strong>Files used for google.maps.Circle() example</strong></p>
 
 <div class="fig_right">
 <img alt="Circles example" src="lbwf_schools.gif" width="611" height="412"> 
 
-<p>Figure 11: Output of circles map</p>
+<p>Output of circles map</p>
 </div>
 
-<p>Figure 11 shows the map produced by this example. The files used in this
+<p>The figure above shows the map produced by this example. The files used in this
 example are available here:</p>
 <ul>
-  <li><a href="wk8_lbwf_schools.html">wk8_lbwf_schools.html</a></li>
-  <li><a href="wk8_lbwf_schools_data.js">wk8_lbwf_schools_data.js</a></li>
-  <li><a href="wk8_lbwf_schools_setup.js">wk8_lbwf_schools_setup.js</a></li>
+  <li><a href="lbwf_schools.html">lbwf_schools.html</a></li>
+  <li><a href="lbwf_schools_data.js">lbwf_schools_data.js</a></li>
+  <li><a href="lbwf_schools_setup.js">lbwf_schools_setup.js</a></li>
 </ul>
 
 <p>Circle overlays are useful for quickly and easily conveying quantitative
@@ -261,7 +261,7 @@ the value to be mapped has value <em>a</em>, then the radius should be set to
 <h3 class="post_float">Ground Overlay</h3>
 
 <p>Another form of overlay is a ground overlay, which allows us to place an
-image over the map, which may be useful in some cases. Figure 12 shows the
+image over the map, which may be useful in some cases. The figure below shows the
 setup file for a map which uses a ground overlay. This is provided via <a href="http://code.google.com/apis/maps/documentation/javascript/overlays.html#GroundOverlays">google.maps.GroundOverlay()</a>.
 The setup file is loaded by an HTML page similar to those used in our other
 examples.</p>
@@ -281,7 +281,7 @@ image to the map using <code>setMap()</code> as in most of our previous
 examples.</p>
 
 <div class="code_example">
-<p>wk8_groundoverlay_setup.js</p>
+<p>groundoverlay_setup.js</p>
 <pre>/*
  * The starting position and initial zoom factor
  */
@@ -343,7 +343,7 @@ overlay.</p>
 
 <p>The files used in this example are:</p>
 <ul>
-  <li><a href="wk8_groundoverlay_setup.js">wk8_groundoverlay_setup.js</a></li>
+  <li><a href="groundoverlay_setup.js">groundoverlay_setup.js</a></li>
   <li><a href="bomb_crop.jpg">bomb_crop.jpg</a></li>
 </ul>
 <p>

@@ -21,9 +21,9 @@ through the [practicals](/webGIS/practicals.html). At the end of this process
 you will be able to create a simple web mapping application on a topic of your
 choice.
 
+More information can be found on the <a href="http://webprod3.leeds.ac.uk/catalogue/dynmodules.asp?Y=201415&M=GEOG-5870M"> module catalogue</a>.
+
 ---
-
-
 
 ## About the website
 

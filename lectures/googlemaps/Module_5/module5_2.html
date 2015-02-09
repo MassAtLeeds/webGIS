@@ -8,10 +8,10 @@ title: Adding overlays
 
 <p>Markers are an example of one sort of overlay that can be placed on top of
 the background map in Google Maps. As we have seen in last week's material, it
-is possible to alter the marker image ; one implication of this is that
-different marker styles can be used to convey additonal information about the
-location (e.g. markers of different colours could be used to chow different
-types of location). There are a variety of alternative overlay s that can also
+is possible to alter the marker image; one implication of this is that
+different marker styles can be used to convey additional information about the
+location (e.g. markers of different colours could be used to show different
+types of location). There are a variety of alternative overlays that can also
 be used in Google Maps, and we will look at some of these this week.</p>
 
 <h3>Creating and adding lines and polygons</h3>
@@ -19,15 +19,14 @@ be used in Google Maps, and we will look at some of these this week.</p>
 <p>The Blue Plaques practical task, and most of the examples that we studied
 earlier focused on using markers to represent information. These are ideal for
 point level information, but not so good for area level information. An
-obvious thing to want to do is to draw lines and polygons on the map. Figure 2
-shows sample code for a map which will be drawn with a set of overlay lines.
+obvious thing to want to do is to draw lines and polygons on the map. The sample code shows is for a map which will be drawn with a set of overlay lines.
 Three files are illustrated.</p>
 
 <p>The first of these is the HTML file which will contain our map. The HEAD
 section contains links to a number of other files:</p>
 <ul>
   <li>The Google Maps JavaScript API</li>
-  <li>The JSCoord library used last week </li>
+  <li>The JSCoord library used in the previous module </li>
   <li>A JavaScript data file</li>
   <li>A JavaScript map setup file</li>
   <li>Two style sheets - a general one (intended for general page appearance)
@@ -50,21 +49,21 @@ time of the Census, and in the origin district one year before the Census.</p>
 
 <p>The third file shown in the map set up file. This sets up a map in the same
 way as done in the previous examples. It then iterates through a data set,
-again as in previolus examples with markers. However, in this case we are doing
+again as in previous examples with markers. However, in this case we are doing
 something different with the data: we are drawing lines on the map.</p>
 <p>
 There are links to each of these files near the bottom of the page.
 <p>
-<b>wk8_leeds_sms_eg1.html</b>
+<b>lines.html</b>
 <p>
 <img src = "eg1.png" height="450" width="800">
 
 <hr>
-<p><b>wk8_leeds_sms_eg1_data.js</b><p>
-<img src = "eg2.png" height="100" width="200">
+<p><b>linesdata.js</b><p>
+<img src = "eg2.png" height="400" width="400">
 
 <hr>
-<p><b>wk8_leeds_sms_eg1_mapsetup.js</b><p>
+<p><b>lines.js</b><p>
 <img src = "eg3.png" height="600" width="600">
 
 <p></p>
@@ -72,7 +71,7 @@ There are links to each of these files near the bottom of the page.
 <div class="fig_right">
 <img alt="Using polyines" src="leeds_sms_eg1.gif" width="508" height="709"> 
 
-<p>a) Ouput with initial line styles</p>
+<p>a) Output with initial line styles</p>
 
 <p><img alt="Alternate line styles" src="leeds_sms_eg2.gif" width="508" height="709"></p>
 
@@ -92,9 +91,9 @@ the fact that the eastings and northings are quoted in the data file, and might
 thus be thought of as strings, the latlng constructor is happy to treat them as
 numeric values.</p>
 
-<p>Next we draw the line. There are two stages to this. Firstly, we contstruct
+<p>Next we draw the line. There are two stages to this. Firstly, we construct
 a polyline object, using '<code>new google.maps.Polyline()</code>'. This
-requires one paramter - an object which lists line co-ordinates and the various
+requires one parameter - an object which lists line co-ordinates and the various
 options. The most important of these are the line co-ordinates. These are given
 in the <code>path</code> property of the polyline options object. The path is
 an array, containing a set of points, each of which is a
@@ -128,14 +127,14 @@ Firstly, we have added three new variables, <code>myColor</code>,
 characteristics for each line.</p>
 
 <p>We have also added a set of statements into the for loop that cycles through
-each data point. We have a series of <code>if {}</code> statements, which ste
+each data point. We have a series of <code>if {}</code> statements, which set
 up the line characteristics. These are structured so that large flows which
 meet all the 'if' criteria (i.e. they're greater than 0, they're also greater
 than 10 etc...) will over-write the previous values for <code>myColor</code>
 etc.</p>
 
-<p>The lines are set to be drawn in black (but thin, and fairly transparent) is
-the flow is small, and in red (and thicker, and more opaque) is the flow is
+<p>The lines are set to be drawn in black (but thin, and fairly transparent) if
+the flow is small, and in red (and thicker, and more opaque) if the flow is
 larger. This stage is clearly in the arena of basic map design - one needs to
 know something about the nature of the data being mapped and about the range of
 possible values, and then try out various different line styles.</p>
@@ -149,13 +148,13 @@ above a certain threshold (say, 50 persons).</p>
 
 <p>The files used in these two examples are available here:</p>
 <ul>
-  <li><a href="wk8_leeds_sms_eg1.html">wk8_leeds_sms_eg1.html</a></li>
-  <li><a href="wk8_leeds_sms_eg1_mapsetup.js">wk8_leeds_sms_eg1.mapsetup.js</a><a></a></li>
-  <li><a href="wk8_leeds_sms_eg1_data.js">wk8_leeds_sms_eg1_data.js</a></li>
-  <li><a href="wk8_leeds_sms_eg1_data_test.js">wk8_leeds_sms_eg1_data_test.js</a>
+  <li><a href="lines.html">lines.html</a></li>
+  <li><a href="lines.js">lines.js</a><a></a></li>
+  <li><a href="linesdata.js">linesdata.js</a></li>
+  <li><a href="linesdata_test.js">linesdata_test.js</a>
     [a truncated data file for initial testing]</li>
-  <li><a href="wk8_leeds_sms_eg2.html">wk8_leeds_sms_eg2.html</a></li>
-  <li><a href="wk8_leeds_sms_eg2_mapsetup.js">wk8_leeds_sms_eg2_mapsetup.js</a>
+  <li><a href="lines2.html">lines2.html</a></li>
+  <li><a href="lines2.js">lines2.js</a>
     [uses same data file as eg1]</li>
 </ul>
 
@@ -167,7 +166,7 @@ when lines are shown in different colours to convey some quantitative
 meaning.</p>
 
 <div class="code_example">
-<p>excerpts from <strong>wk8_leeds_sms_eg2_mapsetup.js</strong></p>
+<p>excerpts from <strong>lines2_mapsetup.js</strong></p>
 <pre>  ...
   var myColor;
   var myOpacity;
@@ -211,7 +210,7 @@ meaning.</p>
 the above example, only one segment per line) defined as a set of co-ordinates.
 The step from this to a <em>polygon</em> is straightforward: a polygon is a
 line which returns to its initial starting point. Polygons have the additional
-characteristic beyond a line in that the y can have a fill colour (and variable
+characteristic beyond a line in that they can have a fill colour (and variable
 fill opacity) as well as line characteristics.</p>
 
 <p>The following figure shows the code of a set of files which illustrate the construction
@@ -219,8 +218,8 @@ of basic polygons. The structure of these files is similar to those that we
 used before, but we will run through their contents.<br>
 </p>
 
-<p>The HTML file <span style="font-style: italic;">wk8_poly_eg1.html</span> is
-illustrated first. It is very similar to the file use in the line drawing
+<p>The HTML file <span style="font-style: italic;">poly1.html</span> is
+illustrated first. It is very similar to the file used in the line drawing
 above, differing only in the names of the files loaded, and the on-page
 text.</p>
 
@@ -229,21 +228,21 @@ details, and a <code>boundary</code> property which contains an array of grid
 reference points.</p>
 
 <div class="code_example">
-<p><strong>wk8_poly_eg1.html</strong></p>
+<p><strong>poly1.html</strong></p>
 <img src = "eg4.png" height="250" width="600">
 
 <hr>
 
-<p><strong>wk8_poly_eg1_data.js</strong></p>
-<img src = "eg5.png" height="300" width="400">
+<p><strong>poly_eg1_data.js</strong></p>
+<img src = "eg5.png" height="400" width="400">
 
 <hr>
 
-<p><strong>wk8_poly_eg1_setup.js</strong></p>
+<p><strong>poly_eg1_setup.js</strong></p>
 <img src = "eg6.png" height="600" width="700">
 
 
-<p>The final file illustrated above is <span style="font-style: italic;">wk8_poly_eg1.js</span>. Again, it is broadly
+<p>The final file illustrated above is <span style="font-style: italic;">poly_eg1.js</span>. Again, it is broadly
 similar to the previous examples. Instead of drawing lines or creating markers,
 the main loop in the initialize() function will create some polygons. For each
 iteration of the loop, the following happens:</p>
@@ -302,5 +301,3 @@ polygons.</p>
 </p>
 <hr class="post_float" style="width: 100%; height: 2px;">[ Next: <a href="module5_3.html">Adding information to polygons
 ]<br>
-[<a href="../../../web-based-gis/materials.html">Course Index</a> | <a href="../../googlemaps/module5.html">Unit Overview</a>]<br>
-<hr class="post_float">
