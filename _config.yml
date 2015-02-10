@@ -2,14 +2,15 @@
 # Permalinks
 #
 # Use of `relative_permalinks` ensures post links from the index work properly.
-permalink:           /webGIS/
-# relative_permalinks: true
+#permalink:           /courses/postgrad/web
+#relative_permalinks: true
 
 # Setup
 title:               'GEOG5870M: Web-based GIS'
 tagline:             'A course on web-based mapping'
 description:         'GEOG5870M: Web-based GIS, University of Leeds'
-# baseurl:          /web-based-gis/            
+baseurl:     /courses/postgrad/web 
+url:   http://www.geog.leeds.ac.uk/courses/postgrad/web    
  # http://massatleeds.github.io/webGIS/
 
 # About/contact
