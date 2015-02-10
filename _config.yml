@@ -6,9 +6,9 @@
 #relative_permalinks: true
 
 # Setup
-title:               'GEOG5870M: Web-based GIS'
+title:               'GEOG5870/1M: Web-based GIS'
 tagline:             'A course on web-based mapping'
-description:         'GEOG5870M: Web-based GIS, University of Leeds'
+description:         'GEOG5870/1M: Web-based GIS, University of Leeds'
 baseurl:     /courses/postgrad/web 
 url:   http://www.geog.leeds.ac.uk/courses/postgrad/web    
  # http://massatleeds.github.io/webGIS/
