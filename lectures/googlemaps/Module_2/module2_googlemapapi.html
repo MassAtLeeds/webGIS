@@ -103,8 +103,8 @@ current location given the host computer's IP address. </p>
 function - <span style="font-style: italic;">initialize()</span> - which is run
 after the page is loaded. The function sets some variables, and then creates a
 map object. The first variable declared is called <code>latlng</code>, and as
-the name might suggest, it is a latitude-longitude position. In the
-introductory material on JavaScript, we looked at declaring basic variables
+the name might suggest, it is a latitude-longitude position. As we will see when we move onto the
+introductory material on JavaScript, it is straightforward to declare basic variables
 such as numbers, strings and arrays. In this example, we create a new instance
 of an object that is defined in the JavaScript library loaded in the first
 script block. That library defined (and created) an object called
@@ -112,10 +112,10 @@ script block. That library defined (and created) an object called
 <code>maps</code>. That object in turn, had a property called
 <code>LatLng</code>. Using the nested approach to referencing objects in
 JavaScript, we can thus refer to this object type as
-<code>google.maps.LatLng</code>. You will recall that JavaScript is case
+<code>google.maps.LatLng</code>. JavaScript is case
 sensitive, and thus the correct capitalisation is required. When creating a new
 instance of this LatLng object, we can supply a latitiude and longitude as
-parameters.</p>
+parameters. We'll cover this in more detail in the next unit.</p>
 
 <p>The second entity created (an object literal rather than an array - although
 we do not need to worry about the distinction here) is an array called
