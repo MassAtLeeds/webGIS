@@ -27,10 +27,16 @@ serving data publicly.
 
 ## Task: start-up GeoServer in OSGEO Live
 
-The below image may help.
+*The below image may help.*
 
 ![geoserver-osgeo](http://snag.gy/hp9A2.jpg)
 
+*When you are in, try logging in (you may need to look around OSGEO Live to find out how) - you should see something resembling the image below.*
+
+![login-osgelive](http://snag.gy/xlJfl.jpg)
+
+Take a look around your own personal GeoServer instance.
+Check out the online examples and the [OSGEO Live Geoserver 'quickstart'](http://live.osgeo.org/en/quickstart/geoserver_quickstart.html).
 
 # Testing an online GeoServer instance
 
@@ -81,12 +87,17 @@ request=GetCapabilities
 
 ## Task: understanding `GetCapabilities`
 
-*Based on the above request, try to ask our 'geo8.webarch.net' GeoServer
+*Based on the above request, try to ask our 'geo8.webarch.net' GeoServer[.](geo8.webarch.net:8080/geoserver/wms?service=wms&version=1.1.1&request=GetCapabilities)
 what it's capabilities are. What is the server's response? What format is it in and why?
 Try looking up `GetCapabilities` in the formal
 [WMS standards document](http://portal.opengeospatial.org/files/?artifact_id=14416).*
 
+## Serving maps to the world
 
+The final task is more exploratory. Find out how to serve maps to the world from
+GeoServer, such as the one below, which is served from our
+very own GeoServer instance in Sheffield!
 
+[![](http://storage2.static.itmages.com/i/15/0211/h_1423696111_2520615_414c611c94.png)](geo8.webarch.net:8080/geoserver/sf/wms?service=WMS&version=1.1.0&request=GetMap&layers=sf:streams&styles=&bbox=589434.4971235897,4913947.342298816,609518.2117427464,4928071.049965891&width=512&height=360&srs=EPSG:26713)
 
 
