@@ -19,6 +19,18 @@ notably databases.
 
 # GeoServer on your OSGEO Live installation 
 
+One of the great things about OSGEO Live is that it comes with its own
+pre-configured *localhost* so you can test serving information within
+the save bounds of a virtual computer, without having to go anywhere near the internet.
+This is good to play around and avoids any security issues associated with
+serving data publicly.
+
+## Task: start-up GeoServer in OSGEO Live
+
+The below image may help.
+
+![geoserver-osgeo](http://snag.gy/hp9A2.jpg)
+
 
 # Testing an online GeoServer instance
 
