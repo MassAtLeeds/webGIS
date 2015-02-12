@@ -21,7 +21,7 @@ notably databases.
 
 One of the great things about OSGEO Live is that it comes with its own
 pre-configured *localhost* so you can test serving information within
-the save bounds of a virtual computer, without having to go anywhere near the internet.
+the safe bounds of a virtual computer, without having to go anywhere near the internet.
 This is good to play around and avoids any security issues associated with
 serving data publicly.
 
@@ -95,7 +95,8 @@ Try looking up `GetCapabilities` in the formal
 ## Serving maps to the world
 
 The final task is more exploratory. Find out how to serve maps to the world from
-GeoServer, such as the one illustrated below, which is served from our
+GeoServer, such as the one illustrated below, which is partly (*task: find out which part*)
+served from our
 very own [GeoServer instance in Sheffield](http://massatleeds.github.io/webGIS/info/code/webmap1.html)!
 
 [![](http://storage1.static.itmages.com/i/15/0212/h_1423699667_3651712_e35714952e.png)](http://massatleeds.github.io/webGIS/info/code/webmap1.html).
