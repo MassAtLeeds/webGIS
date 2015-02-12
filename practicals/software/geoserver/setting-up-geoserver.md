@@ -98,6 +98,10 @@ The final task is more exploratory. Find out how to serve maps to the world from
 GeoServer, such as the one illustrated below, which is served from our
 very own [GeoServer instance in Sheffield](http://massatleeds.github.io/webGIS/info/code/webmap1.html)!
 
-[![](http://storage1.static.itmages.com/i/15/0212/h_1423699667_3651712_e35714952e.png)](http://massatleeds.github.io/webGIS/info/code/webmap1.html)
+[![](http://storage1.static.itmages.com/i/15/0212/h_1423699667_3651712_e35714952e.png)](http://massatleeds.github.io/webGIS/info/code/webmap1.html).
+
+## Task: connecting GeoServer to OpenLayers or Leaflet
+
+*Based on the above example (look at the source code using `Ctrl-U`) create a html file that serves a GeoServer map using your JavaScript web mapping library of choice. Extend this to contain multiple files.*
 
 
