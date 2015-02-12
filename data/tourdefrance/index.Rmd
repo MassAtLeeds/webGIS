@@ -1,0 +1,111 @@
+---
+title: "Data description"
+author: "Robin Lovelace"
+date: "10/27/2014"
+output: html_fragment
+---
+
+## Tour de France data
+
+The main dataset we'll be using in this module is [tdf_tweets.csv](https://github.com/MassAtLeeds/webGIS/blob/master/input-data/tdf_tweets.csv),
+a table of 1000 'tweets' harvested from the Twitter Streaming API using a
+[a modified version](https://github.com/Robinlovelace/tweepy) of tweepy,
+a pre-existing Python library.
+
+In fact, the original dataset was much larger, consisting
+of roughly 42,000 tweets. These were
+filtered out from dozens of gigabytes of Twitter data using a long [R script](https://github.com/Robinlovelace/tweepy/blob/master/filters/BigLoad-tdf.R).
+This script took around 1 day to run on a fast computer! A random selection
+of 1000 of these tweets was selected for this module.
+To overcome confidentiality issues, a number of changes were made to the files
+using [another R script](https://github.com/MassAtLeeds/webGIS/blob/master/R/tdf-clean.R) called `tdf-clean` because it **cleans** Tour de France data. Get it?!
+
+Key features of this script include:
+
+### Removal of superfluous variables
+
+Raw Twitter data contains [lots](https://dev.twitter.com/rest/public) of data.
+To reduce size, the table was shunk both in length (number of rows)
+and in width (number of columns):
+
+<script src="https://gist.github.com/Robinlovelace/ab9ca897945111695b20.js"></script>
+
+```{r, eval=FALSE, echo=FALSE}
+# Take a random selection of the data
+set.seed(2014)
+tdft <- tdft[sample(nrow(tdft), size = 1000), ]
+tdft <- select(tdft, lat, lon, created, text, language, n_followers, n_tweets, user_location)
+```
+
+### Removal of sensitive text
+
+It is hard to identify what constitutes 'sensitive' text, so any words which
+were unusual, contained html links or the identifying @ symbol were removed:
+
+<script src="https://gist.github.com/Robinlovelace/29fc0c8b4023f6013aec.js"></script>
+
+```{r, eval=FALSE, echo=FALSE}
+# Remove sensitive text
+summary(factor(Encoding(tdft$text)))
+Encoding(tdft$text) <- "UTF-8"
+tdft$text <- iconv(tdft$text, "UTF-8", "UTF-8",sub='')
+tdft$text <- gsub('@\\S+', '@', tdft$text) # remove all to '@' texts
+tdft$text <- gsub('http\\S+', 'http', tdft$text) # remove all to hyperlinks
+head(tdft$text)
+```
+
+### Setting maximum number of words
+
+To make the text shorter and more manageable, a maximum word length was set.
+To remove excess words, a new R function was defined and run on the dataset:
+
+```{r, eval=FALSE, echo=FALSE}
+# Function to reduce the max. number of words in a string
+maxwords <- function(x, max = 10){
+lwords <- length(x)
+if(lwords > max) lwords <- max
+paste0(x[1:lwords], collapse = " ")
+}
+# Apply maxwords to the data
+tdft$text <- sapply(words, maxwords)
+```
+
+<script src="https://gist.github.com/Robinlovelace/ab68081c1869d008a920.js"></script>
+
+## Analysing the data
+
+To begin to analyse the data, there are many options.
+R is a powerful data analysis tool; to load and begin to analyse the data in
+R, try the following:
+
+```{r, echo=FALSE, eval=FALSE}
+tweets <- read.csv("input-data/tdf_tweets.csv")
+head(tweets[1:3], n = 10) # look at the first 10 lines
+tweets[1:5, c("created", "text")] # first 5 lines of text
+summary(tweets) # summarise the variables
+library(knitr)
+kable(head(tweets[1:3], n = 5))
+kable(tweets[1:5, c("created", "text")])
+```
+
+<script src="https://gist.github.com/Robinlovelace/f8ee95b045e3bf890c28.js"></script>
+
+|      lat|       lon|created             |
+|--------:|---------:|:-------------------|
+| 51.50886| -0.265492|2014-07-05 07:29:04 |
+| 53.80314| -1.542609|2014-07-03 12:15:50 |
+|  0.00000|  0.000000|2014-07-06 18:37:12 |
+| 54.04125| -1.565414|2014-07-05 09:20:11 |
+| 53.99056| -1.799216|2014-07-06 12:31:03 |
+
+table: Latitude and longitude of tweets
+
+|created             |text                                                        |
+|:-------------------|:-----------------------------------------------------------|
+|2014-07-05 07:29:04 |but this As its my first Tour de France Im                  |
+|2014-07-03 12:15:50 |Great view from 2 YB office TDF2014 TDFyorkshire leeds http |
+|2014-07-06 18:37:12 |Hello today was was in York I am a amp                      |
+|2014-07-05 09:20:11 |here we are at Ripleycastle http                            |
+|2014-07-06 12:31:03 |Another great day tdf http                                  |
+
+table: Sample of text associate with tweets
