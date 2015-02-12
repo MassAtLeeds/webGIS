@@ -95,9 +95,9 @@ Try looking up `GetCapabilities` in the formal
 ## Serving maps to the world
 
 The final task is more exploratory. Find out how to serve maps to the world from
-GeoServer, such as the one below, which is served from our
-very own GeoServer instance in Sheffield!
+GeoServer, such as the one illustrated below, which is served from our
+very own [GeoServer instance in Sheffield](http://massatleeds.github.io/webGIS/info/code/webmap1.html)!
 
-[![](http://storage2.static.itmages.com/i/15/0211/h_1423696111_2520615_414c611c94.png)](geo8.webarch.net:8080/geoserver/sf/wms?service=WMS&version=1.1.0&request=GetMap&layers=sf:streams&styles=&bbox=589434.4971235897,4913947.342298816,609518.2117427464,4928071.049965891&width=512&height=360&srs=EPSG:26713)
+[![](http://storage1.static.itmages.com/i/15/0212/h_1423699667_3651712_e35714952e.png)](http://massatleeds.github.io/webGIS/info/code/webmap1.html)
 
 
