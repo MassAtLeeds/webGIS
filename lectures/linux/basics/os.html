@@ -1,0 +1,206 @@
+---
+layout: default
+title: Linux - Introduction to Operating Systems
+---
+
+<h1>Linux: Introduction to Operating Systems</h1>
+
+
+<p>
+Linux is an operating system (OS), like Windows, but perhaps one that is somewhat simpler, and therefore 
+somewhat easier to dig into and therefore have confidence in if you're the kind of person who likes 
+to understand what is going on with computers. Because of this, it is often the OS of 
+choice when it comes to building systems for the internet.
+</p>
+<P>
+To understand Linux, and how we set it up, we first need to understand what an OS does. Essentially it:
+</P>
+<ul>
+<li>provides access to hardware from the computer;</li>
+<li>this therefore includes file management, including connecting across networks;</li>
+<li>it therefore provides security and user constraints;</li>
+<li>it therefore provides a platform for running programs enforcing these constraints;</li>
+<li>it therefore usually provides scripting environments for running programs.</li>
+</ul>
+<P>
+As you can see, everything flows from the fact that the OS is the interface between software and 
+a machine's hardware. This means the OS needs to match hardware, and this matching is often part of the 
+install process.
+</P>
+<P>
+As it happens, many of the lowest level connections between the two are handled by 
+<A href="http://en.wikipedia.org/wiki/Firmware">firmware</A> that comes with the 
+<A href="http://en.wikipedia.org/wiki/Motherboard">motherboard</A>. For PCs, this is usually a  
+<A href="http://en.wikipedia.org/wiki/BIOS
+">Basic Input/Output System (BIOS)</A> 
+or, now, a 
+<A href="http://en.wikipedia.org/wiki/Unified_Extensible_Firmware_Interface
+">Unified Extensible Firmware Interface (UEFI or EFI)</A> program. These:
+</P>
+<UL>
+<LI>test the hardware;</LI>
+<LI>connect low-level hardware like disks and keyboard;</LI>
+<LI>run the boot(strap) loader, which loads the OS.</LI>
+</UL>
+<P>
+Most OSs then fall into two families. There's the 
+<A href="http://en.wikipedia.org/wiki/DOS">Disk Operating System (DOS)</A> family, the most notable example of which is 
+Windows, and the 
+<A href="http://en.wikipedia.org/wiki/Unix">UNiplexed Information and Computing Service (Unix)</A> family ('UNIX-like', or '*nix'). This includes 
+<A href="http://en.wikipedia.org/wiki/Unix">UNIX</A>;
+<A href="http://en.wikipedia.org/wiki/Linux">Linux</A>; and 
+<A href="http://en.wikipedia.org/wiki/OS_X">Apple’s Mac(intosh) OS X</A>.
+</P>
+<h2>Introduction to Linux</h2>
+<P>
+Essentially the *nix OSs are a central OS (the ‘kernel’) plus:
+</P>
+<UL>
+<LI>a Windows-like GUI 'environment';</LI>
+<LI>software for file management etc.</LI>
+<LI>command-line scripting via the 'terminal' prompt.</LI>
+</UL> 
+<P>
+Terminals run 'shells': scripting environments with their own commands and user profile setup.
+As most UNIX-like systems are written in the programming language 'C', they work well with C as both a full language and (in 'C Shell') a scripting language for automating tasks.
+</P>
+<P>
+*nix systems are often used for servers as:
+</P>
+<UL>
+<LI>multiple users can log in and run their own GUIs/shells;</LI>
+<LI>the GUI for the system can run on a second machine somewhere else on the network (e.g. 
+<A href="http://en.wikipedia.org/wiki/X_Window_System
+">X-Windows/X11</A> – network based light-client GUI).</LI>
+</UL>
+<P>
+Because of this, and their general simplicity/stability, the UNIX-like family are the backbone of the internet.
+</P>
+<P>
+If you are used to Windows, there are some differences:
+</P>
+<UL>
+<LI>they tend not to have lettered hard-drives, but instead disks "mounted" so they appear as directories;</LI>
+<LI>installation of software can be either simpler or much more complex, depending on the software distribution;</LI>
+<LI>there is more direct (but less nuanced) control over file permissions;</LI>
+<LI>command line work is common, but you need to decide which 'shell' you like working with;</LI>
+<LI>the default text editors built into the shells are... er... esoteric.</LI>
+</UL>
+<P>
+Linux itself was developed as a version of UNIX for PC hardware. 
+It was started by 
+<A href="http://en.wikipedia.org/wiki/Linus_Torvalds
+">Linus Torvald</A>, a computing student at the University of Helsinki in early 90s. 
+It is Open Source, so free. Linus also developed the 
+<A href="http://git-scm.com/
+">Git</A> system to manage development of the project by multiple people. 
+Linux matches official UNIX standard: IEEE’s 
+<A href="http://en.wikipedia.org/wiki/POSIX
+">POSIX</A> (Portable Operating System Interface for Computer Environments), which 
+keeps it similar to other *nix systems and familiar for those used to these, enhancing 
+its popularity. 
+</P>
+<P>
+While all Linux distributions have the same core kernal, they differ in the software distributed with this, including GUIs, installation managers, etc. There are three broad families:
+</P>
+<UL>
+<LI><A href="https://www.debian.org/
+">Debian</A>-based</LI> 
+<LI>RPM-family (Redhat Package Manger)</LI> 
+<LI><A href="http://www.slackware.com/
+">Slackware</A>-based</LI> 
+</UL>
+<P>
+There are plenty of <A href="http://www.computerworld.com/article/2500699/linux/fedora-mint-opensuse-ubuntu-which-linux-desktop-is-for-you.html">options</A> within these families, including the core distributions:
+</P>
+<UL>
+<LI><A href="http://www.ubuntu.com/
+">Ubuntu</A> (Debian-based)</A></LI> 
+<LI><A href="http://live.osgeo.org/en/index.html
+">OSGeo-live</A> (Ubuntu-based; for GIS)</LI> 
+<LI><A href="https://getfedora.org/
+">Red Hat Fedora</A> (RPM; free, but with commercial support)</LI> 
+
+<LI><A href="http://linuxmint.com/
+">Mint</A> (Ubuntu-based)</LI> 
+<LI><A href="https://www.opensuse.org/en/
+">openSUSE</A> (RPM-family)</LI> 
+</UL>
+
+<P>
+Each comes with a default setup for various OS elements, though it is possible to switch them. 
+The usual choices you need to make centre on Windows GUIs (based on X-Windows), usually either 
+<A href="http://en.wikipedia.org/wiki/GNOME">GNOME</A> and/or <A href="http://en.wikipedia.org/wiki/KDE">KDE</A>, and the shell you'll use, classically either: 
+<A href="http://en.wikipedia.org/wiki/Bourne_shell">Bourne</A> ("Bourne Again" on Linux); 
+(Public Domain)<A href="http://en.wikipedia.org/wiki/Korn_shell">Korn</A>; or 
+<A href="http://en.wikipedia.org/wiki/Tcsh">(T)C</A>.
+By default most systems start in Bourne.
+</P>
+
+<h2>Running Linux</h2>
+<P>
+You essentially have three choices when running Linux. First, you can boot from a DVD/CD/USB 
+(<A href="http://www.techradar.com/news/computing/pc/how-to-run-linux-from-a-usb-drive-496211
+">details</A>;
+<A href="http://www.linuxliveusb.com/
+">one option</A>;
+<A href="http://www.pendrivelinux.com/
+">another option</A>; though most Linux distributions ('distros') will tell you how to do this).
+Secondly, you can run it within another OS like Windows, using a 
+Virtual Machine which pretends to be a whole other computer on which you can 
+install Linux; a commonly used virtual machine 
+is <A href="http://www.virtualbox.org/">Virtual Box</A>. Finally, you can 
+fully install a copy, either replacing whatever OS is installed on your machine, or 
+getting a boot loader (and often a boot loader manager) to allow you to choose the 
+OS to load (so-called "dual boot"). Most distros come with an installer which will walk you through the steps. You may need to burn the distribution to a 'bootable' CD to start with. There will be instructions wherever you download the distribution from.
+</P>
+<P>
+However you install it, you'll need some space to write information to, if not also for the OS (one of the 
+disadvantages of running from a disk is that often you can't save information). If you install the OS or run Virtual Box, you can give Linux its own harddrive or run it from a separate harddrive partition (a chunk of the harddrive). This is usually carved out of your free disk space, and often isn't then available to other OS, so this wants to be optimal; the installer will usually suggest how much to use. Usually you need at least a root partition (reserved for the OS), though sometimes also a boot partition for the boot loader and a swap partition for memory use. Other partitions then are available for users etc.
+</P>
+<P>
+Partitions and disks will be 'mounted' so they appear as part of the same filesystem. You can also mount network disks. The filesystem starts at 'root', represented by a forward-slash <KBD>/</KBD>, 
+but other disk space can be mounted within that, such as disk space for users mounted at 
+<KBD>/home</KBD>.
+</P>
+<P>
+If you've installed Linux on a PC with a screen, you'll usually be presented with either a shell, or, more usually, the default X-Windows environment. If, instead, you have a remote Linux machine somewhere on the network you want to contact, the best way is to open up a secure shell 
+(<A href="http://en.wikipedia.org/wiki/Secure_Shell">SSH</A>) connection to it - these allow you to send encrypted information across the network.
+The simplest PC software to do this is <A href="http://www.putty.org/
+">PuTTY</A>. Although you can just send text across SSH, you can also <A href="http://en.wikipedia.org/wiki/Tunneling_protocol#Secure_Shell_tunneling
+">'tunnel'</A> across the SSH to connect with X-Windows (<A href="http://www.ece.unm.edu/csg/email/XServer_Putty_Windows7-ECE.pdf">instructions</A>). 
+To transfer files, use sftp (secure ftp). A good Windows client is 
+<A href="https://filezilla-project.org/
+">Filezilla</A>.
+</P>
+<P>If you're presented with a shell, the usual thing is to log in as the default user. Details of this 
+will be on the distro website. These usually have a default or no password, so if your machine is 
+going to be online you should change that as soon as possible using 
+the <KBD><A href="http://en.wikipedia.org/wiki/Passwd">passwd</A></KBD> command at a shell prompt (<A href="http://www.cyberciti.biz/faq/linux-change-password/">instructions</A>).
+Once you log in, most distros will boot X-Windows by default.
+</P>
+<P>
+The default user account will usually be limited in what it can do. There is a second account that you can use to install software and administer the computer etc., called the superuser account. 
+The name of this account is "root".  Again, there will either be a known password or no password, in which case you should give it one (if you do, don't forget it or you are likely to have to reinstall).
+You can log in directly as root, however it is more usual to log in as the superuser from another account, minimising the time spent as root to just the time needed. 
+You can log in using the "<KBD><A href="http://en.wikipedia.org/wiki/Su_%28Unix%29">su</A></KBD>" (switch user) command on its own at a command line (to exit, type "<KBD>exit</KBD>").
+Alternatively you can run a single command by starting it "<KBD><A href="http://en.wikipedia.org/wiki/Sudo">sudo</A></KBD>" and then a space and the command.
+Both should ask for the password if there is one; sudo will usually ask for *your* password, rather than root's, if you are a user with sudo rights.
+</P>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<hr class="post_float">[ Next: <a href="commandline.html">Working at the command line</a>]<br>
+[<a href="../../../web-based-gis/materials.html">Course Index</a>]<br>
+<hr class="post_float">
+</body></html>

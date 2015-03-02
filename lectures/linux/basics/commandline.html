@@ -1,0 +1,239 @@
+---
+layout: default
+title: Linux - Working at the command line
+---
+
+<h1>Linux: Working at the command line</h1>
+
+
+
+<P>
+Although Linux generally has a default windows-like environment, you'll find that a lot of the 
+more techie stuff is done at the command line, in a 'terminal', interacting with a scripting environment 
+called a 'shell'. 
+Command line / terminal / shell prompts are generally available under the application / start menu, though you can set up the system to boot to these rather than automatically starting X Windows.
+</P>
+<P>
+The different shells have their pros and cons. '<A href="http://en.wikipedia.org/wiki/Bash_%28Unix_shell%29">Bash</A>' (the Bourne Again SHell) is simple to use and comes with 
+<A href="http://tldp.org/HOWTO/Bash-Prog-Intro-HOWTO.html">a simple scripting language</A> but if you are familiar with Java you may find 
+<A href="http://en.wikibooks.org/wiki/C_Shell_Scripting">C-scripting</A> in the 
+<A href="http://en.wikipedia.org/wiki/C_shell">C Shell</A> (TC on Linux) simpler. 
+</P>
+<P>
+You can change shells at any time by typing the shell name (e.g. 'bash' or 'tcsh'), or you can change your default shell – look at the documentation on user profiles for your OS. 
+</P>
+<H3>Navigation</H3>
+<P>
+Navigation of the Linux file systems is much like command line navigation of DOS systems, though 
+Linux uses forward slashes, not backslashes. Here are some commands that are useful.
+</P>
+<TABLE border=0>
+<TR><TD><KBD><A href="http://en.wikipedia.org/wiki/Cd_%28command%29">cd</A> /</KBD></TD><TD>Changes directory to the root/bottom of the file system.</TD></TR>
+<TR><TD><KBD>cd ..</KBD></TD><TD>Takes you down a directory.</TD></TR>
+<TR><TD><KBD>cd name</KBD></TD><TD>Takes you up a the directory '<KBD>name</KBD>'.</TD></TR>
+<TR><TD><KBD><A href="http://en.wikipedia.org/wiki/Ls">ls</A></KBD></TD><TD>List directory contents.</TD></TR>
+<TR><TD><KBD>./</KBD></TD><TD>Refers to the current directory</TD></TR>
+<TR><TD><KBD><A href="http://en.wikipedia.org/wiki/Pwd">pwd</A></KBD></TD><TD>List the path of the current directory (print working directory).</TD></TR>
+<TR><TD><KBD><A href="http://en.wikipedia.org/wiki/Mount_%28Unix%29">mount</A></KBD>/<KBD>umount</KBD></TD><TD>Used for mapping drives.</TD></TR>
+<TR><TD colspan=2>Examples</TD></TR>
+<TR><TD><KBD>cd /home/user1</KBD></TD><TD>Go to root then up to <KBD>home/user1</KBD>.</TD></TR>
+<TR><TD><KBD>cd ../../dir1/dir2</KBD></TD><TD>Go down two directories then up two.</TD></TR>
+</TABLE>
+<H3>Running software</H3>
+<P>
+Usually you run software through X Windows. If you want to use the 
+command line, type the name of the application. If it is in the PATH environment variable (set up in the profile of each user) the system will find it. If not, list the path to it first. In the current directory you can use <KBD>./</KBD> to say "look in this directory", e.g.:
+<KBD>./myProgram.exe</KBD>. 
+</P>
+<P>
+Programs can be (aggressively) shut down at the command line by typing <KBD>CTRL-C</KBD> (i.e. holding 
+down the <KBD>CTRL</KBD> key and typing <KBD>C</KBD>).
+</P>
+<p>
+Help for software is usually available in the form of the (sometimes obscure) '<A href="http://en.wikipedia.org/wiki/Man_page">man</A>' (manual) pages. To get these, type 
+"<KBD>man</KBD>" followed by the software name at the command line to open these. 
+Press <KBD>enter</KBD> to scroll through the page, and <KBD>CTRL-C</KBD> to quit.
+</P>
+<P>
+By default, running a program will hang the command prompt. 
+To run a program in the background from the command line use <KBD>&amp;</KBD>:
+</P>
+<P>
+<KBD>& myProgram</KBD>
+</P>
+</P>
+<P>
+To see running jobs use:
+</P>
+<P>
+<KBD>ps</KBD>
+</P>
+<P>
+This will list programs, each with a PID number.
+To stop a program use '<KBR>kill</KBR>' with the PID:
+</P>
+<P>
+<KBD>kill 124</KBD>
+</P>
+<P>
+There are a large number of software repositories from which you can install software. A popular one for Linux is the <A href="https://www.gnu.org/software/software.html">GNU</A> (Recursively stands for "GNU is not UNIX") archive. GNU is an Open Source effort to make software for UNIX-style systems. 
+</P>
+<P>
+Most software now comes packaged for an installation manager called 
+<A href="http://en.wikipedia.org/wiki/Advanced_Packaging_Tool
+">apt</A>. It is simply a matter of supplying the name of the software you want to 
+<A href="http://www.computerhope.com/unix/apt-get.htm
+">apt-get</A> (note here the use of <KBD>sudo</KBD>):
+</P>
+<P>
+<KBD>sudo apt-get install softwarename</KBD>
+</P>
+<P>
+Alternatively, some software installs using a system called "gems" which is similar but for software written in, or with installers written in, the language Ruby 
+(<A href="http://en.wikipedia.org/wiki/RubyGems">details</A>).
+</P>
+<P>
+Updating with apt is also very simple:
+</P>
+<P>
+<KBD>sudo apt-get update softwarename</KBD>
+</P>
+<P>
+If the software isn’t packaged like that, it may come with some kind of install script you need to adapt, often a <A href="http://en.wikipedia.org/wiki/Make_%28software%29">make</A> file. 
+</P>
+<P>
+For software that you need to download, a simple way to download it is with <A href="http://en.wikipedia.org/wiki/Wget
+">wget</A>:
+</P>
+<P>
+<KBD>wget http://www.etc.com/filename</KBD>
+</P>
+<P>
+Usually this will be downloaded as a compressed tar file(.tar.gz), which bundles a bunch of files together. To extract:
+</P>
+<P>
+<KBD>tar xvzf filename</KBD>
+</P>
+<P>
+Move into the directory produced and configure for your system:
+</P>
+<P>
+<KBD>./configure</KBD>
+</P>
+<P>
+Then make:
+</P>
+<P>
+<KBD>make install</KBD>
+</P>
+<P>
+If they don’t work, they’re pretty horrible to sort out.
+</P>
+
+
+
+<H3>File commands</H3>
+
+
+<P>
+Here's a few other useful file commands:
+</P>
+<TABLE border=0>
+<TR><TD><KBD><A href="http://en.wikipedia.org/wiki/Cp_%28Unix%29">cp</A> file1 file2</KBD></TD><TD>copy file1 to file2
+</TD></TR>
+<TR><TD><KBD><A href="http://en.wikipedia.org/wiki/Rm_%28Unix%29">rm</A> file1</KBD></TD><TD>remove file1</TD></TR>
+<TR><TD><KBD><A href="http://en.wikipedia.org/wiki/Touch_%28Unix%29">touch</A> file1</KBD></TD><TD>create an empty file1</TD></TR>
+<TR><TD><KBD><A href="http://en.wikipedia.org/wiki/Mv">mv</A> file1 file2</KBD></TD><TD>move(rename) file1 to file2
+</TD></TR>
+<TR><TD><KBD><A href="http://en.wikipedia.org/wiki/Find">find</A> directories –name file1</KBD></TD><TD>find file1
+</TD></TR>
+<TR><TD><KBD><A href="http://en.wikipedia.org/wiki/Tar_%28computing%29">tar</A>, 
+<A href="http://en.wikipedia.org/wiki/Gzip">gzip</A>, gunzip</A></KBD></TD><TD>file bundling and compression</TD></TR>
+</TABLE>
+</P>
+<P>
+There are a few useful elements that join commands together at the terminal:
+</P>
+<P>
+<KBD>|</KBD> (the pipe symbol: <KBD>SHIFT-Backslash</KBD> usually) pipes (sends) output from one program to another.
+</P>
+<P>
+<KBD>more filename</KBD>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lists a file a screen at a time.
+</P>
+<P>
+Together they are quite often used to display on the screen in a controlled way that doesn't scroll crazily:
+</p>
+<p>
+<KBD>myprogram | more</KBD>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;i.e. pipe the output of the program to 'more'.
+</P>
+<P>
+"<KBD>&gt;</KBD>" redirects the output of a program to a file:
+</P>
+<P>
+<KBD>myprogram &gt; filename</KBD>
+</P>
+<P>
+"<KBD>&gt;&gt;</KBD>" appends rather than overwriting.
+</P>
+<P>
+The <A href="http://en.wikipedia.org/wiki/Cat_%28Unix%29">cat</A> program is use for listing file contents and concatinating them, but also for generating files from standard in (the keyboard).
+</P>
+<P>
+<KBD>cat file1 &gt;&gt; file2</KBD>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;adds file1 to the end of file2.
+</P>
+<P>
+<KBD>cat &gt; file3</KBD>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;records keyboard to file3 until <KBD>CTRL-C</KBD> pressed.
+</P>
+<P>
+
+<TABLE border=0>
+<TR><TD><KBD><A href="http://en.wikipedia.org/wiki/Head_%28Unix%29">head</A></KBD></TD><TD>Lists beginning of files.
+</TD></TR>
+<TR><TD><KBD><A href="http://en.wikipedia.org/wiki/Tail_%28Unix%29">tail</A></KBD></TD><TD>Lists end of files.</TD></TR>
+<TR><TD><KBD><A href="http://en.wikipedia.org/wiki/Grep">grep</A></KBD></TD><TD>Complex script toolkits for text</TD></TR>
+<TR><TD><KBD><A href="http://en.wikipedia.org/wiki/AWK">auk</A></KBD></TD><TD>search and processing
+</TD></TR>
+<TR><TD><KBD><A href="http://en.wikipedia.org/wiki/Sed">sed</A></KBD></TD><TD>text processing
+</TD></TR>
+</TABLE>
+
+
+
+
+<H3>Classic software</H3>
+
+<P>
+*nux users classically used one of two text editors: "<A href="http://en.wikipedia.org/wiki/Vi
+">vi</A>" or "<A href="http://en.wikipedia.org/wiki/Emacs
+">emacs</A>". vi is an esoteric editor controlled by key combinations, whose one redeeming feature is that it is pretty much always installed on UNIX systems. Linux has 'vim', an enhanced version. It is worth at least keeping <A href="http://www.cs.colostate.edu/helpdocs/vi.html
+">a list of commands</A> to hand as some system tools use this as the default editor (e.g. crontab - see <A href="admin.html">Linux admin</A>). Emacs is similar, but with a much enhanced functionality, included everything from games to compilers. You would be suprised (or manybe you wouldn't) how angry people get about which is better. If you're a beginner used to Notepad, they're both pretty awful. Fortunately most Linux distros now come with a variety of Notepad-style text editors. If you actually want to word process, much better is the full office suit <A href="https://www.openoffice.org/
+">Open Office</A>, which includes standard work processing, spreadsheet, and presentation software. It is a bit like Microsoft Office, but free. It's compatible with MS Office and available for Windows.
+</P>
+<P>
+Other classic *nix software includes 
+<A href="http://www.gimp.org/">GIMP</A> (for images and graphics); the 
+<A href="http://www.postgresql.org/">Postgres</A> database, and the 
+<A href="http://httpd.apache.org/">Apache</A> webserver.
+</P>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<hr class="post_float">[ Next: <a href="admin.html">Basic Admin</a> ]<br>
+[<a href="../../../web-based-gis/materials.html">Course Index</a>]<br>
+<hr class="post_float">
+</body></html>

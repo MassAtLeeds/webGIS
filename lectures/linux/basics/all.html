@@ -1,0 +1,538 @@
+---
+layout: default
+title: Linux - basics
+---
+
+<h1>Linux: basics</h1>
+
+
+
+<h2>Introduction to Operating Systems</h2>
+<p>
+Linux is an operating system (OS), like Windows, but perhaps one that is somewhat simpler, and therefore 
+somewhat easier to dig into and therefore have confidence in if you're the kind of person who likes 
+to understand what is going on with computers. Because of this, it is often the OS of 
+choice when it comes to building systems for the internet.
+</p>
+<P>
+To understand Linux, and how we set it up, we first need to understand what an OS does. Essentially it:
+</P>
+<ul>
+<li>provides access to hardware from the computer;</li>
+<li>this therefore includes file management, including connecting across networks;</li>
+<li>therefore provide security and user constraints;</li>
+<li>therefore provide platform for running programs enforcing these constraints;</li>
+<li>therefore usually provide scripting environments for running programs.</li>
+</ul>
+<P>
+As you can see, everything flows from the fact that the OS is the interface between software and 
+a machine's hardware. This means the OS needs to match hardware, and this matching is often part of the 
+install process.
+</P>
+<P>
+As it happens, many of the lowest level connections between the two are handled by 
+<A href="http://en.wikipedia.org/wiki/Firmware">firmware</A> that comes with the 
+<A href="http://en.wikipedia.org/wiki/Motherboard">motherboard</A>. For PCs, this is usually a  
+<A href="http://en.wikipedia.org/wiki/BIOS
+">Basic Input/Output System (BIOS)</A>, 
+or, now 
+<A href="http://en.wikipedia.org/wiki/Unified_Extensible_Firmware_Interface
+">Unified Extensible Firmware Interface (UEFI or EFI)</A> program. These:
+</P>
+<UL>
+<LI>test the hardware;</LI>
+<LI>connect low-level hardware like disks and keyboard;</LI>
+<LI>run the boot(strap) loader, which loads the OS.</LI>
+</UL>
+<P>
+Most OSs then fall into two families. There's the 
+<A href="http://en.wikipedia.org/wiki/DOS">Disk Operating System (DOS)</A> family, the most notable example of which is 
+Windows, and the 
+<A href="http://en.wikipedia.org/wiki/Unix">UNiplexed Information and Computing Service (Unix)</A> family ('UNIX-like', or '*nix'). This includes 
+<A href="http://en.wikipedia.org/wiki/Unix">UNIX</A>;
+<A href="http://en.wikipedia.org/wiki/Linux">Linux</A>; and 
+<A href="http://en.wikipedia.org/wiki/OS_X">Apple’s Mac(intosh) OS X</A>.
+</P>
+<h2>Introduction to Linux</h2>
+<P>
+Essentially the *nix OSs are a central OS (the ‘kernel’) plus:
+</P>
+<UL>
+<LI>a Windows-like GUI 'environment';</LI>
+<LI>software for file management etc</LI>
+<LI>command-line scripting via the 'terminal' prompt.</LI>
+</UL> 
+<P>
+Terminals run 'shells': scripting environments with their own commands and user profile setup.
+As most UNIX-like systems are written in the programming language 'C', they work well with C as both a full language and (in 'C Shell') a scripting language for automating tasks.
+</P>
+<P>
+*nix systems are often used for servers as:
+</P>
+<UL>
+<LI>multiple users can log in and run their own GUIs/shells;</LI>
+<LI>the GUI can run elsewhere on the network (e.g. 
+<A href="http://en.wikipedia.org/wiki/X_Window_System
+">X-Windows/X11</A> – network based light-client GUI).</LI>
+</UL>
+<P>
+Because of this, and their general simplicity/stability, the UNIX-like family are the backbone of the internet.
+</P>
+<P>
+If you are used to Windows, there are some differences:
+</P>
+<UL>
+<LI>they tend not to have lettered hard-drives, but instead space "mounted" as directories;</LI>
+<LI>installation of software can be either simpler or much more complex, depending on the software distribution;</LI>
+<LI>there is more direct (but less nuanced) control over file permissions;</LI>
+<LI>command line work is common, but you need to decide which 'shell' you like working with;</LI>
+<LI>the default text editors built into the shells are... er... esoteric.</LI>
+</UL>
+<P>
+Linux itself was developed as a version of UNIX for PC hardware. 
+It was started by 
+<A href="http://en.wikipedia.org/wiki/Linus_Torvalds
+">Linus Torvald</A>, a computing student at the University of Helsinki in early 90s. 
+It is Open Source, so free. Linus also developed the 
+<A href="http://git-scm.com/
+">Git</A> system to manage development of the project by multiple people. 
+Linux matches official UNIX standard: IEEE’s 
+<A href="http://en.wikipedia.org/wiki/POSIX
+">POSIX</A> (Portable Operating System Interface for Computer Environments), which 
+keeps it similar to other *nix systems and familiar for those used to these, enhancing 
+its popularity. 
+</P>
+<P>
+While all Linux distributions have the same core kernal, they differ in the software distributed with this, including GUIs, installation managers, etc. There are three broad families:
+</P>
+<UL>
+<LI><A href="https://www.debian.org/
+">Debian</A>-based</LI> 
+<LI>RPM-family (Redhat Package Manger)</LI> 
+<LI><A href="http://www.slackware.com/
+">Slackware</A>-based</LI> 
+</UL>
+<P>
+There are plenty of <A href="">http://www.computerworld.com/article/2500699/linux/fedora-mint-opensuse-ubuntu-which-linux-desktop-is-for-you.html
+options</A> within these families, including the core distributions:
+</P>
+<UL>
+<LI><A href="http://www.ubuntu.com/
+">Ubuntu</A> (Debian-based)</A></LI> 
+<LI><A href="http://live.osgeo.org/en/index.html
+">OSGeo-live</A> (Ubuntu-based; for GIS)</LI> 
+<LI><A href="https://getfedora.org/
+">Red Hat Fedora</A> (RPM; free, but with commercial support)</LI> 
+
+<LI><A href="http://linuxmint.com/
+">Mint</A> (Ubuntu-based)</LI> 
+<LI><A href="https://www.opensuse.org/en/
+">openSUSE</A> (RPM-family)</LI> 
+</UL>
+
+<P>
+Each comes with a default setup for various OS elements, though it is possible to switch them. 
+The usual choices you need to make centre on Windows GUIs (based on X-Windows), usually either 
+<A href="http://en.wikipedia.org/wiki/GNOME">GNOME</A> and/or <A href="http://en.wikipedia.org/wiki/KDE">KDE</A>, and the shell you'll use, classically either: 
+<A href="http://en.wikipedia.org/wiki/Bourne_shell">Bourne</A> ("Bourne Again" on Linux); 
+(Public Domain)<A href="http://en.wikipedia.org/wiki/Korn_shell">Korn</A>; or 
+<A href="http://en.wikipedia.org/wiki/Tcsh">(T)C</A>.
+By default most systems start in Bourne.
+</P>
+
+<h2>Running Linux</h2>
+<P>
+You essentially have three choices when running Linux. First, you can boot from a DVD/CD/USB 
+(<A href="http://www.techradar.com/news/computing/pc/how-to-run-linux-from-a-usb-drive-496211
+">details</A>;
+<A href="http://www.linuxliveusb.com/
+">one option</A>;
+<A href="http://www.pendrivelinux.com/
+">another option</A>; though most Linux distributions ('distros') will tell you how to do this).
+Secondly, you can run it within another OS like Windows, using a 
+Virtual Machine which pretends to be a whole other computer on which you can 
+install Linux; a commonly used virtual machine 
+is <A href="http://www.virtualbox.org/">Virtual Box</A>. Finally, you can 
+fully install a copy, either replacing whatever OS is installed on your machine, or 
+getting a boot loader (and often a boot loader manager) to allow you to choice the 
+OS to load (so-called "dual boot"). Most distros come with an installer which will walk you through the steps. You may need to burn the distribution to a 'bootable' CD to start with. There will be instructions wherever you download the distribution from.
+</P>
+<P>
+However you install in, you'll need some space to write information to, if not the OS (one of the 
+disadvantages of running from a disk is that often you can't save information). If you install the oS or run Virtual Box, you can give Linux its own harddrive or run it from a separate harddrive partition (a chunk of the harddrive). Often this will not then be available to other OS, so this wants to be optimal; the installer will usually suggest how much to use. Usually you need at least a root partition (reserved for the OS), though sometimes also a boot partition for the boot loader and a swap partition for memory use. Other partitions then are available for users etc.
+</P>
+<P>
+Partitions and disks will be 'mounted' so they appear as part of the same filesystem. You can also mount network disks. The filesystem starts at 'root', represented by a forward-slash <KBD>/</KBD>, 
+but other disk space can be mounted within that, such as disk space for users mounted at 
+<KBD>/home</KBD>.
+</P>
+<P>
+Once you've installed Linux, you'll usually be presented with either a shell, or, more usually, the default X-Windows environment. If you have a Linux machine somewhere on the network you want to contact, the best way is to open up a secure shell ssh connection.
+Simplest PC software to do this is <A href="http://www.putty.org/
+">PuTTY</A>; you can then <A href="http://en.wikipedia.org/wiki/Tunneling_protocol#Secure_Shell_tunneling
+">'tunnel'</A> across this to connect with X-Windows (<A href="http://www.ece.unm.edu/csg/email/XServer_Putty_Windows7-ECE.pdf">instructions</A>). 
+To transfer files, use sftp (secure ftp). A good Windows client is 
+<A href="https://filezilla-project.org/
+">Filezilla</A>.
+</P>
+<P>If you're presented with a shell, the usual thing is to log in as the default user. Details of this 
+will be on the distro website. These usually have a default or no password, so if your machine is 
+going to be online you should change that as soon as possible using 
+the <KBD><A href="http://en.wikipedia.org/wiki/Passwd">passwd</A></KBD> command at a shell prompt (<A href="http://www.cyberciti.biz/faq/linux-change-password/">instructions</A>).
+Once you log in, most distros will boot X-Windows by default.
+</P>
+<P>
+The default user account should be limited in what it can do. There is a second account that you can use to install software and administer the computer etc., called the superuser account. 
+The name of this account is "root".  Again, there will either be a known password or no password, in which case you should give it one (if you do, don't forget it or you are likely to have to reinstall).
+You can log in directly as root, however it is more usual to log in as the superuser from another account, minimising the time spent as root to just the time needed. 
+You can log in using the "<KBD><A href="http://en.wikipedia.org/wiki/Su_%28Unix%29">su</A></KBD>" (switch user) command on its own at a command line.
+Alternatively you can run a single command by starting it "<KBD><A href="http://en.wikipedia.org/wiki/Sudo">sudo</A></KBD>".
+Both should ask for the password if there is one; sudo will usually ask for *your* password, rather than root's, if you are a user with sudo rights.
+</P>
+
+<h2>Working at the command line</h2>
+<P>
+Command line / terminal prompts will be available under the application / start menu, though you can set up the system to boot to these rather than automatically starting X Windows.
+</P>
+<P>
+The different shells have their pros and cons. 'Bash' (the Bourne Again SHell) is simple to use and comes with a simple scripting language but if you are familiar with Java you may find scripting in C in the C Shell (TC on Linux) simpler. 
+</P>
+<P>
+You can change shells at any time by typing the shell name (e.g. 'bash' or 'tcsh'), or set up your default shell – look at the documentation on profiles for your OS. 
+</P>
+<H3>Navigation</H3>
+<P>
+Navigation of the Linux file systems is much like command line navigation of DOS systems, though 
+Linux uses forward slashes, not backslashes. Here are some commands that are useful.
+</P>
+<TABLE border=0>
+<TR><TD><KBD><A href="http://en.wikipedia.org/wiki/Cd_%28command%29">cd</A> /</KBD></TD><TD>Changes directory to the root/bottom of the file system.</TD></TR>
+<TR><TD><KBD>cd ..</KBD></TD><TD>Takes you down a directory.</TD></TR>
+<TR><TD><KBD>cd name</KBD></TD><TD>Takes you up a the directory '<KBD>name</KBD>'.</TD></TR>
+<TR><TD><KBD><A href="http://en.wikipedia.org/wiki/Ls">ls</A></KBD></TD><TD>List directory contents.</TD></TR>
+<TR><TD><KBD>./</KBD></TD><TD>Refers to the current directory</TD></TR>
+<TR><TD><KBD><A href="http://en.wikipedia.org/wiki/Pwd">pwd</A></KBD></TD><TD>List the path of the current directory (print working directory).</TD></TR>
+<TR><TD><KBD><A href="http://en.wikipedia.org/wiki/Mount_%28Unix%29">mount</A></KBD>/<KBD>umount</KBD></TD><TD>Used for mapping drives.</TD></TR>
+<TR><TD colspan=2>Examples</TD></TR>
+<TR><TD><KBD>cd /home/user1</KBD></TD><TD>Go to root then up to <KBD>home/user1</KBD>.</TD></TR>
+<TR><TD><KBD>cd ../../dir1/dir2</KBD></TD><TD>Go down two directories then up two.</TD></TR>
+</TABLE>
+<H3>Running software</H3>
+<P>
+Usually you run software through X Windows. If you want to use the 
+command line, type the name of the application. If it is in the PATH environment variable (set up in the profile of each user) the system will find it. If not, list the path to it first. In the current directory you can use <KBD>./</KBD> to say "look in this directory", e.g.:
+<KBD>./myProgram.exe</KBD>. 
+</P>
+<P>
+Programs can be (aggressively) shut down at the command line by typing <KBD>CTRL-C</KBD> (i.e. holding 
+down the <KBD>CTRL</KBD> key and typing <KBD>C</KBD>.
+</P>
+<p>
+Help for software is usually available in the form of the (sometimes obscure) '<A href="http://en.wikipedia.org/wiki/Man_page">man</A>' (manual) pages. To get these, type 
+"<KBD>man</KBD>" followed by the software name at the command line to open these. 
+Press <KBD>enter</KBD> to scroll through the page, and <KBD>CTRL-C</KBD> to quit.
+</P>
+<P>
+By default, running a program will hang the command prompt. 
+To run a program in the background from the command line use <KBD>&amp;</KBD>:
+</P>
+<P>
+<KBR>& myProgram</KBD>
+</P>
+</P>
+<P>
+To see running jobs use:
+</P>
+<P>
+<KBR>ps</KBR>
+</P>
+<P>
+This will list programs, each with a PID number.
+To stop a program use '<KBR>kill</KBR>' with the PID:
+</P>
+<P>
+<KBR>kill 124</KBR>
+</P>
+<P>
+There are a large number of software repositories from which you can install software. A popular one for Linux is the <A href="https://www.gnu.org/software/software.html">GNU</A> (Recursively stands for "GNU is not UNIX") archive. GNU is an Open Source effort to make software for UNIX-style systems. 
+</P>
+<P>
+Most software now comes packaged for an installation manager called 
+<A href="http://en.wikipedia.org/wiki/Advanced_Packaging_Tool
+">apt</A>. It is simply a matter of supplying the name of the software you want to 
+<A href="http://www.computerhope.com/unix/apt-get.htm
+">apt-get</A>:
+</P>
+<P>
+<KBD>sudo apt-get install softwarename</KBD>
+</P>
+<P>
+Alternatively, some software installs using a system called "gems" which is similar but for software written, or with installers written, in the language Ruby 
+(<A href="http://en.wikipedia.org/wiki/RubyGems">details</A>).
+</P>
+<P>
+Updating with apt is also very simple:
+</P>
+<P>
+<KBD>sudo apt-get update softwarename</KBD>
+</P>
+<P>
+If the software isn’t packaged like that, it may come with some kind of install script you need to adapt, often a <A href="http://en.wikipedia.org/wiki/Make_%28software%29">make</A> file. 
+</P>
+<P>
+Simple way to download is with <A href="http://en.wikipedia.org/wiki/Wget
+">wget</A>:
+</P>
+<P>
+<KBD>wget http://www.etc.com/filename</KBD>
+</P>
+<P>
+Usually this will be downloaded as a compressed tar file(.tar.gz), which bundles a bunch of files together. To extract:
+</P>
+<P>
+<KBD>tar xvzf filename</KBD>
+</P>
+<P>
+Move into the directory produced and configure for your system:
+</P>
+<P>
+<KBD>./configure</KBD>
+</P>
+<P>
+Then make:
+</P>
+<P>
+<KBD>make install</KBD>
+</P>
+<P>
+If they don’t work, they’re pretty horrible to sort out.
+</P>
+
+<H3>File permissions</H3>
+
+<P>
+UNIX-Style systems have a settings for who can read, write, and execute files and from directories. 
+While these are simpler that Windows permissions, users rarely see the workings of Windows permissions, while in UNIX-style OSs manipulating these is much more common.
+</P>
+<P>
+Each file or directory has three sets of permissions: owner, group, and public. 
+Each of these can be set to have read "<KBD>r</KBD>", write "<KBD>w</KBD>", and execute 
+"<KBD>x</KBD>" (run) permission with regards to the file/directory. 
+You can see the ownership and permissions of the files and directories within the pwd by typing:
+"<KBD>ls -la</KBD>".
+</P>
+<P>
+For example, a directory may be listed as:
+</P>
+<P>
+<KBD>./&nbsp;&nbsp;&nbsp;root:web&nbsp;&nbsp;&nbsp;rwxrwx---</KBD>
+</P>
+<P>
+Meaning the directory is owned by 'root' who can do anything, and usable by the web group who can also do anything. The public can do nothing "<KBD>---</KBD>". 
+</P>
+<P>
+A file might be listed like this:
+</P>
+<P>
+<KBD>myProgram.exe&nbsp;&nbsp;&nbsp;root:web&nbsp;&nbsp;&nbsp;rwxr-xr---</KBD>
+</P>
+<P>
+Meaning the owner(root) can read,write, and run the file, while the web group can read and run the file, but not write over it, and the public have no permissions. 
+</P>
+<P>
+Especially when dealing with files on websites it is very important the ownership and permissions are set up correctly: you really don't want to give the public permission to write over a program file and then execute the result.
+</P>
+<P>
+You can change the owner of a file using 
+<A href="http://en.wikipedia.org/wiki/Chown">chown</A> (as superuser):
+</P>
+<P>
+<KBD>chown user:group filename</KBD>
+</P>
+<P>
+You can use <KBD>*</KBD> wildcard for all. 
+You can also use:
+</P>
+<P>
+<KBD>chown -R user: group *</KBD> for recursive change through all directories in current directory.
+</P>
+<P>
+You can also use <A href="http://en.wikipedia.org/wiki/Chmod">chmod</A> to change the file permissions:
+</P>
+<P>
+<KBD>chmod userGroupPublic filename</KBD>
+</P>
+<P>
+The permissions are usually allocated numerically, by totaling up the following four numbers: 
+4 = read; 2 = write; 1 = exec; 0 = none. For example:
+</P>
+<P>
+<KBD>chmod 750 filename</KBD> 
+</P>
+<P>
+Sets to: user all permissions; Group read/exec; and public none.
+Again, can use recursion and wildcard.
+</P>
+
+
+<H3>File commands</H3>
+
+
+<P>
+Here's a few other useful file commands:
+</P>
+<TABLE border=0>
+<TR><TD><KBD><A href="http://en.wikipedia.org/wiki/Cp_%28Unix%29">cp</A> file1 file2</KBD></TD><TD>copy file1 to file2
+</TD></TR>
+<TR><TD><KBD><A href="http://en.wikipedia.org/wiki/Rm_%28Unix%29">rm</A> file1</KBD></TD><TD>remove file1</TD></TR>
+<TR><TD><KBD><A href="http://en.wikipedia.org/wiki/Touch_%28Unix%29">touch</A> file1</KBD></TD><TD>create an empty file1</TD></TR>
+<TR><TD><KBD><A href="http://en.wikipedia.org/wiki/Mv">mv</A> file1 file2</KBD></TD><TD>move(rename) file1 to file2
+</TD></TR>
+<TR><TD><KBD><A href="http://en.wikipedia.org/wiki/Find">find</A> directories –name file1</KBD></TD><TD>find file1
+</TD></TR>
+<TR><TD><KBD><A href="http://en.wikipedia.org/wiki/Tar_%28computing%29">tar</A>, 
+<A href="http://en.wikipedia.org/wiki/Gzip">gzip</A>, gunzip</A></KBD></TD><TD>file bundling and compression</TD></TR>
+</TABLE>
+</P>
+<P>
+There are a few useful elements that join commands together at the terminal:
+</P>
+<P>
+<KBD>|</KBD> (the pipe symbol: <KBD>SHIFT-Backslash</KBD> usually) pipes (sends) output from one program to another.
+</P>
+<P>
+<KBD>more filename</KBD>&nbsp;&nbsp;&nbsp;Lists a file a screen at a time.
+</P>
+<P>
+Together they are quite often used to display on the screen in a controlled way that doesn't scroll crazily:
+</p>
+<p>
+<KBD>myprogram | more</KBD>
+</P>
+<P>
+<KBD>&gt;</KBD> redirects the output of a program to a file:
+</P>
+<P>
+<KBD>myprogram &gt; filename</KBD>
+</P>
+<P>
+<KBD>&gt;&gt;</KBD> appends rather than overwriting.
+</P>
+<P>
+The <A href="http://en.wikipedia.org/wiki/Cat_%28Unix%29">cat</A> program is use for listing file contents and concatinating them, but also for generating files from standard in (the keyboard).
+</P>
+<P>
+<KBD>cat file1 &gt;&gt; file2</KBD> adds file1 to the end of file2
+</P>
+<P>
+<KBD>cat &gt; file3</KBD> records keyboard to file3 until <KBD>CTRL-C</KBD> pressed.
+</P>
+<P>
+
+<TABLE border=0>
+<TR><TD><KBD><A href="http://en.wikipedia.org/wiki/Head_%28Unix%29">head</A></KBD></TD><TD>Lists beginning of files.
+</TD></TR>
+<TR><TD><KBD><A href="http://en.wikipedia.org/wiki/Tail_%28Unix%29">tail</A></KBD></TD><TD>Lists end of files.</TD></TR>
+<TR><TD><KBD><A href="http://en.wikipedia.org/wiki/Grep">grep</A></KBD></TD><TD>Complex script toolkits for text</TD></TR>
+<TR><TD><KBD><A href="http://en.wikipedia.org/wiki/AWK">auk</A></KBD></TD><TD>search and processing
+</TD></TR>
+<TR><TD><KBD><A href="http://en.wikipedia.org/wiki/Sed">sed</A></KBD></TD><TD>text processing
+</TD></TR>
+</TABLE>
+
+<H3>Basic Admin</H3>
+
+<P>
+Linux comes with a number of pre-installed services 
+(programs that run at startup), but you can add others and 
+stop and start them as you need. Most have startup scripts in
+<KBD>/etc/rc.d/init.d/</KBD>, which you can call, thus:
+</P>
+<p>
+<KBD>
+/etc/rc.d/init.d/httpd stop<br />
+/etc/rc.d/init.d/httpd start<br />
+/etc/rc.d/init.d/httpd restart
+</KBD>
+</P>
+<P>
+To get programs to run at a regular time step, they need an entry in a crontab file. 
+These are set up using the '<A href="http://en.wikipedia.org/wiki/Cron">crontab</A>' command.
+</P>
+<P>
+<KBD>crontab -e cronfilename</KBD>
+</p>
+<p>
+Unfortunately crontab will often use one of the terrible default editors.
+</P>
+<p>
+Key directories include:
+</p>
+
+<TABLE border=0>
+<TR><TD><KBD>/bin /sbin</KBD></TD><TD>Systems programs</TD></TR>
+<TR><TD><KBD>/lib</KBD></TD><TD>Systems libraries</TD></TR>
+<TR><TD><KBD>/etc</KBD></TD><TD>Config files</TD></TR>
+<TR><TD><KBD>/home</KBD></TD><TD>User directories</TD></TR>
+<TR><TD><KBD>/var</KBD></TD><TD>Logs etc.</TD></TR>
+<TR><TD><KBD>/usr/bin</KBD></TD><TD>User programs</TD></TR>
+<TR><TD><KBD>/tmp</KBD></TD><TD>Temp files</TD></TR>
+<TR><TD><KBD>/usr/share</KBD></TD><TD>Shared files</TD></TR>
+</TABLE>
+
+<p>
+For a long time security in UNIX-style systems was irregularly setup and you needed to be on top of security issues at setup and on a daily basis.
+</P>
+<p>
+Linux generally sets up ok. However, you should change default passwords and give the superuser one.
+</P>
+<p>
+In addition, make sure updates are set to automatically install (depends on the flavour you use as to how this works).
+</P>
+
+
+
+<H3>Classic software</H3>
+
+<P>
+*nux users classically used one of two text editors: "<A href="http://en.wikipedia.org/wiki/Vi
+">vi</A>" or "<A href="http://en.wikipedia.org/wiki/Emacs
+">emacs</A>". vi is an esoteric editor controlled by key combinations, whose one redeeming feature is that it is pretty much always installed on UNIX systems. Linux has 'vim', an enhanced version. It is worth at least keeping <A href="http://www.cs.colostate.edu/helpdocs/vi.html
+">a list of commands</A> to hand as some system tools use this as the default editor (eg crontab). Emacs is similar, but with a much enhanced functionality, included everything from games to compilers. Much better is the full office suit <A href="https://www.openoffice.org/
+">Open Office</A>, which includes standard work processing, spreadsheet, and presentation software. It is a bit like Microsoft Office, but free. It's compatible with MS Office and available for Windows.
+</P>
+<P>
+Other classic *nix software includes 
+<A href="http://www.gimp.org/">GIMP</A> (for images and graphics); the 
+<A href="http://www.postgresql.org/">Postgres</A> database, and the 
+<A href="http://httpd.apache.org/">Apache</A> webserver.
+</P>
+
+
+<H3>More information</H3>
+<P>
+See the <A href="http://www.geog.leeds.ac.uk/courses/postgrad/web/info/code/reading.html">Recommended reading</A>. Also, there's a good basic Unix tutorial at 
+<A href="http://www.ee.surrey.ac.uk/Teaching/Unix/">Surrey University's Electronic Engineering dept</A>.
+</P>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<hr class="post_float">[ Next: <a href="1.html">Next</a> ]<br>
+[<a href="../../../web-based-gis/materials.html">Course Index</a><br>
+<hr class="post_float">
+</body></html>
