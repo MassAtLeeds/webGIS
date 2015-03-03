@@ -5,14 +5,40 @@ title: Linux - Dialog-Plus
 
 <h1>Linux: Dialog-Plus</h1>
 
+<p>The server we shall use for this part of the course is <KBD>dialogplus.leeds.ac.uk</KBD>. 
+This can be accessed using PuTTY software or similar applications. PuTTY allows you to interact 
+with a remote computer via a command prompt. A copy of PuTTY can be downloaded from 
+<a href = 'http://www.chiark.greenend.org.uk/~sgtatham/putty/'>here</a> if you do not have a copy. It doesn't need installing; you can 
+just run it by double-clicking it.</p> 
+
+<p>In this task you are required to:
+<ul>
+	<li>Connect to dialogplus using the PuTTY software</li>
+	<li>Check your personal directory on the web server</li>
+	<li>Check which version of Apache dialogplus is running</li>
+</ul></p>
+
+<ol>
+	<li>Open PuTTY now and connect to the dialogplus server using your log on credentials. 
+		In the box marked 'Host Name (or IP address)' you should type 'dialogplus.leeds.ac.uk', 
+		and for Connection type, select 'SSH', the port is 22. </li>
+		
+		<br />
+		<img src = 'putty.png' alt = 'putty'>
+		<br />
+		
+	<li>Click <KBD>connect</KBD> and you will be prompted for your username and password. 
+		As the Dialogplus server is running Linux, you can navigate your directories with Linux commands.</li> 
+
+	<li>List the contents of your current directory and you should see a directory called <KBD>web</KBD> 
+		Any files you place in this directory will be available at dialogplus.leeds.ac.uk/geog5870/USERNAME 
+		where username is the username you have been provided with for Dialogplus.</li> 
+
+	<li>Use the '<KBD>httpd -v</KBD>' command to check which version of Apache is running.</li> 
+</ol>
 
 
-<h2></h2>
-<p>
-</p>
-
-
-<hr class="post_float">[ Next: <a href="1.html">Next</a> ]<br>
-[<a href="../../../web-based-gis/materials.html">Course Index</a><br>
+<hr class="post_float">
+[<a href="../../../web-based-gis/materials.html">Course Index</a>]<br>
 <hr class="post_float">
 </body></html>
