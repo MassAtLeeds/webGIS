@@ -5,14 +5,44 @@ title: Leaflet - basics
 
 <h1>Leaflet: basics</h1>
 
-
-
-<h2></h2>
-<p>
+<P>
+In this part we'll look at a client-side replacement for GoogleMaps that offers more flexibility: 
+<A href="http://leafletjs.com/">Leaflet</A>. We'll build a map to display data from PostGIS. Later in the 
+course we'll look at changing the basemap and using Leaflet to upload new data.
+</P>
+<P>
+Leaflet is an Open Source Javascript mapping library that produces flexible maps for the web across multiple platforms, including mobile phones. Although it is simple to set it up with data from 
+<A href="http://www.openstreetmap.org">OpenStreetMap</A>, the crowdsourced map site, you can also serve your own data and maps to it. 
+</P>
+<P>
+Leaflet ties together HTML, Javascript, and styling of maps using CSS in a way that is data-provider 
+agnostic.
+</P>
+<P>
+Although Leaflet comes with an 
+<A href="http://leafletjs.com/reference.html">API and extensive other documentation</A>, the best way to learn it is to jump right in. With this in mind, let's build a map that displays the data served out from PostGIS/PHP.
+</P>
+<P>
+Log into the PostGIS server  you've worked with, and head into to your webpage directory. If you're working 
+on our server, this directory will be in your home directory, called <KBD>web</KBD>. 
+If you've done the PHP practical, you should have a page in here that generates a request for some 
+GeoJSON data and dumps it to the console. In a bit, we'll display this data. First, however, let's get used to 
+Leaflet by running through the Quickstart Tutorial. This tutorial walks you through the key areas: 
+mapping, adding markers, and responding to events. It uses data from the popular commercial mapping 
+group <A href="https://www.mapbox.com/">MapBox</A>. MapBox supply commercial mapping products, but come from a non-profit-supporting background with a real Open Source ethos, and their developers have made big contributions to a number of Open 
+Source environments. The other thing they do is supply joined up / reworked / beautified versions of open datasets 
+like OpenStreetMap, which is what this tutorial uses. Anyhow, here's the 
+<A href="http://leafletjs.com/examples/quick-start.html">Leaflet Quickstart Tutorial</A> tutorial: work through it, building it into your PHP requesting webpage, and then come back here. The XMLHttpRequest stuff shouldn't interfere, but if it does, just cut and paste it into a text document for the moment.
+</A> 
+</P>
+<P>
+If you've got all that working, you should have a page that has a pointer, circle and ploygon on it, and responds to mouse clicks. Take a copy of the page using the 
+<A href="../../linux/basics/commandLine.html#commands">Linux <KBD>cp</KBD> command</A>, and then remove the 
+overlayed elements to just leave the map and event-based elements. We'll now add in our PostGIS data. 
 </p>
 
 
-<hr class="post_float">[ Next: <a href="1.html">Next</a> ]<br>
-[<a href="../../../web-based-gis/materials.html">Course Index</a><br>
+<hr class="post_float">[ Next: <a href="postgisData.html">PostGIS data</a> ]<br>
+[<a href="../../../web-based-gis/materials.html">Course Index</a>]<br>
 <hr class="post_float">
 </body></html>
