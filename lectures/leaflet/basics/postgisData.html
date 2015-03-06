@@ -1,0 +1,123 @@
+---
+layout: default
+title: Leaflet - adding data from Postgres
+---
+
+<h1>Leaflet: adding data from Postgres</h1>
+
+<P>
+So, we should now have a page with a <CODE>BODY</CODE> like this:
+</P>
+<P>
+<CODE>
+&lt;DIV id="map"&gt;&lt;/DIV&gt;<BR /><BR />
+ 
+&lt;SCRIPT type="text/javascript"&gt;<BR /><BR />
+ 
+ var map = L.map('map').setView([51.505, -0.09], 13);<BR /><BR />
+ 
+ L.tileLayer('http://{s}.tiles.mapbox.com/v3/examples.map-i875mjb7/{z}/{x}/{y}.png', {<BR />
+    attribution: 'Map data &copy; etc.',<BR />
+    maxZoom: 18<BR />
+}).addTo(map);<BR /><BR />
+
+&lt;/SCRIPT&gt;<BR /><BR />
+</CODE>
+
+</P>
+<P>
+If this <KBD>map.html</KBD> isn't already in the same directory as your Javascript for downloading Postgres data, move it into that directory and reopen it. Add in a link to your <KBD>unit5_script.js</KBD> Javascript file and, as the full script uses it, jQuery:
+</P>
+<P>
+<CODE>&lt;SCRIPT language="javascript" type="text/javascript" src="unit5_script.js"&gt;&lt;/SCRIPT&gt;</CODE><BR />
+<CODE>&lt;SCRIPT language="javascript" type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"&gt;&lt;/SCRIPT&gt;</CODE>
+</P>
+<P>
+
+</P>
+
+<P>
+If we're going to use both bits of Javascript in our webpage, it makes sense to have them all in the same file, so the flow is clear. With this in mind, open 
+<KBD>unit5_script.js</KBD> and cut and paste the mapping script code into the top of your <CODE>fetchData()</CODE> method -- just remember to leave the <CODE>DIV</CODE> tag in the HTML file.
+</P>
+<P>
+Before we add the Postgres data, let's just get the map working now the script is in <KBD>unit5_script.js</KBD>. Comment out ("<CODE>//</CODE>") the call to 
+<CODE>writeTweets()</CODE> in <KBD>unit5_script.js</KBD> so the screen doesn't fill with data, and then in the HTML file change the <CODE>BODY</CODE> tag to the following code to call 
+<CODE>fetchData()</CODE> when the page opens:
+</P>
+<P><CODE>
+&lt;BODY onload = "fetchData()"&gt;
+</CODE>
+</P>
+<P>
+This method should now run when the page loads. Check you can see your map.
+</P>
+<P>
+Provided you can see the map, we'll now adjust the script so that rather than calling 
+<CODE>writeTweets()</CODE>, it calls another function <CODE>plotTweets()</CODE> that adds the Postgres data to the 
+map.
+</P>
+<P>
+At the end of the Postgres task, you'll remember than the Tweets we were dealing with were in a Javascript array 
+<CODE>tweetData</CODE>. Very conveniently, Leaflet has a method that will generate an array of geographical  
+location objects from lats and longs. We can then use this to set up markers. Here's the code:
+</P>
+<P>
+<CODE>
+function plotTweets()	{<BR />	
+&nbsp;&nbsp;&nbsp;//Loop through tweetData to create marker at each location <BR />
+&nbsp;&nbsp;&nbsp;for (var i = 0; i &lt; tweetData.length; i++)	{ <BR />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;var markerLocation = new L.LatLng(tweetData[i].lat, tweetData[i].lon);<BR />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;var marker = new L.Marker(markerLocation);<BR /><BR />
+				
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;map.addLayer(marker);<BR />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;marker.bindPopup(tweetData[i].body);<BR />
+&nbsp;&nbsp;&nbsp;}<BR />
+} 
+</CODE>
+</P>
+<P>
+Add this function to your script, and then call it where you were calling 
+<CODE>writeTweets()</CODE>. Hopefully you can now see the  Tweets on a map.
+</P>
+<P>
+While this may seem like overkill, when you could just store the Tweets in a Google spreadsheet and 
+press a button to map them, let's step back a bit and look at what we've now got -- a system where we can 
+map our own data, uploaded in whatever fashion we like (we could, for example, 
+<A href="http://140dev.com/free-twitter-api-source-code-library/twitter-database-server/get-tweets-php/">get PHP to collect it for us continually</A>), and display it over a variety of basemaps, using any query we 
+fancy. This is a significant advance. It is also a good foundation for a final issue we might like to 
+tackle -- getting users to upload their own data. 
+</P>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<hr class="post_float">[ Next: <a href="more.html">More info</a> ]<br>
+[<a href="../../../web-based-gis/materials.html">Course Index</a>]<br>
+<hr class="post_float">
+</body></html>
+

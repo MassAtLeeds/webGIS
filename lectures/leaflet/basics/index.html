@@ -5,14 +5,118 @@ title: Leaflet - basics
 
 <h1>Leaflet: basics</h1>
 
+<P>
+In this part we'll look at a client-side replacement for GoogleMaps that offers more flexibility: 
+<A href="http://leafletjs.com/">Leaflet</A>. We'll build a map to display data from PostGIS. Later in the 
+course we'll look at changing the basemap and using Leaflet to upload new data.
+</P>
+<P>
+Leaflet is an Open Source Javascript mapping library that produces flexible maps for the web across multiple platforms, including mobile phones. Although it is simple to set it up with data from 
+<A href="http://www.openstreetmap.org">OpenStreetMap</A>, the crowdsourced map site, you can also serve your own data and maps to it. 
+</P>
+<P>
+Leaflet ties together HTML, Javascript, and styling of maps using CSS in a way that is data-provider 
+agnostic.
+</P>
+<P>
+Although Leaflet comes with an 
+<A href="http://leafletjs.com/reference.html">API and extensive other documentation</A>, the best way to learn it is to jump right in. With this in mind, we'll start with a quick tutorial on the basics of Leaflet, and then we'll build a map that displays some data served out from PostGIS/PHP. 
+</P>
+<P>
+First, let's get used to 
+Leaflet by running through the Quickstart Tutorial. This tutorial walks you through the key areas: 
+mapping, adding markers, and responding to events. It uses data from the popular commercial mapping 
+group <A href="https://www.mapbox.com/">MapBox</A>. MapBox supply commercial mapping products, but come from a non-profit-supporting background with a real Open Source ethos, and their developers have made big contributions to a number of Open 
+Source environments. The other thing they do is supply joined up / reworked / beautified versions of open datasets 
+like OpenStreetMap, which is what this tutorial uses. Anyhow, here's the 
+<A href="http://leafletjs.com/examples/quick-start.html">Leaflet Quickstart Tutorial</A> tutorial: work through it, building it into a fresh <KBD>map.html</KBD> webpage. You should be able to run this from your harddrive in a browser. A few hints:
+</P>
+<OL>
+<LI>remember that <CODE>DIV</CODE> tags would go inside the <CODE>BODY</CODE>.</LI>
+<LI>Remember you link to a stylesheet thus: <BR />
+<CODE>&lt;LINK rel="stylesheet" type="text/css" href="style.css" title="Style"&gt;</CODE>
+</LI>
+<LI>Remember that Javascript needs to go inside a set of <CODE>&lt;SCRIPT type="text/javascript"&gt;&lt;/SCRIPT&gt;</CODE> tags; for this part we'd recommend 
+just putting them in the <CODE>BODY</CODE> somewhere <EM>after</EM> the <CODE>DIV</CODE> you set up for the map.</LI>
+<LI>When embedding the basemap data, Leaflet recommend going into MapBox and setting up your own map referenced by a <CODE>MapID</CODE>, which you use in the 
+<CODE>tileLayer</CODE> URL to replace the word <CODE>MapID</CODE>. For now, use their example: <CODE>examples.map-i875mjb7</CODE>. We'll change it shortly.
+</LI>
+<LI>Note that lots of objects' methods return the container object as a default behaviour. This is a common pattern in Javascript, and allows this kind of 
+nice clear code:<BR /><BR />
+<CODE>
+var marker = L.marker([51.5, -0.09]);<BR />
+marker.addTo(map);<BR />
+marker.bindPopup("&lt;b&gt;Hello world!&lt;/b&gt;&lt;br /&gt;I am a popup.");<BR />
+marker.openPopup();</CODE><BR />
+<BR />
+to be treated like this:
+<BR /><BR />
+<CODE>
+var marker = L.marker([51.5, -0.09]);<BR />
+marker = marker.addTo(map);<BR />
+marker = marker.bindPopup("&lt;b&gt;Hello world!&lt;/b&gt;&lt;br /&gt;I am a popup.");<BR />
+marker = marker.openPopup();</CODE><BR />
+<BR />
+and then to be "method chained" into this kind of horror story so beloved of Javascript programmers:<BR /><BR />
+<CODE>L.marker([51.5, -0.09]).addTo(map).bindPopup("&lt;b&gt;Hello world!&lt;/b&gt;&lt;br /&gt;I am a popup.").openPopup();</CODE><BR />
+<BR />I don't know, call me old, but it all seems far too 'Rock and Roll' for its own good -- in my day objects were treated with respect... it was safe to cycle on the information superhighway... no one broke into object variables... kids coded in proper languages... etc... etc... </LI>
+</OL>
+<BR />
+Once you've finished, come back here. 
+</P>
 
-
-<h2></h2>
-<p>
+<P>
+If you've got all that working, you should have a <KBD>map.html</KBD> page that has a pointer, circle and polygon on it, and responds to mouse clicks. Take a copy of the page and then remove the 
+overlayed and event elements, just leaving the map. We'll now play around with a few basic elements.
 </p>
 
+<P>
+The first thing we might want to think about is resizing the map. You can do this in the <CODE>DIV</CODE> tag, thus:
+</P>
+<P>
+<CODE>&lt;DIV id="map" style="width: 600px; height: 400px"&gt;&lt;/DIV&gt;</CODE>
+</P>
+<P>
+You can also set the initial zoom by setting the last figure in the view, and the lat / long 
+with the first two figures respectively (try [0,0],2):
+</P>
+<P>
+<CODE>var map = L.map('map').setView([0.00,0.00], 2);</CODE>
+</P>
+<P>
+The other thing we might want to do is add multiple layers. We'll come onto adding point data shortly, 
+but one option is to change the basemap, or add extra basemap layers that you can either turn on/off or 
+with some transparency. More than likely we might want to generate such layers ourselves and serve them out. For this we need a <A href="http://en.wikipedia.org/wiki/Web_Map_Service">Web Map Service</A> server. These send out maps as georeferenced image files. A popular option is 
+<A href="http://geoserver.org/">GeoServer</A>. GeoServer will farm out maps from a variety of sources, 
+including <A href="http://postgis.net/">PostGIS</A>, the spatial extention for Postgres. We'll look at setting up GeoServer in a later session, when we look at setting up server software more generally. For now, if you'd like to try and add a new basemap that shows the Tweets we used in the Postgres work, add the following 
+<EM>after</EM> the basemap from the leaflet tutorial (this data is served from another of our servers 
+running GeoServer):
+</P>
+<P>
+<CODE>
+L.tileLayer.wms('http://geo8.webarch.net:8080/geoserver/Hurricanes/wms', {<BR />
+&nbsp;&nbsp;&nbsp;format: 'image/png',<BR />
+&nbsp;&nbsp;&nbsp;transparent: true,<BR />
+&nbsp;&nbsp;&nbsp;layers: 'Hurricanes:tweets-shp'<BR />
+}).addTo(map);<BR />
+</CODE>
+<P>
+Putting this code under the code to add the first layer will stack this new layer on top of it. 
+You'll note that the format is "<CODE>png</CODE>". PNG has excellent support for transparency, so 
+here we've set the white areas of the image to have transparent alpha values, so the underlying basemap 
+shines through in these areas. To see the full PNG, just set <CODE>transparent</CODE> to <CODE>false</CODE> in the code above. Obviously if we'd added this layer first, it wouldn't have show at all as there's no 
+transparency in the other basemap.
+</P>
+<P>
+We'll leave it as a project for you to get layers to turn on and off using checkboxes or similar, 
+but as a help, here's a <A href="http://gis.stackexchange.com/questions/114956/leaflet-how-do-you-use-removelayer">good starting point</A>.
+</P>
+<P>
+Instead, we'll look at adding our Tweet data directly from Postgres as points rather than an underlying basemap -- this will then 
+allow us to query them for attributes etc. 
+</P>
 
-<hr class="post_float">[ Next: <a href="1.html">Next</a> ]<br>
+<hr class="post_float">[ Next: <a href="postgisData.html">Postgres data</a> ]<br>
 [<a href="../../../web-based-gis/materials.html">Course Index</a>]<br>
 <hr class="post_float">
 </body></html>
