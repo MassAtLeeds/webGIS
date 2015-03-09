@@ -1,0 +1,87 @@
+<h1>Server Side Technologies</h1>
+
+<h2>3.0 Database Management Systems (DBMS)</h2>
+
+<p>The third component in our web-service solution stack is the Database Management System (DBMS). 
+In this course we will make use of the well-known DBMS PostgreSQL (known as Postgres for short). 
+Postgres is an open-source, platform independent DBMS which is also highly scalable, so suitable 
+for a range or workloads from large internet facing applications to single machine applications. 
+Unlike other well-known DBMS’s such as MySQL (used in the original LAMP stack) or Microsoft SQL Server, 
+Postgres can also be extended for the use of geographic data types by using a spatial database extender 
+known as <a href = 'http://postgis.net/'>PostGIS</a>. PostGIS supports geospatial data types such as 
+points, lines and polygons. </p> 
+
+<p>A Database Management System (DBMS) is a piece of software that sits in front of the database 
+and allows a user to interact with the data itself. The terms DBMS and Database are often used 
+interchangeably, but in reality the DBMS is the Graphical User Interface (GUI) and the Database 
+is the data holding software itself.</p>
+
+<h3>3.1 Relational Databases</h3>
+
+<p>A relational database is an organised collection of related data made up of a number of strictly 
+defined tables (relations). Each table has a number of tuples (rows) and attributes (columns) which 
+represent a real world object. Each row has a unique ID of some kind (S[tudent]ID in the table below). </p>
+
+<img src = 'table.PNG' alt = 'Relational Database Table'>
+
+<p>Relational databases are particularly efficient at storing not only data, but also the relationships 
+between data. For example we may not only need to know the details of a student attending the University 
+of Leeds, but we may also want to know specific details of the degree programme they are studying. 
+It would be considered bad form to include this data in one large table as there would be a large amount 
+of data redundancy, so the data can be split into two tables, joined using a common attribute.</p>  
+<p><a href = 'http://en.wikipedia.org/wiki/Data_redundancy'>Data redundancy</a> exists whereby the same 
+data is stored in more than one table. A well-designed database would reduce the amount of data redundancy 
+by adhering to database normalisation [http://en.wikipedia.org/wiki/Database_normalization] rules which
+ensure the data is stored as efficiently as possible. </p>
+
+<img src = 'table2.PNG' alt = 'Table Relationship'>
+
+<p>The modern-day ‘relational database’ was first proposed in 1970 by Edgar Codd, who was then working 
+as a researcher at IBM. Codd departed from the traditional ‘navigational database’ model whereby records 
+or objects were retrieved by following references from other objects. These traditional databases were 
+navigated using a set of pointers or paths between the data records and focussed on how to navigate the 
+data rather than what data to fetch. Codd’s relational model was based upon a branch of mathematics called 
+set theory and predicate logic with the basic idea that unordered tables can be manipulated using 
+<a href = 'http://en.wikibooks.org/wiki/Structured_Query_Language/Introduction_to_SQL'>non-procedural</a> 
+operations. The history, development and design of relational databases is a vast subject which we don’t have 
+time to cover in any great detail here, but if you are interested; Stanford University teach an entire module 
+on the topic;‘Introduction to Databases’, the materials for which can be found 
+<a href = 'http://web.stanford.edu/class/cs145/'>here</a>.</p>  
+
+<h3> 3.2 pgAdmin</h3>
+
+<p>Postgres does not have a GUI, however a piece of software called pgAdmin has been developed to interface 
+with the Postgres database (alternatively you can use the 
+<a href = 'http://www.postgresql.org/docs/8.3/static/tutorial-accessdb.html'>PGSQL command line</a> if you prefer). 
+pgAdmin is an open-source, cross-platform administration and development platform for the PostgreSQL database. 
+pgAdmin allows the user to quickly view and filter data through its GUI and query data with the syntax highlighting 
+SQL editor. </p>
+
+<h3> 3.3 Structured Query Language </h3>
+<p>SQL (pronounced “S.Q.L.” or “sequel”) is a special purpose query language used to manage data held in a relational 
+database, such as PostgreSQL. SQL provides functionality such as; select, update, insert and delete. SQL was also 
+developed at IBM in the early 1970’s by Donald Chamberlain and Raymond Boyce, following the emergence of Codd’s 
+relational database model. The language was originally known as SEQUEL and was designed to retrieve and manipulate 
+data stored in one of IBM’s large databases – System R. SQL is now an industry standard (ISO/IEC 9075) and is compatible 
+with all major DBMS’s. </p> 
+
+<p>The most common SQL function is the query and you should be familiar with this syntax from ArcMap’s Select by 
+Attributes function. The following statement returns all rows from the Student table defined earlier. <p>
+
+<p>
+	<br />SELECT *
+	<br />FROM Student 
+</p>
+
+<p>The result can be filtered further by using the WHERE clause:</p>
+
+<p>
+	<br />SELECT * 
+	<br />FROM Student
+	<br />WHERE Degree Programme = ‘MSc GIS’
+</p>
+
+<p>For the full SQL reference guide visit <a href = 'http://www.w3schools.com/sql/'>w3schools</a>. 
+In task 2 you will be introduced to pgAdmin and the SQL query language.</p>
+
+<a href = 'task2.html'>Task 2</a>

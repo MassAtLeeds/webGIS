@@ -1,0 +1,72 @@
+
+<h1>Server Side Technologies</h1>
+
+<h2>1.0 An Introduction to Server-Side Technologies</h2>
+
+<p>The first half of this course focussed heavily on client-side technologies such as HTML, 
+CSS, Javascript and existing Javascript libraries. These technologies are named as such because 
+they are performed by the client in the <a href = 'http://en.wikipedia.org/wiki/Client-server_model'>
+client-server</a> model. A client is a piece of software(usually a web browser) which operates on the 
+local system and makes <a href = 'http://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol'>Hypertext 
+Transfer Protocol (HTTP) </a> requests to a server as necessary. Client-side technologies can be faster 
+and safer than server-side technologies; however they are limited in functionality and cannot interact 
+with permanent storage such as a database. If your web-application requires permanent storage, for example 
+you want users to add to an existing dataset or pull information that is stored centrally, server-side 
+technologies are required to complete these processes. </p>
+
+<img src = 'LAMP.PNG' alt = 'LAMP web-service solution stack'>
+
+<p>The term ‘server-side technologies’ can encompass a range of software solutions, mainly:; server-side 
+scripting languages; Database Management Systems (DBMS); web server software such as Apache; and many other 
+technologies depending upon the application being built. The essential combination of technologies required 
+to build a service is known as a ‘software-solution stack’ and the original and most commonly used web-service 
+software solution stack is known as <a href = 'http://en.wikipedia.org/wiki/LAMP_(software_bundle)'>LAMP</a> 
+(Linux, Apache, MySQL and PHP). The 4 components of this stack are now so interchangeable that hundreds of 
+other acronyms are used to define different web-service solution stacks (WAMP uses Windows for example, 
+MAMP uses Mac OS X). It is worth noting that the stack must include 4 components: a client; a web-server 
+instance; a DBMS and a server-side scripting language.</p> 
+
+<ul>
+	<li>L – This component refers to the server’s operating system, in this case Linux. Now commonly 
+		interchangeable with Windows (WAMP), or Mac OS X (MAMP). </li>
+	<li>A – <a href = 'http://www.apache.org/'>Apache</a> is still the most commonly used 
+		web-server software; however others are available such as <a href = 'http://wiki.nginx.org/Main'>NGINX.</a></li> 
+	<li>M – <a href = 'http://www.mysql.com/'>MySQL</a> is an open-source and widely used Relational 
+		Database Management System (RDBMS). It is now commonly interchangeable with <a href = 'http://www.postgresql.org/'>
+		PostgreSQL</a>, <a href = 'https://sqlite.org/'>SQLite</a> or <a href = 'https://www.oracle.com/database/'>
+		Oracle.</a></li>
+	<li>P – <a href = 'http://php.net/'>PHP</a> is a server side scripting language that has the ability to connect to and 
+		query a database using query language (such as SQL for MySQL, or PGSQL for PostgreSQL). PHP has extensive 
+		functionality and is now interchangeable with other server-side scripting languages such as 
+		<a href = 'https://www.ruby-lang.org/en/'>Ruby</a>, <a href = 'https://www.python.org/'>Python</a> or 
+		<a href = 'https://www.perl.org/'>Perl.</a> </li>
+</ul>
+
+<p>
+For the purposes of this part of the course, the software solution stack we will be using is Windows, Apache, 
+PostgreSQL and PHP. We will be using these technologies to extract tweet data from a database and create a web map 
+to display the geo-located tweets. We will cover each of the stack solution components in greater detail, 
+but for now, it is important that you understand the client-server relationship and how these different technologies 
+are involved. To explain how the software solution stack works in greater detail, let’s imagine how the Facebook 
+log-in process works: </p>
+
+<ol>
+	<li>The Facebook login URL is entered in a web browser address bar which initiates a HTTP request from the 
+		client machine to Facebook’s server which is running the Apache web server software </li> 
+
+	<li>Upon receiving the request, the Facebook Apache Server responds with a HTTP response 
+		containing a static webpage which has a log-in form. </li>
+
+	<li>Log-in credentials are entered on the client and the ‘Submit’ button is clicked which calls a server-side 
+	PHP file. The PHP file establishes a secure connection to the Facebook server-side Database Management System 
+	using a query language such as SQL.</li>
+
+	<li>Once a secure connection has been established an SQL query is called which checks if the user-credentials 
+	match a user in the database. If so, a series of server-side processes occur to compile the user profile and 
+	display it in the browser. If not, PHP returns an error and the user is asked to try again.</li> 
+
+<p>Now we have looked at how these technologies interact with one another let’s look at some of the components 
+in greater detail, we can then consider how our web-map service will be constructed.</p>
+
+<hr class="post_float">[ Next: <a href="../Unit2_Apache/index.html">2.0 The Apache HTTP Server</a> ]<br>
+</body></html>
