@@ -22,7 +22,7 @@ a flavour, and some pointers, but you need to swat up: see the
 UNIX-Style systems have settings for who can read, write, and execute files and read, write, and execute from directories. While these are simpler that Windows permissions, users rarely see the workings of Windows permissions, while in UNIX-style OSs manipulating these is much more common.
 </P>
 <P>
-Each file or directory has three sets of permissions: owner, group, and public. 
+Each file or directory has three sets of permissions: owner, group, and all users. 
 Each of these can be set to have read "<KBD>r</KBD>", write "<KBD>w</KBD>", and execute 
 "<KBD>x</KBD>" (run) permission with regards to the file/directory. 
 You can see the ownership and permissions of the files and directories within the pwd by typing:
@@ -35,7 +35,7 @@ For example, a directory may be listed as:
 <KBD>./&nbsp;&nbsp;&nbsp;root:web&nbsp;&nbsp;&nbsp;rwxrwx---</KBD>
 </P>
 <P>
-Meaning the directory is owned by 'root' who can do anything, and usable by the web group who can also do anything. The public can do nothing "<KBD>---</KBD>". 
+Meaning the directory is owned by 'root' who can do anything, and usable by the web group who can also do anything. The rest of users can do nothing "<KBD>---</KBD>". 
 </P>
 <P>
 A file might be listed like this:
@@ -44,10 +44,13 @@ A file might be listed like this:
 <KBD>myProgram.exe&nbsp;&nbsp;&nbsp;root:web&nbsp;&nbsp;&nbsp;rwxr-xr---</KBD>
 </P>
 <P>
-Meaning the owner(root) can read,write, and run the file, while the web group can read and run the file, but not write over it, and the public have no permissions. 
+Meaning the owner(root) can read,write, and run the file, while the web group can read and run the file, but not write over it, and the rest of the users have no permissions. 
 </P>
 <P>
-Especially when dealing with files on websites it is very important the ownership and permissions are set up correctly: you really don't want to give the public permission to write over a program file and then execute the result.
+Especially when dealing with files on websites it is very important the ownership and permissions are set up correctly: you really don't want to give all users permission to write to web 
+directories incase someone manages to get themselves a username on your machine -- the 
+harm they can cause on your machine is bad enough; the harm they can do to client machines who think 
+your website is safe is much greater.
 </P>
 <P>
 You can change the owner of a file using 
@@ -77,7 +80,7 @@ The permissions are usually allocated numerically, by totaling up the following 
 <KBD>chmod 750 filename</KBD> 
 </P>
 <P>
-Sets to: user all permissions; Group read/exec; and public none.
+Sets to: user all permissions; Group read/exec; and all other users none.
 Again, you can use recursion and wildcards.
 </P>
 

@@ -1,7 +1,7 @@
 
 function fetchData()	{
 	
-	 var map = L.map('map').setView([51.505, -0.09], 13);
+	 var map = L.map('map').setView([51.505, -0.09], 2);
  
  L.tileLayer('http://{s}.tiles.mapbox.com/v3/examples.map-i875mjb7/{z}/{x}/{y}.png', {
     attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
@@ -13,7 +13,7 @@ function fetchData()	{
 	
 	//AJAX request to server; accepts a URL to which the request is sent 
 	//and a callback function to execute if the request is successful. 
-	$.getJSON("fetch_tweets.php", function(results)	{ 
+	$.getJSON("http://dialogplus.leeds.ac.uk/geog5870/web01/fetchData.php", function(results)	{ 
 		
 		//Populate tweetData with results
 		for (var i = 0; i < results.length; i++ )	{
@@ -26,7 +26,7 @@ function fetchData()	{
 			}); 
 		}
 		
-		//plotTweets(); 
+		plotTweets(); 
 	});
 	
 	function plotTweets()	{	
