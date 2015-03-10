@@ -49,20 +49,21 @@ in the results array. Each tweet object contains an id, a text body, latitude an
 The new Javascript object is then ‘pushed’ to the end of the ‘tweetData’ array, to create an array 
 of Javascript objects. </p>
 
-<code>//AJAX request to unit5_fetchData.php file
-<br />$.getJSON("unit5_fetchData.php", function(results)	{ 
-<br />		
-<br />		//Populate tweetData with results
-<br />for (var i = 0; i < results.length; i++ )	{
-<br />			
-<br />			tweetData.push ({
-<br />				id: results[i].id, 
-<br />				body: results[i].body, 
-<br />				lat: results[i].lat, 
-<br />				lon: results[i].lon
-<br />			}); 
-<br />		}
-</code>
+<code><pre>
+//AJAX request to unit5_fetchData.php file
+$.getJSON("unit5_fetchData.php", function(results)	{ 
+	
+	//Populate tweetData with results
+	for (var i = 0; i < results.length; i++ )	{
+			
+		tweetData.push ({
+		id: results[i].id, 
+		body: results[i].body, 
+		lat: results[i].lat, 
+		lon: results[i].lon
+	}); 
+}
+</pre></code>
 
 <p>Thirdly the fetchData() function calls another function called ‘writeTweets()’ :</p>
 <code>writeTweets();</code>
@@ -72,22 +73,27 @@ each object to the ‘textWrap’ div in the HTML. Note how ‘document.getEleme
 the HTML div. The reason this code is written in a separate function is to ensure that it occurs after 
 the call back function has completed. </p>
 
-<code>function writeTweets()	{	
-<br />		 
-<br />		for (var i = 0; i< tweetData.length; i++)	{ 
-<br />			document.getElementById('textWrap').innerHTML += 
-<br />			"id = " + tweetData[i].id + ", text = " + tweetData[i].body + 
-<br />			", coordinates = " + tweetData[i].lat + ", " + tweetData[i].lon + "&ltbr /&gt"; 
-<br />		}
-<br />	}
-</code>
+<code><pre>
+function writeTweets()	{	
+		 
+	for (var i = 0; i< tweetData.length; i++)	{ 
+		document.getElementById('textWrap').innerHTML 
+		+= "id = " + tweetData[i].id + ", 
+		text = " + tweetData[i].body + 
+		", coordinates = " + tweetData[i].lat + 
+		", " + tweetData[i].lon + "&ltbr /&gt"; 
+	}
+}
+</pre></code>
 
 <p>The clearData() function at the bottom of the Javascript file simply overwrites the 
 current content of the textWrap div with nothing, hence the empty quotation marks: </p>
 
-<code>function clearData()	{
-<br />	document.getElementById('textWrap').innerHTML = ' '; 
-<br />}</code>
+<code><pre>
+function clearData()	{
+	document.getElementById('textWrap').innerHTML = ' '; 
+}
+</pre></code>
 
 <h3>PHP</h3>
 
@@ -101,15 +107,15 @@ to inform the type of data returned from the server, so the data can be handled 
 the contents of the row straight to the page as we did before, each value in the row is now assigned a 
 key so that a key-value pair array can be constructed for that particular row:</p>
 
-<code>
-<br />//Loop through query results 
-<br />	while ($row = pg_fetch_array($result, null, PGSQL_ASSOC))	{
-<br />		//Populate tweetData array 
-<br />		$tweetData[] = array("id" => $row["oid"], 
-<br />							"body" => $row["body"], 
-<br />							"lat" => $row["latitude"],
-<br /> 							"lon" => $row["longitude"]);
-<br />	}	
+<code><pre>
+//Loop through query results 
+while ($row = pg_fetch_array($result, null, PGSQL_ASSOC))	{
+//Populate tweetData array 
+$tweetData[] = array("id" => $row["oid"], 
+	"body" => $row["body"], 
+	"lat" => $row["latitude"],
+	"lon" => $row["longitude"]);
+}</pre>	
 </code>
 
 <p>The key-value pair array representing one row of data is then pushed to the tweetData array, so that a 
@@ -141,7 +147,10 @@ in this case the JSON encoded tweetData array. </p>
 </ol>
 
 <p>Using the 3 files provided, try to get this example to work so that tweet data is returned when the user 
-clicks the ‘Fetch Data’ button and the data is cleared when the ‘Clear Data’ button is clicked. </p>
+clicks the ‘Fetch Data’ button and the data is cleared when the 'Clear Data' button is clicked. </p>
 <br />
-<hr class="post_float">[ Next: <a href="../6_login_insert/index.html">Unit 6 - Logging in and Inserting Data</a> ]<br>
+
+<hr class="post_float">
+[<a href="../../../web-based-gis/materials.html">Course Index</a>]<br>
+<hr class="post_float">
 </body></html>
