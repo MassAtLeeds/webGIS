@@ -1,3 +1,8 @@
+---
+layout: default
+title: Server Side Technologies - Task 4
+---
+
 <h1>Server Side Technologies</h1>
 
 <h2>Task 4</h2>
@@ -14,7 +19,7 @@
 
 <h3>HTML</h3>
 
-<p>Let’s first look at the HTML file. Most of this mark-up is straight forward. There are two 
+<p>Letâ€™s first look at the HTML file. Most of this mark-up is straight forward. There are two 
 script links at the top of the file, one of which makes reference to the AJAX jquery library 
 and the second of which links to the Javascript file. The important thing to note is the addition 
 of two buttons in the HTML: </p>
@@ -27,13 +32,13 @@ of two buttons in the HTML: </p>
 <p>The first button calls a function called fetchData() and the second calls clearData() 
 both of which are defined in the Javascript file. </p>
 
-<p>There is also an empty div called ‘textWrap’ which will hold the data fetched from the server. </p>
+<p>There is also an empty div called â€˜textWrapâ€™ which will hold the data fetched from the server. </p>
 
 <h3>Javascript</h3>
 
-<p>The first function in the Javascript file is the ‘fetchData()’ function which is called from the 
+<p>The first function in the Javascript file is the â€˜fetchData()â€™ function which is called from the 
 Fetch Data button in the HTML; a number of things occur in this function. Firstly a new empty array 
-is defined called ‘tweetData’:</p>
+is defined called â€˜tweetDataâ€™:</p>
 
 <code>tweetData = new Array();</code>
 
@@ -41,7 +46,7 @@ is defined called ‘tweetData’:</p>
 dialogplus server and returns a set of JSON encoded results. Upon successfully retrieving the results, 
 a function is called which loops through the results to create a new Javascript object for each tweet 
 in the results array. Each tweet object contains an id, a text body, latitude and a longitude. 
-The new Javascript object is then ‘pushed’ to the end of the ‘tweetData’ array, to create an array 
+The new Javascript object is then â€˜pushedâ€™ to the end of the â€˜tweetDataâ€™ array, to create an array 
 of Javascript objects. </p>
 
 <code>//AJAX request to unit5_fetchData.php file
@@ -59,11 +64,11 @@ of Javascript objects. </p>
 <br />		}
 </code>
 
-<p>Thirdly the fetchData() function calls another function called ‘writeTweets()’ :</p>
+<p>Thirdly the fetchData() function calls another function called â€˜writeTweets()â€™ :</p>
 <code>writeTweets();</code>
 
 <p>The writeTweets() function simply loops through the tweetData array created above and appends 
-each object to the ‘textWrap’ div in the HTML. Note how ‘document.getElementById()’ is used to access 
+each object to the â€˜textWrapâ€™ div in the HTML. Note how â€˜document.getElementById()â€™ is used to access 
 the HTML div. The reason this code is written in a separate function is to ensure that it occurs after 
 the call back function has completed. </p>
 
@@ -112,17 +117,17 @@ multidimensional key-value pair array is constructed for the whole dataset. Note
 to the tweetData array using the syntax $tweetData[] </p>
 
 <p>Now the whole dataset is formatted in a suitable way it can be encoded to JSON and returned using the echo 
-function. AJAX returns the ‘results’ of the PHP script, which is anything returned using the ‘echo’ function; 
+function. AJAX returns the â€˜resultsâ€™ of the PHP script, which is anything returned using the â€˜echoâ€™ function; 
 in this case the JSON encoded tweetData array. </p>
 
 <code>echo json_encode($tweetData);</code>
 
 <h3>Summary</h3>
 
-<p>To summarise, let’s look at an overview of the whole process:</p>
+<p>To summarise, letâ€™s look at an overview of the whole process:</p>
 
 <ol>
-	<li>User clicks ‘Fetch Data’ button</li>
+	<li>User clicks â€˜Fetch Dataâ€™ button</li>
 	<li>fetchData() function is called which initiates an AJAX GET HTTP request to the PHP file</li>
 	<li>PHP creates a secure connection to geog5871 database</li>
 	<li>PHP queries tweets table and returns a results set</li>
@@ -136,7 +141,7 @@ in this case the JSON encoded tweetData array. </p>
 </ol>
 
 <p>Using the 3 files provided, try to get this example to work so that tweet data is returned when the user 
-clicks the ‘Fetch Data’ button and the data is cleared when the ‘Clear Data’ button is clicked. </p>
+clicks the â€˜Fetch Dataâ€™ button and the data is cleared when the â€˜Clear Dataâ€™ button is clicked. </p>
 <br />
 <hr class="post_float">[ Next: <a href="../6_login_insert/index.html">Unit 6 - Logging in and Inserting Data</a> ]<br>
 </body></html>

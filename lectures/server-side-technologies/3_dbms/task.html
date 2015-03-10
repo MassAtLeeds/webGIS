@@ -1,15 +1,19 @@
+---
+layout: default
+title: Server Side Technologies - Task 2
+---
 
 <h1>Server Side Technologies</h1>
 
 <h2>Task 2 - Introduction to PostgreSQL and DbVisualizer</h2>
 
 <ol>
-	<p>We have created a PostgreSQL database instance named ‘geog5871’ on the dialogplus.leeds.ac.uk remote server. 
+	<p>We have created a PostgreSQL database instance named â€˜geog5871â€™ on the dialogplus.leeds.ac.uk remote server. 
 	In this task you will:</p>
 
 	<ul>
 		<li>Create a connection to the geog5871 database instance</li>
-		<li>Interrogate the existing ‘tweets’ tables using SQL</li>
+		<li>Interrogate the existing â€˜tweetsâ€™ tables using SQL</li>
 		<li>Create your own table using additional data-sets</li> 
 	</ul>
 
@@ -23,19 +27,19 @@
 	SSH tunnel must be established between the remote server and the local host. </p>
 
 	<ol>
-		<li>Open Putty and enter the following credentials in the ‘session’ window:<br />
+		<li>Open Putty and enter the following credentials in the â€˜sessionâ€™ window:<br />
 			<br />Host Name: 	dialogplus.leeds.ac.uk
 			<br />Port: 		22
 			<br />Username:		Your allocated username e.g. web01</li>
 		<br />
-		<li>Now expand the ‘SSH’ menu item in the left hand panel and select ‘Tunnels’. </li>
+		<li>Now expand the â€˜SSHâ€™ menu item in the left hand panel and select â€˜Tunnelsâ€™. </li>
 		<br />
 		<li>In the tunnels window set the source port to 5433 (note: we are not using the default local host port 
 			5432 as we may want to use this for a local PostgreSQL connection later). </li>
 		<br />
 		<li>Set the destination IP address to 127.0.0.1:5432. </li>
 		<br />
-		<li>Add this connection using the ‘Add’ button and click ‘Open’ to establish the connection. </li>
+		<li>Add this connection using the â€˜Addâ€™ button and click â€˜Openâ€™ to establish the connection. </li>
 		<br />
 		<li>Leaving the Putty connection open, follow the instructions below to connect to the database instance 
 		using pgAdmin (use 5433 as the localhost port instead of 5432).</li>
@@ -51,7 +55,7 @@
 	<li>Download DbVisualizer <a href = 'http://www.dbvis.com/download'>here</a>(32-bit setup installer) and run the EXE file. 
 	If you are using a University owned machine, ensure that the install directory is set to your M:/drive. </li><br />
 	
-	<li>Connect to the dialogplus.leeds.ac.uk server by clicking the ‘Create new database connection’ button on the 
+	<li>Connect to the dialogplus.leeds.ac.uk server by clicking the â€˜Create new database connectionâ€™ button on the 
 	top left hand side of the toolbar, under the 'Databases' tab. </li><br />
 	
 	<li>Use the database connection wizard to create a new connection to the dialogplus.leeds.ac.uk server.
@@ -73,7 +77,7 @@
 
 	<li>Expand the geog5871 database and view the different subdirectories enclosed within. </li><br />
 	
-	<li>Find the ‘tweets’ table located in public > TABLE and explore the data, by right clicking and selecting
+	<li>Find the â€˜tweetsâ€™ table located in public > TABLE and explore the data, by right clicking and selecting
 	'open in new tab'. You should see a number of tabs appear at the top of the page, including: data, columns, info etc.
 	How many columns are there? How many rows are there? Which column is the primary key?</li>
 
@@ -104,15 +108,15 @@
 	
 	<li>Use the command below to access the psql command line and connect to the geog5871 database, you will then be prompted
 	for the database password.<br />
-	<code>psql –U geog5871student geog5871</code></li><br />
+	<code>psql â€“U geog5871student geog5871</code></li><br />
 	
 	<li>If the database connection has been established successfully, the command line prompt will change to:
 	<code>geog5871=></code></li><br />
 	
 	<li>In a browser, visit the spreadsheet page on the <a href = 'http://earthquake.usgs.gov/earthquakes/feed/v1.0/csv.php'>
 	USGS webpage</a> and download data in CSV format for all earthquakes which have occurred in the past month. 
-	Open this file in excel to view the data. Tidy up the spreadsheet so that only; ‘time’, ‘latitude’, ‘longitude’, 
-	‘depth’, ‘magnitude’,‘id’ and ‘place’ remain. </li><br />
+	Open this file in excel to view the data. Tidy up the spreadsheet so that only; â€˜timeâ€™, â€˜latitudeâ€™, â€˜longitudeâ€™, 
+	â€˜depthâ€™, â€˜magnitudeâ€™,â€˜idâ€™ and â€˜placeâ€™ remain. </li><br />
 	 
 	<li> Now that we know the format of the data, we can create a table to store it. Using the syntax below (where &lttable name&gt is 
 	an appropriate name you have chosen for your database), create a new table. 

@@ -1,3 +1,8 @@
+---
+layout: default
+title: Server Side Technologies - DBMS
+---
+
 <h1>Server Side Technologies</h1>
 
 <h2>3.0 Database Management Systems (DBMS)</h2>
@@ -6,7 +11,7 @@
 In this course we will make use of the well-known DBMS PostgreSQL (known as Postgres for short). 
 Postgres is an open-source, platform independent DBMS which is also highly scalable, so suitable 
 for a range or workloads from large internet facing applications to single machine applications. 
-Unlike other well-known DBMSís such as MySQL (used in the original LAMP stack) or Microsoft SQL Server, 
+Unlike other well-known DBMS‚Äôs such as MySQL (used in the original LAMP stack) or Microsoft SQL Server, 
 Postgres can also be extended for the use of geographic data types by using a spatial database extender 
 known as <a href = 'http://postgis.net/'>PostGIS</a>. PostGIS supports geospatial data types such as 
 points, lines and polygons. </p> 
@@ -36,16 +41,16 @@ ensure the data is stored as efficiently as possible. </p>
 
 <img src = 'table2.PNG' alt = 'Table Relationship'>
 
-<p>The modern-day ërelational databaseí was first proposed in 1970 by Edgar Codd, who was then working 
-as a researcher at IBM. Codd departed from the traditional ënavigational databaseí model whereby records 
+<p>The modern-day ‚Äòrelational database‚Äô was first proposed in 1970 by Edgar Codd, who was then working 
+as a researcher at IBM. Codd departed from the traditional ‚Äònavigational database‚Äô model whereby records 
 or objects were retrieved by following references from other objects. These traditional databases were 
 navigated using a set of pointers or paths between the data records and focussed on how to navigate the 
-data rather than what data to fetch. Coddís relational model was based upon a branch of mathematics called 
+data rather than what data to fetch. Codd‚Äôs relational model was based upon a branch of mathematics called 
 set theory and predicate logic with the basic idea that unordered tables can be manipulated using 
 <a href = 'http://en.wikibooks.org/wiki/Structured_Query_Language/Introduction_to_SQL'>non-procedural</a> 
-operations. The history, development and design of relational databases is a vast subject which we donít have 
+operations. The history, development and design of relational databases is a vast subject which we don‚Äôt have 
 time to cover in any great detail here, but if you are interested; Stanford University teach an entire module 
-on the topic;ëIntroduction to Databasesí, the materials for which can be found 
+on the topic;‚ÄòIntroduction to Databases‚Äô, the materials for which can be found 
 <a href = 'http://web.stanford.edu/class/cs145/'>here</a>.</p>  
 
 <h3> 3.2 DbVisualizer</h3>
@@ -58,14 +63,14 @@ DbVizualizer allows the user to quickly view and filter data through its GUI and
 SQL editor. </p>
 
 <h3> 3.3 Structured Query Language </h3>
-<p>SQL (pronounced ìS.Q.L.î or ìsequelî) is a special purpose query language used to manage data held in a relational 
+<p>SQL (pronounced ‚ÄúS.Q.L.‚Äù or ‚Äúsequel‚Äù) is a special purpose query language used to manage data held in a relational 
 database, such as PostgreSQL. SQL provides functionality such as; select, update, insert and delete. SQL was also 
-developed at IBM in the early 1970ís by Donald Chamberlain and Raymond Boyce, following the emergence of Coddís 
+developed at IBM in the early 1970‚Äôs by Donald Chamberlain and Raymond Boyce, following the emergence of Codd‚Äôs 
 relational database model. The language was originally known as SEQUEL and was designed to retrieve and manipulate 
-data stored in one of IBMís large databases ñ System R. SQL is now an industry standard (ISO/IEC 9075) and is compatible 
-with all major DBMSís. </p> 
+data stored in one of IBM‚Äôs large databases ‚Äì System R. SQL is now an industry standard (ISO/IEC 9075) and is compatible 
+with all major DBMS‚Äôs. </p> 
 
-<p>The most common SQL function is the query and you should be familiar with this syntax from ArcMapís Select by 
+<p>The most common SQL function is the query and you should be familiar with this syntax from ArcMap‚Äôs Select by 
 Attributes function. The following statement returns all rows from the Student table defined earlier. <p>
 
 <p>
@@ -78,7 +83,7 @@ Attributes function. The following statement returns all rows from the Student t
 <p>
 	<br />SELECT * 
 	<br />FROM Student
-	<br />WHERE Degree Programme = ëMSc GISí
+	<br />WHERE Degree Programme = ‚ÄòMSc GIS‚Äô
 </p>
 
 <p>For the full SQL reference guide visit <a href = 'http://www.w3schools.com/sql/'>w3schools</a>. 

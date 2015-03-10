@@ -1,3 +1,8 @@
+---
+layout: default
+title: Server Side Technologies - PHP Task
+---
+
 <h1>Server Side Technologies</h1>
 
 <h2>Task 3 - Connecting to and querying a database with PHP</h2>
@@ -11,19 +16,19 @@
 </ul>
 	
 <ol>
-	<li><p>Create a new file in notepad++ called ëfetchData.phpí and create the PHP script tags 
+	<li><p>Create a new file in notepad++ called ‚ÄòfetchData.php‚Äô and create the PHP script tags 
 	within which your PHP script will sit. If you like, you can place some basic HTML around the 
 	PHP script tags to wrap the PHP output, but this is not necessary. </p></li>
 	
 	<li><p>Using the notes on PHP Database Connection, open a secure connection to the database 
 	instance on the dialogplus.ac.uk server. As this PHP file will sit on the dialogplus server 
-	itself, the host name will be ëlocalhostí, the database name is ëgeog5871í and you have been 
+	itself, the host name will be ‚Äòlocalhost‚Äô, the database name is ‚Äògeog5871‚Äô and you have been 
 	provided with the username and password. The entire string needs to be encased in double quotation 
 	marks and each parameter needs to be encased in single quotation marks. It is a good idea to 
-	include an ëor dieí statement at the end of the pg_connect string incase the connection fails 
+	include an ‚Äòor die‚Äô statement at the end of the pg_connect string incase the connection fails 
 	for example:</p>
 	
-	<code>$pgOptions = ì//database connection parameters go hereî;
+	<code>$pgOptions = ‚Äú//database connection parameters go here‚Äù;
 	<br />$dbconn = pg_connect($pgOptions) or die ('connection failure');
 	</code></li>
 	
@@ -33,7 +38,7 @@
 	<code>$query = "SELECT * FROM tweets";</code></li>
 	
 	<li><p>Use the pg_query() function to query the geog5871 database, again it may be a good idea to 
-	include an ëor dieí statement. pg_last_error() will provide further information if the query 
+	include an ‚Äòor die‚Äô statement. pg_last_error() will provide further information if the query 
 	should fail. </p>
 	
 	<code>$result = pg_query($dbconn, $query) or die ('Query failed: '.pg_last_error());</code></li>
@@ -52,7 +57,7 @@
 	
 	<li><p>As mentioned earlier, PHP is notoriously hard to debug. If there is no output from the PHP script, 
 	check the console log. If you see a general 500 error, there is probably a typo in your file 
-	(check all line breaks are present). If you see one of the errors you defined in the ëor dieí statements, 
+	(check all line breaks are present). If you see one of the errors you defined in the ‚Äòor die‚Äô statements, 
 	there is a problem with either your SQL query or your database connection parameters. </p></li>
 	
 	<li><p>If you get really stuck, we have provided an example PHP file 

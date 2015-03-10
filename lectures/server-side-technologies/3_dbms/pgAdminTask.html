@@ -1,15 +1,19 @@
+---
+layout: default
+title: Server Side Technologies - pgAdmin task
+---
 
 <h1>Server Side Technologies</h1>
 
 <h2>Task 2 - Introduction to PostgreSQL and pgAdmin</h2>
 
 <ol>
-	<p>We have created a PostgreSQL database instance named ‘geog5871’ on the dialogplus.leeds.ac.uk remote server. 
+	<p>We have created a PostgreSQL database instance named â€˜geog5871â€™ on the dialogplus.leeds.ac.uk remote server. 
 	In this task you will:</p>
 
 	<ul>
 		<li>Create a connection to the geog5871 database instance</li>
-		<li>Interrogate the existing ‘tweets’ tables using SQL</li>
+		<li>Interrogate the existing â€˜tweetsâ€™ tables using SQL</li>
 		<li>Create your own table using additional data-sets</li> 
 	</ul>
 
@@ -23,19 +27,19 @@
 	SSH tunnel must be established between the remote server and the local host. </p>
 
 	<ol>
-		<li>Open Putty and enter the following credentials in the ‘session’ window:<br />
+		<li>Open Putty and enter the following credentials in the â€˜sessionâ€™ window:<br />
 			<br />Host Name: 	dialogplus.leeds.ac.uk
 			<br />Port: 		22
 			<br />Username:		Your allocated username e.g. web01</li>
 		<br />
-		<li>Now expand the ‘SSH’ menu item in the left hand panel and select ‘Tunnels’. </li>
+		<li>Now expand the â€˜SSHâ€™ menu item in the left hand panel and select â€˜Tunnelsâ€™. </li>
 		<br />
 		<li>In the tunnels window set the source port to 5433 (note: we are not using the default local host port 
 			5432 as we may want to use this for a local PostgreSQL connection later). </li>
 		<br />
 		<li>Set the destination IP address to 127.0.0.1:5432. </li>
 		<br />
-		<li>Add this connection using the ‘Add’ button and click ‘Open’ to establish the connection. </li>
+		<li>Add this connection using the â€˜Addâ€™ button and click â€˜Openâ€™ to establish the connection. </li>
 		<br />
 		<li>Leaving the Putty connection open, follow the instructions below to connect to the database instance 
 		using pgAdmin (use 5433 as the localhost port instead of 5432).</li>
@@ -48,13 +52,13 @@
 	pgAdmin is a free and open source administration and development platform for PostgreSQL. </p>
 
 	<li>Open pgAdmin; available <a href = 'http://www.pgadmin.org/download/'>here</a> and connect to the dialogplus.leeds.ac.uk 
-	server by clicking the ‘Adds connection to a server’ button on the top right hand side of the toolbar.</li><br />
+	server by clicking the â€˜Adds connection to a serverâ€™ button on the top right hand side of the toolbar.</li><br />
 	
 	<p>(Note that if you are installing this on your own machine and it is 64bit, you may need the Microsoft 32bit Visual C++ 
-	redistribution [http://www.microsoft.com/en-gb/download/details.aspx?id=40784]. The error you’ll see is along the lines 
-	of “msvcp120.dll not installed on your machine ”) </p>
+	redistribution [http://www.microsoft.com/en-gb/download/details.aspx?id=40784]. The error youâ€™ll see is along the lines 
+	of â€œmsvcp120.dll not installed on your machine â€) </p>
 	
-	<li>In the ‘New Server Registration’ dialogue box, enter the following credentials including the <strong>database 
+	<li>In the â€˜New Server Registrationâ€™ dialogue box, enter the following credentials including the <strong>database 
 	username and password</strong>:<br />
 		</p>Name: 	geog5871
 		<br />Host:		dialogplus.leeds.ac.uk
@@ -73,12 +77,12 @@
 
 	<li>Expand the geog5871 connection and view the different subdirectories enclosed within. </li><br />
 	
-	<li>Find the ‘tweets’ table located in Schemas > public > Tables and explore the data. 
+	<li>Find the â€˜tweetsâ€™ table located in Schemas > public > Tables and explore the data. 
 	How many columns are there? How many rows are there? Which column is the primary key?</li>
 
 	<h3>3.0 Querying the Data </h3>
 
-	<li>Right click on the tweets table and select ‘Scripts > SELECT Script’. 
+	<li>Right click on the tweets table and select â€˜Scripts > SELECT Scriptâ€™. 
 	This query builder allows you to query the data using Structured Query Language (SQL). 
 	There is also the option to use pgSQL; spatially enabled structured query language. 
 	Although this database is a PostgreSQL database, the data within it is not spatially enabled. </li><br />
@@ -94,10 +98,10 @@
 	<li>As well as querying data from existing tables, you can also create your own tables within the database. 
 	Visit the spreadsheet page on the <a href = 'http://earthquake.usgs.gov/earthquakes/feed/v1.0/csv.php'>USGS webpage</a> and 
 	download data in CSV format for all earthquakes which have occurred in the past month. Open this file in excel 
-	to view the data. Tidy up the spreadsheet so that only; ‘time’, ‘latitude’, ‘longitude’, ‘depth’, ‘magnitude’,
-	 ‘id’ and ‘place’ remain. </li><br />
+	to view the data. Tidy up the spreadsheet so that only; â€˜timeâ€™, â€˜latitudeâ€™, â€˜longitudeâ€™, â€˜depthâ€™, â€˜magnitudeâ€™,
+	 â€˜idâ€™ and â€˜placeâ€™ remain. </li><br />
 	 
-	<li>In pgAdmin, right click on ‘tables’ in the left hand column and select ‘New Table’. 
+	<li>In pgAdmin, right click on â€˜tablesâ€™ in the left hand column and select â€˜New Tableâ€™. 
 	You now need to create a table definition for the Earthquake data. Ensure that you add a new column for each column 
 	in the dataset and choose an appropriate data type (choose wisely - we recommend numeric and varying character). 
 	As all of your tables will be saved in the same location, we recommend that you include your username in the title 
