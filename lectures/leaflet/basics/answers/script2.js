@@ -3,9 +3,8 @@ function fetchData()	{
 	
 	 var map = L.map('map').setView([51.505, -0.09], 2);
  
- L.tileLayer('http://{s}.tiles.mapbox.com/v3/examples.map-i875mjb7/{z}/{x}/{y}.png', {
-    attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
-    maxZoom: 18
+L.tileLayer('http://{s}.tile.thunderforest.com/landscape/{z}/{x}/{y}.png', 
+{attribution:'Imagery © <a href="http://www.thunderforest.com/terms/">Thunderforest</a>, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Map data © <a href="http://www.openstreetmap.org/copyright">OpenStreetMap contributors</a>', maxZoom: 2
 }).addTo(map);
 	
 	//Define array to hold results returned from server

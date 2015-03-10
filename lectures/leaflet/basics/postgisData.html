@@ -10,18 +10,18 @@ So, we should now have a page with a <CODE>BODY</CODE> like this:
 </P>
 <P>
 <CODE>
-&lt;DIV id="map"&gt;&lt;/DIV&gt;<BR /><BR />
+&lt;DIV id="map"&gt;&lt;/DIV&gt;<BR />
  
-&lt;SCRIPT type="text/javascript"&gt;<BR /><BR />
+&lt;SCRIPT type="text/javascript"&gt;<BR />
  
- var map = L.map('map').setView([51.505, -0.09], 13);<BR /><BR />
+ var map = L.map('map').setView([51.505, -0.09], 13);<BR />
  
- L.tileLayer('http://{s}.tiles.mapbox.com/v3/examples.map-i875mjb7/{z}/{x}/{y}.png', {<BR />
-    attribution: 'Map data &copy; etc.',<BR />
-    maxZoom: 18<BR />
-}).addTo(map);<BR /><BR />
-
-&lt;/SCRIPT&gt;<BR /><BR />
+ L.tileLayer<BR />
+ ('http://{s}.tiles.mapbox.com/v3/examples.map-i875mjb7/{z}/{x}/{y}.png', {<BR />
+&nbsp;&nbsp;&nbsp;attribution: 'Map data &copy; etc.',<BR />
+&nbsp;&nbsp;&nbsp;maxZoom: 2<BR />
+}).addTo(map);<BR />
+&lt;/SCRIPT&gt;<BR />
 </CODE>
 
 </P>
@@ -52,6 +52,7 @@ Before we add the Postgres data, let's just get the map working now the script i
 <P>
 This method should now run when the page loads. Check you can see your map.
 </P>
+<hr>
 <P>
 Provided you can see the map, we'll now adjust the script so that rather than calling 
 <CODE>writeTweets()</CODE>, it calls another function <CODE>plotTweets()</CODE> that adds the Postgres data to the 
@@ -67,7 +68,8 @@ location objects from lats and longs. We can then use this to set up markers. He
 function plotTweets()	{<BR />	
 &nbsp;&nbsp;&nbsp;//Loop through tweetData to create marker at each location <BR />
 &nbsp;&nbsp;&nbsp;for (var i = 0; i &lt; tweetData.length; i++)	{ <BR />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;var markerLocation = new L.LatLng(tweetData[i].lat, tweetData[i].lon);<BR />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;var markerLocation = <br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;new L.LatLng(tweetData[i].lat, tweetData[i].lon);<BR />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;var marker = new L.Marker(markerLocation);<BR /><BR />
 				
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;map.addLayer(marker);<BR />
@@ -80,6 +82,7 @@ function plotTweets()	{<BR />
 Add this function to your script, and then call it where you were calling 
 <CODE>writeTweets()</CODE>. Hopefully you can now see the  Tweets on a map.
 </P>
+<hr>
 <P>
 While this may seem like overkill, when you could just store the Tweets in a Google spreadsheet and 
 press a button to map them, let's step back a bit and look at what we've now got -- a system where we can 
@@ -99,24 +102,7 @@ tackle -- getting users to upload their own data.
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<hr class="post_float">[ Next: <a href="more.html">More info</a> ]<br>
+<hr class="post_float">
 [<a href="../../../web-based-gis/materials.html">Course Index</a>]<br>
 <hr class="post_float">
 </body></html>
