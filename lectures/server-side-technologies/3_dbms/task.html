@@ -45,16 +45,19 @@
 
 	<p>If you are using a computer on the University of Leeds network you can connect directly to the PostgreSQL 
 	database instance on the dialogplus.leeds.ac.uk server through DbVisualizer.  
-	DbVisualizer is a free administration and development platform for PostgreSQL. </p>
+	DbVisualizer is a free administration and development platform for PostgreSQL, unfortunately it isn't installed on the 
+	University machines, so you need to download a copy now and run it from your M drive.</p>
 
-	<li>Download DbVisualizer <a href = 'http://www.dbvis.com/'>here</a> and run the exe file. If you are using a 
-	University owned machine, ensure that the destination directory is set to your M:/drive. </li><br />
+	<li>Download DbVisualizer <a href = 'http://www.dbvis.com/download'>here</a>(32-bit setup installer) and run the EXE file. 
+	If you are using a University owned machine, ensure that the install directory is set to your M:/drive. </li><br />
 	
 	<li>Connect to the dialogplus.leeds.ac.uk server by clicking the ‘Create new database connection’ button on the 
 	top left hand side of the toolbar, under the 'Databases' tab. </li><br />
 	
 	<li>Use the database connection wizard to create a new connection to the dialogplus.leeds.ac.uk server.
-	Enter the following credentials including the <strong>database username and password</strong>:<br />
+	Enter a suitable connection alias that allows you to recognise the connection and enter the following 
+	credentials including the <strong>database username and password</strong>:<br />
+	
 		</p> Database Driver: 	PostgreSQL
 		<br />Database Server: 	dialogplus.leeds.ac.uk
 		<br />Database Port:	5432
@@ -66,11 +69,11 @@
 	
 	<p>DbVisualizer has extensive functionality which makes it easy to query, edit and display data. 
 	You will see an object browser on the left hand side of the window, showing the various database 
-	connections (you should see the geog5871 connection here)</p> 
+	connections (you should see the alias name you provided here)</p> 
 
-	<li>Expand the geog5871 connection and view the different subdirectories enclosed within. </li><br />
+	<li>Expand the geog5871 database and view the different subdirectories enclosed within. </li><br />
 	
-	<li>Find the ‘tweets’ table located in public > TABLE and explore the data, by right clikcing and selecting
+	<li>Find the ‘tweets’ table located in public > TABLE and explore the data, by right clicking and selecting
 	'open in new tab'. You should see a number of tabs appear at the top of the page, including: data, columns, info etc.
 	How many columns are there? How many rows are there? Which column is the primary key?</li>
 
@@ -86,17 +89,18 @@
 	
 	<li>Use the <a href = 'http://www.w3schools.com/sql/sql_where.asp)'>w3 schools</a> web pages to work out how to build 
 	an SQL query to select all messages that were tweeted on day 30 of the sample we have collected.
-	To run the query select the green arrow icon.</li><br />
+	To run the query select the green arrow icon. The result will be displayed in the results window beneath.</li><br />
 	
-	<li>Build a further 2 queries of your choice and made a note of the syntax you used. 
-	You can also save the query text if you wish. </li><br />
+	<li>Build a further 2 queries of your choice and made a note of the syntax you used, as you may want to use this later.  
+	You can also save the query text if you wish. (File > Save As)</li><br />
 	
-	<li>It is suggested that you use DbVisualizer throughout the remainder of the course to check your 
-	SQL syntax, imported data etc. </li>
+	<li>It is suggested that you use DbVisualizer throughout the remainder of the course to check that your SQL syntax 
+	is correct and that data have been imported correctly etc. </li>
 	
 	<h3>4.0 Creating a Table</h3>
 	<li>Unfortunately this version of DbVisualiser does not support table creation, so we are going to go back to the 
-	command line in order to create tables. Open Putty now and log in using your dialogplus login credentials.</li><br />
+	command line in order to create a new table within the database. Open Putty now and log in using your dialogplus 
+	login credentials.</li><br />
 	
 	<li>Use the command below to access the psql command line and connect to the geog5871 database, you will then be prompted
 	for the database password.<br />
@@ -113,7 +117,7 @@
 	<li> Now that we know the format of the data, we can create a table to store it. Using the syntax below (where &lttable name&gt is 
 	an appropriate name you have chosen for your database), create a new table. 
 	
-	As all of your tables will be saved in the same location, we recommend that you include your username 
+	As all of your tables will be created in the same location, we recommend that you include your username 
 	somewhere in the title so you can identify your table once it has been created. <br /><br />
 	
 	<code>CREATE TABLE &lttable name&gt
@@ -139,16 +143,17 @@
 	
 	<li>Go back to the Earthquakes excel spreadsheet and remove the first line which contains the header information 
 	(this contains character data which is not compatible with the numeric field definitions you have just created). 
-	Save the spreadsheet as a CSV file and upload it using WinSCP to your dialogplus wowkring directory. </li><br />
+	Save the spreadsheet as a CSV file and upload it to your working directory on dialogplus using WinSCP; a File
+	Transfer Protocol software used to transfer files from your local directory to the server (File protocol
+	: SFTP, Host name: dialogplus.leeds.ac.uk, Port number: 22). </li><br />
 	
-	<li>You should now be able to import the CSV data into the newsly created table using the following code:<br />
+	<li>Now the data is in the same location as the database, you should now be able to import the CSV data into the 
+	newly created table using the following code in the psql command line:<br />
 	<code>
-	\COPY &lttable name&gt FROM '/var/www/html/geog5870/USERNAME/FILENAME.csv' WITH DELIMITER ',' CSV
+	\COPY &lttable name&gt FROM '/var/www/html/geog5870/USERNAME/FILENAME.csv' WITH DELIMITER ',' CSV</code></li><br />
 	
-	</code></li><br />
-	
-	<li>View the newly created table and data in DbVisualizer to ensure it has imported correctly.</li> <br />
-	<li>Repeat the above steps to create a copy of the tweets table using this <a href = 'tweets.csv'>CSV file</a></li>
+	<li>View the newly created table and data in DbVisualizer to ensure it has imported correctly (you may have to refesh).</li> <br />
+	<li>Repeat the above steps to create a copy of the tweets table using this <a href = 'tweets.csv'>CSV file</a>.</li>
 </ol>
 <hr class="post_float">[ Next: <a href="../4_php/index.html">PHP: Hypertext Preprocessor</a> ]<br>
 </body></html>
