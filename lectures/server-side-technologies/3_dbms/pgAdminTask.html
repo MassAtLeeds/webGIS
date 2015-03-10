@@ -1,0 +1,116 @@
+
+<h1>Server Side Technologies</h1>
+
+<h2>Task 2 - Introduction to PostgreSQL and pgAdmin</h2>
+
+<ol>
+	<p>We have created a PostgreSQL database instance named ‘geog5871’ on the dialogplus.leeds.ac.uk remote server. 
+	In this task you will:</p>
+
+	<ul>
+		<li>Create a connection to the geog5871 database instance</li>
+		<li>Interrogate the existing ‘tweets’ tables using SQL</li>
+		<li>Create your own table using additional data-sets</li> 
+	</ul>
+
+	<h3>1.0 Setting up the connection</h3>
+
+	<!-- <strong>This step is only required if you are connection to dialogplus off campus. </strong>
+
+	<p>PostgreSQL does support SSL (Secure Socket Layer) connections, however it is not advisable to allow access 
+	from all public IP addresses, for this reason, you are going to establish a connection to the database host via 
+	an SSH (Secure SHell) tunnel. To connect to the dialogplus.leeds.ac.uk server from outside the Leeds network, a 
+	SSH tunnel must be established between the remote server and the local host. </p>
+
+	<ol>
+		<li>Open Putty and enter the following credentials in the ‘session’ window:<br />
+			<br />Host Name: 	dialogplus.leeds.ac.uk
+			<br />Port: 		22
+			<br />Username:		Your allocated username e.g. web01</li>
+		<br />
+		<li>Now expand the ‘SSH’ menu item in the left hand panel and select ‘Tunnels’. </li>
+		<br />
+		<li>In the tunnels window set the source port to 5433 (note: we are not using the default local host port 
+			5432 as we may want to use this for a local PostgreSQL connection later). </li>
+		<br />
+		<li>Set the destination IP address to 127.0.0.1:5432. </li>
+		<br />
+		<li>Add this connection using the ‘Add’ button and click ‘Open’ to establish the connection. </li>
+		<br />
+		<li>Leaving the Putty connection open, follow the instructions below to connect to the database instance 
+		using pgAdmin (use 5433 as the localhost port instead of 5432).</li>
+	</ol> -->
+
+	<h3>2.0 Interfacing with PostgreSQL using pgAdmin</h3>
+
+	<p>If you are using a computer on the University of Leeds network you can connect directly to the PostgreSQL 
+	database instance on the dialogplus.leeds.ac.uk server. 
+	pgAdmin is a free and open source administration and development platform for PostgreSQL. </p>
+
+	<li>Open pgAdmin; available <a href = 'http://www.pgadmin.org/download/'>here</a> and connect to the dialogplus.leeds.ac.uk 
+	server by clicking the ‘Adds connection to a server’ button on the top right hand side of the toolbar.</li><br />
+	
+	<p>(Note that if you are installing this on your own machine and it is 64bit, you may need the Microsoft 32bit Visual C++ 
+	redistribution [http://www.microsoft.com/en-gb/download/details.aspx?id=40784]. The error you’ll see is along the lines 
+	of “msvcp120.dll not installed on your machine ”) </p>
+	
+	<li>In the ‘New Server Registration’ dialogue box, enter the following credentials including the <strong>database 
+	username and password</strong>:<br />
+		</p>Name: 	geog5871
+		<br />Host:		dialogplus.leeds.ac.uk
+		<br />Port:		5432
+		<br />Username:	XXX
+		<br />Password:	XXX</p>
+	
+	<img src = 'addServer2.PNG' alt = 'Add Server Dialogue Box'>
+	
+	<p>pgAdmin has extensive functionality which makes it easy to query, edit and display data; 
+	you will see an object browser on the left hand side of the window, showing the various database 
+	connections (you should see the geog5871 connection here), a properties window on the right hand 
+	side and an SQL pane on the bottom right hand side.</p> 
+	
+	<img src = 'pgAdmin.PNG' alt = 'pgAdmin GUI'></li>
+
+	<li>Expand the geog5871 connection and view the different subdirectories enclosed within. </li><br />
+	
+	<li>Find the ‘tweets’ table located in Schemas > public > Tables and explore the data. 
+	How many columns are there? How many rows are there? Which column is the primary key?</li>
+
+	<h3>3.0 Querying the Data </h3>
+
+	<li>Right click on the tweets table and select ‘Scripts > SELECT Script’. 
+	This query builder allows you to query the data using Structured Query Language (SQL). 
+	There is also the option to use pgSQL; spatially enabled structured query language. 
+	Although this database is a PostgreSQL database, the data within it is not spatially enabled. </li><br />
+	
+	<li>Use the <a href = 'http://www.w3schools.com/sql/sql_where.asp)'>w3 schools</a> web pages to work out how to build 
+	an SQL query to select all messages that were tweeted on day 30 of the sample we have collected.</li><br />
+	
+	<li>Build a further 2 queries of your choice and made a note of the syntax you used. 
+	You can also save the query text if you wish. </li>
+	
+	<h3>4.0 Creating a Table</h3>
+	
+	<li>As well as querying data from existing tables, you can also create your own tables within the database. 
+	Visit the spreadsheet page on the <a href = 'http://earthquake.usgs.gov/earthquakes/feed/v1.0/csv.php'>USGS webpage</a> and 
+	download data in CSV format for all earthquakes which have occurred in the past month. Open this file in excel 
+	to view the data. Tidy up the spreadsheet so that only; ‘time’, ‘latitude’, ‘longitude’, ‘depth’, ‘magnitude’,
+	 ‘id’ and ‘place’ remain. </li><br />
+	 
+	<li>In pgAdmin, right click on ‘tables’ in the left hand column and select ‘New Table’. 
+	You now need to create a table definition for the Earthquake data. Ensure that you add a new column for each column 
+	in the dataset and choose an appropriate data type (choose wisely - we recommend numeric and varying character). 
+	As all of your tables will be saved in the same location, we recommend that you include your username in the title 
+	so you can identify your table once it has been created. </li><br />
+	
+	<li>Go back to the Earthquakes excel spreadsheet and remove the first line which contains the header information 
+	(this contains character data which is not compatible with the numeric field definitions you have just created). 
+	Save the spreadsheet as a CSV file and close it. </li><br />
+	
+	<li>Right click on the newly created table in pgAdmin and import the Earthquakes CSV file into the table. 
+	The encoding field can be left blank. </li><br />
+	
+	<li>View the data to ensure it has imported correctly.</li>
+</ol>
+<hr class="post_float">[ Next: <a href="../4_php/index.html">PHP: Hypertext Preprocessor</a> ]<br>
+</body></html>

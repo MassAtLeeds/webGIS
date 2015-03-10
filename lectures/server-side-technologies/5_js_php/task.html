@@ -1,0 +1,142 @@
+<h1>Server Side Technologies</h1>
+
+<h2>Task 4</h2>
+
+<p>Download copies of the <a href = 'exampleFiles/unit5_fetchData.php'>unit5_fetchData.php</a>, 
+<a href = 'exampleFiles/unit5_index.html'>unit5_index.html</a> and 
+<a href = 'exampleFiles/unit5_script.js'>unit5_script.js</a> files. In this task you will:</p>
+<ul>
+	<li>Work through each script in turn to ensure that you understand the functionality.</li>
+	<li>Aim to understand the relationship between the scripts used. </li>
+	<li>Create a working application that sends an AJAX request to the dialogplus server and returns 
+		data from the geog5871 database.</li>
+</ul>
+
+<h3>HTML</h3>
+
+<p>Let’s first look at the HTML file. Most of this mark-up is straight forward. There are two 
+script links at the top of the file, one of which makes reference to the AJAX jquery library 
+and the second of which links to the Javascript file. The important thing to note is the addition 
+of two buttons in the HTML: </p>
+
+<code>
+&ltbutton onclick = 'fetchData()'&gtFetch Data&lt/button&gt <br />
+&ltbutton onclick = 'clearData()'&gtClear Data&lt/button&gt
+</code>
+
+<p>The first button calls a function called fetchData() and the second calls clearData() 
+both of which are defined in the Javascript file. </p>
+
+<p>There is also an empty div called ‘textWrap’ which will hold the data fetched from the server. </p>
+
+<h3>Javascript</h3>
+
+<p>The first function in the Javascript file is the ‘fetchData()’ function which is called from the 
+Fetch Data button in the HTML; a number of things occur in this function. Firstly a new empty array 
+is defined called ‘tweetData’:</p>
+
+<code>tweetData = new Array();</code>
+
+<p>Secondly, an AJAX request is called which makes a HTTP GET request to the PHP file sat on the 
+dialogplus server and returns a set of JSON encoded results. Upon successfully retrieving the results, 
+a function is called which loops through the results to create a new Javascript object for each tweet 
+in the results array. Each tweet object contains an id, a text body, latitude and a longitude. 
+The new Javascript object is then ‘pushed’ to the end of the ‘tweetData’ array, to create an array 
+of Javascript objects. </p>
+
+<code>//AJAX request to unit5_fetchData.php file
+<br />$.getJSON("unit5_fetchData.php", function(results)	{ 
+<br />		
+<br />		//Populate tweetData with results
+<br />for (var i = 0; i < results.length; i++ )	{
+<br />			
+<br />			tweetData.push ({
+<br />				id: results[i].id, 
+<br />				body: results[i].body, 
+<br />				lat: results[i].lat, 
+<br />				lon: results[i].lon
+<br />			}); 
+<br />		}
+</code>
+
+<p>Thirdly the fetchData() function calls another function called ‘writeTweets()’ :</p>
+<code>writeTweets();</code>
+
+<p>The writeTweets() function simply loops through the tweetData array created above and appends 
+each object to the ‘textWrap’ div in the HTML. Note how ‘document.getElementById()’ is used to access 
+the HTML div. The reason this code is written in a separate function is to ensure that it occurs after 
+the call back function has completed. </p>
+
+<code>function writeTweets()	{	
+<br />		 
+<br />		for (var i = 0; i< tweetData.length; i++)	{ 
+<br />			document.getElementById('textWrap').innerHTML += 
+<br />			"id = " + tweetData[i].id + ", text = " + tweetData[i].body + 
+<br />			", coordinates = " + tweetData[i].lat + ", " + tweetData[i].lon + "&ltbr /&gt"; 
+<br />		}
+<br />	}
+</code>
+
+<p>The clearData() function at the bottom of the Javascript file simply overwrites the 
+current content of the textWrap div with nothing, hence the empty quotation marks: </p>
+
+<code>function clearData()	{
+<br />	document.getElementById('textWrap').innerHTML = ' '; 
+<br />}</code>
+
+<h3>PHP</h3>
+
+<p>The first half of the PHP script is the same as the one created in the previous task, with the 
+exception of the header at the top of the file. This header is used to by the AJAX HTTP GET request 
+to inform the type of data returned from the server, so the data can be handled appropriately. </p>
+
+<code>header("Content-type:application/json");</code>
+
+<p>In the second half of the script, the code in the while loop has been altered; instead of printing 
+the contents of the row straight to the page as we did before, each value in the row is now assigned a 
+key so that a key-value pair array can be constructed for that particular row:</p>
+
+<code>
+<br />//Loop through query results 
+<br />	while ($row = pg_fetch_array($result, null, PGSQL_ASSOC))	{
+<br />		//Populate tweetData array 
+<br />		$tweetData[] = array("id" => $row["oid"], 
+<br />							"body" => $row["body"], 
+<br />							"lat" => $row["latitude"],
+<br /> 							"lon" => $row["longitude"]);
+<br />	}	
+</code>
+
+<p>The key-value pair array representing one row of data is then pushed to the tweetData array, so that a 
+multidimensional key-value pair array is constructed for the whole dataset. Note how the row array is appended 
+to the tweetData array using the syntax $tweetData[] </p>
+
+<p>Now the whole dataset is formatted in a suitable way it can be encoded to JSON and returned using the echo 
+function. AJAX returns the ‘results’ of the PHP script, which is anything returned using the ‘echo’ function; 
+in this case the JSON encoded tweetData array. </p>
+
+<code>echo json_encode($tweetData);</code>
+
+<h3>Summary</h3>
+
+<p>To summarise, let’s look at an overview of the whole process:</p>
+
+<ol>
+	<li>User clicks ‘Fetch Data’ button</li>
+	<li>fetchData() function is called which initiates an AJAX GET HTTP request to the PHP file</li>
+	<li>PHP creates a secure connection to geog5871 database</li>
+	<li>PHP queries tweets table and returns a results set</li>
+	<li>PHP loops through the results set row by row and creates an associative array </li>
+	<li>PHP encodes the associative array in JSON and returns the data using echo</li>
+	<li>Upon receiving the AJAX request results, a callback function is called </li>
+	<li>The callback function loops through the returned results and creates a Javascript Object array 
+		which will exist outside of the scope of the AJAX request function</li>
+	<li>The callback function calls the writeTweets() function</li>
+	<li>The writeTweets() function loops through the tweetData array and writes to the page</li>
+</ol>
+
+<p>Using the 3 files provided, try to get this example to work so that tweet data is returned when the user 
+clicks the ‘Fetch Data’ button and the data is cleared when the ‘Clear Data’ button is clicked. </p>
+<br />
+<hr class="post_float">[ Next: <a href="../6_login_insert/index.html">Unit 6 - Logging in and Inserting Data</a> ]<br>
+</body></html>

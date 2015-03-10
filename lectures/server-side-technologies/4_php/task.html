@@ -1,0 +1,65 @@
+<h1>Server Side Technologies</h1>
+
+<h2>Task 3 - Connecting to and querying a database with PHP</h2>
+
+<p>In this task you will:</p>
+<ul>
+	<li>Create your own PHP file </li>
+	<li>Connect to the geog5871 database instance on dialogplus</li>
+	<li>Query the tweets table to return tweet data from the Hurricane Sandy Dataset </li>
+	<li>Close the connection to the geog5871 database</li>
+</ul>
+	
+<ol>
+	<li><p>Create a new file in notepad++ called ‘fetchData.php’ and create the PHP script tags 
+	within which your PHP script will sit. If you like, you can place some basic HTML around the 
+	PHP script tags to wrap the PHP output, but this is not necessary. </p></li>
+	
+	<li><p>Using the notes on PHP Database Connection, open a secure connection to the database 
+	instance on the dialogplus.ac.uk server. As this PHP file will sit on the dialogplus server 
+	itself, the host name will be ‘localhost’, the database name is ‘geog5871’ and you have been 
+	provided with the username and password. The entire string needs to be encased in double quotation 
+	marks and each parameter needs to be encased in single quotation marks. It is a good idea to 
+	include an ‘or die’ statement at the end of the pg_connect string incase the connection fails 
+	for example:</p>
+	
+	<code>$pgOptions = “//database connection parameters go here”;
+	<br />$dbconn = pg_connect($pgOptions) or die ('connection failure');
+	</code></li>
+	
+	<li><p>Create a new variable to store an SQL query and assign this to one of the SQL queries you 
+	defined in task 2 to query the tweets table. For example:</p>
+
+	<code>$query = "SELECT * FROM tweets";</code></li>
+	
+	<li><p>Use the pg_query() function to query the geog5871 database, again it may be a good idea to 
+	include an ‘or die’ statement. pg_last_error() will provide further information if the query 
+	should fail. </p>
+	
+	<code>$result = pg_query($dbconn, $query) or die ('Query failed: '.pg_last_error());</code></li>
+	
+	<li><p>Print each row from the returned results set using a while loop (as shown in the notes). </p></li>
+	
+	<li><p>Finally close the database connection using the pg_close() function.</p></li>
+	
+	<li><p>Connect to the dialogplus server using either WinSCP or FileZilla 
+	(File protocol : SFTP, Host name: dialogplus.leeds.ac.uk, Port number: 22) and drag and drop the 
+	fetchData.php file across from your local directory to your dialogplus web directory. </p></li>
+	
+	<li><p>To run the PHP file in the browser simply visit:</p>
+	
+	<code>dialogplus.leeds.ac.uk/geog5871/USERNAME/fetchData.php</code></li>
+	
+	<li><p>As mentioned earlier, PHP is notoriously hard to debug. If there is no output from the PHP script, 
+	check the console log. If you see a general 500 error, there is probably a typo in your file 
+	(check all line breaks are present). If you see one of the errors you defined in the ‘or die’ statements, 
+	there is a problem with either your SQL query or your database connection parameters. </p></li>
+	
+	<li><p>If you get really stuck, we have provided an example PHP file 
+	<a href = 'exampleFiles/fetch_tweets_example1.php'>here</a>, but you should enter your own credentials to make this 
+	script run. </p></li>
+</ol>	
+
+<hr class="post_float">[ Next: <a href="../5_js_php/index.html">5.0 Adding Further Functionality with Javascript</a> ]<br>
+</body></html>
+

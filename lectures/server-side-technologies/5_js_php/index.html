@@ -1,0 +1,89 @@
+<h1>Server Side Technologies</h1>
+
+<h2>5.0 Adding Further Functionality with Javascript</h2>
+
+<p>In the previous chapter we looked at how PHP can retrieve data from a database and display 
+it in a web browser. In the previous task we opened a PHP file directly; however we can also 
+call a PHP script from within a Javascript function.  This means that we can draw fresh results 
+into a webpage without reloading the whole page. In order to do this we need to use something 
+called an AJAX request.  </p>
+
+<h3>5.1 Asynchronous Javascript and XML (AJAX)</h3>
+
+<p>AJAX is a client side technique which allows data to be sent and retrieved from a server 
+asynchronously, without interfering with the current webpage (i.e. it runs in the background). 
+An AJAX request can be embedded in a Javascript function to either send data to a database or 
+return it, without reloading the page. Consider the AJAX request code below. Here a fetchData() 
+function is called whereby a getJSON() function is used to return JSON encoded data from the 
+server using a GET HTTP request, the getJSON() function accepts two arguments; a string containing 
+the URL to which the request is sent and a callback function which is executed if the request 
+succeeds, this function accepts the output of the PHP file as an argument (results). In this 
+case we are passing in the fetchData.php file which was created in task 3, and if this is successful 
+we are calling a function which writes the results to a div called ‘textWrap’ in the web browser: </p>
+
+<code>
+function fetchData()	{
+	<br />
+	<br />$.getJSON("unit5_fetchData.php", function(results)	{ 
+	<br />document.getElementById('textWrap').innerHTML = results; 
+	<br />}); 
+<br />}
+</code>
+
+<p>In order to use an AJAX request such as this one; a link to the AJAX JQuery library must be 
+included in the HTML header alongside the link to our Javascript file which contains the above function:</p>
+
+<code>
+&ltscript language="javascript" type="text/javascript" 
+src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"&gt&lt/script&gt <br />
+&ltscript language="javascript" type="text/javascript" src=" script.js"&gt&lt/script&gt
+</code>
+
+<p>The advantage of using an AJAX function like this is there is the opportunity to add user interactivity 
+to webpages. For example the fetchData() function may be called when the user clicks a button:</p>
+
+<code>
+&ltbody&gt
+<br />	&ltdiv class = "wrapper"&gt
+	<br />	&ltbutton onclick = 'fetchData()'&gtFetch Data&lt/button&gt
+	<br />	&ltdiv id = 'textWrap'&gt&lt/div&gt
+	<br />&lt/div&gt
+<br />&lt/body> 
+</code>
+
+<h3>5.2 Associative Arrays / Javascript Objects</h3>
+
+<p>The result set currently returned from the PHP file is encoded in JSON but isn’t in a very useful format. 
+To do any further processing of the results, the data returned from the query needs to be put into an 
+associative array, so that each value can be referenced based on its original column name. For example we 
+could loop through an associative array and retrieve only the latitude and longitude values if we wanted 
+to map each point. </p>
+
+<p>An associative array (also known as a map, dictionary or symbol table) is a collection of unique key-value 
+pairs, whereby each combination of key and value appears only once in the collection. Values can be extracted 
+from an array through reference to their key just as values in a numeric array can be extracted based on their 
+location in the array:
+
+<code>
+<br />$array = array(‘id’ => 1, ‘body’ => ‘hello world’);
+<br />echo  $array[‘id’];
+<br />echo $array[‘body’];
+<br />
+<br />PHP Output:
+<br />int(1)
+<br />string(11) ‘hello world’
+</code></p>
+
+<p>An associative array in PHP is actually known as an ‘ordered map’ which associates values to keys. 
+The keys in our dataset will be id, body, lat and lon. In Javascript an associative array is known as 
+an array of Javascript objects. In task 4 we will create an associative array in PHP using the results 
+set returned from the pg_query() function, this array will form the result of  the AJAX function. The 
+results array only exists as long as the AJAX callback function is running; therefore the data needs to be
+written into a permanent array which will exist outside of the scope of the function.</p>
+
+<p>In order to do this, we need to add a little more code to both our PHP file and JS file. </p>
+
+<a href = 'task.html'>Task 4</a>
+
+</body></html>
+
