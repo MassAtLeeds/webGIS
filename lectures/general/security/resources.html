@@ -1,0 +1,72 @@
+---
+layout: default
+title: General - Resources for web security
+---
+
+<h1>General: Resources for web security</h1>
+
+
+
+<P>
+In terms of preventing attacks, the secret is undoubtably to be aware of their potential. A good summary of current trends in attacks 
+is the <A href="http://www.symantec.com/security_response/publications/threatreport.jsp">Symantec Annual Threat Report</A>, but if you are 
+going to administrate a server you should keep an eye on the US-CERT <A href="https://www.us-cert.gov/ncas/alerts">alerts</A> and 
+<A href="https://www.us-cert.gov/ncas/current-activity">current activities</A> lists, as well as any appropriate 
+<A href="http://lzone.de/security%20advisory%20feeds">specific software/OS lists</A>, for example for <A href="http://www.linuxsecurity.com/">Linux</A>. 
+</P>
+<P>
+Most attacks are found by <A href="http://en.wikipedia.org/wiki/Hacker_%28computer_security%29#Classifications">White Hat Hackers</A>, and therefore 
+are solved by software updates before they escape into the wild, so keeping on top of updates, preferably automatically, is key to good security 
+(this will vary by operating system, for example, here's the details for 
+<A href="https://help.ubuntu.com/community/AutomaticSecurityUpdates">Ubuntu</A>; OSGeo-Live has an update manager that should notify you). 
+However, this should also include staying on top of the latest updates for 3rd-party script libraries like jQuery. Third party 
+libraries do occasionally suffer <A href="http://en.wikipedia.org/wiki/Zero-day_attack">Zero-Day Attacks</A>, usually on out-of-date components 
+(<A href="http://blog.sucuri.net/2014/11/the-dangers-of-hosted-scripts-hacked-jquery-timers.html">example</A>), but they also are directly 
+attacked in an attempt to replace the library with malware (<A href="http://blog.jquery.com/2014/10/06/jquery-com-september-2014-security-retrospective/">example</A>). 
+Obviously, as with all software, you should <A href="http://www.hanselman.com/blog/DownloadWrappersAndUnwantedSoftwareArePureEvil.aspx">only download from the official site</A> anyway.
+</P>
+<P>
+If you're going to be a site administrator, you should certainly get yourself a good book on security for your chosen operating system, 
+but also general web software and any specific software/languages you are using. Ultimately you may find you need to understand attacks in detail, and there are 
+plenty of "Grey Hat"/"Pentest" books out there ranging from script-kiddie to zero-day vulnerability studies. If you're coding for the web 
+you should likewise get your head around system admin, but also secure coding in your given language. 
+Although they are getting a bit long in the tooth now, O'Reilly's 
+<A href="http://www.amazon.co.uk/Secure-Coding-Principles-Mark-Graff/dp/0596002424/">Secure Coding</A> and 
+<A href="http://www.amazon.co.uk/Security-Warrior-Cyrus-Peikari/dp/0596005458/">Security Warrior</A> still contain useful information about project managing 
+secure coding and basic secure coding, respectively. Most languages will have specific books on secure coding; for example, Java has the excellent 
+<A href="https://www.securecoding.cert.org/confluence/display/seccode/CERT+Coding+Standards">CERT Oracle Coding Standard for Java</A> (<A href="http://www.amazon.co.uk/Oracle-Secure-Standard-Software-Engineering/dp/0321803957">book version</A>), which also teaches a lot about good coding more generally. A similar (though less beginner friendly) standard for Javascript is the 
+<A href="https://wiki.mozilla.org/WebAppSec/Secure_Coding_Guidelines">Mozilla Secure Coding Guidelines</A>. For 
+PHP there is the <A href="http://phpsec.org/projects/guide/">PHP Security Consortium Security Guide</A>, and more generally 
+there are good cheat sheets at the <A href="https://www.owasp.org/index.php/Cheat_Sheets">Open Web Application Security Project</A>.
+</P>
+
+<P>
+Finally, if you are going to run a standard website, you need to know the associated legal responsibilities. For a basic website, these are outlined by the 
+<A href="http://www.ukwda.org/blog/is-your-website-legal">UK Web Design Association</A>.
+</P>
+<P>
+If you intend to allows users to upload materials or you intend to store sensitive data, the legislation becomes more complicated. You should familiarise yourself with the local and international legislation 
+on computing and data. This includes the UK's <A href="http://en.wikipedia.org/wiki/Data_Protection_Act_1998">Data Protection Act 1998</A> (<A href="http://www.legislation.gov.uk/ukpga/1998/29/contents">online</A>) 
+and the <A href="http://en.wikipedia.org/wiki/Computer_Misuse_Act_1990">Computer Misuse Act 1990</A> (<A href="http://www.legislation.gov.uk/ukpga/1990/18/contents">online</A>) and related legislation, but 
+also a wide variety of other legislation covering the use of cookies, the hosting of information, etc. You can find some nice starting summaries on the 
+<A href="http://www.ukwda.org/blog/is-your-website-legal">UK Web Design Association website</A> and at <A href="http://www.seqlegal.com/blog/selling-online-and-law-part-1">SEQLegal</A> and 
+<A href="http://www.90percentofeverything.com/2014/08/26/some-dark-patterns-now-illegal-in-uk-interview-with-heather-burns/">90 Percent of Everything</A> for ecommerce.  
+The law associated with blogging and carrying forums is complex. A good summary from 2009 is 
+<A href="http://philipjohn.me.uk/2009/11/25/ma-online-journalism-law-for-bloggers-and-journalists-with-paul-bradshaw/">
+Philip John's annotations of a session run by Paul Bradshaw</A>, but things have moved on since then in some areas. A more up to date discussion for bloggers can be found in 
+Bradshaw's <A href="http://www.amazon.co.uk/Online-Journalism-Handbook-survive-Practical/dp/140587340X/">Online Journalism Handbook</A>. The whole thing is also complicated by the 
+fact that some servers will be based outside of the country, and you should be especially sensitive to the Data Protection Act in this regard. 
+US legislation can be found discussed at the <A href="https://www.eff.org/">EFF</A>, but you should also be aware of the international law around 
+Copyright (The Center for the Study of the Public Domain do a nice <A href="http://web.law.duke.edu/cspd/artsproject/index">comic</A> on this), and the recent 
+<A href="http://www.legislation.gov.uk/uksi/2014/2356/contents/made">changes to UK legislation</A>. 
+</P>
+
+
+
+
+
+
+<hr class="post_float">[ Back: <a href="index.html">Security start page</a>]<br>
+[<a href="../../../web-based-gis/materials.html">Course Index</a>]<br>
+<hr class="post_float">
+</body></html>

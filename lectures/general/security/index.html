@@ -11,104 +11,57 @@ title: General - Introduction to web security
 <p>
 Web security is a huge area, but some key ideas will get you a long way. We can look at security in a number of frameworks:
 </p>
-<OL>
-<LI>Machine attacks vs. manipulation of human elements (and between): one element of 
-<A href="http://en.wikipedia.org/wiki/Penetration_test">penetration testing</A> is convincing humans to reveal their passwords (for example by pretence) or 
+<H3>Machine attacks vs. manipulation of human elements (and between)</H3>
+<P>
+One element of attacking systems is convincing humans to reveal their passwords (for example by pretence) or 
 to allow people direct physical access to a machine or network (some attacks are simplier if you can boot a 
-machine or work inside a firewall (we'll come back to firewalls). This is 
+machine or work inside a firewall -- we'll come back to firewalls). This is 
 known as <A href="http://en.wikipedia.org/wiki/Social_engineering_%28security%29">social engineering</A>. In a lot of modern cases people 
-break into servers only to serve webpages that appear to be legitimate but which lead to malicious downloads, which is somewhere inbetween machine attacks and social attacks.</LI>
-<LI>Attacks against servers vs. attacks against clients (and attacks against servers to attack clients). Direct 
-attacks against clients usually involve convincing the client to download malicious software, although 
+break into servers only to serve webpages that appear to be legitimate but which lead to malicious downloads, which is somewhere inbetween machine attacks and social attacks. A good default starting point as a systems administrator is therefore "Trust No One".</P>
+
+
+<H3>Attacks against servers vs. attacks against clients (and attacks against servers to attack clients).</H3> 
+<P>
+Direct 
+attacks against software clients usually involve convincing the user to download malicious software, although 
 occasionally holes are found in client browsers or browsers/os combinations that allow a direct attack. Direct 
-attacks against connected computers are generally less successful because most people now connect through a 
-firewall-enabled router, but most internet-connected machines 
+attacks against connected servers or other computers are generally less successful because most people now connect through a 
+firewall-enabled router. Nevertheless, most internet-connected machines 
 will be hit plenty of times a week by automated attacks. Most pernicious is probably attacking servers to then 
-farm out malware downloads.</LI>
-<LI>Scripted attacks vs. bespoke attacks (and between). Most attacks these days are scripted, and it is 
+farm out malware downloads.</P>
+
+<H3>Scripted attacks vs. bespoke attacks (and between).</H3>
+<P>
+ Most attacks these days are scripted, and it is 
 not only possible for people to get hold of and run a wide variety of attack scripts without necessarily 
-understanding them in detail (so called '<A href="http://en.wikipedia.org/wiki/Script_kiddie">script-kiddies</A>'), but it is possible to download whole OSs set up for scripted work, the idea 
+understanding them in detail (so called '<A href="http://en.wikipedia.org/wiki/Script_kiddie">script-kiddies</A>'), but it is possible to download whole OSs set up for scripted attack work, the idea 
 being that the better such  things are understood, the easier it is to prevent such attacks. At the other end of the 
 spectrum are bespoke hackers who work at the machine-code level or lower to find exploits. An interesting recent 
 article on the levels at which such attackers can work at can be found on  <A href="http://arstechnica.com/security/2015/02/how-omnipotent-hackers-tied-to-the-nsa-hid-for-14-years-and-were-found-at-last/">Ars Technica</A>. 
-</LI>
-<LI>Attacks to stop business vs. attacks that should go undetected. On the web we can distinquish between 
+</P>
+
+
+<H3>Attacks to stop business vs. attacks that should go undetected.</H3>
+<P>
+On the web we can distinquish between 
 noisy attacks that aim for maximum distruption, against attacks that aim to go undetected for as long as 
-possible, for example to spread further or gain greater advantages.</LI>
-<LI>Attacks by one source vs. attacks by multiple sources. With the rise of scripted attacks, we've also seen 
-the rise of symultaneous attacks from multiple sources, either knowingly, or from multiple compromised machines.</LI>
-</OL>
-<P>
-As we look at several attacks you should prepare for, you'll see they fall across these spectrums. We'll start with 
-direct machine attacks
+possible, for example to spread further or gain greater advantages.
 </P>
-<h2>Attacks against scripts</h2>
+<H3>Attacks by one source vs. attacks by multiple sources.</H3> 
 <P>
-Plainly the worst possible situation is a machine directly connected to the internet with all its ports open 
-and with no root password, or the default password, and a fixed IP address. It is a simple matter to contact such a machine via <A href="">telnet</A> and log in as root or the default user (who usually has admin rights). Even if they don't have admin rights, if they have write-permission to web directories, they can cause a great dela of trouble. This, however, is not now a common setup. Most computers now are surrounded by a Firewall - a piece of software that closes all ports on a machine to externally-started communications and monitors for a wide  range of common attacks. Moreover, most PCs connect through the internet via a router - a piece of 
-hardware that allows multiple machines to connect to the internet at the same time. Routers usually have their own 
-firewall that splits the network into the external network, and an internal private network with higher 
-priveleges. Firewalls generally don't allow external machines to intiate communications with internal machines, only 
-allowing responses to communications initiated from inside the firewall. 
+With the rise of scripted attacks, we've also seen 
+the rise of symultaneous attacks from multiple sources, either knowingly, or from multiple compromised machines.
 </P>
+<HR>
 <P>
-Nevertheless, 
-web servers present a particular issue. Webservers have to accept external communications, at least on port 80. 
-They do this through <A href="">port forwarding</A>, where a network firewall on a router (hardware that 
-acts as an internet gateway). The routers are set up to listen for port 80 communication and forward requests to 
-the server machine. If web servers just allowed for http GET requests for webpages, this would be fine, but most 
-also want to allow GET requests from scripts on the server (e.g. perl or PHP), and often these GET requests will 
-include information to send to the scripts. The scripts then take this information in and store it, opening 
-themselves up to exploitation.
-
-<P>
-By and large attacks against machines exploit issues with software that open up security holes. A classic example 
-is the <A href="http://en.wikipedia.org/wiki/Buffer_overflow">Buffer overflow</A> attack which (broadly) writes 
-larger data to arrays in a program, spilling the data out of the program's memory areas and into the surrounding 
-OS code. To run such an exploit, however, an attacker needs to be able to run a program on the computer. This isn't usually simple, but with 
-web servers, the options are higher as information is often set to the scripts running. The other classic attack, often 
-combined with the Buffer Overflow, is to write input that evaluates to make a running program. If a server script is 
-foolish enough to run input sent to it without checking the input, the server can be made to run arbitrary programs with its 
-permission, which is quite high. If the server script runs a program with <KBD>sudo</KBD>, this can be especially devistating. 
-A few hints help for beginners:
-</P>
-<OL>
-<LI>Never write a script that runs arbitrary code passed in as input.</LI>  
-<LI>Avoid write scripts that involve the shell to run code.</LI>
-<LI>Always check input for characters that might be used in shell scripts or programs and filter them out, for example: ()[]{}|&amp;;`'\"*?~<>^$\n\r.</LI>
-<LI>Always assign array lengths properly and deal with the issue of input that is too long for your arrays explicitly.</LI>
-</OL>
-<P>
-A starters guide to attacks against scripts can be found on the <A href="http://www.w3.org/Security/Faq/wwwsf4.html">w3c security site</A> 
-(<a href="http://www.w3.org/Security/Faq/wwwsf.html">full FAQ</A> - somewhat dated, but still useful).
-</P>
-
- 
- <H2>Attacks against business</H2>
- <P>
- A popular attack over the years has been the <A href="http://en.wikipedia.org/wiki/Denial-of-service_attack">Denial of Sevice (DoS)</A> attack. These were classically 
- run by just making massive numbers of repeat requests to a server from a single machine until it overloaded, but most servers now recognise rapidly repeated requests from the 
- same IP address as a potential attack and refuse to serve to that IP. Attacks of this nature 
-are now generally more sophisticated than this, but broadly work by flooding in requests still. Recently 
- the attacks have come from networks of people who sign up to run attack scripts, or, often, from machines that have previously been compromised: so-called 
- <A href="http://en.wikipedia.org/wiki/Zombie_%28computer_science%29">Zombies</A> which are uses to make 
- <A href="http://en.wikipedia.org/wiki/Botnet">Botnets</A>. Such <A href="http://en.wikipedia.org/wiki/Denial-of-service_attack#Distributed_attack">Distributed DoS attacks</A> are 
- generally uses for punishing percieved wrongdoing or for blackmail, though are occasionally used to keep systems administrators busy while other attacks are done (not terribly 
- well, as sysadmins are generally wise to this and just close down the machines).
-  </P>
-<P>
-The main reason for understanding DoS attacks is to avoid accidentally doing them yoruself. For example, when polling websites for changes, it is fairly 
-easy to make requests so frequently of a site that the server locks you out as a potential DoS. Of course, it is also possible to  genuinely flood a server with 
-requests at a DoS repeat rate if you aren't careful. An example of how to deal with polling politely can be found in this
-<A href="http://mass.leeds.ac.uk/html/coding/mapping/jsonp/geojson-from-github-dynamic-coding.html">example of how to poll GitHub for changes</A>.
+As we look at several attacks you should prepare for, you'll see they fall across these spectrums. 
 </P>
 
 
-Legislation blogs etc
 
 
 
-<hr class="post_float">[ Next: <a href="1.html">Next</a> ]<br>
+<hr class="post_float">[ Next: <a href="attacks.html">Attacks</a>]<br>
 [<a href="../../../web-based-gis/materials.html">Course Index</a>]<br>
 <hr class="post_float">
 </body></html>

@@ -25,6 +25,7 @@ The web page that contains the map should have the following characteristics
 </P>
 <UL>
 <LI>Be accessible on campus (or a working OSGeo-live USB)</LI>
+<LI>Should utilise bespoke server-side technology in some form</LI>
 <LI>The page should contain text commentary describing the geographic pattern that the map illustrates</LI>
 <LI>Should contain correct citation for all data sources used</LI>
 </UL>
@@ -45,5 +46,5 @@ The assessment for this practical will be based on the web page/s that you creat
 <LI>The web pages that you produce should be accessible for marking as of the submission date. The datestamps of files on the server may be used to confirm that files have not been altered after the submission date.</LI>
 </UL>
 <P>
-The work must be submitted by 2pm (UK time) on the 23rd February 2015.
+The work must be submitted by 2pm (UK time) on the Weds 8th April 2015.
 </P>

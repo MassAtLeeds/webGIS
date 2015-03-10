@@ -1,0 +1,75 @@
+---
+layout: default
+title: General - Attacks on Software Clients
+---
+
+<h1>General: Attacks on Software Clients</h1>
+
+<P>
+With the exception of espionage, blackmail, and data theft, there's little reason to just break into a server. The majority of attacks on servers not holding credit-card data etc. are ultimately aimed at 
+serving malicious software to the much more profitable client side of the client-server equation. If a trusted site can be forced to serve out <A href="http://en.wikipedia.org/wiki/Malware">malware</A>, it is 
+much more likely that people will download it.  This is usually achieved by covertly redirecting users from a trusted site to an untrusted one that contains the malware.
+</P>
+<P>
+ Because of the potential for an innocuous site to purposefully redirect users to something horrible, browsers enforce a 
+<A href="http://en.wikipedia.org/wiki/Same-origin_policy">Same Origin Policy</A>, essentially limiting scripts on a page from interacting with scripts or data on another site. This, in itself, is 
+worth understanding if you are dealing with Javascript as it is a significant limitation on collecting data from multiple sites. If you've been paying close attention you might wonder, for example, how our 
+web-based mapping examples have been able to collect data from multiple servers if the browser implements such a policy; the answer is that some information can sidestep this issue - images, for example, can be collected from any 
+site, hence our basemaps have been images injected into our webpages using javascript. You might also be wondering how we've imported scripts into our webpage, or how people embed, for example Twitter widgets, 
+into their pages. The short answer is that these scripts run as if they've been served from us, getting round this issue (in the case of widgets they use so-called "<A href="http://www.sitepoint.com/a-detailed-breakdown-of-the-script-tag/">dynamic script tag injection</A>" where we use Javascript to construct 
+a new <CODE>SCRIPT</CODE> tag in the page after it has loaded, the source of which is on another server and code for which contains the data to display hardwired into it when it is constructed 
+(<A href="http://www.dereuromark.de/tag/same-origin-policy/">example</A>; <A href="http://stackoverflow.com/questions/3687654/should-i-always-use-dynamic-script-tag-injection-technique-for-including-javascr">example</A>) -- again, such injected scripts act with regards the policy as if built into the page when served).  
+For a detailed look at some of the complications this causes and some of the ways of resolving it, 
+look at this <A href="http://mass.leeds.ac.uk/html/coding/mapping/jsonp/geojson-from-github-coding.html">example of how to get data from GitHub into Leaflet</A>. An alternative is to use 
+<A href="http://www.w3schools.com/tags/tag_iframe.asp">iFrames</A>, but you should pay close 
+attention to their <A href="http://www.html5rocks.com/en/tutorials/security/sandboxed-iframes/">sandboxing</A>. 
+</P>
+<P>
+Anyhow, despite the Same Origin Policy, attackers can still redirect clients to alternative sites if they can convince the server to display a page stored off the server, or just to redirect 
+the client. If a server or page displays or interacts with data sent to it, it is actually posible to force such redirects or page displays using a 
+<A href="http://en.wikipedia.org/wiki/Cross-site_scripting">Cross-Site Scripting (XSS)</A> attack. These are used, for example, in many spam emails. Say a server-side script on a trusted site displays a user's name sent 
+in using a URL: 
+</P>
+<P>
+<CODE>www.bobbins.com/script.php?user=jimmy_jinkers</CODE>
+</P>
+<P>
+ a URL is given in the email, but instead of encoding a name, it includes HTML to be displayed by the attacked site. 
+When the attacked site gets the URL, if it doesn't properly clean the URL data the script will display the HTML, convincing the email recipient that the trusted site is, for example, linking to a 
+(ultimately malicious) download. 
+</P>
+<P>
+This kind of attack is one of the many reasons for getting server-side scripts to properly clean out incoming information of coding punctuation like ()[]{}|&amp;;`'\"*?~&lt;&gt;>^$\n\r (so-called "sanitizing") . In PHP you 
+can filter out such information using a <A href="http://www.w3schools.com/php/php_filter.asp">Filter</A>. In most other languages you can use <A href="http://en.wikipedia.org/wiki/Regular_expression">regex</A> 
+(<A href="http://regexlib.com/CheatSheet.aspx">crib sheet</A>) 
+to sanitize inputs. For example, in Javascript you can filter out anything but standard English alphabet characters using :
+</P>
+<P>
+<CODE>
+input = input.replace(/[^a-z0-9]/gi, '');
+</CODE>
+</P>            
+          
+<P>
+but obviously if you want other alphabets etc. this will need some adapting; you could, for example, filter out specific characters thus (filters out angle brackets):
+</P>
+<P>
+<CODE>
+input = input.replace(/[<>]/g,'');
+</CODE>
+</P>
+<P>
+(Note, though, that while you might want to sanitize user inputs in a page using Javascript, all server-side inputs should always be sanitized on the server to avoid someone just knocking up a webpage and sending malicious data to your site.)
+</P>
+<HR>
+<P>
+XSS attacks are by far and away the most common attacks on clients, and certainly those that server admins should worry about most, but there are others, including 
+the ever-present threat of <A href="http://en.wikipedia.org/wiki/Zero-day_attack">zero-day attacks</A> against plugin and javascript engines, and a continual stream of these 
+is one reason why browser developers are increasingly restricting plugins (including running <A href="http://threatpost.com/javas-losing-security-legacy/102176">Java Applets</A>) 
+and unifying around HTML5 / Javascript / CSS / SVG -- it's just easier to keep track of fewer technologies.
+</P>
+
+<hr class="post_float">[ Next: <a href="resources.html">Resources for web security</a> ]<br>
+[<a href="../../../web-based-gis/materials.html">Course Index</a>]<br>
+<hr class="post_float">
+</body></html>

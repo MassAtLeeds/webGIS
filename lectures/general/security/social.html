@@ -1,0 +1,39 @@
+---
+layout: default
+title: General - Attacks on People
+---
+
+<h1>General: Attacks on Humans</h1>
+
+<P>
+<A href="http://en.wikipedia.org/wiki/Social_engineering_%28security%29">Social engineering</A> can be suprisingly successful. As sociologist <A href="http://en.wikipedia.org/wiki/Stanley_Milgram">Stanley Milgram</A> notoriously 
+<A href="http://en.wikipedia.org/wiki/Milgram_experiment">showed</A> in the 60's, people will generally defer to those who look (or sound) like they are in authority or experts. Social 
+engineering generally attempts to either get access to systems through passwords etc., or, more usually, gain direct access to hardware within a trusted internal network. This kind of 
+intrusion is a common part of <A href="http://en.wikipedia.org/wiki/Penetration_test">penetration testing</A> by <A href="http://intelligent-defense.softwareadvice.com/how-to-get-an-ethical-hacker-job-0714/">Ethical Hackers</A>.
+</P>
+<P>
+Even if social engineering isn't something you might come up against, human error is responsible for a great many of the holes in computer systems. People classically 
+don't use a great many different passwords, and they tend to be common words, opening themselves up to <A href="http://en.wikipedia.org/wiki/Password_cracking">brute force/dictionary attacks</A> where attackers 
+use standard lists of words against password protected systems. Programmers are just as bad. It is quite common to find passwords in plain text on some web systems, not least hardwired into javascript for 
+anyone to see, and some client software will 
+record passwords in plain text on a user's harddrive, relying on the PC protection rather than encrypting it. It's also fairly common to find web pages that dump arbitrary code to a server to run. This kind of thing is just a result of taking one's eye off the ball 
+and thinking "this is a simple solution, I'll fix it later", and then not fixing it. The most egregious example of this is to hardwire in a username, password, or encryption key into some code (for example, code using a database, or a 
+cloud facility for storage) and then forgetting to remove the username, password or key before <A href="http://www.itnews.com.au/News/375785,aws-urges-developers-to-scrub-github-of-secret-keys.aspx">posting it on a repository site</A>. This is <A href="http://www.devfactor.net/2014/12/30/2375-amazon-mistake/">suprisingly easy to do, and suprisingly easy to regret</A>. 
+</P>
+
+<P>
+It's also true that most coding loopholes are left by developers who aren't aware of specific issues. This isn't entirely suprising, as to stay on top of all the elements you need to 
+make secure code is an extensive and skilled job. Nevertheless, it is one that ultimately you have to engage with if you're writing for the web. We'll come to some resources 
+at the end that will get you started.
+</P>
+
+
+<P>Finally, it is worth noting that webpages should avoid so-called "<A href="http://darkpatterns.org/">Dark Patterns</A>" 
+(<A href="http://www.theverge.com/2013/8/29/4640308/dark-patterns-inside-the-interfaces-designed-to-trick-you">introduction</A>), that is, GUI and interaction designed to trick users into 
+behaviour they wouldn't agree to. Indeed, many are now <A href="http://www.90percentofeverything.com/2014/08/26/some-dark-patterns-now-illegal-in-uk-interview-with-heather-burns/">illegal</A>.
+</P>
+
+<hr class="post_float">[ Next: <a href="clients.html">Attacks on Clients</a> ]<br>
+[<a href="../../../web-based-gis/materials.html">Course Index</a>]<br>
+<hr class="post_float">
+</body></html>
