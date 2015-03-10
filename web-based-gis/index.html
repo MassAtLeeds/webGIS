@@ -13,9 +13,7 @@ tools for creating and serving web maps, including Google Maps, Leaflet and Geos
 <br />
 
 <script>
-
-  	var map = L.map('map').setView([53.8, -1.55], 13);
-
+var map = L.map('map').setView([54.610488, -2.491324], 5);
 		L.tileLayer('https://{s}.tiles.mapbox.com/v3/{id}/{z}/{x}/{y}.png', {
 			maxZoom: 18,
 			attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
@@ -23,22 +21,54 @@ tools for creating and serving web maps, including Google Maps, Leaflet and Geos
 				'Imagery © <a href="http://mapbox.com">Mapbox</a>',
 			id: 'examples.map-i875mjb7'
 		}).addTo(map);
-
-
-		L.marker([53.8, -1.55]).addTo(map)
-			.bindPopup("<b>Hello world!</b><br />I am a popup.").openPopup();
-
+		
+		L.marker([52.088321, -2.334439]).addTo(map)
+			.bindPopup("Dan lived here!").openPopup();
 		var popup = L.popup();
-
+		
+		L.marker([53.8227539, -1.5846531]).addTo(map)
+			.bindPopup("Matt's house").openPopup();
+		var popup = L.popup();
+		
+		L.marker([51.403329, 0.024120]).addTo(map)
+			.bindPopup("Berry lives here").openPopup();
+		var popup = L.popup();
+		
+		L.marker([53.683214,-1.843561]).addTo(map)
+			.bindPopup("Emily's house").openPopup();
+		var popup = L.popup();
+		
+		L.marker([51.580749, -0.542895]).addTo(map)
+			.bindPopup("Alex's house!").openPopup();
+		var popup = L.popup();
+		
+		L.marker([53.522340, -2.940326]).addTo(map)
+			.bindPopup("Andrew's house!").openPopup();
+		var popup = L.popup();
+		
+		L.marker([53.846254, -1.582946]).addTo(map)
+			.bindPopup("Martyn's house!").openPopup();
+		var popup = L.popup();
+		
+		L.marker([53.299219, -2.361168]).addTo(map)
+			.bindPopup("Jess lives here").openPopup();
+		var popup = L.popup();
+		
+		L.marker([55.0048638,-1.6475509]).addTo(map)
+			.bindPopup("Jonny's house!").openPopup();
+		var popup = L.popup();
+		
+		L.marker([51.403329, 0.024120]).addTo(map)
+			.bindPopup("Tom lives here!").openPopup();
+		var popup = L.popup();
+		
 		function onMapClick(e) {
 			popup
 				.setLatLng(e.latlng)
 				.setContent("You clicked the map at " + e.latlng.toString())
 				.openOn(map);
 		}
-
 		map.on('click', onMapClick);
-
-	</script>
+</script>
 	
 	
