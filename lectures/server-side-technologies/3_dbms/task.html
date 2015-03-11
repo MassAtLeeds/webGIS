@@ -108,7 +108,7 @@ title: Server Side Technologies - Task 2
 	
 	<li>Use the command below to access the psql command line and connect to the geog5871 database, you will then be prompted
 	for the database password.<br />
-	<code>psql –U geog5871student geog5871</code></li><br />
+	<code>psql –U <EM>postgresUserName</EM> geog5871</code></li><br />
 	
 	<li>If the database connection has been established successfully, the command line prompt will change to:
 	<code>geog5871=></code></li><br />
@@ -122,9 +122,9 @@ title: Server Side Technologies - Task 2
 	an appropriate name you have chosen for your database), create a new table. 
 	
 	As all of your tables will be created in the same location, we recommend that you include your username 
-	somewhere in the title so you can identify your table once it has been created. <br /><br />
+	somewhere in the title so you can identify your table once it has been created. Note: if the below doesn't work, try it all on one line. <br /><br />
 	
-	<code>CREATE TABLE &lttable name&gt
+	<code>CREATE TABLE <EM>tableName</EM>
 	<br />(
 	<br />"time" character varying(140),
 	<br />latitude numeric(150,2),
@@ -134,27 +134,26 @@ title: Server Side Technologies - Task 2
 	<br />id character varying(150),
 	<br />place character varying(150)
 	<br />)
-	<br />WITH OIDS=FALSE
-	<br />);
+	<br />WITH (OIDS=FALSE);
 	</code></li><br />
 	
 	<li>You may also have to set permissions for your table using the following code with your &ltusername&gt and &lttable name&gt:<br />
 	<code>
-	<br />ALTER TABLE &lttable name&gt
-	<br />OWNER TO geog5871;
-	<br />GRANT ALL ON TABLE &lttable name&gt TO geog5871
-	<br />GRANT SELECT, UPDATE, INSERT ON TABLE &lttable name&gt TO &ltusername&gt;</code></li><br />
+	<br />ALTER TABLE <EM>tableName</EM>
+	<br />OWNER TO <EM>postgresUserName</EM>;
+	<br />GRANT ALL ON TABLE <EM>tableName</EM> TO <EM>postgresUserName</EM>
+	<br />GRANT SELECT, UPDATE, INSERT ON TABLE <EM>tableName</EM> TO <EM>postgresUserName</EM></code></li><br />
 	
 	<li>Go back to the Earthquakes excel spreadsheet and remove the first line which contains the header information 
 	(this contains character data which is not compatible with the numeric field definitions you have just created). 
-	Save the spreadsheet as a CSV file and upload it to your working directory on dialogplus using WinSCP; a File
+	Save the spreadsheet as a CSV file and upload it to your working directory (<CODE>/home/<EM>serverUserName</EM>/</CODE>) on dialogplus using WinSCP; a File
 	Transfer Protocol software used to transfer files from your local directory to the server (File protocol
 	: SFTP, Host name: dialogplus.leeds.ac.uk, Port number: 22). </li><br />
 	
 	<li>Now the data is in the same location as the database, you should now be able to import the CSV data into the 
 	newly created table using the following code in the psql command line:<br />
 	<code>
-	\COPY &lttable name&gt FROM '/var/www/html/geog5870/USERNAME/FILENAME.csv' WITH DELIMITER ',' CSV</code></li><br />
+	\COPY &lttable name&gt FROM '/var/www/html/geog5870/<EM>serverUserName</EM>/<EM>filename</EM>.csv' WITH DELIMITER ',' CSV</code></li><br />
 	
 	<li>View the newly created table and data in DbVisualizer to ensure it has imported correctly (you may have to refesh).</li> <br />
 	<li>Repeat the above steps to create a copy of the tweets table using this <a href = 'tweets.csv'>CSV file</a>.</li>
