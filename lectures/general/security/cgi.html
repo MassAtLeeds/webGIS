@@ -76,8 +76,11 @@ Plainly there's a good deal to get your head around, and we'll come back to some
 <OL>
 <LI>Avoid writing scripts that run arbitrary code passed in as input.</LI>  
 <LI>Avoid writing scripts that involve the shell to run code.</LI>
-<LI>Always check input for characters that might be used in shell scripts or programs and clean them out, for example: ()[]{}|&amp;;`'\"*?~&lt;&gt;>^$\n\r (we'll look at this "sanitization" shortly).</LI>
+<LI>Always check input for characters that might be used in shell scripts or programs and clean them out or escape them (turn them into non-active codes like <CODE>U+000D</CODE> instead of a 
+<A href="http://en.wikipedia.org/wiki/Carriage_return">Carriage Return</A>), for example: ()[]{}|&amp;;`'\"*?~&lt;&gt;>^$\n\r (we'll look at this "sanitization" shortly).</LI>
 <LI>Always assign array lengths properly and deal with the issue of input that is too long for your arrays explicitly.</LI>
+<LI>If you need to add user data to a database, use parametrized queries or santitise aggresively 
+with built-in string escaping (we'll come back to this when we look at adding to databases.</LI>
 <LI>If you use third-party libraries or software, keep them up to date.</LI>
 <LI>Always use built-in methods for data transfer where they exist, rather than building these yourself.</LI>
 </OL>
