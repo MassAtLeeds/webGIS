@@ -14,21 +14,22 @@ Web security is a huge area, but some key ideas will get you a long way. We can 
 <H3>Machine attacks vs. manipulation of human elements (and between)</H3>
 <P>
 One element of attacking systems is convincing humans to reveal their passwords (for example by pretence) or 
-to allow people direct physical access to a machine or network (some attacks are simplier if you can boot a 
+to allow attackers direct physical access to a machine or network (some attacks are simplier if you can boot a 
 machine or work inside a firewall -- we'll come back to firewalls). This is 
 known as <A href="http://en.wikipedia.org/wiki/Social_engineering_%28security%29">social engineering</A>. In a lot of modern cases people 
-break into servers only to serve webpages that appear to be legitimate but which lead to malicious downloads, which is somewhere inbetween machine attacks and social attacks. A good default starting point as a systems administrator is therefore "Trust No One".</P>
+break into servers only to serve webpages out from a trusted website that appear to be legitimate but which lead to malicious downloads -- as trust is 
+part of the attack, such attacks fall somewhere between machine attacks and social attacks. A good default starting point as a systems administrator is therefore "Trust No One".</P>
 
 
 <H3>Attacks against servers vs. attacks against clients (and attacks against servers to attack clients).</H3> 
 <P>
 Direct 
 attacks against software clients usually involve convincing the user to download malicious software, although 
-occasionally holes are found in client browsers or browsers/os combinations that allow a direct attack. Direct 
+occasionally holes are found in client browsers or browser/OS combinations that allow a direct attack. Direct 
 attacks against connected servers or other computers are generally less successful because most people now connect through a 
 firewall-enabled router. Nevertheless, most internet-connected machines 
 will be hit plenty of times a week by automated attacks. Most pernicious is probably attacking servers to then 
-farm out malware downloads.</P>
+farm out malware downloads to clients.</P>
 
 <H3>Scripted attacks vs. bespoke attacks (and between).</H3>
 <P>

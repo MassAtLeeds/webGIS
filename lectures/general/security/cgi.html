@@ -1,15 +1,15 @@
 ---
 layout: default
-title: General - Attacks against Scripts
+title: General - Attacks against Server Scripts
 ---
 
-<h1>General: Attacks against Scripts</h1>
+<h1>General: Attacks against Server Scripts</h1>
 
 
 <P>
 Plainly the worst possible situation is a machine directly connected to the internet with all its <A href="http://en.wikipedia.org/wiki/Port_%28computer_networking%29">ports</A> open 
 and with no root password, or the default user password, and a fixed <A href="http://en.wikipedia.org/wiki/IP_address">IP address</A>. It is a simple matter to contact such a machine via <A href="http://en.wikipedia.org/wiki/Telnet">telnet</A> or <A href="http://en.wikipedia.org/wiki/File_Transfer_Protocol">FTP</A> and log in as root or the default user (who usually has admin rights). Even if an attacker doesn't have admin rights, if they have write-permission to web directories, they can cause a great deal of trouble. Even if the default passwords are changed, you need to make sure they are 
-<A href="http://en.wikipedia.org/wiki/Password_strength">strong</A> one (i.e. not a common word, or word and numbers: <A href="https://support.google.com/accounts/answer/32040?hl=en">advice from Google</A>) as an open 
+<A href="http://en.wikipedia.org/wiki/Password_strength">strong</A> ones (i.e. not a common word, or word and numbers: <A href="https://support.google.com/accounts/answer/32040?hl=en">advice from Google</A>) as an open 
 login console encourages people to try <A href="http://en.wikipedia.org/wiki/Password_cracking">brute-force guessing of passwords</A>, essentially running through lists of words and testing them. In addition, you should only 
 ever log into your system on an encrypted line, for example a <A href="http://en.wikipedia.org/wiki/Secure_Shell">SSH</A> connection, to lower the risk of 
 <A href="http://en.wikipedia.org/wiki/Man-in-the-middle_attack">MIM attacks</A>.
@@ -19,7 +19,7 @@ This setup, however, is not now common. Most computers now are surrounded by a <
 <A href="http://en.wikipedia.org/wiki/Router_%28computing%29">router</A> - a piece of 
 hardware that allows multiple machines to connect to the internet at the same time. Routers usually have their own 
 firewall that splits the network into the external network, and an internal private network with higher 
-privileges. Firewalls generally don't allow external machines to intiate communications with internal machines, only 
+privileges. Firewalls generally don't allow external machines to initiate communications with internal machines, only 
 allowing responses to communications initiated from inside the firewall. 
 </P>
 <P>
@@ -49,21 +49,21 @@ This is both trivial for the user to read, but is also stored in web logs and so
 
 <P>To understand why information sent to a server might be problematic, we need to understand a typical attack. 
 By and large attacks against machines exploit issues with software that open up security holes. A classic example 
-is the <A href="http://en.wikipedia.org/wiki/Buffer_overflow">Buffer overflow</A> attack which (broadly) writes 
+is the <A href="http://en.wikipedia.org/wiki/Buffer_overflow">Buffer Overflow</A> attack which (broadly) writes 
 larger data to arrays in a program than the program is expecting, spilling the data out of the program's memory areas and into the surrounding 
-OS code. To run such an exploit, however, an attacker needs to be able to run a program on the computer. This isn't usually simple, but with 
-web servers the options are higher as information is often sent to the scripts running. The other classic attack, often 
+memory running OS code. To run such an exploit, however, an attacker needs to be able to run a program on the computer. This isn't usually simple, but with 
+web servers the options are higher as information is often sent to the scripts that run. The other classic attack, often 
 combined with the Buffer Overflow, is to write input that evaluates to make a running program. If a server script is 
-foolish enough to run input sent to it without checking the input, the server can be made to run arbitrary programs with the web server software's 
+foolish enough to run input sent to it without checking the input, or a Buffer Overflow can be made to run the program, the server can be made to run arbitrary programs -- in the case of the former situation with the web server software's 
 permission privileges, which are often quite high. If the server script runs a program with <KBD>sudo</KBD>, this can be especially devastating. We'll see 
 another example of where sending data to scripts is problematic when we look at attacks against clients.
 </P>
 <P>
 While these types of attack usually rely on understanding the internals of code on the server, developers often make this very easy. An example of this is 
 scripts that run arbitrary code sent to them. Such scripts easily allow for 
-<A href="http://en.wikipedia.org/wiki/Code_injection">injection</A> attacks, where the attacker simply creates a new page that sends in the code they want executed. 
+<A href="http://en.wikipedia.org/wiki/Code_injection">injection</A> attacks, where the attacker simply sends in the code they want executed, for example through a web form. 
 You might imagine 
-that allowing arbitrary code to run was unusual, but, for example, if you send a server SQL queries, and don't check what they are 
+that allowing arbitrary code to run is unusual, but, for example, if you send a server SQL queries, and don't check what they are 
 doing, you are opening yourself up to a <A href="http://en.wikipedia.org/wiki/SQL_injection">SQL injection attack</A>.
 </P>
 <P>
@@ -75,12 +75,12 @@ Plainly there's a good deal to get your head around, and we'll come back to some
 </P>
 <OL>
 <LI>Avoid writing scripts that run arbitrary code passed in as input.</LI>  
-<LI>Avoid writing scripts that involve the shell to run code.</LI>
+<LI>Avoid writing scripts that involve a shell running code.</LI>
 <LI>Always check input for characters that might be used in shell scripts or programs and clean them out or escape them (turn them into non-active codes like <CODE>U+000D</CODE> instead of a 
 <A href="http://en.wikipedia.org/wiki/Carriage_return">Carriage Return</A>), for example: ()[]{}|&amp;;`'\"*?~&lt;&gt;>^$\n\r (we'll look at this "sanitization" shortly).</LI>
 <LI>Always assign array lengths properly and deal with the issue of input that is too long for your arrays explicitly.</LI>
-<LI>If you need to add user data to a database, use parametrized queries or santitise aggresively 
-with built-in string escaping (we'll come back to this when we look at adding to databases.</LI>
+<LI>If you need to add user data to a database, use parametrized queries and santitize aggresively 
+with built-in string escaping (we'll come back to this when we look at adding to databases).</LI>
 <LI>If you use third-party libraries or software, keep them up to date.</LI>
 <LI>Always use built-in methods for data transfer where they exist, rather than building these yourself.</LI>
 <LI>Never backup copies of scripts to a web directory. Webservers shouldn't serve out PHP scripts to users (just the results of the scripts), but if you save one 
