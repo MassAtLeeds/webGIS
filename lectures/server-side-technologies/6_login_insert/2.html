@@ -1,0 +1,130 @@
+---
+layout: default
+title: General - Uploading data II
+---
+
+<h1>General: Uploading data II</h1>
+
+<P>
+So, hopefully you are starting to get an inkling as to what is wrong with our scripts. To confirm your fears, 
+have a look at this <A href="http://amolnaik4.blogspot.co.uk/2012/02/sql-injection-in-insert-query.html">page describing the basic SQL Injection Attack against our script</A>.
+</P>
+<P>
+As you can see, we have a serious issue with our script: it is, as they say, asking for little "<A href="http://xkcd.com/327/">Bobby Tables</A>" to come visiting. At best the SQL injection attack can allow the arbitrary rewriting of 
+our returned webpage as an attack vector against our clients, at worse it allows for open access to our system and any data and systems connected to it. This is very bad. It is also very common: SQL Injection Attacks are the 
+<A href="https://www.owasp.org/index.php/Top_10_2013-Top_10">number one most important attack on the web</A>. So, what can we do about it?
+</P>
+<P>
+The short answer is nothing, well nothing generic. As soon as we allow users to upload into a database we open ourselves 
+up to an SQL Injection Attack (see, for example, this presentation by <A href="http://www.slideshare.net/billkarwin/sql-injection-myths-and-fallacies?related=1">Bill Karwin</A>). However, there are specific things 
+we can do to reduce the risk given a specific SQL script. In our case, for example, we know we are just going to 
+be opening a connection and INSERTing text and numbers, this means we have options that wouldn't be available if we 
+had to allow other kinds of data. We'll go through two processes to protect our server: sanitization and query parameterization. While we're at it we'll also look at data validation (check the right data has been added) on the client, more for their sake than ours. 
+</P>
+<P>
+First up, sanitization. In theory, one recommendation is just to use a <A href="http://www.w3schools.com/php/php_ref_filter.asp">PHP Filter</A>. These have various options, and in some cases, these are enough. For example, 
+if we know that we are just going to get numeric data, we can use a <A href="http://www.w3schools.com/php/filter_sanitize_number_int.asp">FILTER_SANITIZE_NUMBER_INT</A> filter to remove everything else:
+</P>
+<P>
+<CODE>$day = filter_var($_POST['day'], FILTER_SANITIZE_NUMBER_INT);</CODE>
+</P>
+<P>
+With text we could (and probably should) use a <A href="http://php.net/manual/en/filter.filters.sanitize.php">FILTER_SANITIZE_SPECIAL_CHARS</A> filter. This will 
+encode some characters (for example, replacing "&lt;" with "&amp;lt;" and "&gt;" with "&amp;gt;", thereby protecting us from HTML injection), and also stripping out 
+characters with ASCII codes below 32. These are "special characters" (<A href="http://www.danshort.com/ASCIImap/">list at bottom of Dan Short's page</A>) which include such 
+nefarious options as the <CODE>backspace</CODE> character, which allows an injector to delete back over strings (including, for example, query strings) and 
+replace them with something else:
+</P>
+<P>
+<CODE>$text	= filter_var($_POST['textBody'], FILTER_SANITIZE_SPECIAL_CHARS);</CODE>
+</P>
+<P>
+However, these filters are only really aimed at SQL injection attacks that aim to drop HTML into a page. They still leave plenty of characters that might cause damage. For example, they leave parentheses. Most people leave these in, as potentially important text, but I'm inclined to filter them out if we can. <A href="http://www.slideshare.net/billkarwin/sql-injection-myths-and-fallacies?related=1">Karwin</A> ridicules this the "Fire Everything" method, and there's some truth more generally in this being a poor decision -- applying filter after filter can end up with scrambled encodings and, in some cases, can undo previous filters. However, for an INSERT query such characters represent 
+a serious opportunity to break out of the query, and we can do without them (if you like you can replace them with something else). To do this, we can use a 
+<A href="http://en.wikipedia.org/wiki/Regular_expression">regular expression</A> ("regex"). To avoid later filters being interfered with, we'll do this first. The way to do this in PHP is:
+</P>
+<P>
+<CODE>
+$pattern = "/[\(\)\[\]\{\}]/";<BR />
+$user = preg_replace($pattern," - ",$user);<BR />
+$pattern = "/[^A-Za-z0-9\s\.\:\-\+\!\@\,\'\"]/";<BR />
+$user = preg_replace($pattern,"",$user);		
+</CODE>
+</P>
+<P>
+This first replaces all brackets with hyphens, and then removes everything but the characters shown. For more info, see this 
+<A href="http://www.cheatography.com/davechild/cheat-sheets/regular-expressions/">crib sheet</A>. For semi-numerical data we can be more aggressive. The only unfortunate 
+thing about this is that it also removes all non-ASCII characters (which the <CODE>FILTER_SANITIZE_SPECIAL_CHARS</CODE> doesn't) An alternative to this, and by far the 
+more preferred by those wanting to preserve most characters, is to encode anything that might represent an SQL command component as an escape literal (so "<CODE>\</CODE>" becomes "<CODE>\\</CODE>" and therefore unusable in a query) using the built-in Postgres 
+PHP function <A href="http://php.net/manual/en/function.pg-escape-literal.php">pg_escape_literal</A>:
+</P>
+<P>
+<CODE>
+$user = pg_escape_literal($user);
+</CODE>
+</P>
+<P>
+Prior to both these filterings, we can also "trim" our data to remove any white spaces from either side. This helps with things like usernames and passwords, where a user 
+might have hit the space bar after typing them. In PHP you can filter all the POST data with this little <A href="http://php.net/manual/en/function.array-filter.php">array_filter/callback function</A> from 
+<A href="http://php.net/manual/en/filter.filters.sanitize.php">googlybash24</A>, thus:
+</P>
+<P>
+<CODE>
+array_filter($_POST, 'trim_value');<BR />
+function trim_value(&$value){<BR />
+&nbsp;&nbsp;&nbsp;$value = trim($value);<BR />  
+}
+</CODE>
+</P>
+<P>
+The function trims one array element, and the array_filter passes each element to the function. 
+</P>
+<P>
+At the risk of "Fire Everything" code, we can roll the lot into the following functions which give us some flexibility for varying both the 
+deletion and filter patterns (note we can also add some code to truncate array elements that 
+are too long, *just* incase):
+</P>
+<P>
+<CODE>
+array_filter($_POST, 'trim_value');<BR /><BR /> 
+function trim_value(&$value){<BR />
+&nbsp;&nbsp;&nbsp;$value = trim($value);<BR />
+&nbsp;&nbsp;&nbsp;$pattern = "/[\(\)\[\]\{\}]/";<BR />   
+&nbsp;&nbsp;&nbsp;$value = preg_replace($pattern," - ",$value);<BR /> 
+}<BR /> <BR /> 
+
+$pattern = "/[^A-Za-z0-9\s\.\:\-\+\!\@\°\,\'\"]/"<BR />
+$lat = sanitize('lat',FILTER_SANITIZE_SPECIAL_CHARS,$pattern)<BR /> <BR /> 
+
+function sanitize($str,$filter,$pattern) {<BR /> 
+&nbsp;&nbsp;&nbsp;$sanStr = preg_replace($pattern,"",$sanStr);<BR /> 
+&nbsp;&nbsp;&nbsp;$sanStr = filter_var($_POST[$str], $filter);<BR /> 
+&nbsp;&nbsp;&nbsp;if (strlen($sanStr) > 255) $sanStr = substr($sanStr,0,255);<BR /> 
+&nbsp;&nbsp;&nbsp;return $sanStr;<BR /> 
+}
+</CODE>
+</P>
+
+
+<P>
+This should santitize our code fine. However, given that we've now put quite a lot of restrictions on our users, we might like to validate 
+their inputs using Javascript, warning them if they've used a character that's unlikely to survive. We can do this with the same kind of 
+regex as we did in the PHP for replacing characters. It is, however, important that we don't think we can sanitize on the client side -- an attacker 
+could potentially send us an HTTP request they had knocked up themselves without going through our webpage (albeit this is less likely if we 
+make the request using an <A href="http://www.w3schools.com/xml/xml_http.asp">XMLHttpRequest</A> rather than a POST. 
+</P>
+<P>
+We're not going to go into details of validating inputs on the client side now, we'll leave it for a challenge for you. However, to get you 
+started, you can find some example code on our <A href="">mitigating circumstances form</A>.
+</P>
+<P>
+Anyhow, now our inputs are sanitized to heck we should be ok. That said, there is one last extra burst of paranoia which is recommended, and that's to shift from a standard 
+query to a parameterized query which is much safer. We'll look at doing this next.
+</P>
+
+
+
+<hr class="post_float">[ Next: <a href="3.html">Parameterized queries</a> ]<br>
+[<a href="../../../web-based-gis/materials.html">Course Index</a>]<br>
+<hr class="post_float">
+</body></html>

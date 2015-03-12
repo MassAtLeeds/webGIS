@@ -1,16 +1,12 @@
 <!DOCTYPE html>
 <head>
-	<title>Hurricane Tweets</title>
-	
-	<link rel="stylesheet" type="text/css" href="style.css">
-	<script language="javascript" type="text/javascript" src="script.js"></script>
-	
+	<title>Hurricane Tweets</title>	
 </head>
 
 <body>
 
 	<div class = "title">
-		<h1>Unit 6 INSERT example</a></h1>
+		<h1>Unit 9 INSERT example</a></h1>
 	</div>
 
 	<?php 

@@ -83,6 +83,8 @@ Plainly there's a good deal to get your head around, and we'll come back to some
 with built-in string escaping (we'll come back to this when we look at adding to databases.</LI>
 <LI>If you use third-party libraries or software, keep them up to date.</LI>
 <LI>Always use built-in methods for data transfer where they exist, rather than building these yourself.</LI>
+<LI>Never backup copies of scripts to a web directory. Webservers shouldn't serve out PHP scripts to users (just the results of the scripts), but if you save one 
+as <CODE>myscript.bak</CODE> or <CODE>myscript.txt</CODE> it, and any passwords in it, will be visible to the world.</LI>
 </OL>
 <P>
 A starters guide to attacks against scripts can be found on the <A href="http://www.w3.org/Security/Faq/wwwsf4.html">w3c security site</A> 

@@ -1,0 +1,55 @@
+---
+layout: default
+title: General - Uploading data II
+---
+
+<h1>General: Uploading data II</h1>
+
+<P>
+As if santization isn't enough, most people recommend using <A href="http://en.wikipedia.org/wiki/Prepared_statement">parameterized queries</A> rather than 
+standard string-based queries. To understand why, look at our original query:
+</P>
+<P>
+<CODE>
+$insertQuery = "INSERT INTO tweets(oid, body, latitude, longitude, day, hour, min) VALUES($oid,'$text',$lat,$lon,$day,$hour,$min)";
+</CODE>
+</P>
+<P>
+The problem with it is that it is all held in a string, and therefore any part of the string (for example one of the variables sent in) can 
+end the string and start some new command. The solution to this is to hold the data chunks of the string (in this case the variables) separate from 
+the command part of the string, and run the command, only pulling in the data when needed (and even better, to do some encoding of anything problematic in it 
+at the same time). That way there's no chance of data running as commands. This is the idea behind parameterized queries. The query itself is 
+hardwired with markers for the data, and the data is passed in when needed.
+</P>
+<P>
+In PHP, you construct a parameterized query, thus:
+</P>
+<P>
+<CODE>
+$dbconn = pg_connect($pgsqlOptions);<BR />
+$insertQuery = pg_prepare(<BR />&nbsp;&nbsp;$dbconn, "my_query",<BR />&nbsp;&nbsp;"INSERT INTO tweets(oid, body, latitude, longitude, day, hour, min) VALUES($1,'$2',$3,$4,$5,$6,$7)"<BR />);<BR />
+$result = pg_execute(<BR />&nbsp;&nbsp;$dbconn, "my_query", <BR />&nbsp;&nbsp;array($oid,$text,$lat,$lon,$day,$hour,$min)<BR />);
+</CODE>
+</P>
+
+<P>
+With this in mind, here's a <A href="exampleFiles/secure.zip">zip file</A> containing the same files as before, but this time snuggled in some security stuff. Unzip them and check them out, then upload the files to the server, replacing the insecure versions, and try them out. If you want to, give it a go validating the Javascript side. Even better, see if you can build this interface, or something better, into your leaflet maps.
+</P>
+
+<P>
+While we call these files "secure", as we've said before, there's really no such thing. Have another look at 
+<A href="http://www.slideshare.net/billkarwin/sql-injection-myths-and-fallacies?related=1">Bill Karwin's talk</A>, along with <A href="http://amolnaik4.blogspot.co.uk/2012/02/sql-injection-in-insert-query.html">AMol NAik's SQL Injection in INSERT Query</A> and <A href="http://www.unixwiz.net/techtips/sql-injection.html">Steve Friedl's SQL Injection Attacks by Example</A> and the 
+<A href="http://bobby-tables.com/">Bobby Tables</A> site. If you are going to allow SQL-based access to your server, you 
+need to be prepared, *really* prepared. Some good starting points are 
+<A href="http://thecodist.com/article/sql-injections-how-not-to-get">Thomas Mueller's SQL Injections: How Not To Get Stuck</A>, which includes some server settings that help, along with 
+<A href="https://www.owasp.org/index.php/SQL_Injection_Prevention_Cheat_Sheet">OWASP's  SQL Injection Prevention Cheat Sheet</A>, 
+<A href="https://www.owasp.org/index.php/Query_Parameterization_Cheat_Sheet">Query Parameterization</A>, and 
+<A href="https://www.owasp.org/index.php/XSS_%28Cross_Site_Scripting%29_Prevention_Cheat_Sheet">XSS</A> Cheat Sheets. There are also a wide variety of Grey-Hat and Ethical Hacker 
+books on the subject, should you wish to go down that defence route.
+</P>
+
+
+<hr class="post_float">
+[<a href="../../../web-based-gis/materials.html">Course Index</a>]<br>
+<hr class="post_float">
+</body></html>
