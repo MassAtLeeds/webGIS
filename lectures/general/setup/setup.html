@@ -1,9 +1,9 @@
 ---
 layout: default
-title: General - Getting online
+title: General - Setting up your own server space
 ---
 
-<h1>General: Getting online</h1>
+<h1>General: Setting up your own server space</h1>
 
 
 
@@ -15,6 +15,7 @@ Setting up your own server involves several steps:
 <LI>Getting an IP address.</LI>
 <LI>Getting an Domain Name.</LI>
 <LI>Setting up your firewall.</LI>
+<LI>Setting up Apache.</LI>
 </OL>
 
 <H3>Setting up a machine.</H3>
@@ -33,7 +34,8 @@ time after time through <A href="http://en.wikipedia.org/wiki/Domain_Name_System
 choices: you can either get your ISP to give you a static address, or you can buy a forwarding service. Some ISPs, especially those offering TV services etc. 
 may already have given you a static IP address: Virgin, for example, <A href="http://forums.thinkbroadband.com/virgin_cable/4369047-virgin-media-dynamic-ip-really-are-static.html">seem to dynamically allocate IPs, but on the basis of hardware</a> (<A href="http://en.wikipedia.org/wiki/MAC_address">MAC</A>) addresses, so by most accounts they don't change unless you 
 change router. Equally, some ISPs will sell you a static IP address (<A href="http://www.plus.net/support/broadband/products/IP_addresses_broadband.shtml">PlusNet</A>, for example). Either way, you should check your terms and conditions, as some ISPs limit what static IP Addresses can be used for (for instance, to prevent them being used for email spam). If your ISP doesn't offer a static address, then you can set up <A href="http://en.wikipedia.org/wiki/Dynamic_DNS#DDNS_for_Internet_access_devices">Dynamic DNS</A> on your router. DDNS works by your router sending its dyanmically allocated IP Address regularly to a third party who do have a static IP address and who allocate the address to you. They then forward 
-any requests coming to the IP address to you at your latest IP Address. A popular service like this is <A href="http://www.noip.com/">NoIP</A>. Most DDNS companies will also offer Domain Name buying options.
+any requests coming to the IP address to you at your latest IP Address. Popular services like this include <A href="http://www.noip.com/">NoIP</A> 
+and <A href="http://www.zoneedit.com/dynamicDNS.html">ZoneEdit</A>. Most DDNS companies will also offer Domain Name buying options.
 </P>
 <P>
 Once you have a static IP address or DDNS, it is important to realise that this will be for your router (and you should *always* connect through a router, as they 
@@ -44,15 +46,49 @@ can find instructions for doing this on <A href="http://www.wikihow.com/Assign-a
 <A href="http://www.cyberciti.biz/faq/linux-configure-a-static-ip-address-tutorial/">NixCraft</A> (also, for 
 Windows on <A href="http://kb.linksys.com/Linksys/GetArticle.aspx?docid=7e4956723e074191bdf33777314ddfd8_3998.xml&">Linksys</A> and 
 <A href="https://msdn.microsoft.com/en-us/library/dd163570.aspx">Microsoft</A>). You'll also need to check how to configure your router so it doesn't allocate it 
-when the machine is off.
+when the machine is off. You may also find you need to adjust your <A href="http://en.wikipedia.org/wiki/Hosts_%28file%29">hosts</A> file, but this is less likely.
 </P>
 
 <H3>Getting a Domain Name.</H3>
 <P>
+Once you have a solid IP Address, you can then point a domain name at it. First you need to buy a Domain Name from a 
+<A href="http://en.wikipedia.org/wiki/Domain_name_registrar">Domain Name Registrar</A> 
+(<A href="https://www.icann.org/registrar-reports/accredited-list.html">list</A>). You'll then get the option of setting up various 
+<A href="http://en.wikipedia.org/wiki/Domain_Name_System">Domain Name System (DNS)</A> <A href="http://en.wikipedia.org/wiki/List_of_DNS_record_types">records</A>, the most important of 
+which is the <CODE>A</CODE> record, which points your domain name at your IP Address. Once this is set up, this combination with 
+be propagated around the DNS lookup tables worldwide (takes up to 24 hours), and then anyone using a URL containing your domain name will 
+get routed to your IP Address.
+</P>
+
 
 <H3>Setting up your firewall.</H3>
 <P>
-Having got an IP address for your router, and having 
+Having got an IP address for your router, and having directed traffic to it, you'll now need to allow appropriate traffic into your router and 
+get it to forward it to the subnet address of your server. This is done through 
+<A href="http://en.wikipedia.org/wiki/Port_forwarding">Port Forwarding</A> which you set up on your server. As this varies by router, you'll need to 
+search for how it is done with your particular router. However, note that this is the bit that opens your network to the world, so 
+be very careful what you do, and only trust legitimate sources of information. You'll need to forward traffic to Port 80 of your router to your subnet addressed server, but you probably want to leave it at that for the moment. If, later, you want to do remote administration, you might consider opening other ports, but when starting I'd just do this via your internal network which should allow through SSH.
+</P>
+<P>
+Your Linux box, if that's what you're using, will also have a firewall on it -- probably the one built into the Linux kernal. Chances are that the 
+management software for this will be either <A href="http://en.wikipedia.org/wiki/Iptables">Iptables</A> 
+(<A href="http://www.howtogeek.com/177621/the-beginners-guide-to-iptables-the-linux-firewall/">intro</a>) or <A href="http://en.wikipedia.org/wiki/Nftables">Nftables</A>. Both are relatively tricky to manage, so many people install 
+<A href="http://en.wikipedia.org/wiki/Shorewall">Shorewall</A>, which makes configuring them simpler. For installation and 
+setup details, see the <A href="http://www.shorewall.net/">Shorewall</A> website. Again, you'll need to allow Port 80 incoming communications.
+</P>
+
+<H3>Setting up Apache.</H3>
+<P>
+Finally, we need to set up our webserver for our domain name. You can find details of setting this up for 
+<A href="http://httpd.apache.org/">Apache</A> in the <A href="http://httpd.apache.org/docs/2.2/vhosts/examples.html">documentation</A> (indeed, you should read 
+<A href="http://httpd.apache.org/docs/2.2/">all the documentation, not least because you'll need to reboot/start the server</A>). The usual thing is to set up a <A href="http://en.wikipedia.org/wiki/Virtual_hosting">Virtual Host</A> which allows you to attach several domain names to one IP Address. You can 
+see if a server is running locally by typing <CODE>http://localhost:80/</CODE> as a URL. If you can see it working here, but not on the web more generally, it is  
+a networking/virtual server config problem, not a problem with Apache running.
+</P>
+
+<P>
+At the end of that, you should be able to type in your domain name in a web browser and see your server working!
+</P>
 
 
 
