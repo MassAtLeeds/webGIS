@@ -7,7 +7,7 @@ title: Assessment 2
 
 <H3>Assessed work</H3>
 <P>
-The client-server practicals have aimed to introduce some of the main technologies for servers and non-Google clients, and to build up increasingly sophisticated examples of their use. 
+The client-server practicals have aimed to introduce some of the main technologies for servers and non-Google clients, and to build up increasingly sophisticated examples of their use.
 </P>
 <P>
 These practicals collectively provide the necessary skills to carry out the assessed practical for this part of the module.
@@ -30,7 +30,7 @@ The web page that contains the map should have the following characteristics
 <LI>Should contain correct citation for all data sources used</LI>
 </UL>
 <P>
-The web page can link to subsidiary pages that give further information if you wish. 
+The web page can link to subsidiary pages that give further information if you wish.
 </P>
 <H3>Assessment</H3>
 <P>
@@ -46,5 +46,4 @@ The assessment for this practical will be based on the web page/s that you creat
 <LI>The web pages that you produce should be accessible for marking as of the submission date. The datestamps of files on the server may be used to confirm that files have not been altered after the submission date.</LI>
 </UL>
 <P>
-The work must be submitted by 2pm (UK time) on the Weds 8th April 2015.
-</P>
+Details of submission can be found on the VLE.</P>
