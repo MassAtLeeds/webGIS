@@ -44,12 +44,14 @@ data set could be geocoded fairly quickly. However, this approach
 (while workable for this practical) would not be sufficient if your
 data set was considerably larger. Fortunately, there are services
 which allow automated processing of geocoding and co-ordinate
-conversion. The nearby.org.uk site includes such as service: it is
+conversion.  However to use these, you now have to sign up for an API key.  This doesn't cost anything and is there to stop abuse of the site from commercial companies.
+
+<p>The nearby.org.uk site includes such as service: it is
 described here:
 <p>
 <a href="http://www.nearby.org.uk/api/convert-help.php">http://www.nearby.org.uk/api/convert-help.php</a>
 <p>
-There is also a geocoding service available from Google Maps. The full description of Google's Geocoder is available here:
+There is also a geocoding service available from Google Maps - again, if you wish to use it, you will need to register for a key. The full description of Google's Geocoder is available here:
 <p>
 <a href="http://code.google.com/apis/maps/documentation/geocoding/">http://code.google.com/apis/maps/documentation/geocoding/</a>
 <p>
@@ -66,7 +68,7 @@ results.
 
 <h3>Task (optional)</h3>
 	If you are confident with using APIs in this way, try using the
-nearby.org.uk conversion api to convert some points. 
+nearby.org.uk conversion api to convert some points.
 
 <h3>JSCoord</h3>
 
@@ -80,7 +82,7 @@ systems.
 <li><a href ="jscoord-1.1.1.zip">Local copy</a>
 </ul>
 <p>
-This can be use to convert from OS National Grid references to the appropriate latitude / longitude reference. 
+This can be use to convert from OS National Grid references to the appropriate latitude / longitude reference.
 <p>
 
 <h3>Task</h3>
@@ -99,7 +101,7 @@ important to load this before the script that will use the library.
 The plaques_map.html file also makes reference to a test data file <b>test_plaques_data.js</b>,
 which includes the first two points we want to add. This has been put
 into an array called os_markers, to remind us that the co-ordinates
-are currently OS grid references. 
+are currently OS grid references.
 <p>
 <img src="test_plaques_data.png" alt="Text" style = "width:900px;height:400px">
 <li>The code for this file can be downloaded <a href="test_plaques_data.js">HERE</a>
@@ -125,13 +127,13 @@ have loaded. Firstly, we create a new object of the type OSRef (this
 object is made available through the JScoord library), and initialise
 it using the easting and northing values stored in our marker data.
 We then make use of a method provided by the library for OS points:
-toLatLng(). 
+toLatLng().
 <p>This converts the point to a latlng point (the conversion
 maths is contained within the library). However, not all latitude and
 longitude references are the same! These coordinates assume that we
 are still using the OSGB36 datum that is used for normal OS maps. As
 the OS National Grid uses a different datum to Google Maps, it is
-necessary to convert between datums.  
+necessary to convert between datums.
 
 <p>This is done by the
 OSGB36ToWGS84() method of the lat-long object.  Since we have not
@@ -139,7 +141,7 @@ specified a new variable, the statement 'llPt.OSGB36ToWGS84();'
 causes the llPt object to act on itself. Finally, we use the
 addMarker() to add a marker to our map in the same way as before,
 except that instead of using the co-ordinates from the original data,
-we use the lat and lng properties of the object llPt. 
+we use the lat and lng properties of the object llPt.
 <p>
 
 <img src="test_plaques_data.png" alt="Text" style = "width:900px;height:400px">

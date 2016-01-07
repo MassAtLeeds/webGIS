@@ -1,7 +1,7 @@
 var map; // The map object
 
-  var myCentreLat = 53.807767;
-  var myCentreLng = -1.557428;
+  var myCentreLat = 53.804149;
+  var myCentreLng = -1.555432;
 
   var initialZoom = 14;
 
@@ -16,8 +16,8 @@ var map; // The map object
         myOptions);
 
     var marker = new google.maps.Marker({
-      position: latlng, 
-      map: map, 
+      position: latlng,
+      map: map,
       title:"Hello World!"
     });
 

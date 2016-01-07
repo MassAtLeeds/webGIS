@@ -1,0 +1,123 @@
+---
+layout: default
+title: Using HTML to control JavaScript
+---
+
+
+<h1>Using HTML to control JavaScript</h1>
+<p>
+Materials developed by Matt Whittle.
+<p>
+The use of HTML elements such as buttons, dropdown menus, check boxes and other features are essential when planning and building a website.
+<br>
+JavaScript has several ways to communicate with these elements in order to perform tasks.
+
+<h2>Buttons and "Onclick" command</h2>
+Buttons are the simplest elements in HTML.
+To create a button use the following line of code within the body of your HTML.
+<p>
+
+<div class="button_example">
+<pre>
+ <code>< button type="button"> BUTTON </button></code>
+ </pre>
+</div>
+<p>
+<p>NB:Please note the added space between < and button.  If this wasn't here, the js would compile and all you would see was a  <code><button type="button"> BUTTON </button></code>!  You must remove this space or the button won't work.
+
+<p>
+
+However this button will not perform any action, adding an onclick event to the code will tell the button to perform an action when it is clicked. Use the following line of code to create a hello world popup.
+<p>
+<div class="button_example">
+<pre>
+ <code>< button type="button" onclick="alert('Hello world!')">BUTTON</button></code>
+ </pre>
+</div>
+<p>
+<p>Click on the button below...
+<p>
+<button type="button" onclick="alert('Hello world!')">BUTTON</button>
+<p>
+The onclick event can be used to run methods within your JavaScript as well, try writing a simple method within JavaScript to print Hello World to the console.
+<p>
+
+<h2>Drop down menus</h2>
+<p>To create a drop down menu in HTML the following code is used in the body of the HTML (again spaces have been included).
+<p>
+< select>
+< /select>
+<p> This complex piece of code gives:
+<select>
+</select>
+<p>
+This will create a blank dropdown, in order to fill it option tags must be added between the select tags.
+<p>
+<div class="dd_example">
+<pre>
+ <code>< select><br>
+  < option value="Geography"> Geography </option><br>
+  < option value="Chemistry"> Chemistry </option><br>
+  < option value="Physics"> Physics </option><br>
+  < option value="English"> English </option><br>
+< /select></code>
+ </pre>
+</div>
+
+
+<p>which produces...
+<p>
+
+<select>
+  <option value="Geography"> Geography </option>
+  <option value="Chemistry"> Chemistry </option>
+  <option value="Physics"> Physics </option>
+  <option value="English"> English </option>
+</select>
+<p>
+
+In order to communicate with the JavaScript the select tag must be given an ID as in the following piece of code.
+<p>
+<div class="dd_example">
+<pre>
+ <code>< select id="department"><br>
+  < option value="Geography"> Geography </option><br>
+  < option value="Chemistry"> Chemistry </option><br>
+  < option value="Physics"> Physics </option><br>
+  < option value="English"> English </option><br>
+</ select><br></code>
+ </pre>
+</div>
+
+which gives...
+<p>
+
+<select id="department">
+  <option value="Geography"> Geography </option>
+  <option value="Chemistry"> Chemistry </option>
+  <option value="Physics"> Physics </option>
+  <option value="English"> English </option>
+</select>
+<p>
+
+
+In order to get the value using JavaScript place this code in the method that is executed by the onload event.
+<p>
+<div class="dd_example">
+<pre>
+ <code>var e = document.getElementById("department");
+var dropDownValue = e.options[e.selectedIndex].text;
+conlose.log(strUser)<br></code>
+ </pre>
+</div>
+<p>
+Have a play around with these in a new web page, or maybe use some of these elements for your assessments!
+
+<p>
+<br>
+Once you have read and understood the above, let's move onto the practical!
+<p>
+
+<p>
+[ Next: <a href="module5_practical.html">Practical
+]
