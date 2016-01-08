@@ -28,7 +28,7 @@ More information can be found on the <a href="http://webprod3.leeds.ac.uk/catalo
 ## About the website
 
 <p class="message">
- Welcome the the Web GIS website, for MSc students in the School of Geography,
+ Welcome to the Web GIS website, for MSc students in the School of Geography,
  University of Leeds. The site was built using HTML, CSS and a little
  help from static website generator
 <a href="http://jekyllrb.com">Jekyll</a>.

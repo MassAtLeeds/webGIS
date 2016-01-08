@@ -23,7 +23,7 @@ author:
 version:             1.0.0
 
 destination:         _site_wbg
-layouts:     ./_layouts_wbg
+layouts_dir:     ./_layouts_wbg
 exclude:     [atom.xml]
 
 
