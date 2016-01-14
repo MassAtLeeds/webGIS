@@ -1,9 +1,528 @@
----
-layout: default
-title: Home
----
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
 
-<h2>Welcome to <strong>Web GIS</strong> at the University of Leeds</h2>
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      GEOG5870/1M: Web-based GIS &middot; A course on web-based mapping
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="http://www.geog.leeds.ac.uk/courses/postgrad/web/styles/css/poole.css">
+  <link rel="stylesheet" href="http://www.geog.leeds.ac.uk/courses/postgrad/web/styles/css/syntax.css">
+  <link rel="stylesheet" href="http://www.geog.leeds.ac.uk/courses/postgrad/web/styles/css/lanyon.css">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700|PT+Sans:400">
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://www.geog.leeds.ac.uk/courses/postgrad/webstyle/apple-touch-icon-precomposed.png">
+  <link rel="shortcut icon" href="http://www.geog.leeds.ac.uk/courses/postgrad/webstyle/favicon.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+
+  <!-- Web GIS Added -->
+  <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+  <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+</head>
+
+
+  <body>
+
+    <!-- Target for toggling the sidebar `.sidebar-checkbox` is for regular
+     styles, `#sidebar-checkbox` for behavior. -->
+<input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox">
+
+<!-- Toggleable sidebar -->
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-item">
+    <p>GEOG5870/1M: Web-based GIS, University of Leeds</p>
+  </div>
+
+  <nav class="sidebar-nav">
+    <a class="sidebar-nav-item" href="http://www.geog.leeds.ac.uk/courses/postgrad/web/web-based-gis/">Home</a> <!--was originally href="http://www.geog.leeds.ac.uk/courses/postgrad/web">Home</a> - may want to change back at some point for portability - rl -->
+
+    
+
+    
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="http://www.geog.leeds.ac.uk/courses/postgrad/web/info/code/">Code cookbook</a>
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="http://www.geog.leeds.ac.uk/courses/postgrad/web/info/code/reading.html">Recommended reading</a>
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="http://www.geog.leeds.ac.uk/courses/postgrad/web/web-based-gis/assessments.html">Assessments</a>
+        
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="http://www.geog.leeds.ac.uk/courses/postgrad/web/web-based-gis/data.html">Data</a>
+        
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="http://www.geog.leeds.ac.uk/courses/postgrad/web/web-based-gis/finalassessment/">Final Assessment</a>
+        
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="http://www.geog.leeds.ac.uk/courses/postgrad/web/web-based-gis/handbook.html">Course handbook</a>
+        
+      
+    
+      
+        
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="http://www.geog.leeds.ac.uk/courses/postgrad/web/web-based-gis/materials.html">Course materials</a>
+        
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="http://www.geog.leeds.ac.uk/courses/postgrad/web/web-based-gis/software.html">Software</a>
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+
+<!--    <span class="sidebar-nav-item">University of Leeds1.0.0</span> -->
+  </nav>
+
+  <div class="sidebar-item">
+    <p>
+      &copy; 2016. All rights reserved.
+    </p>
+  </div>
+</div>
+
+
+    <!-- Wrap is the content to shift when toggling the sidebar. We wrap the
+         content to avoid any CSS collisions with our real content. -->
+    <div class="wrap">
+      <div class="masthead">
+        <div class="container">
+          <h3 class="masthead-title">
+            <a href="http://www.geog.leeds.ac.uk/courses/postgrad/web/web-based-gis/" title="Home">GEOG5870/1M: Web-based GIS</a>
+            <small>A course on web-based mapping</small>
+          </h3>
+        </div>
+      </div>
+
+      <div class="container content">
+        <h2>Welcome to <strong>Web GIS</strong> at the University of Leeds</h2>
 <p>This course has been designed to cover the basics of web based mapping. The aim of the module is to equip you with the skills to 
 build your own web-based GIS from scratch. We will start with basic web skills including HTML, CSS and Javascript and move onto specific
 tools for creating and serving web maps, including Google Maps, Leaflet and Geoserver. </p><br />
@@ -14,7 +533,7 @@ tools for creating and serving web maps, including Google Maps, Leaflet and Geos
 
 <script>
 var map = L.map('map').setView([54.610488, -2.491324], 5);
-		L.tileLayer('https://{s}.tiles.mapbox.com/v3/{id}/{z}/{x}/{y}.png', {
+		L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 			maxZoom: 18,
 			attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
 				'<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
@@ -72,3 +591,28 @@ var map = L.map('map').setView([54.610488, -2.491324], 5);
 </script>
 	
 	
+
+      </div>
+    </div>
+
+    <label for="sidebar-checkbox" class="sidebar-toggle"></label>
+
+    <script>
+      (function(document) {
+        var toggle = document.querySelector('.sidebar-toggle');
+        var sidebar = document.querySelector('#sidebar');
+        var checkbox = document.querySelector('#sidebar-checkbox');
+
+        document.addEventListener('click', function(e) {
+          var target = e.target;
+
+          if(!checkbox.checked ||
+             sidebar.contains(target) ||
+             (target === checkbox || target === toggle)) return;
+
+          checkbox.checked = false;
+        }, false);
+      })(document);
+    </script>
+  </body>
+</html>
