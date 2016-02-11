@@ -47,7 +47,7 @@ is defined called ‘tweetData’:</p>
 <p>Secondly, an AJAX request is called which makes a HTTP GET request to the PHP file sat on the 
 dialogplus server and returns a set of JSON encoded results. Upon successfully retrieving the results, 
 a function is called which loops through the results to create a new Javascript object for each tweet 
-in the results array. Each tweet object contains an id, a text body, latitude and a longitude. 
+in the results array. Each tweet object contains: id, text body, latitude and longitude. 
 The new Javascript object is then ‘pushed’ to the end of the ‘tweetData’ array, to create an array 
 of Javascript objects. </p>
 
@@ -100,7 +100,7 @@ function clearData()	{
 <h3>PHP</h3>
 
 <p>The first half of the PHP script is the same as the one created in the previous task, with the 
-exception of the header at the top of the file. This header is used to by the AJAX HTTP GET request 
+exception of the additional of a header at the top of the file. This header is used by the AJAX HTTP GET request 
 to inform the type of data returned from the server, so the data can be handled appropriately. </p>
 
 <code>header("Content-type:application/json");</code>
@@ -136,7 +136,7 @@ in this case the JSON encoded tweetData array. </p>
 
 <ol>
 	<li>User clicks ‘Fetch Data’ button</li>
-	<li>fetchData() function is called which initiates an AJAX GET HTTP request to the PHP file</li>
+	<li>fetchData() function is called which initiates a AJAX GET HTTP request to the PHP file</li>
 	<li>PHP creates a secure connection to geog5871 database</li>
 	<li>PHP queries tweets table and returns a results set</li>
 	<li>PHP loops through the results set row by row and creates an associative array </li>

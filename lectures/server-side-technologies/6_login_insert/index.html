@@ -13,24 +13,28 @@ simple enough to write, but fraught with potential security issues. First we'll 
 building something with the most security we can muster.
 </p>
 <P>
-First let's look at the core elements of a system. Here's a <A href="exampleFiles/insecure.zip">zip file</A> containing a webpage and php page; download it and unzip it somewhere <STRONG>but DON'T upload it to the server</STRONG>.
+First let's look at the core elements of a system. Here's a <A href="exampleFiles/insecure.zip">zip file</A> containing a webpage 
+and php page; download it and unzip it somewhere <STRONG>but DON'T upload it to the server</STRONG>.
 </P>
 <P>
-The first thing we need is some kind of interface for the user to enter data; our webpage provides that. Open it up in Notepad++ and a web browser 
-and have a look at it. The first thing you should see is that it doesn't use any Javascript. Instead, it uses an older 
+The first thing we need is some kind of interface for the user to enter data; our webpage provides that. Open it up in Notepad++ 
+and a web browser and have a look at it. The first thing you should see is that it doesn't use any Javascript. Instead, it uses an older 
 client-server technology known as the <A href="http://en.wikipedia.org/wiki/Common_Gateway_Interface">Common Gateway Interface</A>, or CGI. 
 CGI is standard for transmitting data 
 to servers and getting programs on the server to use the data. In this case we are doing this with the 
 <A href="http://www.w3schools.com/tags/ref_httpmethods.asp">HTTP POST</A> statement. This statement sends data to a server 
-encoded invisibly (but not, with effort, unreadably) in the HTTP transmission (c.f. <A href="http://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol#Request_methods">GET and PUT</A> statements, that encode the 
+encoded invisibly (but not, with effort, unreadably) in the HTTP transmission 
+(c.f. <A href="http://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol#Request_methods">GET and PUT</A> statements, that encode the 
 information in URLs - we'll see an example later).
 </P>
 <P>
 In our case, the POST statement will POST the server the data from an HTML 
-<A href="http://www.w3schools.com/html/html_forms.asp">FORM</A>. Forms are made of sets of HTML tags that encode text boxes, buttons, etc. In most HTML-only cases, a FORM is 
-sent by the user clicking an <A href="http://www.w3schools.com/html/html_forms.asp">INPUT</A> tag of type <CODE>submit</CODE>. These are usually displayed by the browser as buttons. This then enacts the FORM tag's 
+<A href="http://www.w3schools.com/html/html_forms.asp">FORM</A>. Forms are made of sets of HTML tags that encode text boxes, 
+buttons, etc. In most HTML-only cases, a FORM is sent by the user clicking an <A href="http://www.w3schools.com/html/html_forms.asp">
+INPUT</A> tag of type <CODE>submit</CODE>. These are usually displayed by the browser as buttons. This then enacts the FORM tag's 
 <CODE>method</CODE> attribute to send the data to the FORM tag's <CODE>action</CODE> attribute -- usually the web address of a 
-server-side script. Again, all this happens using standard HTML/HTTP, there's no Javascript involved, just as there's no Javascript involved in a standard link issuing a GET request.
+server-side script. Again, all this happens using standard HTML/HTTP, there's no Javascript involved, just as there's no Javascript 
+involved in a standard link issuing a GET request.
 </P>
 <P>
 Note two additional things: 1) each FORM element that can be filled with data has a name (in the case below, <CODE>'user'</CODE>):
@@ -47,14 +51,17 @@ Secondly, that if you want to pass hidden information to a script, you  can use 
 <P>
 This is useful if you want to pass data on through a chain of FORMs -- you just get the script dealing with the 
 first form to make the page containing the second form, with all the data from the first form embedded into it 
-in hidden tags so they, in turn, gets passed to the second form's processing script (though if you don't also save the data, this only works if you're sure users are going to complete all the forms).
+in hidden tags so they, in turn, gets passed to the second form's processing script (though if you don't also save the data, 
+this only works if you're sure users are going to complete all the forms).
 </P>
 <HR>
-<P>So, anyhow, how does CGI allow us to then access the data sent? The web server will write the data into an environment variable (called <CODE>QUERY_STRING</CODE>) that the script can access and interrogate. Open up the PHP file and have a look at it. 
+<P>So, anyhow, how does CGI allow us to then access the data sent? The web server will write the data into an environment 
+variable (called <CODE>QUERY_STRING</CODE>) that the script can access and interrogate. Open up the PHP file and have a look at it. 
 </P>
 
 <P>
-You should be able to see that the data sent to the script (in PHP) is converted by PHP from the <CODE>QUERY_STRING</CODE> (which we never see) and held in an associative array (<CODE>$_POST</CODE>) which you can look things up in by using a name, thus:
+You should be able to see that the data sent to the script (in PHP) is converted by PHP from the <CODE>QUERY_STRING</CODE> 
+(which we never see) and held in an associative array (<CODE>$_POST</CODE>) which you can look things up in by using a name, thus:
 </P>
 <P>
 <CODE>
@@ -63,31 +70,27 @@ $person = $_POST['user'];
 </P>
 <P>
 Unlike the script in the zip file, here we've used a different variable and name so you can see distinction.
-The name (<CODE>'user'</CODE>) is the name given to the FORM element where the data was entered (or a hidden element). We just attach it to a variable (in this 
-case <CODE>$person</CODE>) and we can use the data. Neat, hu?
+The name (<CODE>'user'</CODE>) is the name given to the FORM element where the data was entered (or a hidden element). 
+We just attach it to a variable (in this case <CODE>$person</CODE>) and we can use the data. Neat, huh?
 </P>   
 <P>
 Now let's look at the rest of the script. It should be fairly self-explanatory. We open a connection to the database using the 
 username and password supplied by the FORM, construct a SQL query to find out the current last primary key, issue the query, and 
 increment the variable now containing a copy of the primary key -- we'll use this in a bit for the new row's primary key.
 </P>
-<P>Next, we make ourselves an SQL statement using the SQL command <CODE>INSERT INTO <EM>tableName</EM> (<EM>columnsToInsertInto</EM>) VALUES 
-(<EM>valuesToInsert</EM>)</CODE>. We use this to insert our new values (note the treatment of <CODE>text</CODE> with single-quotes (why don't we use double quotes?)). Finally we check something suitably positive has come back 
-and close the connection.
+<P>Next, we make ourselves an SQL statement using the SQL command <CODE>INSERT INTO <EM>tableName</EM> 
+(<EM>columnsToInsertInto</EM>) VALUES(<EM>valuesToInsert</EM>)</CODE>. We use this to insert our new values 
+(note the treatment of <CODE>text</CODE> with single-quotes (why don't we use double quotes?)). 
+Finally we check something suitably positive has come back and close the connection.
 </P>
 <P>
-Overall, this seems like a perfectly decent solution to our problem. As our server is closed to off-campus access, even through Port 80, and we can track any nare-do-wells inside the Uni system, upload this file if you like and give it a go -- it should work fine. Use the database username and password.
+Upload this file to the server if you like and give it a go -- it should work fine. Use the database username and password.  
+Overall, this seems like a perfectly decent solution; our server is closed to off-campus access, 
+even through Port 80, and we can track any nare-do-wells inside the Uni system. However, all is not well with this script, 
+not well at <EM>all</EM>. To understand why, we need to 
+understand a bit more about attacks on webservers and web security. It is worth taking a bit of time out to look through 
+the web security resources we have provided and work through the 'Uploading data II' tasks if you have some time. 
 </P>
-<P>
-Looks loverly, I know. However, all is not well with this script, not well at <EM>all</EM>. To understand why, we need to understand a bit more about attacks 
-on webservers and web security. It is worth taking a bit of time out to look at this in the broadest terms and the broader legislation around computers, as it's the kind of 
-thing site admins should know about. Give that, that's what we'll do now -- but hold onto what we've done above -- we'll come back to it with a firm hand and set face later.
-</P>
-
-
-
-
-
 
 
 

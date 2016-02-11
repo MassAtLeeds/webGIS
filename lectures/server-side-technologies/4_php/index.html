@@ -9,8 +9,8 @@ title: Server Side Technologies - PHP
 
 <h3>4.1 Background</h3>
 
-<p><a href = 'http://php.net/'>PHP</a> is a server side scripting language which was originally developed for web development 
-but is also a general purpose programing language. PHP stands for PHP: Hypertext Preprocessor; 
+<p><a href = 'http://php.net/'>PHP</a> is a server side scripting language which was originally created for web development 
+but is also a general purpose programming language. PHP stands for PHP: Hypertext Preprocessor; 
 a recursive acronym (!), but was originally known as Personal Home Page/ Forms Interpreter 
 (PHP/ FI). PHP is cross-platform and supported by all major web-servers.</p>
 
@@ -31,7 +31,7 @@ extremely popular. In January 2013, 240 million websites used PHP for server-sid
 <p>As PHP is executed on the server it can be used for a number of functions such as; evaluating 
 form data sent from the client; sending and receiving cookies (to remember user data on the web), 
 connecting to / querying databases with SQL, open / read /delete files on the server. Although PHP 
-commonly returns plain HTML, it can also output images, PDF files and videos. </p>
+commonly returns plain HTML files, it can also output images, PDF files and videos. </p>
 
 <p>PHP code should be encased in the script tags <em>&lt?PHP</em> and <em>?&gt </em> and saved with the 
 file extension ‘.php’. You can access the PHP script directly from the browser and the browser will 
@@ -74,11 +74,12 @@ $string2 = "World";
 echo $string1.' '.$string2.'!';
 ?>
 
-<p>A well as being embedded outputs in HTML, PHP can also be interfaced with Javascript to provide additional 
+<p>A well as embedded outputs in HTML, PHP can also be interfaced with Javascript to provide additional 
 functionality. PHP is a weakly typed language, so there is no need to declare data types, however it is notoriously 
-difficult to de-bug, so it is suggested you take extra care when coding and don’t forget to include semi-colon 
-line breaks. As PHP is a server-side scripting language the PHP files must be sat on a server to run. 
-They will not work locally in your browser.</p>
+difficult to de-bug, so it is suggested you take extra care when coding(!) and don’t forget to include semi-colon 
+line breaks. As PHP is a server-side scripting language the <strong>PHP files must be sat on a server to run</strong>.
+They will not work locally in your browser or on the personal server used in the first half of the course 
+(the personal server does not have PHP installed).</p>
 
 <p>Take a quick look at the 
 <a href = 'http://www.codecademy.com/courses/web-beginner-en-StaFQ/0/1?curriculum_id=5124ef4c78d510dd89003eb8'>
@@ -87,7 +88,7 @@ to learn the language in any great detail for the purposes of this course. </p>
 
 <h3>4.3 Database Connection with PHP</h3>
 
-<p>Let’s look at how we’d make a PHP-based webpage that embeds some data from our Postgres database. Here we’ll 
+<p>Let’s look at how we would make a PHP-based webpage that embeds some data from our Postgres database. Here we’ll 
 talk about getting the data into the webpage as raw JSON format text. In later sessions we’ll see how to then map 
 this. </p>
 
@@ -102,7 +103,7 @@ case we have assigned the connection pointer to a variable named ‘dbconn’. <
 
 <p>Once a connection has been established, the database can be queried using the 
 <a href = 'http://php.net/manual/en/function.pg-query.php'>pg_query()</a> function which 
-returns a resource containing the results of the query and is known as the results set.  Notice how this 
+returns a resource containing the results of the query, known as the results set.  Notice how this 
 function accepts two arguments; the database connection pointer variable defined earlier, ‘dbconn’, and an 
 SQL query. Again, it is good practice to assign the result set to a variable so you can process the results 
 set further, in this case we have used ‘result’: </p>

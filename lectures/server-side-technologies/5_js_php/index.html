@@ -7,8 +7,8 @@ title: Server Side Technologies - Futher functionality
 
 <h2>5.0 Adding Further Functionality with Javascript</h2>
 
-<p>In the previous chapter we looked at how PHP can retrieve data from a database and display 
-it in a web browser. In the previous task we opened a PHP file directly; however we can also 
+<p>In the previous chapter we looked at how PHP can be used to retrieve data from a database and display 
+it in a web browser. In the previous task we opened a PHP file directly, however we can also 
 call a PHP script from within a Javascript function.  This means that we can draw fresh results 
 into a webpage without reloading the whole page. In order to do this we need to use something 
 called an AJAX request.  </p>
@@ -18,13 +18,13 @@ called an AJAX request.  </p>
 <p>AJAX is a client side technique which allows data to be sent and retrieved from a server 
 asynchronously, without interfering with the current webpage (i.e. it runs in the background). 
 An AJAX request can be embedded in a Javascript function to either send data to a database or 
-return it, without reloading the page. Consider the AJAX request code below. Here a fetchData() 
+return it, without reloading the page. Consider the AJAX request code below. Here the fetchData() 
 function is called whereby a getJSON() function is used to return JSON encoded data from the 
 server using a GET HTTP request, the getJSON() function accepts two arguments; a string containing 
 the URL to which the request is sent and a callback function which is executed if the request 
 succeeds, this function accepts the output of the PHP file as an argument (results). In this 
 case we are passing in the fetchData.php file which was created in task 3, and if this is successful 
-we are calling a function which writes the results to a div called ‘textWrap’ in the web browser: </p>
+we are calling a function which writes the results into a div called ‘textWrap’ in the web browser: </p>
 
 <code>
 function fetchData()	{
@@ -59,7 +59,7 @@ to webpages. For example the fetchData() function may be called when the user cl
 <h3>5.2 Associative Arrays / Javascript Objects</h3>
 
 <p>The result set currently returned from the PHP file is encoded in JSON but isn’t in a very useful format. 
-To do any further processing of the results, the data returned from the query needs to be put into an 
+To do any further processing of the results, we need to place the returned data into an 
 associative array, so that each value can be referenced based on its original column name. For example we 
 could loop through an associative array and retrieve only the latitude and longitude values if we wanted 
 to map each point. </p>
