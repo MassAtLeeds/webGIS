@@ -1,0 +1,99 @@
+---
+layout: default
+title: Server Side Technologies - pgAdmin task
+---
+
+<h1>Server Side Technologies</h1>
+
+<h2>Task 2 - Introduction to PostgreSQL and pgAdmin</h2>
+
+<ol>
+	<p>We have created a PostgreSQL database instance named ‘geog5871’ on the dialogplus.leeds.ac.uk remote server. 
+	In this task you will:</p>
+
+	<ul>
+		<li>Create a connection to the geog5871 database instance</li>
+		<li>Interrogate the existing ‘tweets’ tables using SQL</li>
+		<li>Create your own table using additional data-sets</li> 
+	</ul>
+
+	<h3>1.0 Interfacing with PostgreSQL using pgAdmin</h3>
+
+	<p>If you are using a computer on the University of Leeds network (or connected to the VPN off campus) you can connect directly to the 
+	PostgreSQL database instance on the dialogplus.leeds.ac.uk server through pgAdmin. 
+	pgAdmin is a free and open source administration and development platform for PostgreSQL. </p>
+
+	<li>Open pgAdmin (available <a href = 'http://www.pgadmin.org/download/'>here</a> if you need to download it) and connect to the 
+	dialogplus.leeds.ac.uk server by clicking the plug icon on the top left hand side of the toolbar, this 'Adds connection to a Server'</li>
+	
+	<p>(Note that if you are installing this on your own machine and it is 64bit, you may need the Microsoft 32bit Visual C++ 
+	redistribution [http://www.microsoft.com/en-gb/download/details.aspx?id=40784]. The error you’ll see is along the lines 
+	of “msvcp120.dll not installed on your machine ”) </p>
+	
+	<p><b>If you are accessing the server from outside the university OR are using a laptop in the university, before you attempt to log on to the server, make sure that you have activated the VPN.</b> 
+	
+	
+	<li>In the ‘New Server Registration’ dialogue box, enter the following credentials including the <strong>database 
+	username and password</strong>, remember this is different to your personal dialogplus username and password:<br />
+		</p>Name: 	geog5871
+		<br />Host:		dialogplus.leeds.ac.uk
+		<br />Port:		5432
+		<br />Username:	XXX
+		<br />Password:	XXX</p>
+	
+	<img src = 'addServer2.PNG' alt = 'Add Server Dialogue Box'>
+	
+	<p>pgAdmin has extensive functionality which makes it easy to query, edit and display data; 
+	you will see an object browser on the left hand side of the window, showing the various database 
+	connections (you should see the geog5871 connection here), a properties window on the right hand 
+	side and an SQL pane on the bottom right hand side.</p> 
+	
+	<img src = 'pgAdmin.PNG' alt = 'pgAdmin GUI'></li>
+
+	<li>Expand the geog5871 connection and view the different subdirectories enclosed within. </li><br />
+	
+	<li>Find the ‘tweets’ table located in Schemas > public > Tables, and explore the data. 
+	How many columns are there? How many rows are there? Which column is the primary key? This data represents tweets that were
+	collected during Hurricane Sandy. Unique usernames and anything else that may be used to identify an individual user has been removed
+	and replaced with 'NA'. There are a number of other tables saved in the database from previous years. Explore these now to see what 
+	data is available to you. </li>
+
+	<h3>2.0 Querying the Data </h3>
+
+	<li>Right click on the tweets table and select ‘Scripts > SELECT Script’. 
+	This query builder allows you to query the data using Structured Query Language (SQL). 
+	There is also the option to use pgSQL; spatially enabled structured query language. 
+	Although this database is a PostgreSQL database, the data within it is not spatially enabled. </li><br />
+	
+	<li>Use the <a href = 'http://www.w3schools.com/sql/sql_where.asp)'>w3 schools</a> web pages to work out how to build 
+	an SQL query to select all messages that were tweeted on day 30 of the sample.</li><br />
+	
+	<li>Build a further 2 queries of your choice on different tables and made a note of the syntax you used. 
+	You can also save the query text if you wish. </li>
+	
+	<h3>3.0 Creating a Table</h3>
+	
+	<li>As well as querying data from existing tables, you can also create your own tables within the database. 
+	Visit the spreadsheet page on the <a href = 'http://earthquake.usgs.gov/earthquakes/feed/v1.0/csv.php'>USGS webpage</a> and 
+	download data in CSV format for all earthquakes which have occurred in the past month. Open this file in excel 
+	to view the data. Tidy up the spreadsheet so that only; ‘time’, ‘latitude’, ‘longitude’, ‘depth’, ‘magnitude’,
+	 ‘id’ and ‘place’ remain. </li><br />
+	 
+	<li>In pgAdmin, right click on ‘tables’ in the left hand column and select ‘New Table’. 
+	You now need to create a table definition for the Earthquake data. Ensure that you add a new column for each column 
+	in the dataset and choose an appropriate data type (choose wisely - we recommend numeric and varying character). 
+	As all of your tables will be saved in the same location, we recommend that you include your username in the title 
+	so you can identify your table once it has been created e.g. georo_earthquakes (<b>Ensure that you use lower case for naming your table</b>). Under the 'Constraints' tab
+	you should set a Primary or Foreign Key so you can uniquely identify each of the rows. We recommend 'id'.
+	Once happy with your table definition, click OK to create the table. It will be empty at this point.</li><br />
+	
+	<li>Right click on the newly created table in the pgAdmin Object Browser and import the Earthquakes CSV file into the table. 
+	Tick the 'Header' checkbox under 'Misc. Options'. The encoding field can be left blank. </li><br />
+	
+	<li>View the data to ensure it has imported correctly, you can make changes after creation via the 'Scripts' menu but this 
+	can be hard work. If you create a table incorrectly, or you are not planning to use it, please DELETE THE TABLE so as not to clog up the 
+	database.</li>
+	
+</ol>
+<hr class="post_float">[ Next: <a href="../4_php/index.html">PHP: Hypertext Preprocessor</a> ]<br>
+</body></html>
