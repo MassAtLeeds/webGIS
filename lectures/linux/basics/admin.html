@@ -6,13 +6,13 @@ title: Linux - Basic Admin
 <h1>Linux: Basic Admin</h1>
 
 <P>
-Although Linux is in many ways clearer and simpler than Windows, it demands more attention, especially 
-if you are going to use it to run a website. Linux assumes you're going to want to admin your machine, 
-rather than letting the machine take care of its own admin, and because *nix has been used for major internet 
-archetectures for a while, it is well known to <A href="http://en.wikipedia.org/wiki/Hacker_%28computer_security%29">crackers</A> etc., who delight in poking holes in 
-it (indeed, poking holes in it is seen as positively contributing to the discovery of security holes). As such, if you are going to use Linux, it is useful to get your head around some basic admin. This page will give you 
-a flavour, and some pointers, but you need to swat up: see the 
-<A href="http://www.geog.leeds.ac.uk/courses/postgrad/web/info/code/reading.html">recommended reading</A>. 
+Although Linux is in many ways clearer and simpler than Windows, it demands more attention, especially
+if you are going to use it to run a website. Linux assumes you're going to want to admin your machine,
+rather than letting the machine take care of its own admin, and because *nix has been used for major internet
+archetectures for a while, it is well known to <A href="http://en.wikipedia.org/wiki/Hacker_%28computer_security%29">crackers</A> etc., who delight in poking holes in
+it (indeed, poking holes in it is seen as positively contributing to the discovery of security holes). As such, if you are going to use Linux, it is useful to get your head around some basic admin. This page will give you
+a flavour, and some pointers, but you need to swat up: see the
+<A href="http://www.geog.leeds.ac.uk/courses/postgrad/web/info/code/reading.html">recommended reading</A>.
 </P>
 
 
@@ -22,9 +22,9 @@ a flavour, and some pointers, but you need to swat up: see the
 UNIX-Style systems have settings for who can read, write, and execute files and read, write, and execute from directories. While these are simpler that Windows permissions, users rarely see the workings of Windows permissions, while in UNIX-style OSs manipulating these is much more common.
 </P>
 <P>
-Each file or directory has three sets of permissions: owner, group, and all users. 
-Each of these can be set to have read "<KBD>r</KBD>", write "<KBD>w</KBD>", and execute 
-"<KBD>x</KBD>" (run) permission with regards to the file/directory. 
+Each file or directory has three sets of permissions: owner, group, and all users.
+Each of these can be set to have read "<KBD>r</KBD>", write "<KBD>w</KBD>", and execute
+"<KBD>x</KBD>" (run) permission with regards to the file/directory.
 You can see the ownership and permissions of the files and directories within the pwd by typing:
 "<KBD>ls -la</KBD>".
 </P>
@@ -35,7 +35,7 @@ For example, a directory may be listed as:
 <KBD>./&nbsp;&nbsp;&nbsp;root:web&nbsp;&nbsp;&nbsp;rwxrwx---</KBD>
 </P>
 <P>
-Meaning the directory is owned by 'root' who can do anything, and usable by the web group who can also do anything. The rest of users can do nothing "<KBD>---</KBD>". 
+Meaning the directory is owned by 'root' who can do anything, and usable by the web group who can also do anything. The rest of users can do nothing "<KBD>---</KBD>".
 </P>
 <P>
 A file might be listed like this:
@@ -44,23 +44,23 @@ A file might be listed like this:
 <KBD>myProgram.exe&nbsp;&nbsp;&nbsp;root:web&nbsp;&nbsp;&nbsp;rwxr-xr---</KBD>
 </P>
 <P>
-Meaning the owner(root) can read,write, and run the file, while the web group can read and run the file, but not write over it, and the rest of the users have no permissions. 
+Meaning the owner(root) can read,write, and run the file, while the web group can read and run the file, but not write over it, and the rest of the users have no permissions.
 </P>
 <P>
-Especially when dealing with files on websites it is very important the ownership and permissions are set up correctly: you really don't want to give all users permission to write to web 
-directories incase someone manages to get themselves a username on your machine -- the 
-harm they can cause on your machine is bad enough; the harm they can do to client machines who think 
+Especially when dealing with files on websites it is very important the ownership and permissions are set up correctly: you really don't want to give all users permission to write to web
+directories incase someone manages to get themselves a username on your machine -- the
+harm they can cause on your machine is bad enough; the harm they can do to client machines who think
 your website is safe is much greater.
 </P>
 <P>
-You can change the owner of a file using 
+You can change the owner of a file using
 <A href="http://en.wikipedia.org/wiki/Chown">chown</A> (as superuser):
 </P>
 <P>
 <KBD>chown user:group filename</KBD>
 </P>
 <P>
-You can use <KBD>*</KBD> wildcard for all. 
+You can use <KBD>*</KBD> wildcard for all.
 You can also use:
 </P>
 <P>
@@ -73,11 +73,11 @@ You can also use <A href="http://en.wikipedia.org/wiki/Chmod">chmod</A> to chang
 <KBD>chmod userGroupPublic filename</KBD>
 </P>
 <P>
-The permissions are usually allocated numerically, by totaling up the following four numbers: 
+The permissions are usually allocated numerically, by totaling up the following four numbers:
 4 = read; 2 = write; 1 = exec; 0 = none. For example:
 </P>
 <P>
-<KBD>chmod 750 filename</KBD> 
+<KBD>chmod 750 filename</KBD>
 </P>
 <P>
 Sets to: user all permissions; Group read/exec; and all other users none.
@@ -106,8 +106,8 @@ Key directories include:
 <H3>Services</H3>
 
 <P>
-Linux comes with a number of pre-installed services 
-(programs that run in the background from startup), but you can add others and 
+Linux comes with a number of pre-installed services
+(programs that run in the background from startup), but you can add others and
 stop and start them as you need. Most have startup scripts in
 <KBD>/etc/rc.d/init.d/</KBD>, which you can call, thus:
 </P>
@@ -121,8 +121,8 @@ stop and start them as you need. Most have startup scripts in
 (<KBD>httpd</KBD> is usually an Apache webserver)
 </P>
 <P>
-To get programs to run at a regular time step, they need an entry in a crontab file. These are used by the 
-"<A href="http://en.wikipedia.org/wiki/Cron">cron</A>" program to schedual events.  
+To get programs to run at a regular time step, they need an entry in a crontab file. These are used by the
+"<A href="http://en.wikipedia.org/wiki/Cron">cron</A>" program to schedual events.
 They are set up using the <KBD><A href="http://en.wikipedia.org/wiki/Cron">crontab</A></KBD> command:
 </P>
 <P>
@@ -164,7 +164,8 @@ Despite this, if you set up a webserver open to the world, you need to stay on t
 
 
 
-<hr class="post_float">[ Next: <a href="index.html">Index for this Unit</a> ]<br>
-[<a href="../../../web-based-gis/materials.html">Course Index</a>]<br>
+<hr class="post_float">
+[<A href="../dialog-plus/index.html">Task: Log into the Dialog-Plus server</A>]<br>
+[ Next: <a href="index.html">Index for this Unit</a> ]<br>
 <hr class="post_float">
 </body></html>
