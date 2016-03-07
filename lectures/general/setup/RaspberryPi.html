@@ -1,0 +1,86 @@
+---
+layout: default
+title: RaspberryPi
+---
+
+<h1>Raspberry Pi</h1>
+
+<img src = "logo.png" height="200" width="200">
+
+<h2>Background/History</h2>
+Pi's are literally taking over the world. Since their creation in 2012, they have gained massive popularity due to their inexpensive nature (the latest <a href="http://www.bbc.co.uk/news/technology-35667990">Pi v.3</a> was released in February 2016 for USD35).
+<br> They are credit-card sized single board computers that were originally developed for teaching computer science in schools and developing countries - example <a href="http://camjam.me"> here </a>.  However, they can be found streaming data from weather stations, used for home automaton and of course, hosting a website. 
+
+They have now tired of this planet and even gone to the <a href="https://www.raspberrypi.org/blog/watch-tim-peake-astro-pi-flight-units-in-space/">ISS</a>.
+
+For a more sensible, and detailed history, go <a href="https://en.wikipedia.org/wiki/Raspberry_Pi">here.</a>
+
+<p> 
+This quick tutorial assumes that you are familiar with setting up a Raspberry Pi.  If not, the following sites are very helpful:
+<ul>
+<li> Quick Start up from <a href="https://www.raspberrypi.org/help/quick-start-guide/">Raspberry Pi Foundation</a>
+<li> Another handy walk through <a href="http://readwrite.com/2014/06/27/raspberry-pi-web-server-website-hosting"> here</a>
+<li> Set up your Pi and create a Chocolate Pi of doom <a href="https://learn.sparkfun.com/tutorials/setting-up-raspbian-and-doom">here</a>
+</ul> 
+<p>
+Once you have set up your Pi, you are ready to use it for serving out webpages.
+<p>
+<h3>Setting up an Apache web server </h3>
+
+As you have already seen, Apache is a very useful web server application that allows interactive webpages to be served through linkage to scripting languages such as PHP.
+<p>
+To set up Apache on a Pi, follow the instructions below:
+<br>
+<ul>
+<li>Install the <code> apache2 </code> package by typing the following into the Terminal:
+<p>
+<code>sudo apt-get install apache2 -y</code>
+<p>
+<li> By default, Apache will put a HTML file in the web folder. To test that the web server is working and the file is there, type:
+<p>
+<code>ls /var/www </code>
+<p>This should return <code>index.html</code>. <br> If you are using another computer to test whether Apache is working on your Pi, you can simply type in the Pi's IP address.  
+<br> To find out the IP address, type:  <code>hostname -I </code> at the command line.  Type the IP address that is returned in a browser and you should get:
+<p>
+<img src = "itlives.png" height="400" width="600">
+<p>
+ The gods of geekdom are looking favourably upon you - Apache is working! (snoopy dance optional)<br>
+ <li> Next, we will change the default web page.  This is stored at: <code>/var/www/index.html</code>.  Enter <code>ls -l /var/www/index.html </code> to look at the <a href="http://www.linux.org/threads/file-permissions-chmod.4094/"> permissions</a> on the file. 
+ <br> This file will be owned by <code>root</code>.  For a definition of what this means, look <a href="http://www.linfo.org/root.html"> here </a>.  
+  Normally we would change this so the file is not owned by root (so you can edit it directly) - but that's for another day.  For now, we'll leave it as it is.
+ <p>
+
+<h3>Installing PHP</h3>
+
+Finally, we'll add that PHP joy back into your life by installing it on the Pi. Type in the following to install PHP: <br>
+<br><code> sudo apt-get install php5 libapache2-mod-php5 -y </code>
+<p>
+Now remove the index.html file by navigating to the directory where index.html is stored and typing:
+<p>
+<code>sudo rm index.html</code>
+<p>
+and create the file index.php:
+<br><br>
+<code>sudo nano index.php</code><p>
+and put some PHP content in it (NB: nano is a file editor):
+<p>
+<code>
+<img src = "php1.png" height="30" width="180">
+<?php echo "hello world"; ?></code>
+<p>
+Now save and refresh your browser. You should see "hello world". This is not dynamic but still served by PHP. Try something dynamic:
+<p>
+<img src = "php2.png" height="30" width="200">
+<code> <?php echo date('Y-m-d H:i:s'); ?> </code><br>
+
+or show your PHP info:
+<p>
+<img src = "php3.png" height="30" width="180">
+<code><?php phpinfo();?></code>
+
+<p> This PHP part was adapted from <a href="https://www.raspberrypi.org/documentation/remote-access/web-server/apache.md"> here </a>
+<p>
+You are now ready to serve your pages out after copying them to the Pi using Filezilla or FTP! However, before you do that, its worth reading the following pages very closely.
+
+<hr class="post_float">[ Next: <a href="setup.html">Setting up your own server space</a> ]<br>
+</body></html>
